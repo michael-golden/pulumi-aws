@@ -5,116 +5,112 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Stack(pulumi.CustomResource):
-    agent_version: pulumi.Output[str]
+    agent_version: pulumi.Output[str] = pulumi.output_property("agentVersion")
     """
     If set to `"LATEST"`, OpsWorks will automatically install the latest version.
     """
-    arn: pulumi.Output[str]
-    berkshelf_version: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
+    berkshelf_version: pulumi.Output[Optional[str]] = pulumi.output_property("berkshelfVersion")
     """
     If `manage_berkshelf` is enabled, the version of Berkshelf to use.
     """
-    color: pulumi.Output[str]
+    color: pulumi.Output[Optional[str]] = pulumi.output_property("color")
     """
     Color to paint next to the stack's resources in the OpsWorks console.
     """
-    configuration_manager_name: pulumi.Output[str]
+    configuration_manager_name: pulumi.Output[Optional[str]] = pulumi.output_property("configurationManagerName")
     """
     Name of the configuration manager to use. Defaults to "Chef".
     """
-    configuration_manager_version: pulumi.Output[str]
+    configuration_manager_version: pulumi.Output[Optional[str]] = pulumi.output_property("configurationManagerVersion")
     """
     Version of the configuration manager to use. Defaults to "11.4".
     """
-    custom_cookbooks_sources: pulumi.Output[list]
+    custom_cookbooks_sources: pulumi.Output[List['outputs.StackCustomCookbooksSource']] = pulumi.output_property("customCookbooksSources")
     """
     When `use_custom_cookbooks` is set, provide this sub-object as
     described below.
-
-      * `password` (`str`) - Password to use when authenticating to the source. The provider cannot perform drift detection of this configuration.
-      * `revision` (`str`) - For sources that are version-aware, the revision to use.
-      * `sshKey` (`str`) - SSH key to use when authenticating to the source. The provider cannot perform drift detection of this configuration.
-      * `type` (`str`) - The type of source to use. For example, "archive".
-      * `url` (`str`) - The URL where the cookbooks resource can be found.
-      * `username` (`str`) - Username to use when authenticating to the source.
     """
-    custom_json: pulumi.Output[str]
+    custom_json: pulumi.Output[Optional[str]] = pulumi.output_property("customJson")
     """
     Custom JSON attributes to apply to the entire stack.
     """
-    default_availability_zone: pulumi.Output[str]
+    default_availability_zone: pulumi.Output[str] = pulumi.output_property("defaultAvailabilityZone")
     """
     Name of the availability zone where instances will be created
     by default. This is required unless you set `vpc_id`.
     """
-    default_instance_profile_arn: pulumi.Output[str]
+    default_instance_profile_arn: pulumi.Output[str] = pulumi.output_property("defaultInstanceProfileArn")
     """
     The ARN of an IAM Instance Profile that created instances
     will have by default.
     """
-    default_os: pulumi.Output[str]
+    default_os: pulumi.Output[Optional[str]] = pulumi.output_property("defaultOs")
     """
     Name of OS that will be installed on instances by default.
     """
-    default_root_device_type: pulumi.Output[str]
+    default_root_device_type: pulumi.Output[Optional[str]] = pulumi.output_property("defaultRootDeviceType")
     """
     Name of the type of root device instances will have by default.
     """
-    default_ssh_key_name: pulumi.Output[str]
+    default_ssh_key_name: pulumi.Output[Optional[str]] = pulumi.output_property("defaultSshKeyName")
     """
     Name of the SSH keypair that instances will have by default.
     """
-    default_subnet_id: pulumi.Output[str]
+    default_subnet_id: pulumi.Output[str] = pulumi.output_property("defaultSubnetId")
     """
     Id of the subnet in which instances will be created by default. Mandatory
     if `vpc_id` is set, and forbidden if it isn't.
     """
-    hostname_theme: pulumi.Output[str]
+    hostname_theme: pulumi.Output[Optional[str]] = pulumi.output_property("hostnameTheme")
     """
     Keyword representing the naming scheme that will be used for instance hostnames
     within this stack.
     """
-    manage_berkshelf: pulumi.Output[bool]
+    manage_berkshelf: pulumi.Output[Optional[bool]] = pulumi.output_property("manageBerkshelf")
     """
     Boolean value controlling whether Opsworks will run Berkshelf for this stack.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the stack.
     """
-    region: pulumi.Output[str]
+    region: pulumi.Output[str] = pulumi.output_property("region")
     """
     The name of the region where the stack will exist.
     """
-    service_role_arn: pulumi.Output[str]
+    service_role_arn: pulumi.Output[str] = pulumi.output_property("serviceRoleArn")
     """
     The ARN of an IAM role that the OpsWorks service will act as.
     """
-    stack_endpoint: pulumi.Output[str]
-    tags: pulumi.Output[dict]
+    stack_endpoint: pulumi.Output[str] = pulumi.output_property("stackEndpoint")
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    use_custom_cookbooks: pulumi.Output[bool]
+    use_custom_cookbooks: pulumi.Output[Optional[bool]] = pulumi.output_property("useCustomCookbooks")
     """
     Boolean value controlling whether the custom cookbook settings are
     enabled.
     """
-    use_opsworks_security_groups: pulumi.Output[bool]
+    use_opsworks_security_groups: pulumi.Output[Optional[bool]] = pulumi.output_property("useOpsworksSecurityGroups")
     """
     Boolean value controlling whether the standard OpsWorks
     security groups apply to created instances.
     """
-    vpc_id: pulumi.Output[str]
+    vpc_id: pulumi.Output[str] = pulumi.output_property("vpcId")
     """
     The id of the VPC that this stack belongs to.
     """
-    def __init__(__self__, resource_name, opts=None, agent_version=None, berkshelf_version=None, color=None, configuration_manager_name=None, configuration_manager_version=None, custom_cookbooks_sources=None, custom_json=None, default_availability_zone=None, default_instance_profile_arn=None, default_os=None, default_root_device_type=None, default_ssh_key_name=None, default_subnet_id=None, hostname_theme=None, manage_berkshelf=None, name=None, region=None, service_role_arn=None, tags=None, use_custom_cookbooks=None, use_opsworks_security_groups=None, vpc_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, agent_version=None, berkshelf_version=None, color=None, configuration_manager_name=None, configuration_manager_version=None, custom_cookbooks_sources=None, custom_json=None, default_availability_zone=None, default_instance_profile_arn=None, default_os=None, default_root_device_type=None, default_ssh_key_name=None, default_subnet_id=None, hostname_theme=None, manage_berkshelf=None, name=None, region=None, service_role_arn=None, tags=None, use_custom_cookbooks=None, use_opsworks_security_groups=None, vpc_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an OpsWorks stack resource.
 
@@ -147,7 +143,7 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[str] color: Color to paint next to the stack's resources in the OpsWorks console.
         :param pulumi.Input[str] configuration_manager_name: Name of the configuration manager to use. Defaults to "Chef".
         :param pulumi.Input[str] configuration_manager_version: Version of the configuration manager to use. Defaults to "11.4".
-        :param pulumi.Input[list] custom_cookbooks_sources: When `use_custom_cookbooks` is set, provide this sub-object as
+        :param pulumi.Input[List[pulumi.Input['StackCustomCookbooksSourceArgs']]] custom_cookbooks_sources: When `use_custom_cookbooks` is set, provide this sub-object as
                described below.
         :param pulumi.Input[str] custom_json: Custom JSON attributes to apply to the entire stack.
         :param pulumi.Input[str] default_availability_zone: Name of the availability zone where instances will be created
@@ -165,21 +161,12 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the stack.
         :param pulumi.Input[str] region: The name of the region where the stack will exist.
         :param pulumi.Input[str] service_role_arn: The ARN of an IAM role that the OpsWorks service will act as.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[bool] use_custom_cookbooks: Boolean value controlling whether the custom cookbook settings are
                enabled.
         :param pulumi.Input[bool] use_opsworks_security_groups: Boolean value controlling whether the standard OpsWorks
                security groups apply to created instances.
         :param pulumi.Input[str] vpc_id: The id of the VPC that this stack belongs to.
-
-        The **custom_cookbooks_sources** object supports the following:
-
-          * `password` (`pulumi.Input[str]`) - Password to use when authenticating to the source. The provider cannot perform drift detection of this configuration.
-          * `revision` (`pulumi.Input[str]`) - For sources that are version-aware, the revision to use.
-          * `sshKey` (`pulumi.Input[str]`) - SSH key to use when authenticating to the source. The provider cannot perform drift detection of this configuration.
-          * `type` (`pulumi.Input[str]`) - The type of source to use. For example, "archive".
-          * `url` (`pulumi.Input[str]`) - The URL where the cookbooks resource can be found.
-          * `username` (`pulumi.Input[str]`) - Username to use when authenticating to the source.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -248,7 +235,7 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[str] color: Color to paint next to the stack's resources in the OpsWorks console.
         :param pulumi.Input[str] configuration_manager_name: Name of the configuration manager to use. Defaults to "Chef".
         :param pulumi.Input[str] configuration_manager_version: Version of the configuration manager to use. Defaults to "11.4".
-        :param pulumi.Input[list] custom_cookbooks_sources: When `use_custom_cookbooks` is set, provide this sub-object as
+        :param pulumi.Input[List[pulumi.Input['StackCustomCookbooksSourceArgs']]] custom_cookbooks_sources: When `use_custom_cookbooks` is set, provide this sub-object as
                described below.
         :param pulumi.Input[str] custom_json: Custom JSON attributes to apply to the entire stack.
         :param pulumi.Input[str] default_availability_zone: Name of the availability zone where instances will be created
@@ -266,21 +253,12 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the stack.
         :param pulumi.Input[str] region: The name of the region where the stack will exist.
         :param pulumi.Input[str] service_role_arn: The ARN of an IAM role that the OpsWorks service will act as.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[bool] use_custom_cookbooks: Boolean value controlling whether the custom cookbook settings are
                enabled.
         :param pulumi.Input[bool] use_opsworks_security_groups: Boolean value controlling whether the standard OpsWorks
                security groups apply to created instances.
         :param pulumi.Input[str] vpc_id: The id of the VPC that this stack belongs to.
-
-        The **custom_cookbooks_sources** object supports the following:
-
-          * `password` (`pulumi.Input[str]`) - Password to use when authenticating to the source. The provider cannot perform drift detection of this configuration.
-          * `revision` (`pulumi.Input[str]`) - For sources that are version-aware, the revision to use.
-          * `sshKey` (`pulumi.Input[str]`) - SSH key to use when authenticating to the source. The provider cannot perform drift detection of this configuration.
-          * `type` (`pulumi.Input[str]`) - The type of source to use. For example, "archive".
-          * `url` (`pulumi.Input[str]`) - The URL where the cookbooks resource can be found.
-          * `username` (`pulumi.Input[str]`) - Username to use when authenticating to the source.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -317,3 +295,4 @@ class Stack(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

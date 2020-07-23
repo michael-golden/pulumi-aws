@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class AdmChannel(pulumi.CustomResource):
-    application_id: pulumi.Output[str]
+    application_id: pulumi.Output[str] = pulumi.output_property("applicationId")
     """
     The application ID.
     """
-    client_id: pulumi.Output[str]
+    client_id: pulumi.Output[str] = pulumi.output_property("clientId")
     """
     Client ID (part of OAuth Credentials) obtained via Amazon Developer Account.
     """
-    client_secret: pulumi.Output[str]
+    client_secret: pulumi.Output[str] = pulumi.output_property("clientSecret")
     """
     Client Secret (part of OAuth Credentials) obtained via Amazon Developer Account.
     """
-    enabled: pulumi.Output[bool]
+    enabled: pulumi.Output[Optional[bool]] = pulumi.output_property("enabled")
     """
     Specifies whether to enable the channel. Defaults to `true`.
     """
-    def __init__(__self__, resource_name, opts=None, application_id=None, client_id=None, client_secret=None, enabled=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application_id=None, client_id=None, client_secret=None, enabled=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Pinpoint ADM (Amazon Device Messaging) Channel resource.
 
@@ -115,3 +116,4 @@ class AdmChannel(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

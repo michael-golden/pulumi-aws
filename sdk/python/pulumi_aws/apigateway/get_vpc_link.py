@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetVpcLinkResult:
     """
     A collection of values returned by getVpcLink.
     """
-    def __init__(__self__, description=None, id=None, name=None, status=None, status_message=None, tags=None, target_arns=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, description=None, id=None, name=None, status=None, status_message=None, tags=None, target_arns=None) -> None:
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         __self__.description = description
@@ -89,7 +90,7 @@ def get_vpc_link(name=None, tags=None, opts=None):
 
     :param str name: The name of the API Gateway VPC Link to look up. If no API Gateway VPC Link is found with this name, an error will be returned. 
            If multiple API Gateway VPC Links are found with this name, an error will be returned.
-    :param dict tags: Key-value map of resource tags
+    :param Dict[str, str] tags: Key-value map of resource tags
     """
     __args__ = dict()
     __args__['name'] = name

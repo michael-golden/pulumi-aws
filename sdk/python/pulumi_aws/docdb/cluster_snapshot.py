@@ -5,58 +5,59 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class ClusterSnapshot(pulumi.CustomResource):
-    availability_zones: pulumi.Output[list]
+    availability_zones: pulumi.Output[List[str]] = pulumi.output_property("availabilityZones")
     """
     List of EC2 Availability Zones that instances in the DocDB cluster snapshot can be restored in.
     """
-    db_cluster_identifier: pulumi.Output[str]
+    db_cluster_identifier: pulumi.Output[str] = pulumi.output_property("dbClusterIdentifier")
     """
     The DocDB Cluster Identifier from which to take the snapshot.
     """
-    db_cluster_snapshot_arn: pulumi.Output[str]
+    db_cluster_snapshot_arn: pulumi.Output[str] = pulumi.output_property("dbClusterSnapshotArn")
     """
     The Amazon Resource Name (ARN) for the DocDB Cluster Snapshot.
     """
-    db_cluster_snapshot_identifier: pulumi.Output[str]
+    db_cluster_snapshot_identifier: pulumi.Output[str] = pulumi.output_property("dbClusterSnapshotIdentifier")
     """
     The Identifier for the snapshot.
     """
-    engine: pulumi.Output[str]
+    engine: pulumi.Output[str] = pulumi.output_property("engine")
     """
     Specifies the name of the database engine.
     """
-    engine_version: pulumi.Output[str]
+    engine_version: pulumi.Output[str] = pulumi.output_property("engineVersion")
     """
     Version of the database engine for this DocDB cluster snapshot.
     """
-    kms_key_id: pulumi.Output[str]
+    kms_key_id: pulumi.Output[str] = pulumi.output_property("kmsKeyId")
     """
     If storage_encrypted is true, the AWS KMS key identifier for the encrypted DocDB cluster snapshot.
     """
-    port: pulumi.Output[float]
+    port: pulumi.Output[float] = pulumi.output_property("port")
     """
     Port that the DocDB cluster was listening on at the time of the snapshot.
     """
-    snapshot_type: pulumi.Output[str]
-    source_db_cluster_snapshot_arn: pulumi.Output[str]
-    status: pulumi.Output[str]
+    snapshot_type: pulumi.Output[str] = pulumi.output_property("snapshotType")
+    source_db_cluster_snapshot_arn: pulumi.Output[str] = pulumi.output_property("sourceDbClusterSnapshotArn")
+    status: pulumi.Output[str] = pulumi.output_property("status")
     """
     The status of this DocDB Cluster Snapshot.
     """
-    storage_encrypted: pulumi.Output[bool]
+    storage_encrypted: pulumi.Output[bool] = pulumi.output_property("storageEncrypted")
     """
     Specifies whether the DocDB cluster snapshot is encrypted.
     """
-    vpc_id: pulumi.Output[str]
+    vpc_id: pulumi.Output[str] = pulumi.output_property("vpcId")
     """
     The VPC ID associated with the DocDB cluster snapshot.
     """
-    def __init__(__self__, resource_name, opts=None, db_cluster_identifier=None, db_cluster_snapshot_identifier=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, db_cluster_identifier=None, db_cluster_snapshot_identifier=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a DocDB database cluster snapshot for DocDB clusters.
 
@@ -125,7 +126,7 @@ class ClusterSnapshot(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] availability_zones: List of EC2 Availability Zones that instances in the DocDB cluster snapshot can be restored in.
+        :param pulumi.Input[List[pulumi.Input[str]]] availability_zones: List of EC2 Availability Zones that instances in the DocDB cluster snapshot can be restored in.
         :param pulumi.Input[str] db_cluster_identifier: The DocDB Cluster Identifier from which to take the snapshot.
         :param pulumi.Input[str] db_cluster_snapshot_arn: The Amazon Resource Name (ARN) for the DocDB Cluster Snapshot.
         :param pulumi.Input[str] db_cluster_snapshot_identifier: The Identifier for the snapshot.
@@ -161,3 +162,4 @@ class ClusterSnapshot(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

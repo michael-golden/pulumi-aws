@@ -5,44 +5,45 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class InstanceProfile(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN assigned by AWS to the instance profile.
     """
-    create_date: pulumi.Output[str]
+    create_date: pulumi.Output[str] = pulumi.output_property("createDate")
     """
     The creation timestamp of the instance profile.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The profile's name. If omitted, this provider will assign a random, unique name.
     """
-    name_prefix: pulumi.Output[str]
+    name_prefix: pulumi.Output[Optional[str]] = pulumi.output_property("namePrefix")
     """
     Creates a unique name beginning with the specified prefix. Conflicts with `name`.
     """
-    path: pulumi.Output[str]
+    path: pulumi.Output[Optional[str]] = pulumi.output_property("path")
     """
     Path in which to create the profile.
     """
-    role: pulumi.Output[str]
+    role: pulumi.Output[str] = pulumi.output_property("role")
     """
     The role name to include in the profile.
     """
-    roles: pulumi.Output[list]
+    roles: pulumi.Output[List[str]] = pulumi.output_property("roles")
     """
     A list of role names to include in the profile.  The current default is 1.  If you see an error message similar to `Cannot exceed quota for InstanceSessionsPerInstanceProfile: 1`, then you must contact AWS support and ask for a limit increase.
     """
-    unique_id: pulumi.Output[str]
+    unique_id: pulumi.Output[str] = pulumi.output_property("uniqueId")
     """
     The [unique ID][1] assigned by AWS.
     """
-    def __init__(__self__, resource_name, opts=None, name=None, name_prefix=None, path=None, role=None, roles=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, name_prefix=None, path=None, role=None, roles=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an IAM instance profile.
 
@@ -77,8 +78,8 @@ class InstanceProfile(pulumi.CustomResource):
         :param pulumi.Input[str] name: The profile's name. If omitted, this provider will assign a random, unique name.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         :param pulumi.Input[str] path: Path in which to create the profile.
-        :param pulumi.Input[dict] role: The role name to include in the profile.
-        :param pulumi.Input[list] roles: A list of role names to include in the profile.  The current default is 1.  If you see an error message similar to `Cannot exceed quota for InstanceSessionsPerInstanceProfile: 1`, then you must contact AWS support and ask for a limit increase.
+        :param pulumi.Input[str] role: The role name to include in the profile.
+        :param pulumi.Input[List[pulumi.Input[str]]] roles: A list of role names to include in the profile.  The current default is 1.  If you see an error message similar to `Cannot exceed quota for InstanceSessionsPerInstanceProfile: 1`, then you must contact AWS support and ask for a limit increase.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -128,8 +129,8 @@ class InstanceProfile(pulumi.CustomResource):
         :param pulumi.Input[str] name: The profile's name. If omitted, this provider will assign a random, unique name.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         :param pulumi.Input[str] path: Path in which to create the profile.
-        :param pulumi.Input[dict] role: The role name to include in the profile.
-        :param pulumi.Input[list] roles: A list of role names to include in the profile.  The current default is 1.  If you see an error message similar to `Cannot exceed quota for InstanceSessionsPerInstanceProfile: 1`, then you must contact AWS support and ask for a limit increase.
+        :param pulumi.Input[str] role: The role name to include in the profile.
+        :param pulumi.Input[List[pulumi.Input[str]]] roles: A list of role names to include in the profile.  The current default is 1.  If you see an error message similar to `Cannot exceed quota for InstanceSessionsPerInstanceProfile: 1`, then you must contact AWS support and ask for a limit increase.
         :param pulumi.Input[str] unique_id: The [unique ID][1] assigned by AWS.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -151,3 +152,4 @@ class InstanceProfile(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

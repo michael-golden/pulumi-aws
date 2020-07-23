@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetCoipPoolResult:
     """
     A collection of values returned by getCoipPool.
     """
-    def __init__(__self__, filters=None, id=None, local_gateway_route_table_id=None, pool_cidrs=None, pool_id=None, tags=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, filters=None, id=None, local_gateway_route_table_id=None, pool_cidrs=None, pool_id=None, tags=None) -> None:
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
         __self__.filters = filters
@@ -78,15 +81,8 @@ def get_coip_pool(filters=None, local_gateway_route_table_id=None, pool_id=None,
 
     :param str local_gateway_route_table_id: Local Gateway Route Table Id assigned to desired COIP Pool
     :param str pool_id: The id of the specific COIP Pool to retrieve.
-    :param dict tags: A mapping of tags, each pair of which must exactly match
+    :param Dict[str, str] tags: A mapping of tags, each pair of which must exactly match
            a pair on the desired COIP Pool.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeCoipPools.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A COIP Pool will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters

@@ -5,36 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class NatGateway(pulumi.CustomResource):
-    allocation_id: pulumi.Output[str]
+    allocation_id: pulumi.Output[str] = pulumi.output_property("allocationId")
     """
     The Allocation ID of the Elastic IP address for the gateway.
     """
-    network_interface_id: pulumi.Output[str]
+    network_interface_id: pulumi.Output[str] = pulumi.output_property("networkInterfaceId")
     """
     The ENI ID of the network interface created by the NAT gateway.
     """
-    private_ip: pulumi.Output[str]
+    private_ip: pulumi.Output[str] = pulumi.output_property("privateIp")
     """
     The private IP address of the NAT Gateway.
     """
-    public_ip: pulumi.Output[str]
+    public_ip: pulumi.Output[str] = pulumi.output_property("publicIp")
     """
     The public IP address of the NAT Gateway.
     """
-    subnet_id: pulumi.Output[str]
+    subnet_id: pulumi.Output[str] = pulumi.output_property("subnetId")
     """
     The Subnet ID of the subnet in which to place the gateway.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    def __init__(__self__, resource_name, opts=None, allocation_id=None, subnet_id=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allocation_id=None, subnet_id=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to create a VPC NAT Gateway.
 
@@ -67,7 +68,7 @@ class NatGateway(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allocation_id: The Allocation ID of the Elastic IP address for the gateway.
         :param pulumi.Input[str] subnet_id: The Subnet ID of the subnet in which to place the gateway.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -116,7 +117,7 @@ class NatGateway(pulumi.CustomResource):
         :param pulumi.Input[str] private_ip: The private IP address of the NAT Gateway.
         :param pulumi.Input[str] public_ip: The public IP address of the NAT Gateway.
         :param pulumi.Input[str] subnet_id: The Subnet ID of the subnet in which to place the gateway.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -135,3 +136,4 @@ class NatGateway(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

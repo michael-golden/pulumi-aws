@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class VpcEndpointRouteTableAssociation(pulumi.CustomResource):
-    route_table_id: pulumi.Output[str]
+    route_table_id: pulumi.Output[str] = pulumi.output_property("routeTableId")
     """
     Identifier of the EC2 Route Table to be associated with the VPC Endpoint.
     """
-    vpc_endpoint_id: pulumi.Output[str]
+    vpc_endpoint_id: pulumi.Output[str] = pulumi.output_property("vpcEndpointId")
     """
     Identifier of the VPC Endpoint with which the EC2 Route Table will be associated.
     """
-    def __init__(__self__, resource_name, opts=None, route_table_id=None, vpc_endpoint_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, route_table_id=None, vpc_endpoint_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a VPC Endpoint Route Table Association
 
@@ -92,3 +93,4 @@ class VpcEndpointRouteTableAssociation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

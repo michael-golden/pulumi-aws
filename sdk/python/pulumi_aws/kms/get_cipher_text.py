@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetCipherTextResult:
     """
     A collection of values returned by getCipherText.
     """
-    def __init__(__self__, ciphertext_blob=None, context=None, id=None, key_id=None, plaintext=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, ciphertext_blob=None, context=None, id=None, key_id=None, plaintext=None) -> None:
         if ciphertext_blob and not isinstance(ciphertext_blob, str):
             raise TypeError("Expected argument 'ciphertext_blob' to be a str")
         __self__.ciphertext_blob = ciphertext_blob
@@ -76,7 +77,7 @@ def get_cipher_text(context=None, key_id=None, plaintext=None, opts=None):
     ```
 
 
-    :param dict context: An optional mapping that makes up the encryption context.
+    :param Dict[str, str] context: An optional mapping that makes up the encryption context.
     :param str key_id: Globally unique key ID for the customer master key.
     :param str plaintext: Data to be encrypted. Note that this may show up in logs, and it will be stored in the state file.
     """

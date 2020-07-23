@@ -5,31 +5,32 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class SecretRotation(pulumi.CustomResource):
-    rotation_enabled: pulumi.Output[bool]
+    rotation_enabled: pulumi.Output[bool] = pulumi.output_property("rotationEnabled")
     """
     Specifies whether automatic rotation is enabled for this secret.
     """
-    rotation_lambda_arn: pulumi.Output[str]
+    rotation_lambda_arn: pulumi.Output[str] = pulumi.output_property("rotationLambdaArn")
     """
     Specifies the ARN of the Lambda function that can rotate the secret.
     """
-    rotation_rules: pulumi.Output[dict]
+    rotation_rules: pulumi.Output['outputs.SecretRotationRotationRules'] = pulumi.output_property("rotationRules")
     """
     A structure that defines the rotation configuration for this secret. Defined below.
-
-      * `automaticallyAfterDays` (`float`) - Specifies the number of days between automatic scheduled rotations of the secret.
     """
-    secret_id: pulumi.Output[str]
+    secret_id: pulumi.Output[str] = pulumi.output_property("secretId")
     """
     Specifies the secret to which you want to add a new version. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret. The secret must already exist.
     """
-    tags: pulumi.Output[dict]
-    def __init__(__self__, resource_name, opts=None, rotation_lambda_arn=None, rotation_rules=None, secret_id=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, rotation_lambda_arn=None, rotation_rules=None, secret_id=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage AWS Secrets Manager secret rotation. To manage a secret, see the [`secretsmanager.Secret` resource](https://www.terraform.io/docs/providers/aws/r/secretsmanager_secret.html). To manage a secret value, see the [`secretsmanager.SecretVersion` resource](https://www.terraform.io/docs/providers/aws/r/secretsmanager_secret_version.html).
 
@@ -58,12 +59,8 @@ class SecretRotation(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] rotation_lambda_arn: Specifies the ARN of the Lambda function that can rotate the secret.
-        :param pulumi.Input[dict] rotation_rules: A structure that defines the rotation configuration for this secret. Defined below.
+        :param pulumi.Input['SecretRotationRotationRulesArgs'] rotation_rules: A structure that defines the rotation configuration for this secret. Defined below.
         :param pulumi.Input[str] secret_id: Specifies the secret to which you want to add a new version. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret. The secret must already exist.
-
-        The **rotation_rules** object supports the following:
-
-          * `automaticallyAfterDays` (`pulumi.Input[float]`) - Specifies the number of days between automatic scheduled rotations of the secret.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -110,12 +107,8 @@ class SecretRotation(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] rotation_enabled: Specifies whether automatic rotation is enabled for this secret.
         :param pulumi.Input[str] rotation_lambda_arn: Specifies the ARN of the Lambda function that can rotate the secret.
-        :param pulumi.Input[dict] rotation_rules: A structure that defines the rotation configuration for this secret. Defined below.
+        :param pulumi.Input['SecretRotationRotationRulesArgs'] rotation_rules: A structure that defines the rotation configuration for this secret. Defined below.
         :param pulumi.Input[str] secret_id: Specifies the secret to which you want to add a new version. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret. The secret must already exist.
-
-        The **rotation_rules** object supports the following:
-
-          * `automaticallyAfterDays` (`pulumi.Input[float]`) - Specifies the number of days between automatic scheduled rotations of the secret.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -133,3 +126,4 @@ class SecretRotation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

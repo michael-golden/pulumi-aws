@@ -5,31 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Database(pulumi.CustomResource):
-    bucket: pulumi.Output[str]
+    bucket: pulumi.Output[str] = pulumi.output_property("bucket")
     """
     Name of s3 bucket to save the results of the query execution.
     """
-    encryption_configuration: pulumi.Output[dict]
+    encryption_configuration: pulumi.Output[Optional['outputs.DatabaseEncryptionConfiguration']] = pulumi.output_property("encryptionConfiguration")
     """
     The encryption key block AWS Athena uses to decrypt the data in S3, such as an AWS Key Management Service (AWS KMS) key. An `encryption_configuration` block is documented below.
-
-      * `encryptionOption` (`str`) - The type of key; one of `SSE_S3`, `SSE_KMS`, `CSE_KMS`
-      * `kmsKey` (`str`) - The KMS key ARN or ID; required for key types `SSE_KMS` and `CSE_KMS`.
     """
-    force_destroy: pulumi.Output[bool]
+    force_destroy: pulumi.Output[Optional[bool]] = pulumi.output_property("forceDestroy")
     """
     A boolean that indicates all tables should be deleted from the database so that the database can be destroyed without error. The tables are *not* recoverable.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the database to create.
     """
-    def __init__(__self__, resource_name, opts=None, bucket=None, encryption_configuration=None, force_destroy=None, name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, bucket=None, encryption_configuration=None, force_destroy=None, name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Athena database.
 
@@ -48,14 +48,9 @@ class Database(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: Name of s3 bucket to save the results of the query execution.
-        :param pulumi.Input[dict] encryption_configuration: The encryption key block AWS Athena uses to decrypt the data in S3, such as an AWS Key Management Service (AWS KMS) key. An `encryption_configuration` block is documented below.
+        :param pulumi.Input['DatabaseEncryptionConfigurationArgs'] encryption_configuration: The encryption key block AWS Athena uses to decrypt the data in S3, such as an AWS Key Management Service (AWS KMS) key. An `encryption_configuration` block is documented below.
         :param pulumi.Input[bool] force_destroy: A boolean that indicates all tables should be deleted from the database so that the database can be destroyed without error. The tables are *not* recoverable.
         :param pulumi.Input[str] name: Name of the database to create.
-
-        The **encryption_configuration** object supports the following:
-
-          * `encryptionOption` (`pulumi.Input[str]`) - The type of key; one of `SSE_S3`, `SSE_KMS`, `CSE_KMS`
-          * `kmsKey` (`pulumi.Input[str]`) - The KMS key ARN or ID; required for key types `SSE_KMS` and `CSE_KMS`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -96,14 +91,9 @@ class Database(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: Name of s3 bucket to save the results of the query execution.
-        :param pulumi.Input[dict] encryption_configuration: The encryption key block AWS Athena uses to decrypt the data in S3, such as an AWS Key Management Service (AWS KMS) key. An `encryption_configuration` block is documented below.
+        :param pulumi.Input['DatabaseEncryptionConfigurationArgs'] encryption_configuration: The encryption key block AWS Athena uses to decrypt the data in S3, such as an AWS Key Management Service (AWS KMS) key. An `encryption_configuration` block is documented below.
         :param pulumi.Input[bool] force_destroy: A boolean that indicates all tables should be deleted from the database so that the database can be destroyed without error. The tables are *not* recoverable.
         :param pulumi.Input[str] name: Name of the database to create.
-
-        The **encryption_configuration** object supports the following:
-
-          * `encryptionOption` (`pulumi.Input[str]`) - The type of key; one of `SSE_S3`, `SSE_KMS`, `CSE_KMS`
-          * `kmsKey` (`pulumi.Input[str]`) - The KMS key ARN or ID; required for key types `SSE_KMS` and `CSE_KMS`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -120,3 +110,4 @@ class Database(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

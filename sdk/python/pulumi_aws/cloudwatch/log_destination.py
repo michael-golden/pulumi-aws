@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class LogDestination(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The Amazon Resource Name (ARN) specifying the log destination.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     A name for the log destination
     """
-    role_arn: pulumi.Output[str]
+    role_arn: pulumi.Output[str] = pulumi.output_property("roleArn")
     """
     The ARN of an IAM role that grants Amazon CloudWatch Logs permissions to put data into the target
     """
-    target_arn: pulumi.Output[str]
+    target_arn: pulumi.Output[str] = pulumi.output_property("targetArn")
     """
     The ARN of the target Amazon Kinesis stream resource for the destination
     """
-    def __init__(__self__, resource_name, opts=None, name=None, role_arn=None, target_arn=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, role_arn=None, target_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CloudWatch Logs destination resource.
 
@@ -107,3 +108,4 @@ class LogDestination(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

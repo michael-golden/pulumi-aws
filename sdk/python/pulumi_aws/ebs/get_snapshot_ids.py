@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetSnapshotIdsResult:
     """
     A collection of values returned by getSnapshotIds.
     """
-    def __init__(__self__, filters=None, id=None, ids=None, owners=None, restorable_by_user_ids=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, filters=None, id=None, ids=None, owners=None, restorable_by_user_ids=None) -> None:
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
         __self__.filters = filters
@@ -72,16 +75,11 @@ def get_snapshot_ids(filters=None, owners=None, restorable_by_user_ids=None, opt
     ```
 
 
-    :param list filters: One or more name/value pairs to filter off of. There are
+    :param List['GetSnapshotIdsFilterArgs'] filters: One or more name/value pairs to filter off of. There are
            several valid keys, for a full reference, check out
            [describe-volumes in the AWS CLI reference][1].
-    :param list owners: Returns the snapshots owned by the specified owner id. Multiple owners can be specified.
-    :param list restorable_by_user_ids: One or more AWS accounts IDs that can create volumes from the snapshot.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`)
-      * `values` (`list`)
+    :param List[str] owners: Returns the snapshots owned by the specified owner id. Multiple owners can be specified.
+    :param List[str] restorable_by_user_ids: One or more AWS accounts IDs that can create volumes from the snapshot.
     """
     __args__ = dict()
     __args__['filters'] = filters

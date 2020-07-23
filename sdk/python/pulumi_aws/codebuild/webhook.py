@@ -5,41 +5,39 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Webhook(pulumi.CustomResource):
-    branch_filter: pulumi.Output[str]
+    branch_filter: pulumi.Output[Optional[str]] = pulumi.output_property("branchFilter")
     """
     A regular expression used to determine which branches get built. Default is all branches are built. It is recommended to use `filter_group` over `branch_filter`.
     """
-    filter_groups: pulumi.Output[list]
+    filter_groups: pulumi.Output[Optional[List['outputs.WebhookFilterGroup']]] = pulumi.output_property("filterGroups")
     """
     Information about the webhook's trigger. Filter group blocks are documented below.
-
-      * `filters` (`list`) - A webhook filter for the group. Filter blocks are documented below.
-        * `excludeMatchedPattern` (`bool`) - If set to `true`, the specified filter does *not* trigger a build. Defaults to `false`.
-        * `pattern` (`str`) - For a filter that uses `EVENT` type, a comma-separated string that specifies one event: `PUSH`, `PULL_REQUEST_CREATED`, `PULL_REQUEST_UPDATED`, `PULL_REQUEST_REOPENED`. `PULL_REQUEST_MERGED` works with GitHub & GitHub Enterprise only. For a filter that uses any of the other filter types, a regular expression.
-        * `type` (`str`) - The webhook filter group's type. Valid values for this parameter are: `EVENT`, `BASE_REF`, `HEAD_REF`, `ACTOR_ACCOUNT_ID`, `FILE_PATH`. At least one filter group must specify `EVENT` as its type.
     """
-    payload_url: pulumi.Output[str]
+    payload_url: pulumi.Output[str] = pulumi.output_property("payloadUrl")
     """
     The CodeBuild endpoint where webhook events are sent.
     """
-    project_name: pulumi.Output[str]
+    project_name: pulumi.Output[str] = pulumi.output_property("projectName")
     """
     The name of the build project.
     """
-    secret: pulumi.Output[str]
+    secret: pulumi.Output[str] = pulumi.output_property("secret")
     """
     The secret token of the associated repository. Not returned by the CodeBuild API for all source types.
     """
-    url: pulumi.Output[str]
+    url: pulumi.Output[str] = pulumi.output_property("url")
     """
     The URL to the webhook.
     """
-    def __init__(__self__, resource_name, opts=None, branch_filter=None, filter_groups=None, project_name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, branch_filter=None, filter_groups=None, project_name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a CodeBuild webhook, which is an endpoint accepted by the CodeBuild service to trigger builds from source code repositories. Depending on the source type of the CodeBuild project, the CodeBuild service may also automatically create and delete the actual repository webhook as well.
 
@@ -98,15 +96,8 @@ class Webhook(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] branch_filter: A regular expression used to determine which branches get built. Default is all branches are built. It is recommended to use `filter_group` over `branch_filter`.
-        :param pulumi.Input[list] filter_groups: Information about the webhook's trigger. Filter group blocks are documented below.
+        :param pulumi.Input[List[pulumi.Input['WebhookFilterGroupArgs']]] filter_groups: Information about the webhook's trigger. Filter group blocks are documented below.
         :param pulumi.Input[str] project_name: The name of the build project.
-
-        The **filter_groups** object supports the following:
-
-          * `filters` (`pulumi.Input[list]`) - A webhook filter for the group. Filter blocks are documented below.
-            * `excludeMatchedPattern` (`pulumi.Input[bool]`) - If set to `true`, the specified filter does *not* trigger a build. Defaults to `false`.
-            * `pattern` (`pulumi.Input[str]`) - For a filter that uses `EVENT` type, a comma-separated string that specifies one event: `PUSH`, `PULL_REQUEST_CREATED`, `PULL_REQUEST_UPDATED`, `PULL_REQUEST_REOPENED`. `PULL_REQUEST_MERGED` works with GitHub & GitHub Enterprise only. For a filter that uses any of the other filter types, a regular expression.
-            * `type` (`pulumi.Input[str]`) - The webhook filter group's type. Valid values for this parameter are: `EVENT`, `BASE_REF`, `HEAD_REF`, `ACTOR_ACCOUNT_ID`, `FILE_PATH`. At least one filter group must specify `EVENT` as its type.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -149,18 +140,11 @@ class Webhook(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] branch_filter: A regular expression used to determine which branches get built. Default is all branches are built. It is recommended to use `filter_group` over `branch_filter`.
-        :param pulumi.Input[list] filter_groups: Information about the webhook's trigger. Filter group blocks are documented below.
+        :param pulumi.Input[List[pulumi.Input['WebhookFilterGroupArgs']]] filter_groups: Information about the webhook's trigger. Filter group blocks are documented below.
         :param pulumi.Input[str] payload_url: The CodeBuild endpoint where webhook events are sent.
         :param pulumi.Input[str] project_name: The name of the build project.
         :param pulumi.Input[str] secret: The secret token of the associated repository. Not returned by the CodeBuild API for all source types.
         :param pulumi.Input[str] url: The URL to the webhook.
-
-        The **filter_groups** object supports the following:
-
-          * `filters` (`pulumi.Input[list]`) - A webhook filter for the group. Filter blocks are documented below.
-            * `excludeMatchedPattern` (`pulumi.Input[bool]`) - If set to `true`, the specified filter does *not* trigger a build. Defaults to `false`.
-            * `pattern` (`pulumi.Input[str]`) - For a filter that uses `EVENT` type, a comma-separated string that specifies one event: `PUSH`, `PULL_REQUEST_CREATED`, `PULL_REQUEST_UPDATED`, `PULL_REQUEST_REOPENED`. `PULL_REQUEST_MERGED` works with GitHub & GitHub Enterprise only. For a filter that uses any of the other filter types, a regular expression.
-            * `type` (`pulumi.Input[str]`) - The webhook filter group's type. Valid values for this parameter are: `EVENT`, `BASE_REF`, `HEAD_REF`, `ACTOR_ACCOUNT_ID`, `FILE_PATH`. At least one filter group must specify `EVENT` as its type.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -179,3 +163,4 @@ class Webhook(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

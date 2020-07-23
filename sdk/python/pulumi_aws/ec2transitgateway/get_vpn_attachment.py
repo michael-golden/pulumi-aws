@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetVpnAttachmentResult:
     """
     A collection of values returned by getVpnAttachment.
     """
-    def __init__(__self__, filters=None, id=None, tags=None, transit_gateway_id=None, vpn_connection_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, filters=None, id=None, tags=None, transit_gateway_id=None, vpn_connection_id=None) -> None:
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
         __self__.filters = filters
@@ -77,15 +80,10 @@ def get_vpn_attachment(filters=None, tags=None, transit_gateway_id=None, vpn_con
     ```
 
 
-    :param list filters: Configuration block(s) for filtering. Detailed below.
-    :param dict tags: A map of tags, each pair of which must exactly match a pair on the desired Transit Gateway VPN Attachment.
+    :param List['GetVpnAttachmentFilterArgs'] filters: Configuration block(s) for filtering. Detailed below.
+    :param Dict[str, str] tags: A map of tags, each pair of which must exactly match a pair on the desired Transit Gateway VPN Attachment.
     :param str transit_gateway_id: Identifier of the EC2 Transit Gateway.
     :param str vpn_connection_id: Identifier of the EC2 VPN Connection.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the filter field. Valid values can be found in the [EC2 DescribeTransitGatewayAttachments API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeTransitGatewayAttachments.html).
-      * `values` (`list`) - Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
     """
     __args__ = dict()
     __args__['filters'] = filters

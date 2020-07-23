@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetExportResult:
     """
     A collection of values returned by getExport.
     """
-    def __init__(__self__, exporting_stack_id=None, id=None, name=None, value=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, exporting_stack_id=None, id=None, name=None, value=None) -> None:
         if exporting_stack_id and not isinstance(exporting_stack_id, str):
             raise TypeError("Expected argument 'exporting_stack_id' to be a str")
         __self__.exporting_stack_id = exporting_stack_id

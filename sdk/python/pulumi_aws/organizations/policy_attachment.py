@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class PolicyAttachment(pulumi.CustomResource):
-    policy_id: pulumi.Output[str]
+    policy_id: pulumi.Output[str] = pulumi.output_property("policyId")
     """
     The unique identifier (ID) of the policy that you want to attach to the target.
     """
-    target_id: pulumi.Output[str]
+    target_id: pulumi.Output[str] = pulumi.output_property("targetId")
     """
     The unique identifier (ID) of the root, organizational unit, or account number that you want to attach the policy to.
     """
-    def __init__(__self__, resource_name, opts=None, policy_id=None, target_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, policy_id=None, target_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to attach an AWS Organizations policy to an organization account, root, or unit.
 
@@ -113,3 +114,4 @@ class PolicyAttachment(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

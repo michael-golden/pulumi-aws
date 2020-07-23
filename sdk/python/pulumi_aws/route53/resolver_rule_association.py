@@ -5,24 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class ResolverRuleAssociation(pulumi.CustomResource):
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     A name for the association that you're creating between a resolver rule and a VPC.
     """
-    resolver_rule_id: pulumi.Output[str]
+    resolver_rule_id: pulumi.Output[str] = pulumi.output_property("resolverRuleId")
     """
     The ID of the resolver rule that you want to associate with the VPC.
     """
-    vpc_id: pulumi.Output[str]
+    vpc_id: pulumi.Output[str] = pulumi.output_property("vpcId")
     """
     The ID of the VPC that you want to associate the resolver rule with.
     """
-    def __init__(__self__, resource_name, opts=None, name=None, resolver_rule_id=None, vpc_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, resolver_rule_id=None, vpc_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Route53 Resolver rule association.
 
@@ -100,3 +101,4 @@ class ResolverRuleAssociation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

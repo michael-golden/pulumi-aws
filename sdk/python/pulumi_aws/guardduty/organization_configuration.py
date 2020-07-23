@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class OrganizationConfiguration(pulumi.CustomResource):
-    auto_enable: pulumi.Output[bool]
+    auto_enable: pulumi.Output[bool] = pulumi.output_property("autoEnable")
     """
     When this setting is enabled, all new accounts that are created in, or added to, the organization are added as a member accounts of the organization’s GuardDuty delegated administrator and GuardDuty is enabled in that AWS Region.
     """
-    detector_id: pulumi.Output[str]
+    detector_id: pulumi.Output[str] = pulumi.output_property("detectorId")
     """
     The detector ID of the GuardDuty account.
     """
-    def __init__(__self__, resource_name, opts=None, auto_enable=None, detector_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, auto_enable=None, detector_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages the GuardDuty Organization Configuration in the current AWS Region. The AWS account utilizing this resource must have been assigned as a delegated Organization administrator account, e.g. via the `guardduty.OrganizationAdminAccount` resource. More information about Organizations support in GuardDuty can be found in the [GuardDuty User Guide](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html).
 
@@ -95,3 +96,4 @@ class OrganizationConfiguration(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

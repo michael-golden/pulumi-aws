@@ -5,25 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class SecurityGroup(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[str] = pulumi.output_property("description")
     """
     description for the cache security group. Defaults to "Managed by Pulumi".
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name for the cache security group. This value is stored as a lowercase string.
     """
-    security_group_names: pulumi.Output[list]
+    security_group_names: pulumi.Output[List[str]] = pulumi.output_property("securityGroupNames")
     """
     List of EC2 security group names to be
     authorized for ingress to the cache security group
     """
-    def __init__(__self__, resource_name, opts=None, description=None, name=None, security_group_names=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, name=None, security_group_names=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an ElastiCache Security Group to control access to one or more cache
         clusters.
@@ -46,7 +47,7 @@ class SecurityGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: description for the cache security group. Defaults to "Managed by Pulumi".
         :param pulumi.Input[str] name: Name for the cache security group. This value is stored as a lowercase string.
-        :param pulumi.Input[list] security_group_names: List of EC2 security group names to be
+        :param pulumi.Input[List[pulumi.Input[str]]] security_group_names: List of EC2 security group names to be
                authorized for ingress to the cache security group
         """
         if __name__ is not None:
@@ -90,7 +91,7 @@ class SecurityGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: description for the cache security group. Defaults to "Managed by Pulumi".
         :param pulumi.Input[str] name: Name for the cache security group. This value is stored as a lowercase string.
-        :param pulumi.Input[list] security_group_names: List of EC2 security group names to be
+        :param pulumi.Input[List[pulumi.Input[str]]] security_group_names: List of EC2 security group names to be
                authorized for ingress to the cache security group
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -107,3 +108,4 @@ class SecurityGroup(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

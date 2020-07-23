@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Deployment(pulumi.CustomResource):
-    api_id: pulumi.Output[str]
+    api_id: pulumi.Output[str] = pulumi.output_property("apiId")
     """
     The API identifier.
     """
-    auto_deployed: pulumi.Output[bool]
+    auto_deployed: pulumi.Output[bool] = pulumi.output_property("autoDeployed")
     """
     Whether the deployment was automatically released.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     The description for the deployment resource.
     """
-    triggers: pulumi.Output[dict]
+    triggers: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("triggers")
     """
     A map of arbitrary keys and values that, when changed, will trigger a redeployment.
     """
-    def __init__(__self__, resource_name, opts=None, api_id=None, description=None, triggers=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id=None, description=None, triggers=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an Amazon API Gateway Version 2 deployment.
         More information can be found in the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html).
@@ -49,7 +50,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_id: The API identifier.
         :param pulumi.Input[str] description: The description for the deployment resource.
-        :param pulumi.Input[dict] triggers: A map of arbitrary keys and values that, when changed, will trigger a redeployment.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] triggers: A map of arbitrary keys and values that, when changed, will trigger a redeployment.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -92,7 +93,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] api_id: The API identifier.
         :param pulumi.Input[bool] auto_deployed: Whether the deployment was automatically released.
         :param pulumi.Input[str] description: The description for the deployment resource.
-        :param pulumi.Input[dict] triggers: A map of arbitrary keys and values that, when changed, will trigger a redeployment.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] triggers: A map of arbitrary keys and values that, when changed, will trigger a redeployment.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -109,3 +110,4 @@ class Deployment(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

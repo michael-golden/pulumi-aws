@@ -5,36 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Rule(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the WAF Regional Rule.
     """
-    metric_name: pulumi.Output[str]
+    metric_name: pulumi.Output[str] = pulumi.output_property("metricName")
     """
     The name or description for the Amazon CloudWatch metric of this rule.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name or description of the rule.
     """
-    predicates: pulumi.Output[list]
+    predicates: pulumi.Output[Optional[List['outputs.RulePredicate']]] = pulumi.output_property("predicates")
     """
     The objects to include in a rule (documented below).
-
-      * `dataId` (`str`)
-      * `negated` (`bool`)
-      * `type` (`str`)
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Key-value map of resource tags
     """
-    def __init__(__self__, resource_name, opts=None, metric_name=None, name=None, predicates=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, metric_name=None, name=None, predicates=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an WAF Regional Rule Resource for use with Application Load Balancer.
 
@@ -72,14 +71,8 @@ class Rule(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] metric_name: The name or description for the Amazon CloudWatch metric of this rule.
         :param pulumi.Input[str] name: The name or description of the rule.
-        :param pulumi.Input[list] predicates: The objects to include in a rule (documented below).
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-
-        The **predicates** object supports the following:
-
-          * `dataId` (`pulumi.Input[str]`)
-          * `negated` (`pulumi.Input[bool]`)
-          * `type` (`pulumi.Input[str]`)
+        :param pulumi.Input[List[pulumi.Input['RulePredicateArgs']]] predicates: The objects to include in a rule (documented below).
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -123,14 +116,8 @@ class Rule(pulumi.CustomResource):
         :param pulumi.Input[str] arn: The ARN of the WAF Regional Rule.
         :param pulumi.Input[str] metric_name: The name or description for the Amazon CloudWatch metric of this rule.
         :param pulumi.Input[str] name: The name or description of the rule.
-        :param pulumi.Input[list] predicates: The objects to include in a rule (documented below).
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-
-        The **predicates** object supports the following:
-
-          * `dataId` (`pulumi.Input[str]`)
-          * `negated` (`pulumi.Input[bool]`)
-          * `type` (`pulumi.Input[str]`)
+        :param pulumi.Input[List[pulumi.Input['RulePredicateArgs']]] predicates: The objects to include in a rule (documented below).
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -148,3 +135,4 @@ class Rule(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

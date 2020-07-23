@@ -5,24 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Gateway(pulumi.CustomResource):
-    amazon_side_asn: pulumi.Output[str]
+    amazon_side_asn: pulumi.Output[str] = pulumi.output_property("amazonSideAsn")
     """
     The ASN to be configured on the Amazon side of the connection. The ASN must be in the private range of 64,512 to 65,534 or 4,200,000,000 to 4,294,967,294.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the connection.
     """
-    owner_account_id: pulumi.Output[str]
+    owner_account_id: pulumi.Output[str] = pulumi.output_property("ownerAccountId")
     """
     AWS Account ID of the gateway.
     """
-    def __init__(__self__, resource_name, opts=None, amazon_side_asn=None, name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, amazon_side_asn=None, name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Direct Connect Gateway.
 
@@ -95,3 +96,4 @@ class Gateway(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

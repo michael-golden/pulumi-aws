@@ -5,30 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Portfolio(pulumi.CustomResource):
-    arn: pulumi.Output[str]
-    created_time: pulumi.Output[str]
-    description: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
+    created_time: pulumi.Output[str] = pulumi.output_property("createdTime")
+    description: pulumi.Output[str] = pulumi.output_property("description")
     """
     Description of the portfolio
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the portfolio.
     """
-    provider_name: pulumi.Output[str]
+    provider_name: pulumi.Output[Optional[str]] = pulumi.output_property("providerName")
     """
     Name of the person or organization who owns the portfolio.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Tags to apply to the connection.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, name=None, provider_name=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, name=None, provider_name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to create a Service Catalog Portfolio.
 
@@ -48,7 +49,7 @@ class Portfolio(pulumi.CustomResource):
         :param pulumi.Input[str] description: Description of the portfolio
         :param pulumi.Input[str] name: The name of the portfolio.
         :param pulumi.Input[str] provider_name: Name of the person or organization who owns the portfolio.
-        :param pulumi.Input[dict] tags: Tags to apply to the connection.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Tags to apply to the connection.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -91,7 +92,7 @@ class Portfolio(pulumi.CustomResource):
         :param pulumi.Input[str] description: Description of the portfolio
         :param pulumi.Input[str] name: The name of the portfolio.
         :param pulumi.Input[str] provider_name: Name of the person or organization who owns the portfolio.
-        :param pulumi.Input[dict] tags: Tags to apply to the connection.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Tags to apply to the connection.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -110,3 +111,4 @@ class Portfolio(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

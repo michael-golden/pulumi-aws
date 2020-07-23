@@ -5,15 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
 
 
 class GetGroupResult:
     """
     A collection of values returned by getGroup.
     """
-    def __init__(__self__, arn=None, group_id=None, group_name=None, id=None, path=None, users=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, group_id=None, group_name=None, id=None, path=None, users=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn

@@ -5,38 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class XssMatchSet(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     Amazon Resource Name (ARN)
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name or description of the SizeConstraintSet.
     """
-    xss_match_tuples: pulumi.Output[list]
+    xss_match_tuples: pulumi.Output[Optional[List['outputs.XssMatchSetXssMatchTuple']]] = pulumi.output_property("xssMatchTuples")
     """
     The parts of web requests that you want to inspect for cross-site scripting attacks.
-
-      * `fieldToMatch` (`dict`) - Specifies where in a web request to look for cross-site scripting attacks.
-        * `data` (`str`) - When `type` is `HEADER`, enter the name of the header that you want to search, e.g. `User-Agent` or `Referer`.
-          If `type` is any other value, omit this field.
-        * `type` (`str`) - The part of the web request that you want AWS WAF to search for a specified string.
-          e.g. `HEADER`, `METHOD` or `BODY`.
-          See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_FieldToMatch.html)
-          for all supported values.
-
-      * `textTransformation` (`str`) - Text transformations used to eliminate unusual formatting that attackers use in web requests in an effort to bypass AWS WAF.
-        If you specify a transformation, AWS WAF performs the transformation on `target_string` before inspecting a request for a match.
-        e.g. `CMD_LINE`, `HTML_ENTITY_DECODE` or `NONE`.
-        See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_XssMatchTuple.html#WAF-Type-XssMatchTuple-TextTransformation)
-        for all supported values.
     """
-    def __init__(__self__, resource_name, opts=None, name=None, xss_match_tuples=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, xss_match_tuples=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a WAF XSS Match Set Resource
 
@@ -65,23 +54,7 @@ class XssMatchSet(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name or description of the SizeConstraintSet.
-        :param pulumi.Input[list] xss_match_tuples: The parts of web requests that you want to inspect for cross-site scripting attacks.
-
-        The **xss_match_tuples** object supports the following:
-
-          * `fieldToMatch` (`pulumi.Input[dict]`) - Specifies where in a web request to look for cross-site scripting attacks.
-            * `data` (`pulumi.Input[str]`) - When `type` is `HEADER`, enter the name of the header that you want to search, e.g. `User-Agent` or `Referer`.
-              If `type` is any other value, omit this field.
-            * `type` (`pulumi.Input[str]`) - The part of the web request that you want AWS WAF to search for a specified string.
-              e.g. `HEADER`, `METHOD` or `BODY`.
-              See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_FieldToMatch.html)
-              for all supported values.
-
-          * `textTransformation` (`pulumi.Input[str]`) - Text transformations used to eliminate unusual formatting that attackers use in web requests in an effort to bypass AWS WAF.
-            If you specify a transformation, AWS WAF performs the transformation on `target_string` before inspecting a request for a match.
-            e.g. `CMD_LINE`, `HTML_ENTITY_DECODE` or `NONE`.
-            See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_XssMatchTuple.html#WAF-Type-XssMatchTuple-TextTransformation)
-            for all supported values.
+        :param pulumi.Input[List[pulumi.Input['XssMatchSetXssMatchTupleArgs']]] xss_match_tuples: The parts of web requests that you want to inspect for cross-site scripting attacks.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -120,23 +93,7 @@ class XssMatchSet(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: Amazon Resource Name (ARN)
         :param pulumi.Input[str] name: The name or description of the SizeConstraintSet.
-        :param pulumi.Input[list] xss_match_tuples: The parts of web requests that you want to inspect for cross-site scripting attacks.
-
-        The **xss_match_tuples** object supports the following:
-
-          * `fieldToMatch` (`pulumi.Input[dict]`) - Specifies where in a web request to look for cross-site scripting attacks.
-            * `data` (`pulumi.Input[str]`) - When `type` is `HEADER`, enter the name of the header that you want to search, e.g. `User-Agent` or `Referer`.
-              If `type` is any other value, omit this field.
-            * `type` (`pulumi.Input[str]`) - The part of the web request that you want AWS WAF to search for a specified string.
-              e.g. `HEADER`, `METHOD` or `BODY`.
-              See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_FieldToMatch.html)
-              for all supported values.
-
-          * `textTransformation` (`pulumi.Input[str]`) - Text transformations used to eliminate unusual formatting that attackers use in web requests in an effort to bypass AWS WAF.
-            If you specify a transformation, AWS WAF performs the transformation on `target_string` before inspecting a request for a match.
-            e.g. `CMD_LINE`, `HTML_ENTITY_DECODE` or `NONE`.
-            See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_XssMatchTuple.html#WAF-Type-XssMatchTuple-TextTransformation)
-            for all supported values.
+        :param pulumi.Input[List[pulumi.Input['XssMatchSetXssMatchTupleArgs']]] xss_match_tuples: The parts of web requests that you want to inspect for cross-site scripting attacks.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -152,3 +109,4 @@ class XssMatchSet(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

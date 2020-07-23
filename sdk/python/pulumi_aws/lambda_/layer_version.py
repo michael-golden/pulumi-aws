@@ -5,68 +5,69 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class LayerVersion(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The Amazon Resource Name (ARN) of the Lambda Layer with version.
     """
-    code: pulumi.Output[pulumi.Archive]
+    code: pulumi.Output[Optional[pulumi.Archive]] = pulumi.output_property("code")
     """
     The path to the function's deployment package within the local filesystem. If defined, The `s3_`-prefixed options cannot be used.
     """
-    compatible_runtimes: pulumi.Output[list]
+    compatible_runtimes: pulumi.Output[Optional[List[str]]] = pulumi.output_property("compatibleRuntimes")
     """
     A list of [Runtimes](https://docs.aws.amazon.com/lambda/latest/dg/API_PublishLayerVersion.html#SSS-PublishLayerVersion-request-CompatibleRuntimes) this layer is compatible with. Up to 5 runtimes can be specified.
     """
-    created_date: pulumi.Output[str]
+    created_date: pulumi.Output[str] = pulumi.output_property("createdDate")
     """
     The date this resource was created.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     Description of what your Lambda Layer does.
     """
-    layer_arn: pulumi.Output[str]
+    layer_arn: pulumi.Output[str] = pulumi.output_property("layerArn")
     """
     The Amazon Resource Name (ARN) of the Lambda Layer without version.
     """
-    layer_name: pulumi.Output[str]
+    layer_name: pulumi.Output[str] = pulumi.output_property("layerName")
     """
     A unique name for your Lambda Layer
     """
-    license_info: pulumi.Output[str]
+    license_info: pulumi.Output[Optional[str]] = pulumi.output_property("licenseInfo")
     """
     License info for your Lambda Layer. See [License Info](https://docs.aws.amazon.com/lambda/latest/dg/API_PublishLayerVersion.html#SSS-PublishLayerVersion-request-LicenseInfo).
     """
-    s3_bucket: pulumi.Output[str]
+    s3_bucket: pulumi.Output[Optional[str]] = pulumi.output_property("s3Bucket")
     """
     The S3 bucket location containing the function's deployment package. Conflicts with `filename`. This bucket must reside in the same AWS region where you are creating the Lambda function.
     """
-    s3_key: pulumi.Output[str]
+    s3_key: pulumi.Output[Optional[str]] = pulumi.output_property("s3Key")
     """
     The S3 key of an object containing the function's deployment package. Conflicts with `filename`.
     """
-    s3_object_version: pulumi.Output[str]
+    s3_object_version: pulumi.Output[Optional[str]] = pulumi.output_property("s3ObjectVersion")
     """
     The object version containing the function's deployment package. Conflicts with `filename`.
     """
-    source_code_hash: pulumi.Output[str]
+    source_code_hash: pulumi.Output[str] = pulumi.output_property("sourceCodeHash")
     """
     Used to trigger updates. Must be set to a base64-encoded SHA256 hash of the package file specified with either `filename` or `s3_key`. The usual way to set this is `${filebase64sha256("file.zip")}` (this provider 0.11.12 or later) or `${base64sha256(file("file.zip"))}` (this provider 0.11.11 and earlier), where "file.zip" is the local filename of the lambda layer source archive.
     """
-    source_code_size: pulumi.Output[float]
+    source_code_size: pulumi.Output[float] = pulumi.output_property("sourceCodeSize")
     """
     The size in bytes of the function .zip file.
     """
-    version: pulumi.Output[str]
+    version: pulumi.Output[str] = pulumi.output_property("version")
     """
     This Lamba Layer version.
     """
-    def __init__(__self__, resource_name, opts=None, code=None, compatible_runtimes=None, description=None, layer_name=None, license_info=None, s3_bucket=None, s3_key=None, s3_object_version=None, source_code_hash=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, code=None, compatible_runtimes=None, description=None, layer_name=None, license_info=None, s3_bucket=None, s3_key=None, s3_object_version=None, source_code_hash=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Lambda Layer Version resource. Lambda Layers allow you to reuse shared bits of code across multiple lambda functions.
 
@@ -98,7 +99,7 @@ class LayerVersion(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.Archive] code: The path to the function's deployment package within the local filesystem. If defined, The `s3_`-prefixed options cannot be used.
-        :param pulumi.Input[list] compatible_runtimes: A list of [Runtimes](https://docs.aws.amazon.com/lambda/latest/dg/API_PublishLayerVersion.html#SSS-PublishLayerVersion-request-CompatibleRuntimes) this layer is compatible with. Up to 5 runtimes can be specified.
+        :param pulumi.Input[List[pulumi.Input[str]]] compatible_runtimes: A list of [Runtimes](https://docs.aws.amazon.com/lambda/latest/dg/API_PublishLayerVersion.html#SSS-PublishLayerVersion-request-CompatibleRuntimes) this layer is compatible with. Up to 5 runtimes can be specified.
         :param pulumi.Input[str] description: Description of what your Lambda Layer does.
         :param pulumi.Input[str] layer_name: A unique name for your Lambda Layer
         :param pulumi.Input[str] license_info: License info for your Lambda Layer. See [License Info](https://docs.aws.amazon.com/lambda/latest/dg/API_PublishLayerVersion.html#SSS-PublishLayerVersion-request-LicenseInfo).
@@ -157,7 +158,7 @@ class LayerVersion(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: The Amazon Resource Name (ARN) of the Lambda Layer with version.
         :param pulumi.Input[pulumi.Archive] code: The path to the function's deployment package within the local filesystem. If defined, The `s3_`-prefixed options cannot be used.
-        :param pulumi.Input[list] compatible_runtimes: A list of [Runtimes](https://docs.aws.amazon.com/lambda/latest/dg/API_PublishLayerVersion.html#SSS-PublishLayerVersion-request-CompatibleRuntimes) this layer is compatible with. Up to 5 runtimes can be specified.
+        :param pulumi.Input[List[pulumi.Input[str]]] compatible_runtimes: A list of [Runtimes](https://docs.aws.amazon.com/lambda/latest/dg/API_PublishLayerVersion.html#SSS-PublishLayerVersion-request-CompatibleRuntimes) this layer is compatible with. Up to 5 runtimes can be specified.
         :param pulumi.Input[str] created_date: The date this resource was created.
         :param pulumi.Input[str] description: Description of what your Lambda Layer does.
         :param pulumi.Input[str] layer_arn: The Amazon Resource Name (ARN) of the Lambda Layer without version.
@@ -195,3 +196,4 @@ class LayerVersion(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

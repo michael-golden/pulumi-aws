@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetRepositoryResult:
     """
     A collection of values returned by getRepository.
     """
-    def __init__(__self__, arn=None, clone_url_http=None, clone_url_ssh=None, id=None, repository_id=None, repository_name=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, clone_url_http=None, clone_url_ssh=None, id=None, repository_id=None, repository_name=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn

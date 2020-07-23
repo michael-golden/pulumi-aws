@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class ProductSubscription(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of a resource that represents your subscription to the product that generates the findings that you want to import into Security Hub.
     """
-    product_arn: pulumi.Output[str]
+    product_arn: pulumi.Output[str] = pulumi.output_property("productArn")
     """
     The ARN of the product that generates findings that you want to import into Security Hub - see below.
     """
-    def __init__(__self__, resource_name, opts=None, product_arn=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, product_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Subscribes to a Security Hub product.
 
@@ -90,3 +91,4 @@ class ProductSubscription(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

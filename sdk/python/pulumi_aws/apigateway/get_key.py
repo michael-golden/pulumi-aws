@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetKeyResult:
     """
     A collection of values returned by getKey.
     """
-    def __init__(__self__, created_date=None, description=None, enabled=None, id=None, last_updated_date=None, name=None, tags=None, value=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, created_date=None, description=None, enabled=None, id=None, last_updated_date=None, name=None, tags=None, value=None) -> None:
         if created_date and not isinstance(created_date, str):
             raise TypeError("Expected argument 'created_date' to be a str")
         __self__.created_date = created_date
@@ -96,7 +97,7 @@ def get_key(id=None, tags=None, opts=None):
 
 
     :param str id: The ID of the API Key to look up.
-    :param dict tags: A map of tags for the resource.
+    :param Dict[str, str] tags: A map of tags for the resource.
     """
     __args__ = dict()
     __args__['id'] = id

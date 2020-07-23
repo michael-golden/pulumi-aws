@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetIpRangesResult:
     """
     A collection of values returned by getIpRanges.
     """
-    def __init__(__self__, cidr_blocks=None, create_date=None, id=None, ipv6_cidr_blocks=None, regions=None, services=None, sync_token=None, url=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, cidr_blocks=None, create_date=None, id=None, ipv6_cidr_blocks=None, regions=None, services=None, sync_token=None, url=None) -> None:
         if cidr_blocks and not isinstance(cidr_blocks, list):
             raise TypeError("Expected argument 'cidr_blocks' to be a list")
         __self__.cidr_blocks = cidr_blocks
@@ -102,10 +103,10 @@ def get_ip_ranges(regions=None, services=None, url=None, opts=None):
     ```
 
 
-    :param list regions: Filter IP ranges by regions (or include all regions, if
+    :param List[str] regions: Filter IP ranges by regions (or include all regions, if
            omitted). Valid items are `global` (for `cloudfront`) as well as all AWS regions
            (e.g. `eu-central-1`)
-    :param list services: Filter IP ranges by services. Valid items are `amazon`
+    :param List[str] services: Filter IP ranges by services. Valid items are `amazon`
            (for amazon.com), `amazon_connect`, `api_gateway`, `cloud9`, `cloudfront`,
            `codebuild`, `dynamodb`, `ec2`, `ec2_instance_connect`, `globalaccelerator`,
            `route53`, `route53_healthchecks`, `s3` and `workspaces_gateways`. See the

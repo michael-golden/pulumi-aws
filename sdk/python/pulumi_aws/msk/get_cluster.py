@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, arn=None, bootstrap_brokers=None, bootstrap_brokers_tls=None, cluster_name=None, id=None, kafka_version=None, number_of_broker_nodes=None, tags=None, zookeeper_connect_string=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, bootstrap_brokers=None, bootstrap_brokers_tls=None, cluster_name=None, id=None, kafka_version=None, number_of_broker_nodes=None, tags=None, zookeeper_connect_string=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn
@@ -99,7 +100,7 @@ def get_cluster(cluster_name=None, tags=None, opts=None):
 
 
     :param str cluster_name: Name of the cluster.
-    :param dict tags: Map of key-value pairs assigned to the cluster.
+    :param Dict[str, str] tags: Map of key-value pairs assigned to the cluster.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name

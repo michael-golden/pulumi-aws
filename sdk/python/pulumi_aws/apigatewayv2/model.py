@@ -5,32 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Model(pulumi.CustomResource):
-    api_id: pulumi.Output[str]
+    api_id: pulumi.Output[str] = pulumi.output_property("apiId")
     """
     The API identifier.
     """
-    content_type: pulumi.Output[str]
+    content_type: pulumi.Output[str] = pulumi.output_property("contentType")
     """
     The content-type for the model, for example, `application/json`.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     The description of the model.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the model. Must be alphanumeric.
     """
-    schema: pulumi.Output[str]
+    schema: pulumi.Output[str] = pulumi.output_property("schema")
     """
     The schema for the model. This should be a [JSON schema draft 4](https://tools.ietf.org/html/draft-zyp-json-schema-04) model.
     """
-    def __init__(__self__, resource_name, opts=None, api_id=None, content_type=None, description=None, name=None, schema=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id=None, content_type=None, description=None, name=None, schema=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an Amazon API Gateway Version 2 [model](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html#models-mappings-models).
 
@@ -129,3 +130,4 @@ class Model(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

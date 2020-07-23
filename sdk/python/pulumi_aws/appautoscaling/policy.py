@@ -5,72 +5,47 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Policy(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN assigned by AWS to the scaling policy.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the policy.
     """
-    policy_type: pulumi.Output[str]
+    policy_type: pulumi.Output[Optional[str]] = pulumi.output_property("policyType")
     """
     The policy type. Valid values are `StepScaling` and `TargetTrackingScaling`. Defaults to `StepScaling`. Certain services only support only one policy type. For more information see the [Target Tracking Scaling Policies](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html) and [Step Scaling Policies](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html) documentation.
     """
-    resource_id: pulumi.Output[str]
+    resource_id: pulumi.Output[str] = pulumi.output_property("resourceId")
     """
     The resource type and unique identifier string for the resource associated with the scaling policy. Documentation can be found in the `ResourceId` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
     """
-    scalable_dimension: pulumi.Output[str]
+    scalable_dimension: pulumi.Output[str] = pulumi.output_property("scalableDimension")
     """
     The scalable dimension of the scalable target. Documentation can be found in the `ScalableDimension` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
     """
-    service_namespace: pulumi.Output[str]
+    service_namespace: pulumi.Output[str] = pulumi.output_property("serviceNamespace")
     """
     The AWS service namespace of the scalable target. Documentation can be found in the `ServiceNamespace` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
     """
-    step_scaling_policy_configuration: pulumi.Output[dict]
+    step_scaling_policy_configuration: pulumi.Output[Optional['outputs.PolicyStepScalingPolicyConfiguration']] = pulumi.output_property("stepScalingPolicyConfiguration")
     """
     Step scaling policy configuration, requires `policy_type = "StepScaling"` (default). See supported fields below.
-
-      * `adjustment_type` (`str`) - Specifies whether the adjustment is an absolute number or a percentage of the current capacity. Valid values are `ChangeInCapacity`, `ExactCapacity`, and `PercentChangeInCapacity`.
-      * `cooldown` (`float`) - The amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start.
-      * `metric_aggregation_type` (`str`) - The aggregation type for the policy's metrics. Valid values are "Minimum", "Maximum", and "Average". Without a value, AWS will treat the aggregation type as "Average".
-      * `min_adjustment_magnitude` (`float`) - The minimum number to adjust your scalable dimension as a result of a scaling activity. If the adjustment type is PercentChangeInCapacity, the scaling policy changes the scalable dimension of the scalable target by this amount.
-      * `step_adjustments` (`list`) - A set of adjustments that manage scaling. These have the following structure:
-        * `metricIntervalLowerBound` (`str`) - The lower bound for the difference between the alarm threshold and the CloudWatch metric. Without a value, AWS will treat this bound as negative infinity.
-        * `metricIntervalUpperBound` (`str`) - The upper bound for the difference between the alarm threshold and the CloudWatch metric. Without a value, AWS will treat this bound as infinity. The upper bound must be greater than the lower bound.
-        * `scaling_adjustment` (`float`) - The number of members by which to scale, when the adjustment bounds are breached. A positive value scales up. A negative value scales down.
     """
-    target_tracking_scaling_policy_configuration: pulumi.Output[dict]
+    target_tracking_scaling_policy_configuration: pulumi.Output[Optional['outputs.PolicyTargetTrackingScalingPolicyConfiguration']] = pulumi.output_property("targetTrackingScalingPolicyConfiguration")
     """
     A target tracking policy, requires `policy_type = "TargetTrackingScaling"`. See supported fields below.
-
-      * `customizedMetricSpecification` (`dict`) - A custom CloudWatch metric. Documentation can be found  at: [AWS Customized Metric Specification](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CustomizedMetricSpecification.html). See supported fields below.
-        * `dimensions` (`list`) - Configuration block(s) with the dimensions of the metric if the metric was published with dimensions. Detailed below.
-          * `name` (`str`) - The name of the policy.
-          * `value` (`str`) - Value of the dimension.
-
-        * `metric_name` (`str`) - The name of the metric.
-        * `namespace` (`str`) - The namespace of the metric.
-        * `statistic` (`str`) - The statistic of the metric. Valid values: `Average`, `Minimum`, `Maximum`, `SampleCount`, and `Sum`.
-        * `unit` (`str`) - The unit of the metric.
-
-      * `disableScaleIn` (`bool`) - Indicates whether scale in by the target tracking policy is disabled. If the value is true, scale in is disabled and the target tracking policy won't remove capacity from the scalable resource. Otherwise, scale in is enabled and the target tracking policy can remove capacity from the scalable resource. The default value is `false`.
-      * `predefinedMetricSpecification` (`dict`) - A predefined metric. See supported fields below.
-        * `predefinedMetricType` (`str`) - The metric type.
-        * `resourceLabel` (`str`) - Reserved for future use.
-
-      * `scaleInCooldown` (`float`) - The amount of time, in seconds, after a scale in activity completes before another scale in activity can start.
-      * `scaleOutCooldown` (`float`) - The amount of time, in seconds, after a scale out activity completes before another scale out activity can start.
-      * `targetValue` (`float`) - The target value for the metric.
     """
-    def __init__(__self__, resource_name, opts=None, name=None, policy_type=None, resource_id=None, scalable_dimension=None, service_namespace=None, step_scaling_policy_configuration=None, target_tracking_scaling_policy_configuration=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, policy_type=None, resource_id=None, scalable_dimension=None, service_namespace=None, step_scaling_policy_configuration=None, target_tracking_scaling_policy_configuration=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Application AutoScaling Policy resource.
 
@@ -174,40 +149,8 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[str] resource_id: The resource type and unique identifier string for the resource associated with the scaling policy. Documentation can be found in the `ResourceId` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
         :param pulumi.Input[str] scalable_dimension: The scalable dimension of the scalable target. Documentation can be found in the `ScalableDimension` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
         :param pulumi.Input[str] service_namespace: The AWS service namespace of the scalable target. Documentation can be found in the `ServiceNamespace` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
-        :param pulumi.Input[dict] step_scaling_policy_configuration: Step scaling policy configuration, requires `policy_type = "StepScaling"` (default). See supported fields below.
-        :param pulumi.Input[dict] target_tracking_scaling_policy_configuration: A target tracking policy, requires `policy_type = "TargetTrackingScaling"`. See supported fields below.
-
-        The **step_scaling_policy_configuration** object supports the following:
-
-          * `adjustment_type` (`pulumi.Input[str]`) - Specifies whether the adjustment is an absolute number or a percentage of the current capacity. Valid values are `ChangeInCapacity`, `ExactCapacity`, and `PercentChangeInCapacity`.
-          * `cooldown` (`pulumi.Input[float]`) - The amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start.
-          * `metric_aggregation_type` (`pulumi.Input[str]`) - The aggregation type for the policy's metrics. Valid values are "Minimum", "Maximum", and "Average". Without a value, AWS will treat the aggregation type as "Average".
-          * `min_adjustment_magnitude` (`pulumi.Input[float]`) - The minimum number to adjust your scalable dimension as a result of a scaling activity. If the adjustment type is PercentChangeInCapacity, the scaling policy changes the scalable dimension of the scalable target by this amount.
-          * `step_adjustments` (`pulumi.Input[list]`) - A set of adjustments that manage scaling. These have the following structure:
-            * `metricIntervalLowerBound` (`pulumi.Input[str]`) - The lower bound for the difference between the alarm threshold and the CloudWatch metric. Without a value, AWS will treat this bound as negative infinity.
-            * `metricIntervalUpperBound` (`pulumi.Input[str]`) - The upper bound for the difference between the alarm threshold and the CloudWatch metric. Without a value, AWS will treat this bound as infinity. The upper bound must be greater than the lower bound.
-            * `scaling_adjustment` (`pulumi.Input[float]`) - The number of members by which to scale, when the adjustment bounds are breached. A positive value scales up. A negative value scales down.
-
-        The **target_tracking_scaling_policy_configuration** object supports the following:
-
-          * `customizedMetricSpecification` (`pulumi.Input[dict]`) - A custom CloudWatch metric. Documentation can be found  at: [AWS Customized Metric Specification](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CustomizedMetricSpecification.html). See supported fields below.
-            * `dimensions` (`pulumi.Input[list]`) - Configuration block(s) with the dimensions of the metric if the metric was published with dimensions. Detailed below.
-              * `name` (`pulumi.Input[str]`) - The name of the policy.
-              * `value` (`pulumi.Input[str]`) - Value of the dimension.
-
-            * `metric_name` (`pulumi.Input[str]`) - The name of the metric.
-            * `namespace` (`pulumi.Input[str]`) - The namespace of the metric.
-            * `statistic` (`pulumi.Input[str]`) - The statistic of the metric. Valid values: `Average`, `Minimum`, `Maximum`, `SampleCount`, and `Sum`.
-            * `unit` (`pulumi.Input[str]`) - The unit of the metric.
-
-          * `disableScaleIn` (`pulumi.Input[bool]`) - Indicates whether scale in by the target tracking policy is disabled. If the value is true, scale in is disabled and the target tracking policy won't remove capacity from the scalable resource. Otherwise, scale in is enabled and the target tracking policy can remove capacity from the scalable resource. The default value is `false`.
-          * `predefinedMetricSpecification` (`pulumi.Input[dict]`) - A predefined metric. See supported fields below.
-            * `predefinedMetricType` (`pulumi.Input[str]`) - The metric type.
-            * `resourceLabel` (`pulumi.Input[str]`) - Reserved for future use.
-
-          * `scaleInCooldown` (`pulumi.Input[float]`) - The amount of time, in seconds, after a scale in activity completes before another scale in activity can start.
-          * `scaleOutCooldown` (`pulumi.Input[float]`) - The amount of time, in seconds, after a scale out activity completes before another scale out activity can start.
-          * `targetValue` (`pulumi.Input[float]`) - The target value for the metric.
+        :param pulumi.Input['PolicyStepScalingPolicyConfigurationArgs'] step_scaling_policy_configuration: Step scaling policy configuration, requires `policy_type = "StepScaling"` (default). See supported fields below.
+        :param pulumi.Input['PolicyTargetTrackingScalingPolicyConfigurationArgs'] target_tracking_scaling_policy_configuration: A target tracking policy, requires `policy_type = "TargetTrackingScaling"`. See supported fields below.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -261,40 +204,8 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[str] resource_id: The resource type and unique identifier string for the resource associated with the scaling policy. Documentation can be found in the `ResourceId` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
         :param pulumi.Input[str] scalable_dimension: The scalable dimension of the scalable target. Documentation can be found in the `ScalableDimension` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
         :param pulumi.Input[str] service_namespace: The AWS service namespace of the scalable target. Documentation can be found in the `ServiceNamespace` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
-        :param pulumi.Input[dict] step_scaling_policy_configuration: Step scaling policy configuration, requires `policy_type = "StepScaling"` (default). See supported fields below.
-        :param pulumi.Input[dict] target_tracking_scaling_policy_configuration: A target tracking policy, requires `policy_type = "TargetTrackingScaling"`. See supported fields below.
-
-        The **step_scaling_policy_configuration** object supports the following:
-
-          * `adjustment_type` (`pulumi.Input[str]`) - Specifies whether the adjustment is an absolute number or a percentage of the current capacity. Valid values are `ChangeInCapacity`, `ExactCapacity`, and `PercentChangeInCapacity`.
-          * `cooldown` (`pulumi.Input[float]`) - The amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start.
-          * `metric_aggregation_type` (`pulumi.Input[str]`) - The aggregation type for the policy's metrics. Valid values are "Minimum", "Maximum", and "Average". Without a value, AWS will treat the aggregation type as "Average".
-          * `min_adjustment_magnitude` (`pulumi.Input[float]`) - The minimum number to adjust your scalable dimension as a result of a scaling activity. If the adjustment type is PercentChangeInCapacity, the scaling policy changes the scalable dimension of the scalable target by this amount.
-          * `step_adjustments` (`pulumi.Input[list]`) - A set of adjustments that manage scaling. These have the following structure:
-            * `metricIntervalLowerBound` (`pulumi.Input[str]`) - The lower bound for the difference between the alarm threshold and the CloudWatch metric. Without a value, AWS will treat this bound as negative infinity.
-            * `metricIntervalUpperBound` (`pulumi.Input[str]`) - The upper bound for the difference between the alarm threshold and the CloudWatch metric. Without a value, AWS will treat this bound as infinity. The upper bound must be greater than the lower bound.
-            * `scaling_adjustment` (`pulumi.Input[float]`) - The number of members by which to scale, when the adjustment bounds are breached. A positive value scales up. A negative value scales down.
-
-        The **target_tracking_scaling_policy_configuration** object supports the following:
-
-          * `customizedMetricSpecification` (`pulumi.Input[dict]`) - A custom CloudWatch metric. Documentation can be found  at: [AWS Customized Metric Specification](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CustomizedMetricSpecification.html). See supported fields below.
-            * `dimensions` (`pulumi.Input[list]`) - Configuration block(s) with the dimensions of the metric if the metric was published with dimensions. Detailed below.
-              * `name` (`pulumi.Input[str]`) - The name of the policy.
-              * `value` (`pulumi.Input[str]`) - Value of the dimension.
-
-            * `metric_name` (`pulumi.Input[str]`) - The name of the metric.
-            * `namespace` (`pulumi.Input[str]`) - The namespace of the metric.
-            * `statistic` (`pulumi.Input[str]`) - The statistic of the metric. Valid values: `Average`, `Minimum`, `Maximum`, `SampleCount`, and `Sum`.
-            * `unit` (`pulumi.Input[str]`) - The unit of the metric.
-
-          * `disableScaleIn` (`pulumi.Input[bool]`) - Indicates whether scale in by the target tracking policy is disabled. If the value is true, scale in is disabled and the target tracking policy won't remove capacity from the scalable resource. Otherwise, scale in is enabled and the target tracking policy can remove capacity from the scalable resource. The default value is `false`.
-          * `predefinedMetricSpecification` (`pulumi.Input[dict]`) - A predefined metric. See supported fields below.
-            * `predefinedMetricType` (`pulumi.Input[str]`) - The metric type.
-            * `resourceLabel` (`pulumi.Input[str]`) - Reserved for future use.
-
-          * `scaleInCooldown` (`pulumi.Input[float]`) - The amount of time, in seconds, after a scale in activity completes before another scale in activity can start.
-          * `scaleOutCooldown` (`pulumi.Input[float]`) - The amount of time, in seconds, after a scale out activity completes before another scale out activity can start.
-          * `targetValue` (`pulumi.Input[float]`) - The target value for the metric.
+        :param pulumi.Input['PolicyStepScalingPolicyConfigurationArgs'] step_scaling_policy_configuration: Step scaling policy configuration, requires `policy_type = "StepScaling"` (default). See supported fields below.
+        :param pulumi.Input['PolicyTargetTrackingScalingPolicyConfigurationArgs'] target_tracking_scaling_policy_configuration: A target tracking policy, requires `policy_type = "TargetTrackingScaling"`. See supported fields below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -315,3 +226,4 @@ class Policy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

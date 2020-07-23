@@ -5,24 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class LogStream(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The Amazon Resource Name (ARN) specifying the log stream.
     """
-    log_group_name: pulumi.Output[str]
+    log_group_name: pulumi.Output[str] = pulumi.output_property("logGroupName")
     """
     The name of the log group under which the log stream is to be created.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the log stream. Must not be longer than 512 characters and must not contain `:`
     """
-    def __init__(__self__, resource_name, opts=None, log_group_name=None, name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, log_group_name=None, name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CloudWatch Log Stream resource.
 
@@ -96,3 +97,4 @@ class LogStream(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

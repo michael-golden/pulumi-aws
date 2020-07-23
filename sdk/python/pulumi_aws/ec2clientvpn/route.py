@@ -5,30 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Route(pulumi.CustomResource):
-    client_vpn_endpoint_id: pulumi.Output[str]
+    client_vpn_endpoint_id: pulumi.Output[str] = pulumi.output_property("clientVpnEndpointId")
     """
     The ID of the Client VPN endpoint.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     A brief description of the authorization rule.
     """
-    destination_cidr_block: pulumi.Output[str]
+    destination_cidr_block: pulumi.Output[str] = pulumi.output_property("destinationCidrBlock")
     """
     The IPv4 address range, in CIDR notation, of the route destination.
     """
-    origin: pulumi.Output[str]
-    target_vpc_subnet_id: pulumi.Output[str]
+    origin: pulumi.Output[str] = pulumi.output_property("origin")
+    target_vpc_subnet_id: pulumi.Output[str] = pulumi.output_property("targetVpcSubnetId")
     """
     The ID of the Subnet to route the traffic through. It must already be attached to the Client VPN.
     """
-    type: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, client_vpn_endpoint_id=None, description=None, destination_cidr_block=None, target_vpc_subnet_id=None, __props__=None, __name__=None, __opts__=None):
+    type: pulumi.Output[str] = pulumi.output_property("type")
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, client_vpn_endpoint_id=None, description=None, destination_cidr_block=None, target_vpc_subnet_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides additional routes for AWS Client VPN endpoints. For more information on usage, please see the
         [AWS Client VPN Administrator's Guide](https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html).
@@ -139,3 +140,4 @@ class Route(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

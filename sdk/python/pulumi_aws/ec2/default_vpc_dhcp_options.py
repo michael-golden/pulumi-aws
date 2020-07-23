@@ -5,35 +5,36 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class DefaultVpcDhcpOptions(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the DHCP Options Set.
     """
-    domain_name: pulumi.Output[str]
-    domain_name_servers: pulumi.Output[str]
-    netbios_name_servers: pulumi.Output[list]
+    domain_name: pulumi.Output[str] = pulumi.output_property("domainName")
+    domain_name_servers: pulumi.Output[str] = pulumi.output_property("domainNameServers")
+    netbios_name_servers: pulumi.Output[Optional[List[str]]] = pulumi.output_property("netbiosNameServers")
     """
     List of NETBIOS name servers.
     """
-    netbios_node_type: pulumi.Output[str]
+    netbios_node_type: pulumi.Output[Optional[str]] = pulumi.output_property("netbiosNodeType")
     """
     The NetBIOS node type (1, 2, 4, or 8). AWS recommends to specify 2 since broadcast and multicast are not supported in their network. For more information about these node types, see [RFC 2132](http://www.ietf.org/rfc/rfc2132.txt).
     """
-    ntp_servers: pulumi.Output[str]
-    owner_id: pulumi.Output[str]
+    ntp_servers: pulumi.Output[str] = pulumi.output_property("ntpServers")
+    owner_id: pulumi.Output[str] = pulumi.output_property("ownerId")
     """
     The ID of the AWS account that owns the DHCP options set.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    def __init__(__self__, resource_name, opts=None, netbios_name_servers=None, netbios_node_type=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, netbios_name_servers=None, netbios_node_type=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage the [default AWS DHCP Options Set](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html#AmazonDNS)
         in the current region.
@@ -61,9 +62,9 @@ class DefaultVpcDhcpOptions(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] netbios_name_servers: List of NETBIOS name servers.
+        :param pulumi.Input[List[pulumi.Input[str]]] netbios_name_servers: List of NETBIOS name servers.
         :param pulumi.Input[str] netbios_node_type: The NetBIOS node type (1, 2, 4, or 8). AWS recommends to specify 2 since broadcast and multicast are not supported in their network. For more information about these node types, see [RFC 2132](http://www.ietf.org/rfc/rfc2132.txt).
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -106,10 +107,10 @@ class DefaultVpcDhcpOptions(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: The ARN of the DHCP Options Set.
-        :param pulumi.Input[list] netbios_name_servers: List of NETBIOS name servers.
+        :param pulumi.Input[List[pulumi.Input[str]]] netbios_name_servers: List of NETBIOS name servers.
         :param pulumi.Input[str] netbios_node_type: The NetBIOS node type (1, 2, 4, or 8). AWS recommends to specify 2 since broadcast and multicast are not supported in their network. For more information about these node types, see [RFC 2132](http://www.ietf.org/rfc/rfc2132.txt).
         :param pulumi.Input[str] owner_id: The ID of the AWS account that owns the DHCP options set.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -130,3 +131,4 @@ class DefaultVpcDhcpOptions(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

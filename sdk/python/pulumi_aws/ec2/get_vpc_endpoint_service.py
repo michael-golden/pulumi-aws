@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetVpcEndpointServiceResult:
     """
     A collection of values returned by getVpcEndpointService.
     """
-    def __init__(__self__, acceptance_required=None, arn=None, availability_zones=None, base_endpoint_dns_names=None, filters=None, id=None, manages_vpc_endpoints=None, owner=None, private_dns_name=None, service=None, service_id=None, service_name=None, service_type=None, tags=None, vpc_endpoint_policy_supported=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, acceptance_required=None, arn=None, availability_zones=None, base_endpoint_dns_names=None, filters=None, id=None, manages_vpc_endpoints=None, owner=None, private_dns_name=None, service=None, service_id=None, service_name=None, service_type=None, tags=None, vpc_endpoint_policy_supported=None) -> None:
         if acceptance_required and not isinstance(acceptance_required, bool):
             raise TypeError("Expected argument 'acceptance_required' to be a bool")
         __self__.acceptance_required = acceptance_required
@@ -161,15 +164,10 @@ def get_vpc_endpoint_service(filters=None, service=None, service_name=None, tags
     ```
 
 
-    :param list filters: Configuration block(s) for filtering. Detailed below.
+    :param List['GetVpcEndpointServiceFilterArgs'] filters: Configuration block(s) for filtering. Detailed below.
     :param str service: The common name of an AWS service (e.g. `s3`).
     :param str service_name: The service name that is specified when creating a VPC endpoint. For AWS services the service name is usually in the form `com.amazonaws.<region>.<service>` (the SageMaker Notebook service is an exception to this rule, the service name is in the form `aws.sagemaker.<region>.notebook`).
-    :param dict tags: A map of tags, each pair of which must exactly match a pair on the desired VPC Endpoint Service.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the filter field. Valid values can be found in the [EC2 DescribeVpcEndpointServices API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpcEndpointServices.html).
-      * `values` (`list`) - Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
+    :param Dict[str, str] tags: A map of tags, each pair of which must exactly match a pair on the desired VPC Endpoint Service.
     """
     __args__ = dict()
     __args__['filters'] = filters

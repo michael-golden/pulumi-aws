@@ -5,21 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Application(pulumi.CustomResource):
-    compute_platform: pulumi.Output[str]
+    compute_platform: pulumi.Output[Optional[str]] = pulumi.output_property("computePlatform")
     """
     The compute platform can either be `ECS`, `Lambda`, or `Server`. Default is `Server`.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the application.
     """
-    unique_id: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, compute_platform=None, name=None, unique_id=None, __props__=None, __name__=None, __opts__=None):
+    unique_id: pulumi.Output[str] = pulumi.output_property("uniqueId")
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, compute_platform=None, name=None, unique_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CodeDeploy application to be used as a basis for deployments
 
@@ -106,3 +107,4 @@ class Application(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

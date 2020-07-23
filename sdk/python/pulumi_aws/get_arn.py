@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetArnResult:
     """
     A collection of values returned by getArn.
     """
-    def __init__(__self__, account=None, arn=None, id=None, partition=None, region=None, resource=None, service=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, account=None, arn=None, id=None, partition=None, region=None, resource=None, service=None) -> None:
         if account and not isinstance(account, str):
             raise TypeError("Expected argument 'account' to be a str")
         __self__.account = account

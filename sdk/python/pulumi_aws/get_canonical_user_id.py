@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetCanonicalUserIdResult:
     """
     A collection of values returned by getCanonicalUserId.
     """
-    def __init__(__self__, display_name=None, id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, display_name=None, id=None) -> None:
         if display_name and not isinstance(display_name, str):
             raise TypeError("Expected argument 'display_name' to be a str")
         __self__.display_name = display_name

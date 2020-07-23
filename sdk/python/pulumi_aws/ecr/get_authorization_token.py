@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetAuthorizationTokenResult:
     """
     A collection of values returned by getAuthorizationToken.
     """
-    def __init__(__self__, authorization_token=None, expires_at=None, id=None, password=None, proxy_endpoint=None, registry_id=None, user_name=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, authorization_token=None, expires_at=None, id=None, password=None, proxy_endpoint=None, registry_id=None, user_name=None) -> None:
         if authorization_token and not isinstance(authorization_token, str):
             raise TypeError("Expected argument 'authorization_token' to be a str")
         __self__.authorization_token = authorization_token

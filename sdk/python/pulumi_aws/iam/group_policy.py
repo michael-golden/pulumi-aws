@@ -5,30 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class GroupPolicy(pulumi.CustomResource):
-    group: pulumi.Output[str]
+    group: pulumi.Output[str] = pulumi.output_property("group")
     """
     The IAM group to attach to the policy.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the policy. If omitted, this provider will
     assign a random, unique name.
     """
-    name_prefix: pulumi.Output[str]
+    name_prefix: pulumi.Output[Optional[str]] = pulumi.output_property("namePrefix")
     """
     Creates a unique name beginning with the specified
     prefix. Conflicts with `name`.
     """
-    policy: pulumi.Output[str]
+    policy: pulumi.Output[str] = pulumi.output_property("policy")
     """
     The policy document. This is a JSON formatted string.
     """
-    def __init__(__self__, resource_name, opts=None, group=None, name=None, name_prefix=None, policy=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, group=None, name=None, name_prefix=None, policy=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an IAM policy attached to a group.
 
@@ -64,7 +65,7 @@ class GroupPolicy(pulumi.CustomResource):
                assign a random, unique name.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified
                prefix. Conflicts with `name`.
-        :param pulumi.Input[dict] policy: The policy document. This is a JSON formatted string.
+        :param pulumi.Input[str] policy: The policy document. This is a JSON formatted string.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -111,7 +112,7 @@ class GroupPolicy(pulumi.CustomResource):
                assign a random, unique name.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified
                prefix. Conflicts with `name`.
-        :param pulumi.Input[dict] policy: The policy document. This is a JSON formatted string.
+        :param pulumi.Input[str] policy: The policy document. This is a JSON formatted string.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -128,3 +129,4 @@ class GroupPolicy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

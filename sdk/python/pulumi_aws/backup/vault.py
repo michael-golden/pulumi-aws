@@ -5,32 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Vault(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the vault.
     """
-    kms_key_arn: pulumi.Output[str]
+    kms_key_arn: pulumi.Output[str] = pulumi.output_property("kmsKeyArn")
     """
     The server-side encryption key that is used to protect your backups.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the backup vault to create.
     """
-    recovery_points: pulumi.Output[float]
+    recovery_points: pulumi.Output[float] = pulumi.output_property("recoveryPoints")
     """
     The number of recovery points that are stored in a backup vault.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Metadata that you can assign to help organize the resources that you create.
     """
-    def __init__(__self__, resource_name, opts=None, kms_key_arn=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, kms_key_arn=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AWS Backup vault resource.
 
@@ -47,7 +48,7 @@ class Vault(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] kms_key_arn: The server-side encryption key that is used to protect your backups.
         :param pulumi.Input[str] name: Name of the backup vault to create.
-        :param pulumi.Input[dict] tags: Metadata that you can assign to help organize the resources that you create.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Metadata that you can assign to help organize the resources that you create.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -90,7 +91,7 @@ class Vault(pulumi.CustomResource):
         :param pulumi.Input[str] kms_key_arn: The server-side encryption key that is used to protect your backups.
         :param pulumi.Input[str] name: Name of the backup vault to create.
         :param pulumi.Input[float] recovery_points: The number of recovery points that are stored in a backup vault.
-        :param pulumi.Input[dict] tags: Metadata that you can assign to help organize the resources that you create.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Metadata that you can assign to help organize the resources that you create.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -108,3 +109,4 @@ class Vault(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

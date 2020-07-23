@@ -5,48 +5,40 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class AccessPoint(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     Amazon Resource Name of the access point.
     """
-    file_system_arn: pulumi.Output[str]
+    file_system_arn: pulumi.Output[str] = pulumi.output_property("fileSystemArn")
     """
     Amazon Resource Name of the file system.
     """
-    file_system_id: pulumi.Output[str]
+    file_system_id: pulumi.Output[str] = pulumi.output_property("fileSystemId")
     """
     The ID of the file system for which the access point is intended.
     """
-    owner_id: pulumi.Output[str]
-    posix_user: pulumi.Output[dict]
+    owner_id: pulumi.Output[str] = pulumi.output_property("ownerId")
+    posix_user: pulumi.Output[Optional['outputs.AccessPointPosixUser']] = pulumi.output_property("posixUser")
     """
     The operating system user and group applied to all file system requests made using the access point. See Posix User below.
-
-      * `gid` (`float`) - The POSIX group ID used for all file system operations using this access point.
-      * `secondaryGids` (`list`) - Secondary POSIX group IDs used for all file system operations using this access point.
-      * `uid` (`float`) - The POSIX user ID used for all file system operations using this access point.
     """
-    root_directory: pulumi.Output[dict]
+    root_directory: pulumi.Output['outputs.AccessPointRootDirectory'] = pulumi.output_property("rootDirectory")
     """
     Specifies the directory on the Amazon EFS file system that the access point provides access to. See Root Directory below.
-
-      * `creationInfo` (`dict`) - Specifies the POSIX IDs and permissions to apply to the access point's Root Directory. See Creation Info below.
-        * `ownerGid` (`float`) - Specifies the POSIX group ID to apply to the `root_directory`.
-        * `ownerUid` (`float`) - Specifies the POSIX user ID to apply to the `root_directory`.
-        * `permissions` (`str`) - Specifies the POSIX permissions to apply to the RootDirectory, in the format of an octal number representing the file's mode bits.
-
-      * `path` (`str`) - Specifies the path on the EFS file system to expose as the root directory to NFS clients using the access point to access the EFS file system. A path can have up to four subdirectories. If the specified path does not exist, you are required to provide `creation_info`.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Key-value mapping of resource tags.
     """
-    def __init__(__self__, resource_name, opts=None, file_system_id=None, posix_user=None, root_directory=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, file_system_id=None, posix_user=None, root_directory=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Elastic File System (EFS) access point.
 
@@ -62,24 +54,9 @@ class AccessPoint(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] file_system_id: The ID of the file system for which the access point is intended.
-        :param pulumi.Input[dict] posix_user: The operating system user and group applied to all file system requests made using the access point. See Posix User below.
-        :param pulumi.Input[dict] root_directory: Specifies the directory on the Amazon EFS file system that the access point provides access to. See Root Directory below.
-        :param pulumi.Input[dict] tags: Key-value mapping of resource tags.
-
-        The **posix_user** object supports the following:
-
-          * `gid` (`pulumi.Input[float]`) - The POSIX group ID used for all file system operations using this access point.
-          * `secondaryGids` (`pulumi.Input[list]`) - Secondary POSIX group IDs used for all file system operations using this access point.
-          * `uid` (`pulumi.Input[float]`) - The POSIX user ID used for all file system operations using this access point.
-
-        The **root_directory** object supports the following:
-
-          * `creationInfo` (`pulumi.Input[dict]`) - Specifies the POSIX IDs and permissions to apply to the access point's Root Directory. See Creation Info below.
-            * `ownerGid` (`pulumi.Input[float]`) - Specifies the POSIX group ID to apply to the `root_directory`.
-            * `ownerUid` (`pulumi.Input[float]`) - Specifies the POSIX user ID to apply to the `root_directory`.
-            * `permissions` (`pulumi.Input[str]`) - Specifies the POSIX permissions to apply to the RootDirectory, in the format of an octal number representing the file's mode bits.
-
-          * `path` (`pulumi.Input[str]`) - Specifies the path on the EFS file system to expose as the root directory to NFS clients using the access point to access the EFS file system. A path can have up to four subdirectories. If the specified path does not exist, you are required to provide `creation_info`.
+        :param pulumi.Input['AccessPointPosixUserArgs'] posix_user: The operating system user and group applied to all file system requests made using the access point. See Posix User below.
+        :param pulumi.Input['AccessPointRootDirectoryArgs'] root_directory: Specifies the directory on the Amazon EFS file system that the access point provides access to. See Root Directory below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value mapping of resource tags.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -125,24 +102,9 @@ class AccessPoint(pulumi.CustomResource):
         :param pulumi.Input[str] arn: Amazon Resource Name of the access point.
         :param pulumi.Input[str] file_system_arn: Amazon Resource Name of the file system.
         :param pulumi.Input[str] file_system_id: The ID of the file system for which the access point is intended.
-        :param pulumi.Input[dict] posix_user: The operating system user and group applied to all file system requests made using the access point. See Posix User below.
-        :param pulumi.Input[dict] root_directory: Specifies the directory on the Amazon EFS file system that the access point provides access to. See Root Directory below.
-        :param pulumi.Input[dict] tags: Key-value mapping of resource tags.
-
-        The **posix_user** object supports the following:
-
-          * `gid` (`pulumi.Input[float]`) - The POSIX group ID used for all file system operations using this access point.
-          * `secondaryGids` (`pulumi.Input[list]`) - Secondary POSIX group IDs used for all file system operations using this access point.
-          * `uid` (`pulumi.Input[float]`) - The POSIX user ID used for all file system operations using this access point.
-
-        The **root_directory** object supports the following:
-
-          * `creationInfo` (`pulumi.Input[dict]`) - Specifies the POSIX IDs and permissions to apply to the access point's Root Directory. See Creation Info below.
-            * `ownerGid` (`pulumi.Input[float]`) - Specifies the POSIX group ID to apply to the `root_directory`.
-            * `ownerUid` (`pulumi.Input[float]`) - Specifies the POSIX user ID to apply to the `root_directory`.
-            * `permissions` (`pulumi.Input[str]`) - Specifies the POSIX permissions to apply to the RootDirectory, in the format of an octal number representing the file's mode bits.
-
-          * `path` (`pulumi.Input[str]`) - Specifies the path on the EFS file system to expose as the root directory to NFS clients using the access point to access the EFS file system. A path can have up to four subdirectories. If the specified path does not exist, you are required to provide `creation_info`.
+        :param pulumi.Input['AccessPointPosixUserArgs'] posix_user: The operating system user and group applied to all file system requests made using the access point. See Posix User below.
+        :param pulumi.Input['AccessPointRootDirectoryArgs'] root_directory: Specifies the directory on the Amazon EFS file system that the access point provides access to. See Root Directory below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value mapping of resource tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -162,3 +124,4 @@ class AccessPoint(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

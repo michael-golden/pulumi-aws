@@ -5,40 +5,42 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class MetricAlarm(pulumi.CustomResource):
-    actions_enabled: pulumi.Output[bool]
+    actions_enabled: pulumi.Output[Optional[bool]] = pulumi.output_property("actionsEnabled")
     """
     Indicates whether or not actions should be executed during any changes to the alarm's state. Defaults to `true`.
     """
-    alarm_actions: pulumi.Output[list]
+    alarm_actions: pulumi.Output[Optional[List[str]]] = pulumi.output_property("alarmActions")
     """
     The list of actions to execute when this alarm transitions into an ALARM state from any other state. Each action is specified as an Amazon Resource Name (ARN).
     """
-    alarm_description: pulumi.Output[str]
+    alarm_description: pulumi.Output[Optional[str]] = pulumi.output_property("alarmDescription")
     """
     The description for the alarm.
     """
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the cloudwatch metric alarm.
     """
-    comparison_operator: pulumi.Output[str]
+    comparison_operator: pulumi.Output[str] = pulumi.output_property("comparisonOperator")
     """
     The arithmetic operation to use when comparing the specified Statistic and Threshold. The specified Statistic value is used as the first operand. Either of the following is supported: `GreaterThanOrEqualToThreshold`, `GreaterThanThreshold`, `LessThanThreshold`, `LessThanOrEqualToThreshold`. Additionally, the values  `LessThanLowerOrGreaterThanUpperThreshold`, `LessThanLowerThreshold`, and `GreaterThanUpperThreshold` are used only for alarms based on anomaly detection models.
     """
-    datapoints_to_alarm: pulumi.Output[float]
+    datapoints_to_alarm: pulumi.Output[Optional[float]] = pulumi.output_property("datapointsToAlarm")
     """
     The number of datapoints that must be breaching to trigger the alarm.
     """
-    dimensions: pulumi.Output[dict]
+    dimensions: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("dimensions")
     """
     The dimensions for this metric.  For the list of available dimensions see the AWS documentation [here](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
     """
-    evaluate_low_sample_count_percentiles: pulumi.Output[str]
+    evaluate_low_sample_count_percentiles: pulumi.Output[str] = pulumi.output_property("evaluateLowSampleCountPercentiles")
     """
     Used only for alarms
     based on percentiles. If you specify `ignore`, the alarm state will not
@@ -47,86 +49,71 @@ class MetricAlarm(pulumi.CustomResource):
     evaluated and possibly change state no matter how many data points are available.
     The following values are supported: `ignore`, and `evaluate`.
     """
-    evaluation_periods: pulumi.Output[float]
+    evaluation_periods: pulumi.Output[float] = pulumi.output_property("evaluationPeriods")
     """
     The number of periods over which data is compared to the specified threshold.
     """
-    extended_statistic: pulumi.Output[str]
+    extended_statistic: pulumi.Output[Optional[str]] = pulumi.output_property("extendedStatistic")
     """
     The percentile statistic for the metric associated with the alarm. Specify a value between p0.0 and p100.
     """
-    insufficient_data_actions: pulumi.Output[list]
+    insufficient_data_actions: pulumi.Output[Optional[List[str]]] = pulumi.output_property("insufficientDataActions")
     """
     The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Name (ARN).
     """
-    metric_name: pulumi.Output[str]
+    metric_name: pulumi.Output[Optional[str]] = pulumi.output_property("metricName")
     """
     The name for this metric.
     See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
     """
-    metric_queries: pulumi.Output[list]
+    metric_queries: pulumi.Output[Optional[List['outputs.MetricAlarmMetricQuery']]] = pulumi.output_property("metricQueries")
     """
     Enables you to create an alarm based on a metric math expression. You may specify at most 20.
-
-      * `expression` (`str`) - The math expression to be performed on the returned data, if this object is performing a math expression. This expression can use the id of the other metrics to refer to those metrics, and can also use the id of other expressions to use the result of those expressions. For more information about metric math expressions, see Metric Math Syntax and Functions in the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html#metric-math-syntax).
-      * `id` (`str`) - A short name used to tie this object to the results in the response. If you are performing math expressions on this set of data, this name represents that data and can serve as a variable in the mathematical expression. The valid characters are letters, numbers, and underscore. The first character must be a lowercase letter.
-      * `label` (`str`) - A human-readable label for this metric or expression. This is especially useful if this is an expression, so that you know what the value represents.
-      * `metric` (`dict`) - The metric to be returned, along with statistics, period, and units. Use this parameter only if this object is retrieving a metric and not performing a math expression on returned data.
-        * `dimensions` (`dict`) - The dimensions for this metric.  For the list of available dimensions see the AWS documentation [here](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-        * `metric_name` (`str`) - The name for this metric.
-          See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-        * `namespace` (`str`) - The namespace for this metric. See docs for the [list of namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/aws-namespaces.html).
-          See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-        * `period` (`float`) - The period in seconds over which the specified `stat` is applied.
-        * `stat` (`str`) - The statistic to apply to this metric.
-          Either of the following is supported: `SampleCount`, `Average`, `Sum`, `Minimum`, `Maximum`
-        * `unit` (`str`) - The unit for this metric.
-
-      * `returnData` (`bool`) - Specify exactly one `metric_query` to be `true` to use that `metric_query` result as the alarm.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The descriptive name for the alarm. This name must be unique within the user's AWS account
     """
-    namespace: pulumi.Output[str]
+    namespace: pulumi.Output[Optional[str]] = pulumi.output_property("namespace")
     """
     The namespace for this metric. See docs for the [list of namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/aws-namespaces.html).
     See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
     """
-    ok_actions: pulumi.Output[list]
+    ok_actions: pulumi.Output[Optional[List[str]]] = pulumi.output_property("okActions")
     """
     The list of actions to execute when this alarm transitions into an OK state from any other state. Each action is specified as an Amazon Resource Name (ARN).
     """
-    period: pulumi.Output[float]
+    period: pulumi.Output[Optional[float]] = pulumi.output_property("period")
     """
     The period in seconds over which the specified `stat` is applied.
     """
-    statistic: pulumi.Output[str]
+    statistic: pulumi.Output[Optional[str]] = pulumi.output_property("statistic")
     """
     The statistic to apply to the alarm's associated metric.
     Either of the following is supported: `SampleCount`, `Average`, `Sum`, `Minimum`, `Maximum`
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    threshold: pulumi.Output[float]
+    threshold: pulumi.Output[Optional[float]] = pulumi.output_property("threshold")
     """
     The value against which the specified statistic is compared. This parameter is required for alarms based on static thresholds, but should not be used for alarms based on anomaly detection models.
     """
-    threshold_metric_id: pulumi.Output[str]
+    threshold_metric_id: pulumi.Output[Optional[str]] = pulumi.output_property("thresholdMetricId")
     """
     If this is an alarm based on an anomaly detection model, make this value match the ID of the ANOMALY_DETECTION_BAND function.
     """
-    treat_missing_data: pulumi.Output[str]
+    treat_missing_data: pulumi.Output[Optional[str]] = pulumi.output_property("treatMissingData")
     """
     Sets how this alarm is to handle missing data points. The following values are supported: `missing`, `ignore`, `breaching` and `notBreaching`. Defaults to `missing`.
     """
-    unit: pulumi.Output[str]
+    unit: pulumi.Output[Optional[str]] = pulumi.output_property("unit")
     """
     The unit for this metric.
     """
-    def __init__(__self__, resource_name, opts=None, actions_enabled=None, alarm_actions=None, alarm_description=None, comparison_operator=None, datapoints_to_alarm=None, dimensions=None, evaluate_low_sample_count_percentiles=None, evaluation_periods=None, extended_statistic=None, insufficient_data_actions=None, metric_name=None, metric_queries=None, name=None, namespace=None, ok_actions=None, period=None, statistic=None, tags=None, threshold=None, threshold_metric_id=None, treat_missing_data=None, unit=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, actions_enabled=None, alarm_actions=None, alarm_description=None, comparison_operator=None, datapoints_to_alarm=None, dimensions=None, evaluate_low_sample_count_percentiles=None, evaluation_periods=None, extended_statistic=None, insufficient_data_actions=None, metric_name=None, metric_queries=None, name=None, namespace=None, ok_actions=None, period=None, statistic=None, tags=None, threshold=None, threshold_metric_id=None, treat_missing_data=None, unit=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CloudWatch Metric Alarm resource.
 
@@ -285,11 +272,11 @@ class MetricAlarm(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] actions_enabled: Indicates whether or not actions should be executed during any changes to the alarm's state. Defaults to `true`.
-        :param pulumi.Input[list] alarm_actions: The list of actions to execute when this alarm transitions into an ALARM state from any other state. Each action is specified as an Amazon Resource Name (ARN).
+        :param pulumi.Input[List[pulumi.Input[str]]] alarm_actions: The list of actions to execute when this alarm transitions into an ALARM state from any other state. Each action is specified as an Amazon Resource Name (ARN).
         :param pulumi.Input[str] alarm_description: The description for the alarm.
         :param pulumi.Input[str] comparison_operator: The arithmetic operation to use when comparing the specified Statistic and Threshold. The specified Statistic value is used as the first operand. Either of the following is supported: `GreaterThanOrEqualToThreshold`, `GreaterThanThreshold`, `LessThanThreshold`, `LessThanOrEqualToThreshold`. Additionally, the values  `LessThanLowerOrGreaterThanUpperThreshold`, `LessThanLowerThreshold`, and `GreaterThanUpperThreshold` are used only for alarms based on anomaly detection models.
         :param pulumi.Input[float] datapoints_to_alarm: The number of datapoints that must be breaching to trigger the alarm.
-        :param pulumi.Input[dict] dimensions: The dimensions for this metric.  For the list of available dimensions see the AWS documentation [here](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] dimensions: The dimensions for this metric.  For the list of available dimensions see the AWS documentation [here](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
         :param pulumi.Input[str] evaluate_low_sample_count_percentiles: Used only for alarms
                based on percentiles. If you specify `ignore`, the alarm state will not
                change during periods with too few data points to be statistically significant.
@@ -298,40 +285,22 @@ class MetricAlarm(pulumi.CustomResource):
                The following values are supported: `ignore`, and `evaluate`.
         :param pulumi.Input[float] evaluation_periods: The number of periods over which data is compared to the specified threshold.
         :param pulumi.Input[str] extended_statistic: The percentile statistic for the metric associated with the alarm. Specify a value between p0.0 and p100.
-        :param pulumi.Input[list] insufficient_data_actions: The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Name (ARN).
+        :param pulumi.Input[List[pulumi.Input[str]]] insufficient_data_actions: The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Name (ARN).
         :param pulumi.Input[str] metric_name: The name for this metric.
                See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-        :param pulumi.Input[list] metric_queries: Enables you to create an alarm based on a metric math expression. You may specify at most 20.
+        :param pulumi.Input[List[pulumi.Input['MetricAlarmMetricQueryArgs']]] metric_queries: Enables you to create an alarm based on a metric math expression. You may specify at most 20.
         :param pulumi.Input[str] name: The descriptive name for the alarm. This name must be unique within the user's AWS account
         :param pulumi.Input[str] namespace: The namespace for this metric. See docs for the [list of namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/aws-namespaces.html).
                See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-        :param pulumi.Input[list] ok_actions: The list of actions to execute when this alarm transitions into an OK state from any other state. Each action is specified as an Amazon Resource Name (ARN).
+        :param pulumi.Input[List[pulumi.Input[str]]] ok_actions: The list of actions to execute when this alarm transitions into an OK state from any other state. Each action is specified as an Amazon Resource Name (ARN).
         :param pulumi.Input[float] period: The period in seconds over which the specified `stat` is applied.
         :param pulumi.Input[str] statistic: The statistic to apply to the alarm's associated metric.
                Either of the following is supported: `SampleCount`, `Average`, `Sum`, `Minimum`, `Maximum`
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[float] threshold: The value against which the specified statistic is compared. This parameter is required for alarms based on static thresholds, but should not be used for alarms based on anomaly detection models.
         :param pulumi.Input[str] threshold_metric_id: If this is an alarm based on an anomaly detection model, make this value match the ID of the ANOMALY_DETECTION_BAND function.
         :param pulumi.Input[str] treat_missing_data: Sets how this alarm is to handle missing data points. The following values are supported: `missing`, `ignore`, `breaching` and `notBreaching`. Defaults to `missing`.
         :param pulumi.Input[str] unit: The unit for this metric.
-
-        The **metric_queries** object supports the following:
-
-          * `expression` (`pulumi.Input[str]`) - The math expression to be performed on the returned data, if this object is performing a math expression. This expression can use the id of the other metrics to refer to those metrics, and can also use the id of other expressions to use the result of those expressions. For more information about metric math expressions, see Metric Math Syntax and Functions in the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html#metric-math-syntax).
-          * `id` (`pulumi.Input[str]`) - A short name used to tie this object to the results in the response. If you are performing math expressions on this set of data, this name represents that data and can serve as a variable in the mathematical expression. The valid characters are letters, numbers, and underscore. The first character must be a lowercase letter.
-          * `label` (`pulumi.Input[str]`) - A human-readable label for this metric or expression. This is especially useful if this is an expression, so that you know what the value represents.
-          * `metric` (`pulumi.Input[dict]`) - The metric to be returned, along with statistics, period, and units. Use this parameter only if this object is retrieving a metric and not performing a math expression on returned data.
-            * `dimensions` (`pulumi.Input[dict]`) - The dimensions for this metric.  For the list of available dimensions see the AWS documentation [here](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-            * `metric_name` (`pulumi.Input[str]`) - The name for this metric.
-              See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-            * `namespace` (`pulumi.Input[str]`) - The namespace for this metric. See docs for the [list of namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/aws-namespaces.html).
-              See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-            * `period` (`pulumi.Input[float]`) - The period in seconds over which the specified `stat` is applied.
-            * `stat` (`pulumi.Input[str]`) - The statistic to apply to this metric.
-              Either of the following is supported: `SampleCount`, `Average`, `Sum`, `Minimum`, `Maximum`
-            * `unit` (`pulumi.Input[str]`) - The unit for this metric.
-
-          * `returnData` (`pulumi.Input[bool]`) - Specify exactly one `metric_query` to be `true` to use that `metric_query` result as the alarm.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -393,12 +362,12 @@ class MetricAlarm(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] actions_enabled: Indicates whether or not actions should be executed during any changes to the alarm's state. Defaults to `true`.
-        :param pulumi.Input[list] alarm_actions: The list of actions to execute when this alarm transitions into an ALARM state from any other state. Each action is specified as an Amazon Resource Name (ARN).
+        :param pulumi.Input[List[pulumi.Input[str]]] alarm_actions: The list of actions to execute when this alarm transitions into an ALARM state from any other state. Each action is specified as an Amazon Resource Name (ARN).
         :param pulumi.Input[str] alarm_description: The description for the alarm.
         :param pulumi.Input[str] arn: The ARN of the cloudwatch metric alarm.
         :param pulumi.Input[str] comparison_operator: The arithmetic operation to use when comparing the specified Statistic and Threshold. The specified Statistic value is used as the first operand. Either of the following is supported: `GreaterThanOrEqualToThreshold`, `GreaterThanThreshold`, `LessThanThreshold`, `LessThanOrEqualToThreshold`. Additionally, the values  `LessThanLowerOrGreaterThanUpperThreshold`, `LessThanLowerThreshold`, and `GreaterThanUpperThreshold` are used only for alarms based on anomaly detection models.
         :param pulumi.Input[float] datapoints_to_alarm: The number of datapoints that must be breaching to trigger the alarm.
-        :param pulumi.Input[dict] dimensions: The dimensions for this metric.  For the list of available dimensions see the AWS documentation [here](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] dimensions: The dimensions for this metric.  For the list of available dimensions see the AWS documentation [here](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
         :param pulumi.Input[str] evaluate_low_sample_count_percentiles: Used only for alarms
                based on percentiles. If you specify `ignore`, the alarm state will not
                change during periods with too few data points to be statistically significant.
@@ -407,40 +376,22 @@ class MetricAlarm(pulumi.CustomResource):
                The following values are supported: `ignore`, and `evaluate`.
         :param pulumi.Input[float] evaluation_periods: The number of periods over which data is compared to the specified threshold.
         :param pulumi.Input[str] extended_statistic: The percentile statistic for the metric associated with the alarm. Specify a value between p0.0 and p100.
-        :param pulumi.Input[list] insufficient_data_actions: The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Name (ARN).
+        :param pulumi.Input[List[pulumi.Input[str]]] insufficient_data_actions: The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Name (ARN).
         :param pulumi.Input[str] metric_name: The name for this metric.
                See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-        :param pulumi.Input[list] metric_queries: Enables you to create an alarm based on a metric math expression. You may specify at most 20.
+        :param pulumi.Input[List[pulumi.Input['MetricAlarmMetricQueryArgs']]] metric_queries: Enables you to create an alarm based on a metric math expression. You may specify at most 20.
         :param pulumi.Input[str] name: The descriptive name for the alarm. This name must be unique within the user's AWS account
         :param pulumi.Input[str] namespace: The namespace for this metric. See docs for the [list of namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/aws-namespaces.html).
                See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-        :param pulumi.Input[list] ok_actions: The list of actions to execute when this alarm transitions into an OK state from any other state. Each action is specified as an Amazon Resource Name (ARN).
+        :param pulumi.Input[List[pulumi.Input[str]]] ok_actions: The list of actions to execute when this alarm transitions into an OK state from any other state. Each action is specified as an Amazon Resource Name (ARN).
         :param pulumi.Input[float] period: The period in seconds over which the specified `stat` is applied.
         :param pulumi.Input[str] statistic: The statistic to apply to the alarm's associated metric.
                Either of the following is supported: `SampleCount`, `Average`, `Sum`, `Minimum`, `Maximum`
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[float] threshold: The value against which the specified statistic is compared. This parameter is required for alarms based on static thresholds, but should not be used for alarms based on anomaly detection models.
         :param pulumi.Input[str] threshold_metric_id: If this is an alarm based on an anomaly detection model, make this value match the ID of the ANOMALY_DETECTION_BAND function.
         :param pulumi.Input[str] treat_missing_data: Sets how this alarm is to handle missing data points. The following values are supported: `missing`, `ignore`, `breaching` and `notBreaching`. Defaults to `missing`.
         :param pulumi.Input[str] unit: The unit for this metric.
-
-        The **metric_queries** object supports the following:
-
-          * `expression` (`pulumi.Input[str]`) - The math expression to be performed on the returned data, if this object is performing a math expression. This expression can use the id of the other metrics to refer to those metrics, and can also use the id of other expressions to use the result of those expressions. For more information about metric math expressions, see Metric Math Syntax and Functions in the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html#metric-math-syntax).
-          * `id` (`pulumi.Input[str]`) - A short name used to tie this object to the results in the response. If you are performing math expressions on this set of data, this name represents that data and can serve as a variable in the mathematical expression. The valid characters are letters, numbers, and underscore. The first character must be a lowercase letter.
-          * `label` (`pulumi.Input[str]`) - A human-readable label for this metric or expression. This is especially useful if this is an expression, so that you know what the value represents.
-          * `metric` (`pulumi.Input[dict]`) - The metric to be returned, along with statistics, period, and units. Use this parameter only if this object is retrieving a metric and not performing a math expression on returned data.
-            * `dimensions` (`pulumi.Input[dict]`) - The dimensions for this metric.  For the list of available dimensions see the AWS documentation [here](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-            * `metric_name` (`pulumi.Input[str]`) - The name for this metric.
-              See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-            * `namespace` (`pulumi.Input[str]`) - The namespace for this metric. See docs for the [list of namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/aws-namespaces.html).
-              See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-            * `period` (`pulumi.Input[float]`) - The period in seconds over which the specified `stat` is applied.
-            * `stat` (`pulumi.Input[str]`) - The statistic to apply to this metric.
-              Either of the following is supported: `SampleCount`, `Average`, `Sum`, `Minimum`, `Maximum`
-            * `unit` (`pulumi.Input[str]`) - The unit for this metric.
-
-          * `returnData` (`pulumi.Input[bool]`) - Specify exactly one `metric_query` to be `true` to use that `metric_query` result as the alarm.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -476,3 +427,4 @@ class MetricAlarm(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

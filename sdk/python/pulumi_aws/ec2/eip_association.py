@@ -5,45 +5,46 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class EipAssociation(pulumi.CustomResource):
-    allocation_id: pulumi.Output[str]
+    allocation_id: pulumi.Output[str] = pulumi.output_property("allocationId")
     """
     The allocation ID. This is required for EC2-VPC.
     """
-    allow_reassociation: pulumi.Output[bool]
+    allow_reassociation: pulumi.Output[Optional[bool]] = pulumi.output_property("allowReassociation")
     """
     Whether to allow an Elastic IP to
     be re-associated. Defaults to `true` in VPC.
     """
-    instance_id: pulumi.Output[str]
+    instance_id: pulumi.Output[str] = pulumi.output_property("instanceId")
     """
     The ID of the instance. This is required for
     EC2-Classic. For EC2-VPC, you can specify either the instance ID or the
     network interface ID, but not both. The operation fails if you specify an
     instance ID unless exactly one network interface is attached.
     """
-    network_interface_id: pulumi.Output[str]
+    network_interface_id: pulumi.Output[str] = pulumi.output_property("networkInterfaceId")
     """
     The ID of the network interface. If the
     instance has more than one network interface, you must specify a network
     interface ID.
     """
-    private_ip_address: pulumi.Output[str]
+    private_ip_address: pulumi.Output[str] = pulumi.output_property("privateIpAddress")
     """
     The primary or secondary private IP address
     to associate with the Elastic IP address. If no private IP address is
     specified, the Elastic IP address is associated with the primary private IP
     address.
     """
-    public_ip: pulumi.Output[str]
+    public_ip: pulumi.Output[str] = pulumi.output_property("publicIp")
     """
     The Elastic IP address. This is required for EC2-Classic.
     """
-    def __init__(__self__, resource_name, opts=None, allocation_id=None, allow_reassociation=None, instance_id=None, network_interface_id=None, private_ip_address=None, public_ip=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allocation_id=None, allow_reassociation=None, instance_id=None, network_interface_id=None, private_ip_address=None, public_ip=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AWS EIP Association as a top level resource, to associate and
         disassociate Elastic IPs from AWS Instances and Network Interfaces.
@@ -161,3 +162,4 @@ class EipAssociation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,108 +5,39 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 warnings.warn("aws.elasticloadbalancingv2.ListenerRule has been deprecated in favor of aws.lb.ListenerRule", DeprecationWarning)
 
 
 class ListenerRule(pulumi.CustomResource):
-    actions: pulumi.Output[list]
+    actions: pulumi.Output[List['outputs.ListenerRuleAction']] = pulumi.output_property("actions")
     """
     An Action block. Action blocks are documented below.
-
-      * `authenticateCognito` (`dict`) - Information for creating an authenticate action using Cognito. Required if `type` is `authenticate-cognito`.
-        * `authenticationRequestExtraParams` (`dict`) - The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
-        * `onUnauthenticatedRequest` (`str`) - The behavior if the user is not authenticated. Valid values: `deny`, `allow` and `authenticate`
-        * `scope` (`str`) - The set of user claims to be requested from the IdP.
-        * `sessionCookieName` (`str`) - The name of the cookie used to maintain session information.
-        * `sessionTimeout` (`float`) - The maximum duration of the authentication session, in seconds.
-        * `userPoolArn` (`str`) - The ARN of the Cognito user pool.
-        * `userPoolClientId` (`str`) - The ID of the Cognito user pool client.
-        * `userPoolDomain` (`str`) - The domain prefix or fully-qualified domain name of the Cognito user pool.
-
-      * `authenticateOidc` (`dict`) - Information for creating an authenticate action using OIDC. Required if `type` is `authenticate-oidc`.
-        * `authenticationRequestExtraParams` (`dict`) - The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
-        * `authorizationEndpoint` (`str`) - The authorization endpoint of the IdP.
-        * `client_id` (`str`) - The OAuth 2.0 client identifier.
-        * `client_secret` (`str`) - The OAuth 2.0 client secret.
-        * `issuer` (`str`) - The OIDC issuer identifier of the IdP.
-        * `onUnauthenticatedRequest` (`str`) - The behavior if the user is not authenticated. Valid values: `deny`, `allow` and `authenticate`
-        * `scope` (`str`) - The set of user claims to be requested from the IdP.
-        * `sessionCookieName` (`str`) - The name of the cookie used to maintain session information.
-        * `sessionTimeout` (`float`) - The maximum duration of the authentication session, in seconds.
-        * `tokenEndpoint` (`str`) - The token endpoint of the IdP.
-        * `userInfoEndpoint` (`str`) - The user info endpoint of the IdP.
-
-      * `fixedResponse` (`dict`) - Information for creating an action that returns a custom HTTP response. Required if `type` is `fixed-response`.
-        * `content_type` (`str`) - The content type. Valid values are `text/plain`, `text/css`, `text/html`, `application/javascript` and `application/json`.
-        * `messageBody` (`str`) - The message body.
-        * `status_code` (`str`) - The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
-
-      * `forward` (`dict`) - Information for creating an action that distributes requests among one or more target groups. Specify only if `type` is `forward`. If you specify both `forward` block and `target_group_arn` attribute, you can specify only one target group using `forward` and it must be the same target group specified in `target_group_arn`.
-        * `stickiness` (`dict`) - The target group stickiness for the rule.
-          * `duration` (`float`) - The time period, in seconds, during which requests from a client should be routed to the same target group. The range is 1-604800 seconds (7 days).
-          * `enabled` (`bool`) - Indicates whether target group stickiness is enabled.
-
-        * `targetGroups` (`list`) - One or more target groups block.
-          * `arn` (`str`) - The Amazon Resource Name (ARN) of the target group.
-          * `weight` (`float`) - The weight. The range is 0 to 999.
-
-      * `order` (`float`)
-      * `redirect` (`dict`) - Information for creating a redirect action. Required if `type` is `redirect`.
-        * `host` (`str`) - The hostname. This component is not percent-encoded. The hostname can contain `#{host}`. Defaults to `#{host}`.
-        * `path` (`str`) - The absolute path, starting with the leading "/". This component is not percent-encoded. The path can contain #{host}, #{path}, and #{port}. Defaults to `/#{path}`.
-        * `port` (`str`) - The port. Specify a value from `1` to `65535` or `#{port}`. Defaults to `#{port}`.
-        * `protocol` (`str`) - The protocol. Valid values are `HTTP`, `HTTPS`, or `#{protocol}`. Defaults to `#{protocol}`.
-        * `query` (`str`) - The query parameters, URL-encoded when necessary, but not percent-encoded. Do not include the leading "?". Defaults to `#{query}`.
-        * `status_code` (`str`) - The HTTP redirect code. The redirect is either permanent (`HTTP_301`) or temporary (`HTTP_302`).
-
-      * `target_group_arn` (`str`) - The ARN of the Target Group to which to route traffic. Specify only if `type` is `forward` and you want to route to a single target group. To route to one or more target groups, use a `forward` block instead.
-      * `type` (`str`) - The type of routing action. Valid values are `forward`, `redirect`, `fixed-response`, `authenticate-cognito` and `authenticate-oidc`.
     """
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The Amazon Resource Name (ARN) of the target group.
     """
-    conditions: pulumi.Output[list]
+    conditions: pulumi.Output[List['outputs.ListenerRuleCondition']] = pulumi.output_property("conditions")
     """
     A Condition block. Multiple condition blocks of different types can be set and all must be satisfied for the rule to match. Condition blocks are documented below.
-
-      * `field` (`str`) - The type of condition. Valid values are `host-header` or `path-pattern`. Must also set `values`.
-      * `hostHeader` (`dict`) - Contains a single `values` item which is a list of host header patterns to match. The maximum size of each pattern is 128 characters. Comparison is case insensitive. Wildcard characters supported: * (matches 0 or more characters) and ? (matches exactly 1 character). Only one pattern needs to match for the condition to be satisfied.
-        * `values` (`list`) - List of exactly one pattern to match. Required when `field` is set.
-
-      * `httpHeader` (`dict`) - HTTP headers to match. HTTP Header block fields documented below.
-        * `httpHeaderName` (`str`) - Name of HTTP header to search. The maximum size is 40 characters. Comparison is case insensitive. Only RFC7240 characters are supported. Wildcards are not supported. You cannot use HTTP header condition to specify the host header, use a `host-header` condition instead.
-        * `values` (`list`) - List of header value patterns to match. Maximum size of each pattern is 128 characters. Comparison is case insensitive. Wildcard characters supported: * (matches 0 or more characters) and ? (matches exactly 1 character). If the same header appears multiple times in the request they will be searched in order until a match is found. Only one pattern needs to match for the condition to be satisfied. To require that all of the strings are a match, create one condition block per string.
-
-      * `httpRequestMethod` (`dict`) - Contains a single `values` item which is a list of HTTP request methods or verbs to match. Maximum size is 40 characters. Only allowed characters are A-Z, hyphen (-) and underscore (\_). Comparison is case sensitive. Wildcards are not supported. Only one needs to match for the condition to be satisfied. AWS recommends that GET and HEAD requests are routed in the same way because the response to a HEAD request may be cached.
-        * `values` (`list`) - List of exactly one pattern to match. Required when `field` is set.
-
-      * `pathPattern` (`dict`) - Contains a single `values` item which is a list of path patterns to match against the request URL. Maximum size of each pattern is 128 characters. Comparison is case sensitive. Wildcard characters supported: * (matches 0 or more characters) and ? (matches exactly 1 character). Only one pattern needs to match for the condition to be satisfied. Path pattern is compared only to the path of the URL, not to its query string. To compare against the query string, use a `query_string` condition.
-        * `values` (`list`) - List of exactly one pattern to match. Required when `field` is set.
-
-      * `queryStrings` (`list`) - Query strings to match. Query String block fields documented below.
-        * `key` (`str`) - Query string key pattern to match.
-        * `value` (`str`) - Query string value pattern to match.
-
-      * `sourceIp` (`dict`) - Contains a single `values` item which is a list of source IP CIDR notations to match. You can use both IPv4 and IPv6 addresses. Wildcards are not supported. Condition is satisfied if the source IP address of the request matches one of the CIDR blocks. Condition is not satisfied by the addresses in the `X-Forwarded-For` header, use `http_header` condition instead.
-        * `values` (`list`) - List of exactly one pattern to match. Required when `field` is set.
-
-      * `values` (`str`) - List of exactly one pattern to match. Required when `field` is set.
     """
-    listener_arn: pulumi.Output[str]
+    listener_arn: pulumi.Output[str] = pulumi.output_property("listenerArn")
     """
     The ARN of the listener to which to attach the rule.
     """
-    priority: pulumi.Output[float]
+    priority: pulumi.Output[float] = pulumi.output_property("priority")
     """
     The priority for the rule between `1` and `50000`. Leaving it unset will automatically set the rule with next available priority after currently existing highest rule. A listener can't have multiple rules with the same priority.
     """
     warnings.warn("aws.elasticloadbalancingv2.ListenerRule has been deprecated in favor of aws.lb.ListenerRule", DeprecationWarning)
 
-    def __init__(__self__, resource_name, opts=None, actions=None, conditions=None, listener_arn=None, priority=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, actions=None, conditions=None, listener_arn=None, priority=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Load Balancer Listener Rule resource.
 
@@ -241,86 +172,10 @@ class ListenerRule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] actions: An Action block. Action blocks are documented below.
-        :param pulumi.Input[list] conditions: A Condition block. Multiple condition blocks of different types can be set and all must be satisfied for the rule to match. Condition blocks are documented below.
+        :param pulumi.Input[List[pulumi.Input['ListenerRuleActionArgs']]] actions: An Action block. Action blocks are documented below.
+        :param pulumi.Input[List[pulumi.Input['ListenerRuleConditionArgs']]] conditions: A Condition block. Multiple condition blocks of different types can be set and all must be satisfied for the rule to match. Condition blocks are documented below.
         :param pulumi.Input[str] listener_arn: The ARN of the listener to which to attach the rule.
         :param pulumi.Input[float] priority: The priority for the rule between `1` and `50000`. Leaving it unset will automatically set the rule with next available priority after currently existing highest rule. A listener can't have multiple rules with the same priority.
-
-        The **actions** object supports the following:
-
-          * `authenticateCognito` (`pulumi.Input[dict]`) - Information for creating an authenticate action using Cognito. Required if `type` is `authenticate-cognito`.
-            * `authenticationRequestExtraParams` (`pulumi.Input[dict]`) - The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
-            * `onUnauthenticatedRequest` (`pulumi.Input[str]`) - The behavior if the user is not authenticated. Valid values: `deny`, `allow` and `authenticate`
-            * `scope` (`pulumi.Input[str]`) - The set of user claims to be requested from the IdP.
-            * `sessionCookieName` (`pulumi.Input[str]`) - The name of the cookie used to maintain session information.
-            * `sessionTimeout` (`pulumi.Input[float]`) - The maximum duration of the authentication session, in seconds.
-            * `userPoolArn` (`pulumi.Input[str]`) - The ARN of the Cognito user pool.
-            * `userPoolClientId` (`pulumi.Input[str]`) - The ID of the Cognito user pool client.
-            * `userPoolDomain` (`pulumi.Input[str]`) - The domain prefix or fully-qualified domain name of the Cognito user pool.
-
-          * `authenticateOidc` (`pulumi.Input[dict]`) - Information for creating an authenticate action using OIDC. Required if `type` is `authenticate-oidc`.
-            * `authenticationRequestExtraParams` (`pulumi.Input[dict]`) - The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
-            * `authorizationEndpoint` (`pulumi.Input[str]`) - The authorization endpoint of the IdP.
-            * `client_id` (`pulumi.Input[str]`) - The OAuth 2.0 client identifier.
-            * `client_secret` (`pulumi.Input[str]`) - The OAuth 2.0 client secret.
-            * `issuer` (`pulumi.Input[str]`) - The OIDC issuer identifier of the IdP.
-            * `onUnauthenticatedRequest` (`pulumi.Input[str]`) - The behavior if the user is not authenticated. Valid values: `deny`, `allow` and `authenticate`
-            * `scope` (`pulumi.Input[str]`) - The set of user claims to be requested from the IdP.
-            * `sessionCookieName` (`pulumi.Input[str]`) - The name of the cookie used to maintain session information.
-            * `sessionTimeout` (`pulumi.Input[float]`) - The maximum duration of the authentication session, in seconds.
-            * `tokenEndpoint` (`pulumi.Input[str]`) - The token endpoint of the IdP.
-            * `userInfoEndpoint` (`pulumi.Input[str]`) - The user info endpoint of the IdP.
-
-          * `fixedResponse` (`pulumi.Input[dict]`) - Information for creating an action that returns a custom HTTP response. Required if `type` is `fixed-response`.
-            * `content_type` (`pulumi.Input[str]`) - The content type. Valid values are `text/plain`, `text/css`, `text/html`, `application/javascript` and `application/json`.
-            * `messageBody` (`pulumi.Input[str]`) - The message body.
-            * `status_code` (`pulumi.Input[str]`) - The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
-
-          * `forward` (`pulumi.Input[dict]`) - Information for creating an action that distributes requests among one or more target groups. Specify only if `type` is `forward`. If you specify both `forward` block and `target_group_arn` attribute, you can specify only one target group using `forward` and it must be the same target group specified in `target_group_arn`.
-            * `stickiness` (`pulumi.Input[dict]`) - The target group stickiness for the rule.
-              * `duration` (`pulumi.Input[float]`) - The time period, in seconds, during which requests from a client should be routed to the same target group. The range is 1-604800 seconds (7 days).
-              * `enabled` (`pulumi.Input[bool]`) - Indicates whether target group stickiness is enabled.
-
-            * `targetGroups` (`pulumi.Input[list]`) - One or more target groups block.
-              * `arn` (`pulumi.Input[str]`) - The Amazon Resource Name (ARN) of the target group.
-              * `weight` (`pulumi.Input[float]`) - The weight. The range is 0 to 999.
-
-          * `order` (`pulumi.Input[float]`)
-          * `redirect` (`pulumi.Input[dict]`) - Information for creating a redirect action. Required if `type` is `redirect`.
-            * `host` (`pulumi.Input[str]`) - The hostname. This component is not percent-encoded. The hostname can contain `#{host}`. Defaults to `#{host}`.
-            * `path` (`pulumi.Input[str]`) - The absolute path, starting with the leading "/". This component is not percent-encoded. The path can contain #{host}, #{path}, and #{port}. Defaults to `/#{path}`.
-            * `port` (`pulumi.Input[str]`) - The port. Specify a value from `1` to `65535` or `#{port}`. Defaults to `#{port}`.
-            * `protocol` (`pulumi.Input[str]`) - The protocol. Valid values are `HTTP`, `HTTPS`, or `#{protocol}`. Defaults to `#{protocol}`.
-            * `query` (`pulumi.Input[str]`) - The query parameters, URL-encoded when necessary, but not percent-encoded. Do not include the leading "?". Defaults to `#{query}`.
-            * `status_code` (`pulumi.Input[str]`) - The HTTP redirect code. The redirect is either permanent (`HTTP_301`) or temporary (`HTTP_302`).
-
-          * `target_group_arn` (`pulumi.Input[str]`) - The ARN of the Target Group to which to route traffic. Specify only if `type` is `forward` and you want to route to a single target group. To route to one or more target groups, use a `forward` block instead.
-          * `type` (`pulumi.Input[str]`) - The type of routing action. Valid values are `forward`, `redirect`, `fixed-response`, `authenticate-cognito` and `authenticate-oidc`.
-
-        The **conditions** object supports the following:
-
-          * `field` (`pulumi.Input[str]`) - The type of condition. Valid values are `host-header` or `path-pattern`. Must also set `values`.
-          * `hostHeader` (`pulumi.Input[dict]`) - Contains a single `values` item which is a list of host header patterns to match. The maximum size of each pattern is 128 characters. Comparison is case insensitive. Wildcard characters supported: * (matches 0 or more characters) and ? (matches exactly 1 character). Only one pattern needs to match for the condition to be satisfied.
-            * `values` (`pulumi.Input[list]`) - List of exactly one pattern to match. Required when `field` is set.
-
-          * `httpHeader` (`pulumi.Input[dict]`) - HTTP headers to match. HTTP Header block fields documented below.
-            * `httpHeaderName` (`pulumi.Input[str]`) - Name of HTTP header to search. The maximum size is 40 characters. Comparison is case insensitive. Only RFC7240 characters are supported. Wildcards are not supported. You cannot use HTTP header condition to specify the host header, use a `host-header` condition instead.
-            * `values` (`pulumi.Input[list]`) - List of header value patterns to match. Maximum size of each pattern is 128 characters. Comparison is case insensitive. Wildcard characters supported: * (matches 0 or more characters) and ? (matches exactly 1 character). If the same header appears multiple times in the request they will be searched in order until a match is found. Only one pattern needs to match for the condition to be satisfied. To require that all of the strings are a match, create one condition block per string.
-
-          * `httpRequestMethod` (`pulumi.Input[dict]`) - Contains a single `values` item which is a list of HTTP request methods or verbs to match. Maximum size is 40 characters. Only allowed characters are A-Z, hyphen (-) and underscore (\_). Comparison is case sensitive. Wildcards are not supported. Only one needs to match for the condition to be satisfied. AWS recommends that GET and HEAD requests are routed in the same way because the response to a HEAD request may be cached.
-            * `values` (`pulumi.Input[list]`) - List of exactly one pattern to match. Required when `field` is set.
-
-          * `pathPattern` (`pulumi.Input[dict]`) - Contains a single `values` item which is a list of path patterns to match against the request URL. Maximum size of each pattern is 128 characters. Comparison is case sensitive. Wildcard characters supported: * (matches 0 or more characters) and ? (matches exactly 1 character). Only one pattern needs to match for the condition to be satisfied. Path pattern is compared only to the path of the URL, not to its query string. To compare against the query string, use a `query_string` condition.
-            * `values` (`pulumi.Input[list]`) - List of exactly one pattern to match. Required when `field` is set.
-
-          * `queryStrings` (`pulumi.Input[list]`) - Query strings to match. Query String block fields documented below.
-            * `key` (`pulumi.Input[str]`) - Query string key pattern to match.
-            * `value` (`pulumi.Input[str]`) - Query string value pattern to match.
-
-          * `sourceIp` (`pulumi.Input[dict]`) - Contains a single `values` item which is a list of source IP CIDR notations to match. You can use both IPv4 and IPv6 addresses. Wildcards are not supported. Condition is satisfied if the source IP address of the request matches one of the CIDR blocks. Condition is not satisfied by the addresses in the `X-Forwarded-For` header, use `http_header` condition instead.
-            * `values` (`pulumi.Input[list]`) - List of exactly one pattern to match. Required when `field` is set.
-
-          * `values` (`pulumi.Input[str]`) - List of exactly one pattern to match. Required when `field` is set.
         """
         pulumi.log.warn("ListenerRule is deprecated: aws.elasticloadbalancingv2.ListenerRule has been deprecated in favor of aws.lb.ListenerRule")
         if __name__ is not None:
@@ -366,87 +221,11 @@ class ListenerRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] actions: An Action block. Action blocks are documented below.
+        :param pulumi.Input[List[pulumi.Input['ListenerRuleActionArgs']]] actions: An Action block. Action blocks are documented below.
         :param pulumi.Input[str] arn: The Amazon Resource Name (ARN) of the target group.
-        :param pulumi.Input[list] conditions: A Condition block. Multiple condition blocks of different types can be set and all must be satisfied for the rule to match. Condition blocks are documented below.
+        :param pulumi.Input[List[pulumi.Input['ListenerRuleConditionArgs']]] conditions: A Condition block. Multiple condition blocks of different types can be set and all must be satisfied for the rule to match. Condition blocks are documented below.
         :param pulumi.Input[str] listener_arn: The ARN of the listener to which to attach the rule.
         :param pulumi.Input[float] priority: The priority for the rule between `1` and `50000`. Leaving it unset will automatically set the rule with next available priority after currently existing highest rule. A listener can't have multiple rules with the same priority.
-
-        The **actions** object supports the following:
-
-          * `authenticateCognito` (`pulumi.Input[dict]`) - Information for creating an authenticate action using Cognito. Required if `type` is `authenticate-cognito`.
-            * `authenticationRequestExtraParams` (`pulumi.Input[dict]`) - The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
-            * `onUnauthenticatedRequest` (`pulumi.Input[str]`) - The behavior if the user is not authenticated. Valid values: `deny`, `allow` and `authenticate`
-            * `scope` (`pulumi.Input[str]`) - The set of user claims to be requested from the IdP.
-            * `sessionCookieName` (`pulumi.Input[str]`) - The name of the cookie used to maintain session information.
-            * `sessionTimeout` (`pulumi.Input[float]`) - The maximum duration of the authentication session, in seconds.
-            * `userPoolArn` (`pulumi.Input[str]`) - The ARN of the Cognito user pool.
-            * `userPoolClientId` (`pulumi.Input[str]`) - The ID of the Cognito user pool client.
-            * `userPoolDomain` (`pulumi.Input[str]`) - The domain prefix or fully-qualified domain name of the Cognito user pool.
-
-          * `authenticateOidc` (`pulumi.Input[dict]`) - Information for creating an authenticate action using OIDC. Required if `type` is `authenticate-oidc`.
-            * `authenticationRequestExtraParams` (`pulumi.Input[dict]`) - The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
-            * `authorizationEndpoint` (`pulumi.Input[str]`) - The authorization endpoint of the IdP.
-            * `client_id` (`pulumi.Input[str]`) - The OAuth 2.0 client identifier.
-            * `client_secret` (`pulumi.Input[str]`) - The OAuth 2.0 client secret.
-            * `issuer` (`pulumi.Input[str]`) - The OIDC issuer identifier of the IdP.
-            * `onUnauthenticatedRequest` (`pulumi.Input[str]`) - The behavior if the user is not authenticated. Valid values: `deny`, `allow` and `authenticate`
-            * `scope` (`pulumi.Input[str]`) - The set of user claims to be requested from the IdP.
-            * `sessionCookieName` (`pulumi.Input[str]`) - The name of the cookie used to maintain session information.
-            * `sessionTimeout` (`pulumi.Input[float]`) - The maximum duration of the authentication session, in seconds.
-            * `tokenEndpoint` (`pulumi.Input[str]`) - The token endpoint of the IdP.
-            * `userInfoEndpoint` (`pulumi.Input[str]`) - The user info endpoint of the IdP.
-
-          * `fixedResponse` (`pulumi.Input[dict]`) - Information for creating an action that returns a custom HTTP response. Required if `type` is `fixed-response`.
-            * `content_type` (`pulumi.Input[str]`) - The content type. Valid values are `text/plain`, `text/css`, `text/html`, `application/javascript` and `application/json`.
-            * `messageBody` (`pulumi.Input[str]`) - The message body.
-            * `status_code` (`pulumi.Input[str]`) - The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
-
-          * `forward` (`pulumi.Input[dict]`) - Information for creating an action that distributes requests among one or more target groups. Specify only if `type` is `forward`. If you specify both `forward` block and `target_group_arn` attribute, you can specify only one target group using `forward` and it must be the same target group specified in `target_group_arn`.
-            * `stickiness` (`pulumi.Input[dict]`) - The target group stickiness for the rule.
-              * `duration` (`pulumi.Input[float]`) - The time period, in seconds, during which requests from a client should be routed to the same target group. The range is 1-604800 seconds (7 days).
-              * `enabled` (`pulumi.Input[bool]`) - Indicates whether target group stickiness is enabled.
-
-            * `targetGroups` (`pulumi.Input[list]`) - One or more target groups block.
-              * `arn` (`pulumi.Input[str]`) - The Amazon Resource Name (ARN) of the target group.
-              * `weight` (`pulumi.Input[float]`) - The weight. The range is 0 to 999.
-
-          * `order` (`pulumi.Input[float]`)
-          * `redirect` (`pulumi.Input[dict]`) - Information for creating a redirect action. Required if `type` is `redirect`.
-            * `host` (`pulumi.Input[str]`) - The hostname. This component is not percent-encoded. The hostname can contain `#{host}`. Defaults to `#{host}`.
-            * `path` (`pulumi.Input[str]`) - The absolute path, starting with the leading "/". This component is not percent-encoded. The path can contain #{host}, #{path}, and #{port}. Defaults to `/#{path}`.
-            * `port` (`pulumi.Input[str]`) - The port. Specify a value from `1` to `65535` or `#{port}`. Defaults to `#{port}`.
-            * `protocol` (`pulumi.Input[str]`) - The protocol. Valid values are `HTTP`, `HTTPS`, or `#{protocol}`. Defaults to `#{protocol}`.
-            * `query` (`pulumi.Input[str]`) - The query parameters, URL-encoded when necessary, but not percent-encoded. Do not include the leading "?". Defaults to `#{query}`.
-            * `status_code` (`pulumi.Input[str]`) - The HTTP redirect code. The redirect is either permanent (`HTTP_301`) or temporary (`HTTP_302`).
-
-          * `target_group_arn` (`pulumi.Input[str]`) - The ARN of the Target Group to which to route traffic. Specify only if `type` is `forward` and you want to route to a single target group. To route to one or more target groups, use a `forward` block instead.
-          * `type` (`pulumi.Input[str]`) - The type of routing action. Valid values are `forward`, `redirect`, `fixed-response`, `authenticate-cognito` and `authenticate-oidc`.
-
-        The **conditions** object supports the following:
-
-          * `field` (`pulumi.Input[str]`) - The type of condition. Valid values are `host-header` or `path-pattern`. Must also set `values`.
-          * `hostHeader` (`pulumi.Input[dict]`) - Contains a single `values` item which is a list of host header patterns to match. The maximum size of each pattern is 128 characters. Comparison is case insensitive. Wildcard characters supported: * (matches 0 or more characters) and ? (matches exactly 1 character). Only one pattern needs to match for the condition to be satisfied.
-            * `values` (`pulumi.Input[list]`) - List of exactly one pattern to match. Required when `field` is set.
-
-          * `httpHeader` (`pulumi.Input[dict]`) - HTTP headers to match. HTTP Header block fields documented below.
-            * `httpHeaderName` (`pulumi.Input[str]`) - Name of HTTP header to search. The maximum size is 40 characters. Comparison is case insensitive. Only RFC7240 characters are supported. Wildcards are not supported. You cannot use HTTP header condition to specify the host header, use a `host-header` condition instead.
-            * `values` (`pulumi.Input[list]`) - List of header value patterns to match. Maximum size of each pattern is 128 characters. Comparison is case insensitive. Wildcard characters supported: * (matches 0 or more characters) and ? (matches exactly 1 character). If the same header appears multiple times in the request they will be searched in order until a match is found. Only one pattern needs to match for the condition to be satisfied. To require that all of the strings are a match, create one condition block per string.
-
-          * `httpRequestMethod` (`pulumi.Input[dict]`) - Contains a single `values` item which is a list of HTTP request methods or verbs to match. Maximum size is 40 characters. Only allowed characters are A-Z, hyphen (-) and underscore (\_). Comparison is case sensitive. Wildcards are not supported. Only one needs to match for the condition to be satisfied. AWS recommends that GET and HEAD requests are routed in the same way because the response to a HEAD request may be cached.
-            * `values` (`pulumi.Input[list]`) - List of exactly one pattern to match. Required when `field` is set.
-
-          * `pathPattern` (`pulumi.Input[dict]`) - Contains a single `values` item which is a list of path patterns to match against the request URL. Maximum size of each pattern is 128 characters. Comparison is case sensitive. Wildcard characters supported: * (matches 0 or more characters) and ? (matches exactly 1 character). Only one pattern needs to match for the condition to be satisfied. Path pattern is compared only to the path of the URL, not to its query string. To compare against the query string, use a `query_string` condition.
-            * `values` (`pulumi.Input[list]`) - List of exactly one pattern to match. Required when `field` is set.
-
-          * `queryStrings` (`pulumi.Input[list]`) - Query strings to match. Query String block fields documented below.
-            * `key` (`pulumi.Input[str]`) - Query string key pattern to match.
-            * `value` (`pulumi.Input[str]`) - Query string value pattern to match.
-
-          * `sourceIp` (`pulumi.Input[dict]`) - Contains a single `values` item which is a list of source IP CIDR notations to match. You can use both IPv4 and IPv6 addresses. Wildcards are not supported. Condition is satisfied if the source IP address of the request matches one of the CIDR blocks. Condition is not satisfied by the addresses in the `X-Forwarded-For` header, use `http_header` condition instead.
-            * `values` (`pulumi.Input[list]`) - List of exactly one pattern to match. Required when `field` is set.
-
-          * `values` (`pulumi.Input[str]`) - List of exactly one pattern to match. Required when `field` is set.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -464,3 +243,4 @@ class ListenerRule(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

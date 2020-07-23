@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetPrefixListResult:
     """
     A collection of values returned by getPrefixList.
     """
-    def __init__(__self__, cidr_blocks=None, filters=None, id=None, name=None, prefix_list_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, cidr_blocks=None, filters=None, id=None, name=None, prefix_list_id=None) -> None:
         if cidr_blocks and not isinstance(cidr_blocks, list):
             raise TypeError("Expected argument 'cidr_blocks' to be a list")
         __self__.cidr_blocks = cidr_blocks
@@ -97,14 +100,9 @@ def get_prefix_list(filters=None, name=None, prefix_list_id=None, opts=None):
     ```
 
 
-    :param list filters: Configuration block(s) for filtering. Detailed below.
+    :param List['GetPrefixListFilterArgs'] filters: Configuration block(s) for filtering. Detailed below.
     :param str name: The name of the filter field. Valid values can be found in the [EC2 DescribePrefixLists API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribePrefixLists.html).
     :param str prefix_list_id: The ID of the prefix list to select.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the filter field. Valid values can be found in the [EC2 DescribePrefixLists API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribePrefixLists.html).
-      * `values` (`list`) - Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
     """
     __args__ = dict()
     __args__['filters'] = filters

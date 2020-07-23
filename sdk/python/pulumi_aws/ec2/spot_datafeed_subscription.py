@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class SpotDatafeedSubscription(pulumi.CustomResource):
-    bucket: pulumi.Output[str]
+    bucket: pulumi.Output[str] = pulumi.output_property("bucket")
     """
     The Amazon S3 bucket in which to store the Spot instance data feed.
     """
-    prefix: pulumi.Output[str]
+    prefix: pulumi.Output[Optional[str]] = pulumi.output_property("prefix")
     """
     Path of folder inside bucket to place spot pricing data.
     """
-    def __init__(__self__, resource_name, opts=None, bucket=None, prefix=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, bucket=None, prefix=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         > **Note:** There is only a single subscription allowed per account.
 
@@ -94,3 +95,4 @@ class SpotDatafeedSubscription(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

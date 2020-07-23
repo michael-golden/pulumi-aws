@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetInstancesResult:
     """
     A collection of values returned by getInstances.
     """
-    def __init__(__self__, filters=None, id=None, ids=None, instance_state_names=None, instance_tags=None, private_ips=None, public_ips=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, filters=None, id=None, ids=None, instance_state_names=None, instance_tags=None, private_ips=None, public_ips=None) -> None:
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
         __self__.filters = filters
@@ -97,17 +100,12 @@ def get_instances(filters=None, instance_state_names=None, instance_tags=None, o
     ```
 
 
-    :param list filters: One or more name/value pairs to use as filters. There are
+    :param List['GetInstancesFilterArgs'] filters: One or more name/value pairs to use as filters. There are
            several valid keys, for a full reference, check out
            [describe-instances in the AWS CLI reference][1].
-    :param list instance_state_names: A list of instance states that should be applicable to the desired instances. The permitted values are: `pending, running, shutting-down, stopped, stopping, terminated`. The default value is `running`.
-    :param dict instance_tags: A map of tags, each pair of which must
+    :param List[str] instance_state_names: A list of instance states that should be applicable to the desired instances. The permitted values are: `pending, running, shutting-down, stopped, stopping, terminated`. The default value is `running`.
+    :param Dict[str, str] instance_tags: A map of tags, each pair of which must
            exactly match a pair on desired instances.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`)
-      * `values` (`list`)
     """
     __args__ = dict()
     __args__['filters'] = filters

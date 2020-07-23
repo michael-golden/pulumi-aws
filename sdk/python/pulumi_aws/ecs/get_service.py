@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetServiceResult:
     """
     A collection of values returned by getService.
     """
-    def __init__(__self__, arn=None, cluster_arn=None, desired_count=None, id=None, launch_type=None, scheduling_strategy=None, service_name=None, task_definition=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, cluster_arn=None, desired_count=None, id=None, launch_type=None, scheduling_strategy=None, service_name=None, task_definition=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn

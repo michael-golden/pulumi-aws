@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetResolverRuleResult:
     """
     A collection of values returned by getResolverRule.
     """
-    def __init__(__self__, arn=None, domain_name=None, id=None, name=None, owner_id=None, resolver_endpoint_id=None, resolver_rule_id=None, rule_type=None, share_status=None, tags=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, domain_name=None, id=None, name=None, owner_id=None, resolver_endpoint_id=None, resolver_rule_id=None, rule_type=None, share_status=None, tags=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn
@@ -102,7 +103,7 @@ def get_resolver_rule(domain_name=None, name=None, resolver_endpoint_id=None, re
     :param str resolver_endpoint_id: The ID of the outbound resolver endpoint of the desired resolver rule. Conflicts with `resolver_rule_id`.
     :param str resolver_rule_id: The ID of the desired resolver rule. Conflicts with `domain_name`, `name`, `resolver_endpoint_id` and `rule_type`.
     :param str rule_type: The rule type of the desired resolver rule. Valid values are `FORWARD`, `SYSTEM` and `RECURSIVE`. Conflicts with `resolver_rule_id`.
-    :param dict tags: A map of tags assigned to the resolver rule.
+    :param Dict[str, str] tags: A map of tags assigned to the resolver rule.
     """
     __args__ = dict()
     __args__['domainName'] = domain_name

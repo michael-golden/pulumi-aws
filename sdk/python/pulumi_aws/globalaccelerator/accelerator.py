@@ -5,51 +5,47 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Accelerator(pulumi.CustomResource):
-    attributes: pulumi.Output[dict]
+    attributes: pulumi.Output[Optional['outputs.AcceleratorAttributes']] = pulumi.output_property("attributes")
     """
     The attributes of the accelerator. Fields documented below.
-
-      * `flowLogsEnabled` (`bool`) - Indicates whether flow logs are enabled.
-      * `flowLogsS3Bucket` (`str`) - The name of the Amazon S3 bucket for the flow logs.
-      * `flowLogsS3Prefix` (`str`) - The prefix for the location in the Amazon S3 bucket for the flow logs.
     """
-    dns_name: pulumi.Output[str]
+    dns_name: pulumi.Output[str] = pulumi.output_property("dnsName")
     """
     The DNS name of the accelerator. For example, `a5d53ff5ee6bca4ce.awsglobalaccelerator.com`.
     * `hosted_zone_id` --  The Global Accelerator Route 53 zone ID that can be used to
     route an [Alias Resource Record Set](https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html) to the Global Accelerator. This attribute
     is simply an alias for the zone ID `Z2BJ6XQ5FK7U4H`.
     """
-    enabled: pulumi.Output[bool]
+    enabled: pulumi.Output[Optional[bool]] = pulumi.output_property("enabled")
     """
     Indicates whether the accelerator is enabled. The value is true or false. The default value is true.
     """
-    hosted_zone_id: pulumi.Output[str]
-    ip_address_type: pulumi.Output[str]
+    hosted_zone_id: pulumi.Output[str] = pulumi.output_property("hostedZoneId")
+    ip_address_type: pulumi.Output[Optional[str]] = pulumi.output_property("ipAddressType")
     """
     The value for the address type must be `IPV4`.
     """
-    ip_sets: pulumi.Output[list]
+    ip_sets: pulumi.Output[List['outputs.AcceleratorIpSet']] = pulumi.output_property("ipSets")
     """
     IP address set associated with the accelerator.
-
-      * `ip_addresses` (`list`) - A list of IP addresses in the IP address set.
-      * `ipFamily` (`str`) - The types of IP addresses included in this IP set.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the accelerator.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    def __init__(__self__, resource_name, opts=None, attributes=None, enabled=None, ip_address_type=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, attributes=None, enabled=None, ip_address_type=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates a Global Accelerator accelerator.
 
@@ -71,17 +67,11 @@ class Accelerator(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] attributes: The attributes of the accelerator. Fields documented below.
+        :param pulumi.Input['AcceleratorAttributesArgs'] attributes: The attributes of the accelerator. Fields documented below.
         :param pulumi.Input[bool] enabled: Indicates whether the accelerator is enabled. The value is true or false. The default value is true.
         :param pulumi.Input[str] ip_address_type: The value for the address type must be `IPV4`.
         :param pulumi.Input[str] name: The name of the accelerator.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-
-        The **attributes** object supports the following:
-
-          * `flowLogsEnabled` (`pulumi.Input[bool]`) - Indicates whether flow logs are enabled.
-          * `flowLogsS3Bucket` (`pulumi.Input[str]`) - The name of the Amazon S3 bucket for the flow logs.
-          * `flowLogsS3Prefix` (`pulumi.Input[str]`) - The prefix for the location in the Amazon S3 bucket for the flow logs.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -123,27 +113,16 @@ class Accelerator(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] attributes: The attributes of the accelerator. Fields documented below.
+        :param pulumi.Input['AcceleratorAttributesArgs'] attributes: The attributes of the accelerator. Fields documented below.
         :param pulumi.Input[str] dns_name: The DNS name of the accelerator. For example, `a5d53ff5ee6bca4ce.awsglobalaccelerator.com`.
                * `hosted_zone_id` --  The Global Accelerator Route 53 zone ID that can be used to
                route an [Alias Resource Record Set](https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html) to the Global Accelerator. This attribute
                is simply an alias for the zone ID `Z2BJ6XQ5FK7U4H`.
         :param pulumi.Input[bool] enabled: Indicates whether the accelerator is enabled. The value is true or false. The default value is true.
         :param pulumi.Input[str] ip_address_type: The value for the address type must be `IPV4`.
-        :param pulumi.Input[list] ip_sets: IP address set associated with the accelerator.
+        :param pulumi.Input[List[pulumi.Input['AcceleratorIpSetArgs']]] ip_sets: IP address set associated with the accelerator.
         :param pulumi.Input[str] name: The name of the accelerator.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-
-        The **attributes** object supports the following:
-
-          * `flowLogsEnabled` (`pulumi.Input[bool]`) - Indicates whether flow logs are enabled.
-          * `flowLogsS3Bucket` (`pulumi.Input[str]`) - The name of the Amazon S3 bucket for the flow logs.
-          * `flowLogsS3Prefix` (`pulumi.Input[str]`) - The prefix for the location in the Amazon S3 bucket for the flow logs.
-
-        The **ip_sets** object supports the following:
-
-          * `ip_addresses` (`pulumi.Input[list]`) - A list of IP addresses in the IP address set.
-          * `ipFamily` (`pulumi.Input[str]`) - The types of IP addresses included in this IP set.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -164,3 +143,4 @@ class Accelerator(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

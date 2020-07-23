@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetPlanResult:
     """
     A collection of values returned by getPlan.
     """
-    def __init__(__self__, arn=None, id=None, name=None, plan_id=None, tags=None, version=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, id=None, name=None, plan_id=None, tags=None, version=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn
@@ -78,7 +79,7 @@ def get_plan(plan_id=None, tags=None, opts=None):
 
 
     :param str plan_id: The backup plan ID.
-    :param dict tags: Metadata that you can assign to help organize the plans you create.
+    :param Dict[str, str] tags: Metadata that you can assign to help organize the plans you create.
     """
     __args__ = dict()
     __args__['planId'] = plan_id

@@ -5,16 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class AccountAlias(pulumi.CustomResource):
-    account_alias: pulumi.Output[str]
+    account_alias: pulumi.Output[str] = pulumi.output_property("accountAlias")
     """
     The account alias
     """
-    def __init__(__self__, resource_name, opts=None, account_alias=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, account_alias=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         > **Note:** There is only a single account alias per AWS account.
 
@@ -82,3 +83,4 @@ class AccountAlias(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

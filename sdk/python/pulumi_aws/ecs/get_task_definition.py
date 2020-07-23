@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetTaskDefinitionResult:
     """
     A collection of values returned by getTaskDefinition.
     """
-    def __init__(__self__, family=None, id=None, network_mode=None, revision=None, status=None, task_definition=None, task_role_arn=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, family=None, id=None, network_mode=None, revision=None, status=None, task_definition=None, task_role_arn=None) -> None:
         if family and not isinstance(family, str):
             raise TypeError("Expected argument 'family' to be a str")
         __self__.family = family

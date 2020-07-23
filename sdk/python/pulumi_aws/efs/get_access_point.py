@@ -5,15 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
 
 
 class GetAccessPointResult:
     """
     A collection of values returned by getAccessPoint.
     """
-    def __init__(__self__, access_point_id=None, arn=None, file_system_arn=None, file_system_id=None, id=None, owner_id=None, posix_users=None, root_directories=None, tags=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, access_point_id=None, arn=None, file_system_arn=None, file_system_id=None, id=None, owner_id=None, posix_users=None, root_directories=None, tags=None) -> None:
         if access_point_id and not isinstance(access_point_id, str):
             raise TypeError("Expected argument 'access_point_id' to be a str")
         __self__.access_point_id = access_point_id
@@ -93,7 +95,7 @@ def get_access_point(access_point_id=None, tags=None, opts=None):
 
 
     :param str access_point_id: The ID that identifies the file system.
-    :param dict tags: Key-value mapping of resource tags.
+    :param Dict[str, str] tags: Key-value mapping of resource tags.
     """
     __args__ = dict()
     __args__['accessPointId'] = access_point_id

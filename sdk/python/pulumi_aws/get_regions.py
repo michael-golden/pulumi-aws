@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetRegionsResult:
     """
     A collection of values returned by getRegions.
     """
-    def __init__(__self__, all_regions=None, filters=None, id=None, names=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, all_regions=None, filters=None, id=None, names=None) -> None:
         if all_regions and not isinstance(all_regions, bool):
             raise TypeError("Expected argument 'all_regions' to be a bool")
         __self__.all_regions = all_regions
@@ -85,12 +88,7 @@ def get_regions(all_regions=None, filters=None, opts=None):
 
 
     :param bool all_regions: If true the source will query all regions regardless of availability.
-    :param list filters: Configuration block(s) to use as filters. Detailed below.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the filter field. Valid values can be found in the [describe-regions AWS CLI Reference][1].
-      * `values` (`list`) - Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
+    :param List['GetRegionsFilterArgs'] filters: Configuration block(s) to use as filters. Detailed below.
     """
     __args__ = dict()
     __args__['allRegions'] = all_regions

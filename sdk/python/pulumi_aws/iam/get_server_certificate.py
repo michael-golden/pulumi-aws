@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetServerCertificateResult:
     """
     A collection of values returned by getServerCertificate.
     """
-    def __init__(__self__, arn=None, certificate_body=None, certificate_chain=None, expiration_date=None, id=None, latest=None, name=None, name_prefix=None, path=None, path_prefix=None, upload_date=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, certificate_body=None, certificate_chain=None, expiration_date=None, id=None, latest=None, name=None, name_prefix=None, path=None, path_prefix=None, upload_date=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn

@@ -5,27 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class BucketMetric(pulumi.CustomResource):
-    bucket: pulumi.Output[str]
+    bucket: pulumi.Output[str] = pulumi.output_property("bucket")
     """
     The name of the bucket to put metric configuration.
     """
-    filter: pulumi.Output[dict]
+    filter: pulumi.Output[Optional['outputs.BucketMetricFilter']] = pulumi.output_property("filter")
     """
     [Object filtering](http://docs.aws.amazon.com/AmazonS3/latest/dev/metrics-configurations.html#metrics-configurations-filter) that accepts a prefix, tags, or a logical AND of prefix and tags (documented below).
-
-      * `prefix` (`str`) - Object prefix for filtering (singular).
-      * `tags` (`dict`) - Object tags for filtering (up to 10).
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Unique identifier of the metrics configuration for the bucket.
     """
-    def __init__(__self__, resource_name, opts=None, bucket=None, filter=None, name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, bucket=None, filter=None, name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a S3 bucket [metrics configuration](http://docs.aws.amazon.com/AmazonS3/latest/dev/metrics-configurations.html) resource.
 
@@ -60,13 +60,8 @@ class BucketMetric(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket to put metric configuration.
-        :param pulumi.Input[dict] filter: [Object filtering](http://docs.aws.amazon.com/AmazonS3/latest/dev/metrics-configurations.html#metrics-configurations-filter) that accepts a prefix, tags, or a logical AND of prefix and tags (documented below).
+        :param pulumi.Input['BucketMetricFilterArgs'] filter: [Object filtering](http://docs.aws.amazon.com/AmazonS3/latest/dev/metrics-configurations.html#metrics-configurations-filter) that accepts a prefix, tags, or a logical AND of prefix and tags (documented below).
         :param pulumi.Input[str] name: Unique identifier of the metrics configuration for the bucket.
-
-        The **filter** object supports the following:
-
-          * `prefix` (`pulumi.Input[str]`) - Object prefix for filtering (singular).
-          * `tags` (`pulumi.Input[dict]`) - Object tags for filtering (up to 10).
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -106,13 +101,8 @@ class BucketMetric(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket to put metric configuration.
-        :param pulumi.Input[dict] filter: [Object filtering](http://docs.aws.amazon.com/AmazonS3/latest/dev/metrics-configurations.html#metrics-configurations-filter) that accepts a prefix, tags, or a logical AND of prefix and tags (documented below).
+        :param pulumi.Input['BucketMetricFilterArgs'] filter: [Object filtering](http://docs.aws.amazon.com/AmazonS3/latest/dev/metrics-configurations.html#metrics-configurations-filter) that accepts a prefix, tags, or a logical AND of prefix and tags (documented below).
         :param pulumi.Input[str] name: Unique identifier of the metrics configuration for the bucket.
-
-        The **filter** object supports the following:
-
-          * `prefix` (`pulumi.Input[str]`) - Object prefix for filtering (singular).
-          * `tags` (`pulumi.Input[dict]`) - Object tags for filtering (up to 10).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -128,3 +118,4 @@ class BucketMetric(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

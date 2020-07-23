@@ -5,40 +5,41 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class UserPoolDomain(pulumi.CustomResource):
-    aws_account_id: pulumi.Output[str]
+    aws_account_id: pulumi.Output[str] = pulumi.output_property("awsAccountId")
     """
     The AWS account ID for the user pool owner.
     """
-    certificate_arn: pulumi.Output[str]
+    certificate_arn: pulumi.Output[Optional[str]] = pulumi.output_property("certificateArn")
     """
     The ARN of an ISSUED ACM certificate in us-east-1 for a custom domain.
     """
-    cloudfront_distribution_arn: pulumi.Output[str]
+    cloudfront_distribution_arn: pulumi.Output[str] = pulumi.output_property("cloudfrontDistributionArn")
     """
     The URL of the CloudFront distribution. This is required to generate the ALIAS `route53.Record`
     """
-    domain: pulumi.Output[str]
+    domain: pulumi.Output[str] = pulumi.output_property("domain")
     """
     The domain string.
     """
-    s3_bucket: pulumi.Output[str]
+    s3_bucket: pulumi.Output[str] = pulumi.output_property("s3Bucket")
     """
     The S3 bucket where the static files for this domain are stored.
     """
-    user_pool_id: pulumi.Output[str]
+    user_pool_id: pulumi.Output[str] = pulumi.output_property("userPoolId")
     """
     The user pool ID.
     """
-    version: pulumi.Output[str]
+    version: pulumi.Output[str] = pulumi.output_property("version")
     """
     The app version.
     """
-    def __init__(__self__, resource_name, opts=None, certificate_arn=None, domain=None, user_pool_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, certificate_arn=None, domain=None, user_pool_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Cognito User Pool Domain resource.
 
@@ -152,3 +153,4 @@ class UserPoolDomain(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

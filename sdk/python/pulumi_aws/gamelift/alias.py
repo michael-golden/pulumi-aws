@@ -5,36 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Alias(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     Alias ARN.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     Description of the alias.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the alias.
     """
-    routing_strategy: pulumi.Output[dict]
+    routing_strategy: pulumi.Output['outputs.AliasRoutingStrategy'] = pulumi.output_property("routingStrategy")
     """
     Specifies the fleet and/or routing type to use for the alias.
-
-      * `fleetId` (`str`) - ID of the Gamelift Fleet to point the alias to.
-      * `message` (`str`) - Message text to be used with the `TERMINAL` routing strategy.
-      * `type` (`str`) - Type of routing strategy. e.g. `SIMPLE` or `TERMINAL`
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Key-value map of resource tags
     """
-    def __init__(__self__, resource_name, opts=None, description=None, name=None, routing_strategy=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, name=None, routing_strategy=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Gamelift Alias resource.
 
@@ -56,14 +55,8 @@ class Alias(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description of the alias.
         :param pulumi.Input[str] name: Name of the alias.
-        :param pulumi.Input[dict] routing_strategy: Specifies the fleet and/or routing type to use for the alias.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-
-        The **routing_strategy** object supports the following:
-
-          * `fleetId` (`pulumi.Input[str]`) - ID of the Gamelift Fleet to point the alias to.
-          * `message` (`pulumi.Input[str]`) - Message text to be used with the `TERMINAL` routing strategy.
-          * `type` (`pulumi.Input[str]`) - Type of routing strategy. e.g. `SIMPLE` or `TERMINAL`
+        :param pulumi.Input['AliasRoutingStrategyArgs'] routing_strategy: Specifies the fleet and/or routing type to use for the alias.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -107,14 +100,8 @@ class Alias(pulumi.CustomResource):
         :param pulumi.Input[str] arn: Alias ARN.
         :param pulumi.Input[str] description: Description of the alias.
         :param pulumi.Input[str] name: Name of the alias.
-        :param pulumi.Input[dict] routing_strategy: Specifies the fleet and/or routing type to use for the alias.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-
-        The **routing_strategy** object supports the following:
-
-          * `fleetId` (`pulumi.Input[str]`) - ID of the Gamelift Fleet to point the alias to.
-          * `message` (`pulumi.Input[str]`) - Message text to be used with the `TERMINAL` routing strategy.
-          * `type` (`pulumi.Input[str]`) - Type of routing strategy. e.g. `SIMPLE` or `TERMINAL`
+        :param pulumi.Input['AliasRoutingStrategyArgs'] routing_strategy: Specifies the fleet and/or routing type to use for the alias.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -132,3 +119,4 @@ class Alias(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

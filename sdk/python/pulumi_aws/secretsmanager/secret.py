@@ -5,58 +5,59 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Secret(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     Amazon Resource Name (ARN) of the secret.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     A description of the secret.
     """
-    kms_key_id: pulumi.Output[str]
+    kms_key_id: pulumi.Output[Optional[str]] = pulumi.output_property("kmsKeyId")
     """
     Specifies the ARN or alias of the AWS KMS customer master key (CMK) to be used to encrypt the secret values in the versions stored in this secret. If you don't specify this value, then Secrets Manager defaults to using the AWS account's default CMK (the one named `aws/secretsmanager`). If the default KMS CMK with that name doesn't yet exist, then AWS Secrets Manager creates it for you automatically the first time.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Specifies the friendly name of the new secret. The secret name can consist of uppercase letters, lowercase letters, digits, and any of the following characters: `/_+=.@-` Conflicts with `name_prefix`.
     """
-    name_prefix: pulumi.Output[str]
+    name_prefix: pulumi.Output[str] = pulumi.output_property("namePrefix")
     """
     Creates a unique name beginning with the specified prefix. Conflicts with `name`.
     """
-    policy: pulumi.Output[str]
+    policy: pulumi.Output[Optional[str]] = pulumi.output_property("policy")
     """
     A valid JSON document representing a [resource policy](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html).
     """
-    recovery_window_in_days: pulumi.Output[float]
+    recovery_window_in_days: pulumi.Output[Optional[float]] = pulumi.output_property("recoveryWindowInDays")
     """
     Specifies the number of days that AWS Secrets Manager waits before it can delete the secret. This value can be `0` to force deletion without recovery or range from `7` to `30` days. The default value is `30`.
     """
-    rotation_enabled: pulumi.Output[bool]
+    rotation_enabled: pulumi.Output[bool] = pulumi.output_property("rotationEnabled")
     """
     Specifies whether automatic rotation is enabled for this secret.
     """
-    rotation_lambda_arn: pulumi.Output[str]
+    rotation_lambda_arn: pulumi.Output[str] = pulumi.output_property("rotationLambdaArn")
     """
     Specifies the ARN of the Lambda function that can rotate the secret. Use the `secretsmanager.SecretRotation` resource to manage this configuration instead. As of version 2.67.0, removal of this configuration will no longer remove rotation due to supporting the new resource. Either import the new resource and remove the configuration or manually remove rotation.
     """
-    rotation_rules: pulumi.Output[dict]
+    rotation_rules: pulumi.Output['outputs.SecretRotationRules'] = pulumi.output_property("rotationRules")
     """
     A structure that defines the rotation configuration for this secret. Defined below. Use the `secretsmanager.SecretRotation` resource to manage this configuration instead. As of version 2.67.0, removal of this configuration will no longer remove rotation due to supporting the new resource. Either import the new resource and remove the configuration or manually remove rotation.
-
-      * `automaticallyAfterDays` (`float`) - Specifies the number of days between automatic scheduled rotations of the secret.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Specifies a key-value map of user-defined tags that are attached to the secret.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, kms_key_id=None, name=None, name_prefix=None, policy=None, recovery_window_in_days=None, rotation_lambda_arn=None, rotation_rules=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, kms_key_id=None, name=None, name_prefix=None, policy=None, recovery_window_in_days=None, rotation_lambda_arn=None, rotation_rules=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage AWS Secrets Manager secret metadata. To manage secret rotation, see the `secretsmanager.SecretRotation` resource. To manage a secret value, see the `secretsmanager.SecretVersion` resource.
 
@@ -97,12 +98,8 @@ class Secret(pulumi.CustomResource):
         :param pulumi.Input[str] policy: A valid JSON document representing a [resource policy](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html).
         :param pulumi.Input[float] recovery_window_in_days: Specifies the number of days that AWS Secrets Manager waits before it can delete the secret. This value can be `0` to force deletion without recovery or range from `7` to `30` days. The default value is `30`.
         :param pulumi.Input[str] rotation_lambda_arn: Specifies the ARN of the Lambda function that can rotate the secret. Use the `secretsmanager.SecretRotation` resource to manage this configuration instead. As of version 2.67.0, removal of this configuration will no longer remove rotation due to supporting the new resource. Either import the new resource and remove the configuration or manually remove rotation.
-        :param pulumi.Input[dict] rotation_rules: A structure that defines the rotation configuration for this secret. Defined below. Use the `secretsmanager.SecretRotation` resource to manage this configuration instead. As of version 2.67.0, removal of this configuration will no longer remove rotation due to supporting the new resource. Either import the new resource and remove the configuration or manually remove rotation.
-        :param pulumi.Input[dict] tags: Specifies a key-value map of user-defined tags that are attached to the secret.
-
-        The **rotation_rules** object supports the following:
-
-          * `automaticallyAfterDays` (`pulumi.Input[float]`) - Specifies the number of days between automatic scheduled rotations of the secret.
+        :param pulumi.Input['SecretRotationRulesArgs'] rotation_rules: A structure that defines the rotation configuration for this secret. Defined below. Use the `secretsmanager.SecretRotation` resource to manage this configuration instead. As of version 2.67.0, removal of this configuration will no longer remove rotation due to supporting the new resource. Either import the new resource and remove the configuration or manually remove rotation.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Specifies a key-value map of user-defined tags that are attached to the secret.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -162,12 +159,8 @@ class Secret(pulumi.CustomResource):
         :param pulumi.Input[float] recovery_window_in_days: Specifies the number of days that AWS Secrets Manager waits before it can delete the secret. This value can be `0` to force deletion without recovery or range from `7` to `30` days. The default value is `30`.
         :param pulumi.Input[bool] rotation_enabled: Specifies whether automatic rotation is enabled for this secret.
         :param pulumi.Input[str] rotation_lambda_arn: Specifies the ARN of the Lambda function that can rotate the secret. Use the `secretsmanager.SecretRotation` resource to manage this configuration instead. As of version 2.67.0, removal of this configuration will no longer remove rotation due to supporting the new resource. Either import the new resource and remove the configuration or manually remove rotation.
-        :param pulumi.Input[dict] rotation_rules: A structure that defines the rotation configuration for this secret. Defined below. Use the `secretsmanager.SecretRotation` resource to manage this configuration instead. As of version 2.67.0, removal of this configuration will no longer remove rotation due to supporting the new resource. Either import the new resource and remove the configuration or manually remove rotation.
-        :param pulumi.Input[dict] tags: Specifies a key-value map of user-defined tags that are attached to the secret.
-
-        The **rotation_rules** object supports the following:
-
-          * `automaticallyAfterDays` (`pulumi.Input[float]`) - Specifies the number of days between automatic scheduled rotations of the secret.
+        :param pulumi.Input['SecretRotationRulesArgs'] rotation_rules: A structure that defines the rotation configuration for this secret. Defined below. Use the `secretsmanager.SecretRotation` resource to manage this configuration instead. As of version 2.67.0, removal of this configuration will no longer remove rotation due to supporting the new resource. Either import the new resource and remove the configuration or manually remove rotation.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Specifies a key-value map of user-defined tags that are attached to the secret.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -191,3 +184,4 @@ class Secret(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,85 +5,83 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class NfsFileShare(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     Amazon Resource Name (ARN) of the NFS File Share.
     """
-    client_lists: pulumi.Output[list]
+    client_lists: pulumi.Output[List[str]] = pulumi.output_property("clientLists")
     """
     The list of clients that are allowed to access the file gateway. The list must contain either valid IP addresses or valid CIDR blocks. Set to `["0.0.0.0/0"]` to not limit access. Minimum 1 item. Maximum 100 items.
     """
-    default_storage_class: pulumi.Output[str]
+    default_storage_class: pulumi.Output[Optional[str]] = pulumi.output_property("defaultStorageClass")
     """
     The default storage class for objects put into an Amazon S3 bucket by the file gateway. Defaults to `S3_STANDARD`. Valid values: `S3_STANDARD`, `S3_STANDARD_IA`, `S3_ONEZONE_IA`.
     """
-    fileshare_id: pulumi.Output[str]
+    fileshare_id: pulumi.Output[str] = pulumi.output_property("fileshareId")
     """
     ID of the NFS File Share.
     """
-    gateway_arn: pulumi.Output[str]
+    gateway_arn: pulumi.Output[str] = pulumi.output_property("gatewayArn")
     """
     Amazon Resource Name (ARN) of the file gateway.
     """
-    guess_mime_type_enabled: pulumi.Output[bool]
+    guess_mime_type_enabled: pulumi.Output[Optional[bool]] = pulumi.output_property("guessMimeTypeEnabled")
     """
     Boolean value that enables guessing of the MIME type for uploaded objects based on file extensions. Defaults to `true`.
     """
-    kms_encrypted: pulumi.Output[bool]
+    kms_encrypted: pulumi.Output[Optional[bool]] = pulumi.output_property("kmsEncrypted")
     """
     Boolean value if `true` to use Amazon S3 server side encryption with your own AWS KMS key, or `false` to use a key managed by Amazon S3. Defaults to `false`.
     """
-    kms_key_arn: pulumi.Output[str]
+    kms_key_arn: pulumi.Output[Optional[str]] = pulumi.output_property("kmsKeyArn")
     """
     Amazon Resource Name (ARN) for KMS key used for Amazon S3 server side encryption. This value can only be set when `kms_encrypted` is true.
     """
-    location_arn: pulumi.Output[str]
+    location_arn: pulumi.Output[str] = pulumi.output_property("locationArn")
     """
     The ARN of the backed storage used for storing file data.
     """
-    nfs_file_share_defaults: pulumi.Output[dict]
+    nfs_file_share_defaults: pulumi.Output[Optional['outputs.NfsFileShareNfsFileShareDefaults']] = pulumi.output_property("nfsFileShareDefaults")
     """
     Nested argument with file share default values. More information below.
-
-      * `directoryMode` (`str`) - The Unix directory mode in the string form "nnnn". Defaults to `"0777"`.
-      * `fileMode` (`str`) - The Unix file mode in the string form "nnnn". Defaults to `"0666"`.
-      * `groupId` (`float`) - The default group ID for the file share (unless the files have another group ID specified). Defaults to `65534` (`nfsnobody`). Valid values: `0` through `4294967294`.
-      * `owner_id` (`float`) - The default owner ID for the file share (unless the files have another owner ID specified). Defaults to `65534` (`nfsnobody`). Valid values: `0` through `4294967294`.
     """
-    object_acl: pulumi.Output[str]
+    object_acl: pulumi.Output[Optional[str]] = pulumi.output_property("objectAcl")
     """
     Access Control List permission for S3 bucket objects. Defaults to `private`.
     """
-    path: pulumi.Output[str]
+    path: pulumi.Output[str] = pulumi.output_property("path")
     """
     File share path used by the NFS client to identify the mount point.
     """
-    read_only: pulumi.Output[bool]
+    read_only: pulumi.Output[Optional[bool]] = pulumi.output_property("readOnly")
     """
     Boolean to indicate write status of file share. File share does not accept writes if `true`. Defaults to `false`.
     """
-    requester_pays: pulumi.Output[bool]
+    requester_pays: pulumi.Output[Optional[bool]] = pulumi.output_property("requesterPays")
     """
     Boolean who pays the cost of the request and the data download from the Amazon S3 bucket. Set this value to `true` if you want the requester to pay instead of the bucket owner. Defaults to `false`.
     """
-    role_arn: pulumi.Output[str]
+    role_arn: pulumi.Output[str] = pulumi.output_property("roleArn")
     """
     The ARN of the AWS Identity and Access Management (IAM) role that a file gateway assumes when it accesses the underlying storage.
     """
-    squash: pulumi.Output[str]
+    squash: pulumi.Output[Optional[str]] = pulumi.output_property("squash")
     """
     Maps a user to anonymous user. Defaults to `RootSquash`. Valid values: `RootSquash` (only root is mapped to anonymous user), `NoSquash` (no one is mapped to anonymous user), `AllSquash` (everyone is mapped to anonymous user)
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Key-value map of resource tags
     """
-    def __init__(__self__, resource_name, opts=None, client_lists=None, default_storage_class=None, gateway_arn=None, guess_mime_type_enabled=None, kms_encrypted=None, kms_key_arn=None, location_arn=None, nfs_file_share_defaults=None, object_acl=None, read_only=None, requester_pays=None, role_arn=None, squash=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, client_lists=None, default_storage_class=None, gateway_arn=None, guess_mime_type_enabled=None, kms_encrypted=None, kms_key_arn=None, location_arn=None, nfs_file_share_defaults=None, object_acl=None, read_only=None, requester_pays=None, role_arn=None, squash=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an AWS Storage Gateway NFS File Share.
 
@@ -102,27 +100,20 @@ class NfsFileShare(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] client_lists: The list of clients that are allowed to access the file gateway. The list must contain either valid IP addresses or valid CIDR blocks. Set to `["0.0.0.0/0"]` to not limit access. Minimum 1 item. Maximum 100 items.
+        :param pulumi.Input[List[pulumi.Input[str]]] client_lists: The list of clients that are allowed to access the file gateway. The list must contain either valid IP addresses or valid CIDR blocks. Set to `["0.0.0.0/0"]` to not limit access. Minimum 1 item. Maximum 100 items.
         :param pulumi.Input[str] default_storage_class: The default storage class for objects put into an Amazon S3 bucket by the file gateway. Defaults to `S3_STANDARD`. Valid values: `S3_STANDARD`, `S3_STANDARD_IA`, `S3_ONEZONE_IA`.
         :param pulumi.Input[str] gateway_arn: Amazon Resource Name (ARN) of the file gateway.
         :param pulumi.Input[bool] guess_mime_type_enabled: Boolean value that enables guessing of the MIME type for uploaded objects based on file extensions. Defaults to `true`.
         :param pulumi.Input[bool] kms_encrypted: Boolean value if `true` to use Amazon S3 server side encryption with your own AWS KMS key, or `false` to use a key managed by Amazon S3. Defaults to `false`.
         :param pulumi.Input[str] kms_key_arn: Amazon Resource Name (ARN) for KMS key used for Amazon S3 server side encryption. This value can only be set when `kms_encrypted` is true.
         :param pulumi.Input[str] location_arn: The ARN of the backed storage used for storing file data.
-        :param pulumi.Input[dict] nfs_file_share_defaults: Nested argument with file share default values. More information below.
+        :param pulumi.Input['NfsFileShareNfsFileShareDefaultsArgs'] nfs_file_share_defaults: Nested argument with file share default values. More information below.
         :param pulumi.Input[str] object_acl: Access Control List permission for S3 bucket objects. Defaults to `private`.
         :param pulumi.Input[bool] read_only: Boolean to indicate write status of file share. File share does not accept writes if `true`. Defaults to `false`.
         :param pulumi.Input[bool] requester_pays: Boolean who pays the cost of the request and the data download from the Amazon S3 bucket. Set this value to `true` if you want the requester to pay instead of the bucket owner. Defaults to `false`.
         :param pulumi.Input[str] role_arn: The ARN of the AWS Identity and Access Management (IAM) role that a file gateway assumes when it accesses the underlying storage.
         :param pulumi.Input[str] squash: Maps a user to anonymous user. Defaults to `RootSquash`. Valid values: `RootSquash` (only root is mapped to anonymous user), `NoSquash` (no one is mapped to anonymous user), `AllSquash` (everyone is mapped to anonymous user)
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-
-        The **nfs_file_share_defaults** object supports the following:
-
-          * `directoryMode` (`pulumi.Input[str]`) - The Unix directory mode in the string form "nnnn". Defaults to `"0777"`.
-          * `fileMode` (`pulumi.Input[str]`) - The Unix file mode in the string form "nnnn". Defaults to `"0666"`.
-          * `groupId` (`pulumi.Input[float]`) - The default group ID for the file share (unless the files have another group ID specified). Defaults to `65534` (`nfsnobody`). Valid values: `0` through `4294967294`.
-          * `owner_id` (`pulumi.Input[float]`) - The default owner ID for the file share (unless the files have another owner ID specified). Defaults to `65534` (`nfsnobody`). Valid values: `0` through `4294967294`.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -182,7 +173,7 @@ class NfsFileShare(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: Amazon Resource Name (ARN) of the NFS File Share.
-        :param pulumi.Input[list] client_lists: The list of clients that are allowed to access the file gateway. The list must contain either valid IP addresses or valid CIDR blocks. Set to `["0.0.0.0/0"]` to not limit access. Minimum 1 item. Maximum 100 items.
+        :param pulumi.Input[List[pulumi.Input[str]]] client_lists: The list of clients that are allowed to access the file gateway. The list must contain either valid IP addresses or valid CIDR blocks. Set to `["0.0.0.0/0"]` to not limit access. Minimum 1 item. Maximum 100 items.
         :param pulumi.Input[str] default_storage_class: The default storage class for objects put into an Amazon S3 bucket by the file gateway. Defaults to `S3_STANDARD`. Valid values: `S3_STANDARD`, `S3_STANDARD_IA`, `S3_ONEZONE_IA`.
         :param pulumi.Input[str] fileshare_id: ID of the NFS File Share.
         :param pulumi.Input[str] gateway_arn: Amazon Resource Name (ARN) of the file gateway.
@@ -190,21 +181,14 @@ class NfsFileShare(pulumi.CustomResource):
         :param pulumi.Input[bool] kms_encrypted: Boolean value if `true` to use Amazon S3 server side encryption with your own AWS KMS key, or `false` to use a key managed by Amazon S3. Defaults to `false`.
         :param pulumi.Input[str] kms_key_arn: Amazon Resource Name (ARN) for KMS key used for Amazon S3 server side encryption. This value can only be set when `kms_encrypted` is true.
         :param pulumi.Input[str] location_arn: The ARN of the backed storage used for storing file data.
-        :param pulumi.Input[dict] nfs_file_share_defaults: Nested argument with file share default values. More information below.
+        :param pulumi.Input['NfsFileShareNfsFileShareDefaultsArgs'] nfs_file_share_defaults: Nested argument with file share default values. More information below.
         :param pulumi.Input[str] object_acl: Access Control List permission for S3 bucket objects. Defaults to `private`.
         :param pulumi.Input[str] path: File share path used by the NFS client to identify the mount point.
         :param pulumi.Input[bool] read_only: Boolean to indicate write status of file share. File share does not accept writes if `true`. Defaults to `false`.
         :param pulumi.Input[bool] requester_pays: Boolean who pays the cost of the request and the data download from the Amazon S3 bucket. Set this value to `true` if you want the requester to pay instead of the bucket owner. Defaults to `false`.
         :param pulumi.Input[str] role_arn: The ARN of the AWS Identity and Access Management (IAM) role that a file gateway assumes when it accesses the underlying storage.
         :param pulumi.Input[str] squash: Maps a user to anonymous user. Defaults to `RootSquash`. Valid values: `RootSquash` (only root is mapped to anonymous user), `NoSquash` (no one is mapped to anonymous user), `AllSquash` (everyone is mapped to anonymous user)
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-
-        The **nfs_file_share_defaults** object supports the following:
-
-          * `directoryMode` (`pulumi.Input[str]`) - The Unix directory mode in the string form "nnnn". Defaults to `"0777"`.
-          * `fileMode` (`pulumi.Input[str]`) - The Unix file mode in the string form "nnnn". Defaults to `"0666"`.
-          * `groupId` (`pulumi.Input[float]`) - The default group ID for the file share (unless the files have another group ID specified). Defaults to `65534` (`nfsnobody`). Valid values: `0` through `4294967294`.
-          * `owner_id` (`pulumi.Input[float]`) - The default owner ID for the file share (unless the files have another owner ID specified). Defaults to `65534` (`nfsnobody`). Valid values: `0` through `4294967294`.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -234,3 +218,4 @@ class NfsFileShare(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

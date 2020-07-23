@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetReportDefinitionResult:
     """
     A collection of values returned by getReportDefinition.
     """
-    def __init__(__self__, additional_artifacts=None, additional_schema_elements=None, compression=None, format=None, id=None, report_name=None, s3_bucket=None, s3_prefix=None, s3_region=None, time_unit=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, additional_artifacts=None, additional_schema_elements=None, compression=None, format=None, id=None, report_name=None, s3_bucket=None, s3_prefix=None, s3_region=None, time_unit=None) -> None:
         if additional_artifacts and not isinstance(additional_artifacts, list):
             raise TypeError("Expected argument 'additional_artifacts' to be a list")
         __self__.additional_artifacts = additional_artifacts

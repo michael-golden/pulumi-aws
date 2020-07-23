@@ -5,72 +5,73 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Queue(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the SQS queue
     """
-    content_based_deduplication: pulumi.Output[bool]
+    content_based_deduplication: pulumi.Output[Optional[bool]] = pulumi.output_property("contentBasedDeduplication")
     """
     Enables content-based deduplication for FIFO queues. For more information, see the [related documentation](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing)
     """
-    delay_seconds: pulumi.Output[float]
+    delay_seconds: pulumi.Output[Optional[float]] = pulumi.output_property("delaySeconds")
     """
     The time in seconds that the delivery of all messages in the queue will be delayed. An integer from 0 to 900 (15 minutes). The default for this attribute is 0 seconds.
     """
-    fifo_queue: pulumi.Output[bool]
+    fifo_queue: pulumi.Output[Optional[bool]] = pulumi.output_property("fifoQueue")
     """
     Boolean designating a FIFO queue. If not set, it defaults to `false` making it standard.
     """
-    kms_data_key_reuse_period_seconds: pulumi.Output[float]
+    kms_data_key_reuse_period_seconds: pulumi.Output[float] = pulumi.output_property("kmsDataKeyReusePeriodSeconds")
     """
     The length of time, in seconds, for which Amazon SQS can reuse a data key to encrypt or decrypt messages before calling AWS KMS again. An integer representing seconds, between 60 seconds (1 minute) and 86,400 seconds (24 hours). The default is 300 (5 minutes).
     """
-    kms_master_key_id: pulumi.Output[str]
+    kms_master_key_id: pulumi.Output[Optional[str]] = pulumi.output_property("kmsMasterKeyId")
     """
     The ID of an AWS-managed customer master key (CMK) for Amazon SQS or a custom CMK. For more information, see [Key Terms](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-sse-key-terms).
     """
-    max_message_size: pulumi.Output[float]
+    max_message_size: pulumi.Output[Optional[float]] = pulumi.output_property("maxMessageSize")
     """
     The limit of how many bytes a message can contain before Amazon SQS rejects it. An integer from 1024 bytes (1 KiB) up to 262144 bytes (256 KiB). The default for this attribute is 262144 (256 KiB).
     """
-    message_retention_seconds: pulumi.Output[float]
+    message_retention_seconds: pulumi.Output[Optional[float]] = pulumi.output_property("messageRetentionSeconds")
     """
     The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days). The default for this attribute is 345600 (4 days).
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     This is the human-readable name of the queue. If omitted, this provider will assign a random name.
     """
-    name_prefix: pulumi.Output[str]
+    name_prefix: pulumi.Output[Optional[str]] = pulumi.output_property("namePrefix")
     """
     Creates a unique name beginning with the specified prefix. Conflicts with `name`.
     """
-    policy: pulumi.Output[str]
+    policy: pulumi.Output[str] = pulumi.output_property("policy")
     """
     The JSON policy for the SQS queue.
     """
-    receive_wait_time_seconds: pulumi.Output[float]
+    receive_wait_time_seconds: pulumi.Output[Optional[float]] = pulumi.output_property("receiveWaitTimeSeconds")
     """
     The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds). The default for this attribute is 0, meaning that the call will return immediately.
     """
-    redrive_policy: pulumi.Output[str]
+    redrive_policy: pulumi.Output[Optional[str]] = pulumi.output_property("redrivePolicy")
     """
     The JSON policy to set up the Dead Letter Queue, see [AWS docs](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html). **Note:** when specifying `maxReceiveCount`, you must specify it as an integer (`5`), and not a string (`"5"`).
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the queue.
     """
-    visibility_timeout_seconds: pulumi.Output[float]
+    visibility_timeout_seconds: pulumi.Output[Optional[float]] = pulumi.output_property("visibilityTimeoutSeconds")
     """
     The visibility timeout for the queue. An integer from 0 to 43200 (12 hours). The default for this attribute is 30. For more information about visibility timeout, see [AWS docs](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html).
     """
-    def __init__(__self__, resource_name, opts=None, content_based_deduplication=None, delay_seconds=None, fifo_queue=None, kms_data_key_reuse_period_seconds=None, kms_master_key_id=None, max_message_size=None, message_retention_seconds=None, name=None, name_prefix=None, policy=None, receive_wait_time_seconds=None, redrive_policy=None, tags=None, visibility_timeout_seconds=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, content_based_deduplication=None, delay_seconds=None, fifo_queue=None, kms_data_key_reuse_period_seconds=None, kms_master_key_id=None, max_message_size=None, message_retention_seconds=None, name=None, name_prefix=None, policy=None, receive_wait_time_seconds=None, redrive_policy=None, tags=None, visibility_timeout_seconds=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         ## Example Usage
 
@@ -128,7 +129,7 @@ class Queue(pulumi.CustomResource):
         :param pulumi.Input[str] policy: The JSON policy for the SQS queue.
         :param pulumi.Input[float] receive_wait_time_seconds: The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds). The default for this attribute is 0, meaning that the call will return immediately.
         :param pulumi.Input[str] redrive_policy: The JSON policy to set up the Dead Letter Queue, see [AWS docs](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html). **Note:** when specifying `maxReceiveCount`, you must specify it as an integer (`5`), and not a string (`"5"`).
-        :param pulumi.Input[dict] tags: A map of tags to assign to the queue.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the queue.
         :param pulumi.Input[float] visibility_timeout_seconds: The visibility timeout for the queue. An integer from 0 to 43200 (12 hours). The default for this attribute is 30. For more information about visibility timeout, see [AWS docs](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html).
         """
         if __name__ is not None:
@@ -191,7 +192,7 @@ class Queue(pulumi.CustomResource):
         :param pulumi.Input[str] policy: The JSON policy for the SQS queue.
         :param pulumi.Input[float] receive_wait_time_seconds: The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds). The default for this attribute is 0, meaning that the call will return immediately.
         :param pulumi.Input[str] redrive_policy: The JSON policy to set up the Dead Letter Queue, see [AWS docs](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html). **Note:** when specifying `maxReceiveCount`, you must specify it as an integer (`5`), and not a string (`"5"`).
-        :param pulumi.Input[dict] tags: A map of tags to assign to the queue.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the queue.
         :param pulumi.Input[float] visibility_timeout_seconds: The visibility timeout for the queue. An integer from 0 to 43200 (12 hours). The default for this attribute is 30. For more information about visibility timeout, see [AWS docs](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -220,3 +221,4 @@ class Queue(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

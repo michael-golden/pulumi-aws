@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetOutpostInstanceTypeResult:
     """
     A collection of values returned by getOutpostInstanceType.
     """
-    def __init__(__self__, arn=None, id=None, instance_type=None, preferred_instance_types=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, id=None, instance_type=None, preferred_instance_types=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn
@@ -50,7 +51,7 @@ def get_outpost_instance_type(arn=None, instance_type=None, preferred_instance_t
 
     :param str arn: Outpost Amazon Resource Name (ARN).
     :param str instance_type: Desired instance type. Conflicts with `preferred_instance_types`.
-    :param list preferred_instance_types: Ordered list of preferred instance types. The first match in this list will be returned. If no preferred matches are found and the original search returned more than one result, an error is returned. Conflicts with `instance_type`.
+    :param List[str] preferred_instance_types: Ordered list of preferred instance types. The first match in this list will be returned. If no preferred matches are found and the original search returned more than one result, an error is returned. Conflicts with `instance_type`.
     """
     __args__ = dict()
     __args__['arn'] = arn

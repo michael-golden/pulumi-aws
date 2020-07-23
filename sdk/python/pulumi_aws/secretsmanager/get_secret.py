@@ -5,15 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
 
 
 class GetSecretResult:
     """
     A collection of values returned by getSecret.
     """
-    def __init__(__self__, arn=None, description=None, id=None, kms_key_id=None, name=None, policy=None, rotation_enabled=None, rotation_lambda_arn=None, rotation_rules=None, tags=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, description=None, id=None, kms_key_id=None, name=None, policy=None, rotation_enabled=None, rotation_lambda_arn=None, rotation_rules=None, tags=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn

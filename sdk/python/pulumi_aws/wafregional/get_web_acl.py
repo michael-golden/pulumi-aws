@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetWebAclResult:
     """
     A collection of values returned by getWebAcl.
     """
-    def __init__(__self__, id=None, name=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, id=None, name=None) -> None:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id

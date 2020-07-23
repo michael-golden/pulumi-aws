@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetDelegationSetResult:
     """
     A collection of values returned by getDelegationSet.
     """
-    def __init__(__self__, caller_reference=None, id=None, name_servers=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, caller_reference=None, id=None, name_servers=None) -> None:
         if caller_reference and not isinstance(caller_reference, str):
             raise TypeError("Expected argument 'caller_reference' to be a str")
         __self__.caller_reference = caller_reference

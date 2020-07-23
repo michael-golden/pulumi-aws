@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetDirectConnectGatewayAttachmentResult:
     """
     A collection of values returned by getDirectConnectGatewayAttachment.
     """
-    def __init__(__self__, dx_gateway_id=None, filters=None, id=None, tags=None, transit_gateway_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, dx_gateway_id=None, filters=None, id=None, tags=None, transit_gateway_id=None) -> None:
         if dx_gateway_id and not isinstance(dx_gateway_id, str):
             raise TypeError("Expected argument 'dx_gateway_id' to be a str")
         __self__.dx_gateway_id = dx_gateway_id
@@ -67,14 +70,9 @@ def get_direct_connect_gateway_attachment(dx_gateway_id=None, filters=None, tags
 
 
     :param str dx_gateway_id: Identifier of the Direct Connect Gateway.
-    :param list filters: Configuration block(s) for filtering. Detailed below.
-    :param dict tags: A map of tags, each pair of which must exactly match a pair on the desired Transit Gateway Direct Connect Gateway Attachment.
+    :param List['GetDirectConnectGatewayAttachmentFilterArgs'] filters: Configuration block(s) for filtering. Detailed below.
+    :param Dict[str, str] tags: A map of tags, each pair of which must exactly match a pair on the desired Transit Gateway Direct Connect Gateway Attachment.
     :param str transit_gateway_id: Identifier of the EC2 Transit Gateway.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the filter field. Valid values can be found in the [EC2 DescribeTransitGatewayAttachments API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeTransitGatewayAttachments.html).
-      * `values` (`list`) - Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
     """
     __args__ = dict()
     __args__['dxGatewayId'] = dx_gateway_id

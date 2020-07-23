@@ -5,60 +5,61 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class OrganizationCustomRule(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     Amazon Resource Name (ARN) of the rule
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     Description of the rule
     """
-    excluded_accounts: pulumi.Output[list]
+    excluded_accounts: pulumi.Output[Optional[List[str]]] = pulumi.output_property("excludedAccounts")
     """
     List of AWS account identifiers to exclude from the rule
     """
-    input_parameters: pulumi.Output[str]
+    input_parameters: pulumi.Output[Optional[str]] = pulumi.output_property("inputParameters")
     """
     A string in JSON format that is passed to the AWS Config Rule Lambda Function
     """
-    lambda_function_arn: pulumi.Output[str]
+    lambda_function_arn: pulumi.Output[str] = pulumi.output_property("lambdaFunctionArn")
     """
     Amazon Resource Name (ARN) of the rule Lambda Function
     """
-    maximum_execution_frequency: pulumi.Output[str]
+    maximum_execution_frequency: pulumi.Output[Optional[str]] = pulumi.output_property("maximumExecutionFrequency")
     """
     The maximum frequency with which AWS Config runs evaluations for a rule, if the rule is triggered at a periodic frequency. Defaults to `TwentyFour_Hours` for periodic frequency triggered rules. Valid values: `One_Hour`, `Three_Hours`, `Six_Hours`, `Twelve_Hours`, or `TwentyFour_Hours`.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the rule
     """
-    resource_id_scope: pulumi.Output[str]
+    resource_id_scope: pulumi.Output[Optional[str]] = pulumi.output_property("resourceIdScope")
     """
     Identifier of the AWS resource to evaluate
     """
-    resource_types_scopes: pulumi.Output[list]
+    resource_types_scopes: pulumi.Output[Optional[List[str]]] = pulumi.output_property("resourceTypesScopes")
     """
     List of types of AWS resources to evaluate
     """
-    tag_key_scope: pulumi.Output[str]
+    tag_key_scope: pulumi.Output[Optional[str]] = pulumi.output_property("tagKeyScope")
     """
     Tag key of AWS resources to evaluate
     """
-    tag_value_scope: pulumi.Output[str]
+    tag_value_scope: pulumi.Output[Optional[str]] = pulumi.output_property("tagValueScope")
     """
     Tag value of AWS resources to evaluate
     """
-    trigger_types: pulumi.Output[list]
+    trigger_types: pulumi.Output[List[str]] = pulumi.output_property("triggerTypes")
     """
     List of notification types that trigger AWS Config to run an evaluation for the rule. Valid values: `ConfigurationItemChangeNotification`, `OversizedConfigurationItemChangeNotification`, and `ScheduledNotification`
     """
-    def __init__(__self__, resource_name, opts=None, description=None, excluded_accounts=None, input_parameters=None, lambda_function_arn=None, maximum_execution_frequency=None, name=None, resource_id_scope=None, resource_types_scopes=None, tag_key_scope=None, tag_value_scope=None, trigger_types=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, excluded_accounts=None, input_parameters=None, lambda_function_arn=None, maximum_execution_frequency=None, name=None, resource_id_scope=None, resource_types_scopes=None, tag_key_scope=None, tag_value_scope=None, trigger_types=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a Config Organization Custom Rule. More information about these rules can be found in the [Enabling AWS Config Rules Across all Accounts in Your Organization](https://docs.aws.amazon.com/config/latest/developerguide/config-rule-multi-account-deployment.html) and [AWS Config Managed Rules](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html) documentation. For working with Organization Managed Rules (those invoking an AWS managed rule), see the `aws_config_organization_managed__rule` resource.
 
@@ -91,16 +92,16 @@ class OrganizationCustomRule(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description of the rule
-        :param pulumi.Input[list] excluded_accounts: List of AWS account identifiers to exclude from the rule
+        :param pulumi.Input[List[pulumi.Input[str]]] excluded_accounts: List of AWS account identifiers to exclude from the rule
         :param pulumi.Input[str] input_parameters: A string in JSON format that is passed to the AWS Config Rule Lambda Function
         :param pulumi.Input[str] lambda_function_arn: Amazon Resource Name (ARN) of the rule Lambda Function
         :param pulumi.Input[str] maximum_execution_frequency: The maximum frequency with which AWS Config runs evaluations for a rule, if the rule is triggered at a periodic frequency. Defaults to `TwentyFour_Hours` for periodic frequency triggered rules. Valid values: `One_Hour`, `Three_Hours`, `Six_Hours`, `Twelve_Hours`, or `TwentyFour_Hours`.
         :param pulumi.Input[str] name: The name of the rule
         :param pulumi.Input[str] resource_id_scope: Identifier of the AWS resource to evaluate
-        :param pulumi.Input[list] resource_types_scopes: List of types of AWS resources to evaluate
+        :param pulumi.Input[List[pulumi.Input[str]]] resource_types_scopes: List of types of AWS resources to evaluate
         :param pulumi.Input[str] tag_key_scope: Tag key of AWS resources to evaluate
         :param pulumi.Input[str] tag_value_scope: Tag value of AWS resources to evaluate
-        :param pulumi.Input[list] trigger_types: List of notification types that trigger AWS Config to run an evaluation for the rule. Valid values: `ConfigurationItemChangeNotification`, `OversizedConfigurationItemChangeNotification`, and `ScheduledNotification`
+        :param pulumi.Input[List[pulumi.Input[str]]] trigger_types: List of notification types that trigger AWS Config to run an evaluation for the rule. Valid values: `ConfigurationItemChangeNotification`, `OversizedConfigurationItemChangeNotification`, and `ScheduledNotification`
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -152,16 +153,16 @@ class OrganizationCustomRule(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: Amazon Resource Name (ARN) of the rule
         :param pulumi.Input[str] description: Description of the rule
-        :param pulumi.Input[list] excluded_accounts: List of AWS account identifiers to exclude from the rule
+        :param pulumi.Input[List[pulumi.Input[str]]] excluded_accounts: List of AWS account identifiers to exclude from the rule
         :param pulumi.Input[str] input_parameters: A string in JSON format that is passed to the AWS Config Rule Lambda Function
         :param pulumi.Input[str] lambda_function_arn: Amazon Resource Name (ARN) of the rule Lambda Function
         :param pulumi.Input[str] maximum_execution_frequency: The maximum frequency with which AWS Config runs evaluations for a rule, if the rule is triggered at a periodic frequency. Defaults to `TwentyFour_Hours` for periodic frequency triggered rules. Valid values: `One_Hour`, `Three_Hours`, `Six_Hours`, `Twelve_Hours`, or `TwentyFour_Hours`.
         :param pulumi.Input[str] name: The name of the rule
         :param pulumi.Input[str] resource_id_scope: Identifier of the AWS resource to evaluate
-        :param pulumi.Input[list] resource_types_scopes: List of types of AWS resources to evaluate
+        :param pulumi.Input[List[pulumi.Input[str]]] resource_types_scopes: List of types of AWS resources to evaluate
         :param pulumi.Input[str] tag_key_scope: Tag key of AWS resources to evaluate
         :param pulumi.Input[str] tag_value_scope: Tag value of AWS resources to evaluate
-        :param pulumi.Input[list] trigger_types: List of notification types that trigger AWS Config to run an evaluation for the rule. Valid values: `ConfigurationItemChangeNotification`, `OversizedConfigurationItemChangeNotification`, and `ScheduledNotification`
+        :param pulumi.Input[List[pulumi.Input[str]]] trigger_types: List of notification types that trigger AWS Config to run an evaluation for the rule. Valid values: `ConfigurationItemChangeNotification`, `OversizedConfigurationItemChangeNotification`, and `ScheduledNotification`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -186,3 +187,4 @@ class OrganizationCustomRule(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,55 +5,56 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Method(pulumi.CustomResource):
-    api_key_required: pulumi.Output[bool]
+    api_key_required: pulumi.Output[Optional[bool]] = pulumi.output_property("apiKeyRequired")
     """
     Specify if the method requires an API key
     """
-    authorization: pulumi.Output[str]
+    authorization: pulumi.Output[str] = pulumi.output_property("authorization")
     """
     The type of authorization used for the method (`NONE`, `CUSTOM`, `AWS_IAM`, `COGNITO_USER_POOLS`)
     """
-    authorization_scopes: pulumi.Output[list]
+    authorization_scopes: pulumi.Output[Optional[List[str]]] = pulumi.output_property("authorizationScopes")
     """
     The authorization scopes used when the authorization is `COGNITO_USER_POOLS`
     """
-    authorizer_id: pulumi.Output[str]
+    authorizer_id: pulumi.Output[Optional[str]] = pulumi.output_property("authorizerId")
     """
     The authorizer id to be used when the authorization is `CUSTOM` or `COGNITO_USER_POOLS`
     """
-    http_method: pulumi.Output[str]
+    http_method: pulumi.Output[str] = pulumi.output_property("httpMethod")
     """
     The HTTP Method (`GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `ANY`)
     """
-    request_models: pulumi.Output[dict]
+    request_models: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("requestModels")
     """
     A map of the API models used for the request's content type
     where key is the content type (e.g. `application/json`)
     and value is either `Error`, `Empty` (built-in models) or `apigateway.Model`'s `name`.
     """
-    request_parameters: pulumi.Output[dict]
+    request_parameters: pulumi.Output[Optional[Dict[str, bool]]] = pulumi.output_property("requestParameters")
     """
     A map of request parameters (from the path, query string and headers) that should be passed to the integration. The boolean value indicates whether the parameter is required (`true`) or optional (`false`).
     For example: `request_parameters = {"method.request.header.X-Some-Header" = true "method.request.querystring.some-query-param" = true}` would define that the header `X-Some-Header` and the query string `some-query-param` must be provided in the request.
     """
-    request_validator_id: pulumi.Output[str]
+    request_validator_id: pulumi.Output[Optional[str]] = pulumi.output_property("requestValidatorId")
     """
     The ID of a `apigateway.RequestValidator`
     """
-    resource_id: pulumi.Output[str]
+    resource_id: pulumi.Output[str] = pulumi.output_property("resourceId")
     """
     The API resource ID
     """
-    rest_api: pulumi.Output[str]
+    rest_api: pulumi.Output[str] = pulumi.output_property("restApi")
     """
     The ID of the associated REST API
     """
-    def __init__(__self__, resource_name, opts=None, api_key_required=None, authorization=None, authorization_scopes=None, authorizer_id=None, http_method=None, request_models=None, request_parameters=None, request_validator_id=None, resource_id=None, rest_api=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_key_required=None, authorization=None, authorization_scopes=None, authorizer_id=None, http_method=None, request_models=None, request_parameters=None, request_validator_id=None, resource_id=None, rest_api=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a HTTP Method for an API Gateway Resource.
 
@@ -107,17 +108,17 @@ class Method(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] api_key_required: Specify if the method requires an API key
         :param pulumi.Input[str] authorization: The type of authorization used for the method (`NONE`, `CUSTOM`, `AWS_IAM`, `COGNITO_USER_POOLS`)
-        :param pulumi.Input[list] authorization_scopes: The authorization scopes used when the authorization is `COGNITO_USER_POOLS`
+        :param pulumi.Input[List[pulumi.Input[str]]] authorization_scopes: The authorization scopes used when the authorization is `COGNITO_USER_POOLS`
         :param pulumi.Input[str] authorizer_id: The authorizer id to be used when the authorization is `CUSTOM` or `COGNITO_USER_POOLS`
         :param pulumi.Input[str] http_method: The HTTP Method (`GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `ANY`)
-        :param pulumi.Input[dict] request_models: A map of the API models used for the request's content type
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] request_models: A map of the API models used for the request's content type
                where key is the content type (e.g. `application/json`)
                and value is either `Error`, `Empty` (built-in models) or `apigateway.Model`'s `name`.
-        :param pulumi.Input[dict] request_parameters: A map of request parameters (from the path, query string and headers) that should be passed to the integration. The boolean value indicates whether the parameter is required (`true`) or optional (`false`).
+        :param pulumi.Input[Dict[str, pulumi.Input[bool]]] request_parameters: A map of request parameters (from the path, query string and headers) that should be passed to the integration. The boolean value indicates whether the parameter is required (`true`) or optional (`false`).
                For example: `request_parameters = {"method.request.header.X-Some-Header" = true "method.request.querystring.some-query-param" = true}` would define that the header `X-Some-Header` and the query string `some-query-param` must be provided in the request.
         :param pulumi.Input[str] request_validator_id: The ID of a `apigateway.RequestValidator`
         :param pulumi.Input[str] resource_id: The API resource ID
-        :param pulumi.Input[dict] rest_api: The ID of the associated REST API
+        :param pulumi.Input[str] rest_api: The ID of the associated REST API
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -171,17 +172,17 @@ class Method(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] api_key_required: Specify if the method requires an API key
         :param pulumi.Input[str] authorization: The type of authorization used for the method (`NONE`, `CUSTOM`, `AWS_IAM`, `COGNITO_USER_POOLS`)
-        :param pulumi.Input[list] authorization_scopes: The authorization scopes used when the authorization is `COGNITO_USER_POOLS`
+        :param pulumi.Input[List[pulumi.Input[str]]] authorization_scopes: The authorization scopes used when the authorization is `COGNITO_USER_POOLS`
         :param pulumi.Input[str] authorizer_id: The authorizer id to be used when the authorization is `CUSTOM` or `COGNITO_USER_POOLS`
         :param pulumi.Input[str] http_method: The HTTP Method (`GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `ANY`)
-        :param pulumi.Input[dict] request_models: A map of the API models used for the request's content type
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] request_models: A map of the API models used for the request's content type
                where key is the content type (e.g. `application/json`)
                and value is either `Error`, `Empty` (built-in models) or `apigateway.Model`'s `name`.
-        :param pulumi.Input[dict] request_parameters: A map of request parameters (from the path, query string and headers) that should be passed to the integration. The boolean value indicates whether the parameter is required (`true`) or optional (`false`).
+        :param pulumi.Input[Dict[str, pulumi.Input[bool]]] request_parameters: A map of request parameters (from the path, query string and headers) that should be passed to the integration. The boolean value indicates whether the parameter is required (`true`) or optional (`false`).
                For example: `request_parameters = {"method.request.header.X-Some-Header" = true "method.request.querystring.some-query-param" = true}` would define that the header `X-Some-Header` and the query string `some-query-param` must be provided in the request.
         :param pulumi.Input[str] request_validator_id: The ID of a `apigateway.RequestValidator`
         :param pulumi.Input[str] resource_id: The API resource ID
-        :param pulumi.Input[dict] rest_api: The ID of the associated REST API
+        :param pulumi.Input[str] rest_api: The ID of the associated REST API
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -204,3 +205,4 @@ class Method(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

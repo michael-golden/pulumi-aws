@@ -5,16 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class ActiveReceiptRuleSet(pulumi.CustomResource):
-    rule_set_name: pulumi.Output[str]
+    rule_set_name: pulumi.Output[str] = pulumi.output_property("ruleSetName")
     """
     The name of the rule set
     """
-    def __init__(__self__, resource_name, opts=None, rule_set_name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, rule_set_name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to designate the active SES receipt rule set
 
@@ -80,3 +81,4 @@ class ActiveReceiptRuleSet(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,32 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class TrafficMirrorTarget(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the traffic mirror target.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     A description of the traffic mirror session.
     """
-    network_interface_id: pulumi.Output[str]
+    network_interface_id: pulumi.Output[Optional[str]] = pulumi.output_property("networkInterfaceId")
     """
     The network interface ID that is associated with the target.
     """
-    network_load_balancer_arn: pulumi.Output[str]
+    network_load_balancer_arn: pulumi.Output[Optional[str]] = pulumi.output_property("networkLoadBalancerArn")
     """
     The Amazon Resource Name (ARN) of the Network Load Balancer that is associated with the target.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Key-value map of resource tags.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, network_interface_id=None, network_load_balancer_arn=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, network_interface_id=None, network_load_balancer_arn=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Traffic mirror target.\
         Read [limits and considerations](https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirroring-considerations.html) for traffic mirroring
@@ -56,7 +57,7 @@ class TrafficMirrorTarget(pulumi.CustomResource):
         :param pulumi.Input[str] description: A description of the traffic mirror session.
         :param pulumi.Input[str] network_interface_id: The network interface ID that is associated with the target.
         :param pulumi.Input[str] network_load_balancer_arn: The Amazon Resource Name (ARN) of the Network Load Balancer that is associated with the target.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -99,7 +100,7 @@ class TrafficMirrorTarget(pulumi.CustomResource):
         :param pulumi.Input[str] description: A description of the traffic mirror session.
         :param pulumi.Input[str] network_interface_id: The network interface ID that is associated with the target.
         :param pulumi.Input[str] network_load_balancer_arn: The Amazon Resource Name (ARN) of the Network Load Balancer that is associated with the target.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -117,3 +118,4 @@ class TrafficMirrorTarget(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

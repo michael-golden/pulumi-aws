@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Domain(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the Lightsail domain
     """
-    domain_name: pulumi.Output[str]
+    domain_name: pulumi.Output[str] = pulumi.output_property("domainName")
     """
     The name of the Lightsail domain to manage
     """
-    def __init__(__self__, resource_name, opts=None, domain_name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, domain_name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates a domain resource for the specified domain (e.g., example.com).
         You cannot register a new domain name using Lightsail. You must register
@@ -94,3 +95,4 @@ class Domain(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

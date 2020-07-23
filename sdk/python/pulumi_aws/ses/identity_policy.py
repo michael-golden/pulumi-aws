@@ -5,24 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class IdentityPolicy(pulumi.CustomResource):
-    identity: pulumi.Output[str]
+    identity: pulumi.Output[str] = pulumi.output_property("identity")
     """
     Name or Amazon Resource Name (ARN) of the SES Identity.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the policy.
     """
-    policy: pulumi.Output[str]
+    policy: pulumi.Output[str] = pulumi.output_property("policy")
     """
     JSON string of the policy.
     """
-    def __init__(__self__, resource_name, opts=None, identity=None, name=None, policy=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, identity=None, name=None, policy=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a SES Identity Policy. More information about SES Sending Authorization Policies can be found in the [SES Developer Guide](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html).
 
@@ -112,3 +113,4 @@ class IdentityPolicy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

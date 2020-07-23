@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetLocalGatewayVirtualInterfaceGroupResult:
     """
     A collection of values returned by getLocalGatewayVirtualInterfaceGroup.
     """
-    def __init__(__self__, filters=None, id=None, local_gateway_id=None, local_gateway_virtual_interface_ids=None, tags=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, filters=None, id=None, local_gateway_id=None, local_gateway_virtual_interface_ids=None, tags=None) -> None:
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
         __self__.filters = filters
@@ -61,15 +64,10 @@ def get_local_gateway_virtual_interface_group(filters=None, id=None, local_gatew
     ```
 
 
-    :param list filters: One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLocalGatewayVirtualInterfaceGroups.html) for supported filters. Detailed below.
+    :param List['GetLocalGatewayVirtualInterfaceGroupFilterArgs'] filters: One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLocalGatewayVirtualInterfaceGroups.html) for supported filters. Detailed below.
     :param str id: Identifier of EC2 Local Gateway Virtual Interface Group.
     :param str local_gateway_id: Identifier of EC2 Local Gateway.
-    :param dict tags: Key-value map of resource tags, each pair of which must exactly match a pair on the desired local gateway route table.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - Name of the filter.
-      * `values` (`list`) - List of one or more values for the filter.
+    :param Dict[str, str] tags: Key-value map of resource tags, each pair of which must exactly match a pair on the desired local gateway route table.
     """
     __args__ = dict()
     __args__['filters'] = filters

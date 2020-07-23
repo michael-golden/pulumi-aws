@@ -5,15 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
 
 
 class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, cluster_certificates=None, cluster_id=None, cluster_state=None, id=None, security_group_id=None, subnet_ids=None, vpc_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, cluster_certificates=None, cluster_id=None, cluster_state=None, id=None, security_group_id=None, subnet_ids=None, vpc_id=None) -> None:
         if cluster_certificates and not isinstance(cluster_certificates, dict):
             raise TypeError("Expected argument 'cluster_certificates' to be a dict")
         __self__.cluster_certificates = cluster_certificates

@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class WebAclAssociation(pulumi.CustomResource):
-    resource_arn: pulumi.Output[str]
+    resource_arn: pulumi.Output[str] = pulumi.output_property("resourceArn")
     """
     ARN of the resource to associate with. For example, an Application Load Balancer or API Gateway Stage.
     """
-    web_acl_id: pulumi.Output[str]
+    web_acl_id: pulumi.Output[str] = pulumi.output_property("webAclId")
     """
     The ID of the WAF Regional WebACL to create an association.
     """
-    def __init__(__self__, resource_name, opts=None, resource_arn=None, web_acl_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, resource_arn=None, web_acl_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an association with WAF Regional Web ACL.
 
@@ -200,3 +201,4 @@ class WebAclAssociation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

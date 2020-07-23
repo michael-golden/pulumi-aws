@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetLogGroupResult:
     """
     A collection of values returned by getLogGroup.
     """
-    def __init__(__self__, arn=None, creation_time=None, id=None, kms_key_id=None, name=None, retention_in_days=None, tags=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, creation_time=None, id=None, kms_key_id=None, name=None, retention_in_days=None, tags=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn
@@ -85,7 +86,7 @@ def get_log_group(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the Cloudwatch log group
-    :param dict tags: A map of tags to assign to the resource.
+    :param Dict[str, str] tags: A map of tags to assign to the resource.
     """
     __args__ = dict()
     __args__['name'] = name

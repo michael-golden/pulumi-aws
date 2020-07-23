@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetMountTargetResult:
     """
     A collection of values returned by getMountTarget.
     """
-    def __init__(__self__, availability_zone_id=None, availability_zone_name=None, dns_name=None, file_system_arn=None, file_system_id=None, id=None, ip_address=None, mount_target_dns_name=None, mount_target_id=None, network_interface_id=None, owner_id=None, security_groups=None, subnet_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, availability_zone_id=None, availability_zone_name=None, dns_name=None, file_system_arn=None, file_system_id=None, id=None, ip_address=None, mount_target_dns_name=None, mount_target_id=None, network_interface_id=None, owner_id=None, security_groups=None, subnet_id=None) -> None:
         if availability_zone_id and not isinstance(availability_zone_id, str):
             raise TypeError("Expected argument 'availability_zone_id' to be a str")
         __self__.availability_zone_id = availability_zone_id

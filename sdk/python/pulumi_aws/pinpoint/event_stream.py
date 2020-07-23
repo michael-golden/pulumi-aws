@@ -5,24 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class EventStream(pulumi.CustomResource):
-    application_id: pulumi.Output[str]
+    application_id: pulumi.Output[str] = pulumi.output_property("applicationId")
     """
     The application ID.
     """
-    destination_stream_arn: pulumi.Output[str]
+    destination_stream_arn: pulumi.Output[str] = pulumi.output_property("destinationStreamArn")
     """
     The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Firehose delivery stream to which you want to publish events.
     """
-    role_arn: pulumi.Output[str]
+    role_arn: pulumi.Output[str] = pulumi.output_property("roleArn")
     """
     The IAM role that authorizes Amazon Pinpoint to publish events to the stream in your account.
     """
-    def __init__(__self__, resource_name, opts=None, application_id=None, destination_stream_arn=None, role_arn=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application_id=None, destination_stream_arn=None, role_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Pinpoint Event Stream resource.
 
@@ -137,3 +138,4 @@ class EventStream(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

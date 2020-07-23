@@ -5,62 +5,59 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Workspace(pulumi.CustomResource):
-    bundle_id: pulumi.Output[str]
+    bundle_id: pulumi.Output[str] = pulumi.output_property("bundleId")
     """
     The ID of the bundle for the WorkSpace.
     """
-    computer_name: pulumi.Output[str]
+    computer_name: pulumi.Output[str] = pulumi.output_property("computerName")
     """
     The name of the WorkSpace, as seen by the operating system.
     """
-    directory_id: pulumi.Output[str]
+    directory_id: pulumi.Output[str] = pulumi.output_property("directoryId")
     """
     The ID of the directory for the WorkSpace.
     """
-    ip_address: pulumi.Output[str]
+    ip_address: pulumi.Output[str] = pulumi.output_property("ipAddress")
     """
     The IP address of the WorkSpace.
     """
-    root_volume_encryption_enabled: pulumi.Output[bool]
+    root_volume_encryption_enabled: pulumi.Output[Optional[bool]] = pulumi.output_property("rootVolumeEncryptionEnabled")
     """
     Indicates whether the data stored on the root volume is encrypted.
     """
-    state: pulumi.Output[str]
+    state: pulumi.Output[str] = pulumi.output_property("state")
     """
     The operational state of the WorkSpace.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     The tags for the WorkSpace.
     """
-    user_name: pulumi.Output[str]
+    user_name: pulumi.Output[str] = pulumi.output_property("userName")
     """
     The user name of the user for the WorkSpace. This user name must exist in the directory for the WorkSpace.
     """
-    user_volume_encryption_enabled: pulumi.Output[bool]
+    user_volume_encryption_enabled: pulumi.Output[Optional[bool]] = pulumi.output_property("userVolumeEncryptionEnabled")
     """
     Indicates whether the data stored on the user volume is encrypted.
     """
-    volume_encryption_key: pulumi.Output[str]
+    volume_encryption_key: pulumi.Output[Optional[str]] = pulumi.output_property("volumeEncryptionKey")
     """
     The symmetric AWS KMS customer master key (CMK) used to encrypt data stored on your WorkSpace. Amazon WorkSpaces does not support asymmetric CMKs.
     """
-    workspace_properties: pulumi.Output[dict]
+    workspace_properties: pulumi.Output['outputs.WorkspaceWorkspaceProperties'] = pulumi.output_property("workspaceProperties")
     """
     The WorkSpace properties.
-
-      * `computeTypeName` (`str`) - The compute type. For more information, see [Amazon WorkSpaces Bundles](http://aws.amazon.com/workspaces/details/#Amazon_WorkSpaces_Bundles). Valid values are `VALUE`, `STANDARD`, `PERFORMANCE`, `POWER`, `GRAPHICS`, `POWERPRO` and `GRAPHICSPRO`.
-      * `rootVolumeSizeGib` (`float`) - The size of the root volume.
-      * `runningMode` (`str`) - The running mode. For more information, see [Manage the WorkSpace Running Mode](https://docs.aws.amazon.com/workspaces/latest/adminguide/running-mode.html). Valid values are `AUTO_STOP` and `ALWAYS_ON`.
-      * `runningModeAutoStopTimeoutInMinutes` (`float`) - The time after a user logs off when WorkSpaces are automatically stopped. Configured in 60-minute intervals.
-      * `userVolumeSizeGib` (`float`) - The size of the user storage.
     """
-    def __init__(__self__, resource_name, opts=None, bundle_id=None, directory_id=None, root_volume_encryption_enabled=None, tags=None, user_name=None, user_volume_encryption_enabled=None, volume_encryption_key=None, workspace_properties=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, bundle_id=None, directory_id=None, root_volume_encryption_enabled=None, tags=None, user_name=None, user_volume_encryption_enabled=None, volume_encryption_key=None, workspace_properties=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a workspace in [AWS Workspaces](https://docs.aws.amazon.com/workspaces/latest/adminguide/amazon-workspaces.html) Service
 
@@ -72,19 +69,11 @@ class Workspace(pulumi.CustomResource):
         :param pulumi.Input[str] bundle_id: The ID of the bundle for the WorkSpace.
         :param pulumi.Input[str] directory_id: The ID of the directory for the WorkSpace.
         :param pulumi.Input[bool] root_volume_encryption_enabled: Indicates whether the data stored on the root volume is encrypted.
-        :param pulumi.Input[dict] tags: The tags for the WorkSpace.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: The tags for the WorkSpace.
         :param pulumi.Input[str] user_name: The user name of the user for the WorkSpace. This user name must exist in the directory for the WorkSpace.
         :param pulumi.Input[bool] user_volume_encryption_enabled: Indicates whether the data stored on the user volume is encrypted.
         :param pulumi.Input[str] volume_encryption_key: The symmetric AWS KMS customer master key (CMK) used to encrypt data stored on your WorkSpace. Amazon WorkSpaces does not support asymmetric CMKs.
-        :param pulumi.Input[dict] workspace_properties: The WorkSpace properties.
-
-        The **workspace_properties** object supports the following:
-
-          * `computeTypeName` (`pulumi.Input[str]`) - The compute type. For more information, see [Amazon WorkSpaces Bundles](http://aws.amazon.com/workspaces/details/#Amazon_WorkSpaces_Bundles). Valid values are `VALUE`, `STANDARD`, `PERFORMANCE`, `POWER`, `GRAPHICS`, `POWERPRO` and `GRAPHICSPRO`.
-          * `rootVolumeSizeGib` (`pulumi.Input[float]`) - The size of the root volume.
-          * `runningMode` (`pulumi.Input[str]`) - The running mode. For more information, see [Manage the WorkSpace Running Mode](https://docs.aws.amazon.com/workspaces/latest/adminguide/running-mode.html). Valid values are `AUTO_STOP` and `ALWAYS_ON`.
-          * `runningModeAutoStopTimeoutInMinutes` (`pulumi.Input[float]`) - The time after a user logs off when WorkSpaces are automatically stopped. Configured in 60-minute intervals.
-          * `userVolumeSizeGib` (`pulumi.Input[float]`) - The size of the user storage.
+        :param pulumi.Input['WorkspaceWorkspacePropertiesArgs'] workspace_properties: The WorkSpace properties.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -141,19 +130,11 @@ class Workspace(pulumi.CustomResource):
         :param pulumi.Input[str] ip_address: The IP address of the WorkSpace.
         :param pulumi.Input[bool] root_volume_encryption_enabled: Indicates whether the data stored on the root volume is encrypted.
         :param pulumi.Input[str] state: The operational state of the WorkSpace.
-        :param pulumi.Input[dict] tags: The tags for the WorkSpace.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: The tags for the WorkSpace.
         :param pulumi.Input[str] user_name: The user name of the user for the WorkSpace. This user name must exist in the directory for the WorkSpace.
         :param pulumi.Input[bool] user_volume_encryption_enabled: Indicates whether the data stored on the user volume is encrypted.
         :param pulumi.Input[str] volume_encryption_key: The symmetric AWS KMS customer master key (CMK) used to encrypt data stored on your WorkSpace. Amazon WorkSpaces does not support asymmetric CMKs.
-        :param pulumi.Input[dict] workspace_properties: The WorkSpace properties.
-
-        The **workspace_properties** object supports the following:
-
-          * `computeTypeName` (`pulumi.Input[str]`) - The compute type. For more information, see [Amazon WorkSpaces Bundles](http://aws.amazon.com/workspaces/details/#Amazon_WorkSpaces_Bundles). Valid values are `VALUE`, `STANDARD`, `PERFORMANCE`, `POWER`, `GRAPHICS`, `POWERPRO` and `GRAPHICSPRO`.
-          * `rootVolumeSizeGib` (`pulumi.Input[float]`) - The size of the root volume.
-          * `runningMode` (`pulumi.Input[str]`) - The running mode. For more information, see [Manage the WorkSpace Running Mode](https://docs.aws.amazon.com/workspaces/latest/adminguide/running-mode.html). Valid values are `AUTO_STOP` and `ALWAYS_ON`.
-          * `runningModeAutoStopTimeoutInMinutes` (`pulumi.Input[float]`) - The time after a user logs off when WorkSpaces are automatically stopped. Configured in 60-minute intervals.
-          * `userVolumeSizeGib` (`pulumi.Input[float]`) - The size of the user storage.
+        :param pulumi.Input['WorkspaceWorkspacePropertiesArgs'] workspace_properties: The WorkSpace properties.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -177,3 +158,4 @@ class Workspace(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

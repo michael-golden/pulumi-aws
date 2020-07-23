@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetVpnGatewayResult:
     """
     A collection of values returned by getVpnGateway.
     """
-    def __init__(__self__, amazon_side_asn=None, arn=None, attached_vpc_id=None, availability_zone=None, filters=None, id=None, state=None, tags=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, amazon_side_asn=None, arn=None, attached_vpc_id=None, availability_zone=None, filters=None, id=None, state=None, tags=None) -> None:
         if amazon_side_asn and not isinstance(amazon_side_asn, str):
             raise TypeError("Expected argument 'amazon_side_asn' to be a str")
         __self__.amazon_side_asn = amazon_side_asn
@@ -78,18 +81,11 @@ def get_vpn_gateway(amazon_side_asn=None, attached_vpc_id=None, availability_zon
     :param str amazon_side_asn: The Autonomous System Number (ASN) for the Amazon side of the specific VPN Gateway to retrieve.
     :param str attached_vpc_id: The ID of a VPC attached to the specific VPN Gateway to retrieve.
     :param str availability_zone: The Availability Zone of the specific VPN Gateway to retrieve.
-    :param list filters: Custom filter block as described below.
+    :param List['GetVpnGatewayFilterArgs'] filters: Custom filter block as described below.
     :param str id: The ID of the specific VPN Gateway to retrieve.
     :param str state: The state of the specific VPN Gateway to retrieve.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param Dict[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired VPN Gateway.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpnGateways.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A VPN Gateway will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['amazonSideAsn'] = amazon_side_asn

@@ -5,36 +5,36 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class EfsLocation(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     Amazon Resource Name (ARN) of the DataSync Location.
     """
-    ec2_config: pulumi.Output[dict]
+    ec2_config: pulumi.Output['outputs.EfsLocationEc2Config'] = pulumi.output_property("ec2Config")
     """
     Configuration block containing EC2 configurations for connecting to the EFS File System.
-
-      * `securityGroupArns` (`list`) - List of Amazon Resource Names (ARNs) of the EC2 Security Groups that are associated with the EFS Mount Target.
-      * `subnetArn` (`str`) - Amazon Resource Name (ARN) of the EC2 Subnet that is associated with the EFS Mount Target.
     """
-    efs_file_system_arn: pulumi.Output[str]
+    efs_file_system_arn: pulumi.Output[str] = pulumi.output_property("efsFileSystemArn")
     """
     Amazon Resource Name (ARN) of EFS File System.
     """
-    subdirectory: pulumi.Output[str]
+    subdirectory: pulumi.Output[Optional[str]] = pulumi.output_property("subdirectory")
     """
     Subdirectory to perform actions as source or destination. Default `/`.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Key-value pairs of resource tags to assign to the DataSync Location.
     """
-    uri: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, ec2_config=None, efs_file_system_arn=None, subdirectory=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    uri: pulumi.Output[str] = pulumi.output_property("uri")
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, ec2_config=None, efs_file_system_arn=None, subdirectory=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an AWS DataSync EFS Location.
 
@@ -56,15 +56,10 @@ class EfsLocation(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] ec2_config: Configuration block containing EC2 configurations for connecting to the EFS File System.
+        :param pulumi.Input['EfsLocationEc2ConfigArgs'] ec2_config: Configuration block containing EC2 configurations for connecting to the EFS File System.
         :param pulumi.Input[str] efs_file_system_arn: Amazon Resource Name (ARN) of EFS File System.
         :param pulumi.Input[str] subdirectory: Subdirectory to perform actions as source or destination. Default `/`.
-        :param pulumi.Input[dict] tags: Key-value pairs of resource tags to assign to the DataSync Location.
-
-        The **ec2_config** object supports the following:
-
-          * `securityGroupArns` (`pulumi.Input[list]`) - List of Amazon Resource Names (ARNs) of the EC2 Security Groups that are associated with the EFS Mount Target.
-          * `subnetArn` (`pulumi.Input[str]`) - Amazon Resource Name (ARN) of the EC2 Subnet that is associated with the EFS Mount Target.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value pairs of resource tags to assign to the DataSync Location.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -109,15 +104,10 @@ class EfsLocation(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: Amazon Resource Name (ARN) of the DataSync Location.
-        :param pulumi.Input[dict] ec2_config: Configuration block containing EC2 configurations for connecting to the EFS File System.
+        :param pulumi.Input['EfsLocationEc2ConfigArgs'] ec2_config: Configuration block containing EC2 configurations for connecting to the EFS File System.
         :param pulumi.Input[str] efs_file_system_arn: Amazon Resource Name (ARN) of EFS File System.
         :param pulumi.Input[str] subdirectory: Subdirectory to perform actions as source or destination. Default `/`.
-        :param pulumi.Input[dict] tags: Key-value pairs of resource tags to assign to the DataSync Location.
-
-        The **ec2_config** object supports the following:
-
-          * `securityGroupArns` (`pulumi.Input[list]`) - List of Amazon Resource Names (ARNs) of the EC2 Security Groups that are associated with the EFS Mount Target.
-          * `subnetArn` (`pulumi.Input[str]`) - Amazon Resource Name (ARN) of the EC2 Subnet that is associated with the EFS Mount Target.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value pairs of resource tags to assign to the DataSync Location.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -136,3 +126,4 @@ class EfsLocation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetVaultResult:
     """
     A collection of values returned by getVault.
     """
-    def __init__(__self__, arn=None, id=None, kms_key_arn=None, name=None, recovery_points=None, tags=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, id=None, kms_key_arn=None, name=None, recovery_points=None, tags=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn
@@ -78,7 +79,7 @@ def get_vault(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the backup vault.
-    :param dict tags: Metadata that you can assign to help organize the resources that you create.
+    :param Dict[str, str] tags: Metadata that you can assign to help organize the resources that you create.
     """
     __args__ = dict()
     __args__['name'] = name

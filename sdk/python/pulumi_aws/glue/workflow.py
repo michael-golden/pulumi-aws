@@ -5,24 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Workflow(pulumi.CustomResource):
-    default_run_properties: pulumi.Output[dict]
+    default_run_properties: pulumi.Output[Optional[Dict[str, Any]]] = pulumi.output_property("defaultRunProperties")
     """
     A map of default run properties for this workflow. These properties are passed to all jobs associated to the workflow.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     Description of the workflow.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name you assign to this workflow.
     """
-    def __init__(__self__, resource_name, opts=None, default_run_properties=None, description=None, name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, default_run_properties=None, description=None, name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Glue Workflow resource.
         The workflow graph (DAG) can be build using the `glue.Trigger` resource.
@@ -57,7 +58,7 @@ class Workflow(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] default_run_properties: A map of default run properties for this workflow. These properties are passed to all jobs associated to the workflow.
+        :param pulumi.Input[Dict[str, Any]] default_run_properties: A map of default run properties for this workflow. These properties are passed to all jobs associated to the workflow.
         :param pulumi.Input[str] description: Description of the workflow.
         :param pulumi.Input[str] name: The name you assign to this workflow.
         """
@@ -96,7 +97,7 @@ class Workflow(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] default_run_properties: A map of default run properties for this workflow. These properties are passed to all jobs associated to the workflow.
+        :param pulumi.Input[Dict[str, Any]] default_run_properties: A map of default run properties for this workflow. These properties are passed to all jobs associated to the workflow.
         :param pulumi.Input[str] description: Description of the workflow.
         :param pulumi.Input[str] name: The name you assign to this workflow.
         """
@@ -114,3 +115,4 @@ class Workflow(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 warnings.warn("aws.elasticloadbalancing.getServiceAccount has been deprecated in favor of aws.elb.getServiceAccount", DeprecationWarning)
@@ -14,7 +14,8 @@ class GetServiceAccountResult:
     """
     A collection of values returned by getServiceAccount.
     """
-    def __init__(__self__, arn=None, id=None, region=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, id=None, region=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn

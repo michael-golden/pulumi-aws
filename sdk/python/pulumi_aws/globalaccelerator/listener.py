@@ -5,31 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Listener(pulumi.CustomResource):
-    accelerator_arn: pulumi.Output[str]
+    accelerator_arn: pulumi.Output[str] = pulumi.output_property("acceleratorArn")
     """
     The Amazon Resource Name (ARN) of your accelerator.
     """
-    client_affinity: pulumi.Output[str]
+    client_affinity: pulumi.Output[Optional[str]] = pulumi.output_property("clientAffinity")
     """
     Direct all requests from a user to the same endpoint. Valid values are `NONE`, `SOURCE_IP`. Default: `NONE`. If `NONE`, Global Accelerator uses the "five-tuple" properties of source IP address, source port, destination IP address, destination port, and protocol to select the hash value. If `SOURCE_IP`, Global Accelerator uses the "two-tuple" properties of source (client) IP address and destination IP address to select the hash value.
     """
-    port_ranges: pulumi.Output[list]
+    port_ranges: pulumi.Output[List['outputs.ListenerPortRange']] = pulumi.output_property("portRanges")
     """
     The list of port ranges for the connections from clients to the accelerator. Fields documented below.
-
-      * `from_port` (`float`) - The first port in the range of ports, inclusive.
-      * `to_port` (`float`) - The last port in the range of ports, inclusive.
     """
-    protocol: pulumi.Output[str]
+    protocol: pulumi.Output[str] = pulumi.output_property("protocol")
     """
     The protocol for the connections from clients to the accelerator. Valid values are `TCP`, `UDP`.
     """
-    def __init__(__self__, resource_name, opts=None, accelerator_arn=None, client_affinity=None, port_ranges=None, protocol=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, accelerator_arn=None, client_affinity=None, port_ranges=None, protocol=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Global Accelerator listener.
 
@@ -61,13 +61,8 @@ class Listener(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accelerator_arn: The Amazon Resource Name (ARN) of your accelerator.
         :param pulumi.Input[str] client_affinity: Direct all requests from a user to the same endpoint. Valid values are `NONE`, `SOURCE_IP`. Default: `NONE`. If `NONE`, Global Accelerator uses the "five-tuple" properties of source IP address, source port, destination IP address, destination port, and protocol to select the hash value. If `SOURCE_IP`, Global Accelerator uses the "two-tuple" properties of source (client) IP address and destination IP address to select the hash value.
-        :param pulumi.Input[list] port_ranges: The list of port ranges for the connections from clients to the accelerator. Fields documented below.
+        :param pulumi.Input[List[pulumi.Input['ListenerPortRangeArgs']]] port_ranges: The list of port ranges for the connections from clients to the accelerator. Fields documented below.
         :param pulumi.Input[str] protocol: The protocol for the connections from clients to the accelerator. Valid values are `TCP`, `UDP`.
-
-        The **port_ranges** object supports the following:
-
-          * `from_port` (`pulumi.Input[float]`) - The first port in the range of ports, inclusive.
-          * `to_port` (`pulumi.Input[float]`) - The last port in the range of ports, inclusive.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -113,13 +108,8 @@ class Listener(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accelerator_arn: The Amazon Resource Name (ARN) of your accelerator.
         :param pulumi.Input[str] client_affinity: Direct all requests from a user to the same endpoint. Valid values are `NONE`, `SOURCE_IP`. Default: `NONE`. If `NONE`, Global Accelerator uses the "five-tuple" properties of source IP address, source port, destination IP address, destination port, and protocol to select the hash value. If `SOURCE_IP`, Global Accelerator uses the "two-tuple" properties of source (client) IP address and destination IP address to select the hash value.
-        :param pulumi.Input[list] port_ranges: The list of port ranges for the connections from clients to the accelerator. Fields documented below.
+        :param pulumi.Input[List[pulumi.Input['ListenerPortRangeArgs']]] port_ranges: The list of port ranges for the connections from clients to the accelerator. Fields documented below.
         :param pulumi.Input[str] protocol: The protocol for the connections from clients to the accelerator. Valid values are `TCP`, `UDP`.
-
-        The **port_ranges** object supports the following:
-
-          * `from_port` (`pulumi.Input[float]`) - The first port in the range of ports, inclusive.
-          * `to_port` (`pulumi.Input[float]`) - The last port in the range of ports, inclusive.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -136,3 +126,4 @@ class Listener(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetRoleResult:
     """
     A collection of values returned by getRole.
     """
-    def __init__(__self__, arn=None, assume_role_policy=None, create_date=None, description=None, id=None, max_session_duration=None, name=None, path=None, permissions_boundary=None, tags=None, unique_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, assume_role_policy=None, create_date=None, description=None, id=None, max_session_duration=None, name=None, path=None, permissions_boundary=None, tags=None, unique_id=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn
@@ -115,7 +116,7 @@ def get_role(name=None, tags=None, opts=None):
 
 
     :param str name: The friendly IAM role name to match.
-    :param dict tags: The tags attached to the role.
+    :param Dict[str, str] tags: The tags attached to the role.
     """
     __args__ = dict()
     __args__['name'] = name

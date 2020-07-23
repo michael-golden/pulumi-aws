@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetSitesResult:
     """
     A collection of values returned by getSites.
     """
-    def __init__(__self__, id=None, ids=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, id=None, ids=None) -> None:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id

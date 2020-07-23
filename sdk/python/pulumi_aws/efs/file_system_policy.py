@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class FileSystemPolicy(pulumi.CustomResource):
-    file_system_id: pulumi.Output[str]
+    file_system_id: pulumi.Output[str] = pulumi.output_property("fileSystemId")
     """
     The ID of the EFS file system.
     """
-    policy: pulumi.Output[str]
+    policy: pulumi.Output[str] = pulumi.output_property("policy")
     """
     The JSON formatted file system policy for the EFS file system. see [Docs](https://docs.aws.amazon.com/efs/latest/ug/access-control-overview.html#access-control-manage-access-intro-resource-policies) for more info.
     """
-    def __init__(__self__, resource_name, opts=None, file_system_id=None, policy=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, file_system_id=None, policy=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Elastic File System (EFS) File System Policy resource.
 
@@ -117,3 +118,4 @@ class FileSystemPolicy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

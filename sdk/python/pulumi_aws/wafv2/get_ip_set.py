@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetIpSetResult:
     """
     A collection of values returned by getIpSet.
     """
-    def __init__(__self__, addresses=None, arn=None, description=None, id=None, ip_address_version=None, name=None, scope=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, addresses=None, arn=None, description=None, id=None, ip_address_version=None, name=None, scope=None) -> None:
         if addresses and not isinstance(addresses, list):
             raise TypeError("Expected argument 'addresses' to be a list")
         __self__.addresses = addresses

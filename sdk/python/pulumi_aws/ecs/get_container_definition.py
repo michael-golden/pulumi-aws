@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetContainerDefinitionResult:
     """
     A collection of values returned by getContainerDefinition.
     """
-    def __init__(__self__, container_name=None, cpu=None, disable_networking=None, docker_labels=None, environment=None, id=None, image=None, image_digest=None, memory=None, memory_reservation=None, task_definition=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, container_name=None, cpu=None, disable_networking=None, docker_labels=None, environment=None, id=None, image=None, image_digest=None, memory=None, memory_reservation=None, task_definition=None) -> None:
         if container_name and not isinstance(container_name, str):
             raise TypeError("Expected argument 'container_name' to be a str")
         __self__.container_name = container_name

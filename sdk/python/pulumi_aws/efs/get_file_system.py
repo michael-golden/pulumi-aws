@@ -5,15 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
 
 
 class GetFileSystemResult:
     """
     A collection of values returned by getFileSystem.
     """
-    def __init__(__self__, arn=None, creation_token=None, dns_name=None, encrypted=None, file_system_id=None, id=None, kms_key_id=None, lifecycle_policy=None, performance_mode=None, provisioned_throughput_in_mibps=None, size_in_bytes=None, tags=None, throughput_mode=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, creation_token=None, dns_name=None, encrypted=None, file_system_id=None, id=None, kms_key_id=None, lifecycle_policy=None, performance_mode=None, provisioned_throughput_in_mibps=None, size_in_bytes=None, tags=None, throughput_mode=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn

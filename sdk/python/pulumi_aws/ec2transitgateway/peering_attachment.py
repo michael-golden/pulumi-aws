@@ -5,32 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class PeeringAttachment(pulumi.CustomResource):
-    peer_account_id: pulumi.Output[str]
+    peer_account_id: pulumi.Output[str] = pulumi.output_property("peerAccountId")
     """
     Account ID of EC2 Transit Gateway to peer with. Defaults to the account ID the current provider is currently connected to.
     """
-    peer_region: pulumi.Output[str]
+    peer_region: pulumi.Output[str] = pulumi.output_property("peerRegion")
     """
     Region of EC2 Transit Gateway to peer with.
     """
-    peer_transit_gateway_id: pulumi.Output[str]
+    peer_transit_gateway_id: pulumi.Output[str] = pulumi.output_property("peerTransitGatewayId")
     """
     Identifier of EC2 Transit Gateway to peer with.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Key-value tags for the EC2 Transit Gateway Peering Attachment.
     """
-    transit_gateway_id: pulumi.Output[str]
+    transit_gateway_id: pulumi.Output[str] = pulumi.output_property("transitGatewayId")
     """
     Identifier of EC2 Transit Gateway.
     """
-    def __init__(__self__, resource_name, opts=None, peer_account_id=None, peer_region=None, peer_transit_gateway_id=None, tags=None, transit_gateway_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, peer_account_id=None, peer_region=None, peer_transit_gateway_id=None, tags=None, transit_gateway_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an EC2 Transit Gateway Peering Attachment.
         For examples of custom route table association and propagation, see the [EC2 Transit Gateway Networking Examples Guide](https://docs.aws.amazon.com/vpc/latest/tgw/TGW_Scenarios.html).
@@ -68,7 +69,7 @@ class PeeringAttachment(pulumi.CustomResource):
         :param pulumi.Input[str] peer_account_id: Account ID of EC2 Transit Gateway to peer with. Defaults to the account ID the current provider is currently connected to.
         :param pulumi.Input[str] peer_region: Region of EC2 Transit Gateway to peer with.
         :param pulumi.Input[str] peer_transit_gateway_id: Identifier of EC2 Transit Gateway to peer with.
-        :param pulumi.Input[dict] tags: Key-value tags for the EC2 Transit Gateway Peering Attachment.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value tags for the EC2 Transit Gateway Peering Attachment.
         :param pulumi.Input[str] transit_gateway_id: Identifier of EC2 Transit Gateway.
         """
         if __name__ is not None:
@@ -117,7 +118,7 @@ class PeeringAttachment(pulumi.CustomResource):
         :param pulumi.Input[str] peer_account_id: Account ID of EC2 Transit Gateway to peer with. Defaults to the account ID the current provider is currently connected to.
         :param pulumi.Input[str] peer_region: Region of EC2 Transit Gateway to peer with.
         :param pulumi.Input[str] peer_transit_gateway_id: Identifier of EC2 Transit Gateway to peer with.
-        :param pulumi.Input[dict] tags: Key-value tags for the EC2 Transit Gateway Peering Attachment.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value tags for the EC2 Transit Gateway Peering Attachment.
         :param pulumi.Input[str] transit_gateway_id: Identifier of EC2 Transit Gateway.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -136,3 +137,4 @@ class PeeringAttachment(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

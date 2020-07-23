@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetStackResult:
     """
     A collection of values returned by getStack.
     """
-    def __init__(__self__, capabilities=None, description=None, disable_rollback=None, iam_role_arn=None, id=None, name=None, notification_arns=None, outputs=None, parameters=None, tags=None, template_body=None, timeout_in_minutes=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, capabilities=None, description=None, disable_rollback=None, iam_role_arn=None, id=None, name=None, notification_arns=None, outputs=None, parameters=None, tags=None, template_body=None, timeout_in_minutes=None) -> None:
         if capabilities and not isinstance(capabilities, list):
             raise TypeError("Expected argument 'capabilities' to be a list")
         __self__.capabilities = capabilities
@@ -128,7 +129,7 @@ def get_stack(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the stack
-    :param dict tags: A map of tags associated with this stack.
+    :param Dict[str, str] tags: A map of tags associated with this stack.
     """
     __args__ = dict()
     __args__['name'] = name

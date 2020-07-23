@@ -5,59 +5,55 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Broker(pulumi.CustomResource):
-    apply_immediately: pulumi.Output[bool]
+    apply_immediately: pulumi.Output[Optional[bool]] = pulumi.output_property("applyImmediately")
     """
     Specifies whether any broker modifications
     are applied immediately, or during the next maintenance window. Default is `false`.
     """
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the broker.
     """
-    auto_minor_version_upgrade: pulumi.Output[bool]
+    auto_minor_version_upgrade: pulumi.Output[Optional[bool]] = pulumi.output_property("autoMinorVersionUpgrade")
     """
     Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions.
     """
-    broker_name: pulumi.Output[str]
+    broker_name: pulumi.Output[str] = pulumi.output_property("brokerName")
     """
     The name of the broker.
     """
-    configuration: pulumi.Output[dict]
+    configuration: pulumi.Output['outputs.BrokerConfiguration'] = pulumi.output_property("configuration")
     """
     Configuration of the broker. See below.
-
-      * `id` (`str`) - The Configuration ID.
-      * `revision` (`float`) - Revision of the Configuration.
     """
-    deployment_mode: pulumi.Output[str]
+    deployment_mode: pulumi.Output[Optional[str]] = pulumi.output_property("deploymentMode")
     """
     The deployment mode of the broker. Supported: `SINGLE_INSTANCE` and `ACTIVE_STANDBY_MULTI_AZ`. Defaults to `SINGLE_INSTANCE`.
     """
-    encryption_options: pulumi.Output[dict]
+    encryption_options: pulumi.Output[Optional['outputs.BrokerEncryptionOptions']] = pulumi.output_property("encryptionOptions")
     """
     Configuration block containing encryption options. See below.
-
-      * `kms_key_id` (`str`) - Amazon Resource Name (ARN) of Key Management Service (KMS) Customer Master Key (CMK) to use for encryption at rest. Requires setting `use_aws_owned_key` to `false`. To perform drift detection when AWS managed CMKs or customer managed CMKs are in use, this value must be configured.
-      * `useAwsOwnedKey` (`bool`) - Boolean to enable an AWS owned Key Management Service (KMS) Customer Master Key (CMK) that is not in your account. Defaults to `true`. Setting to `false` without configuring `kms_key_id` will create an AWS managed Customer Master Key (CMK) aliased to `aws/mq` in your account.
     """
-    engine_type: pulumi.Output[str]
+    engine_type: pulumi.Output[str] = pulumi.output_property("engineType")
     """
     The type of broker engine. Currently, Amazon MQ supports only `ActiveMQ`.
     """
-    engine_version: pulumi.Output[str]
+    engine_version: pulumi.Output[str] = pulumi.output_property("engineVersion")
     """
     The version of the broker engine. See the [AmazonMQ Broker Engine docs](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html) for supported versions.
     """
-    host_instance_type: pulumi.Output[str]
+    host_instance_type: pulumi.Output[str] = pulumi.output_property("hostInstanceType")
     """
     The broker's instance type. e.g. `mq.t2.micro` or `mq.m4.large`
     """
-    instances: pulumi.Output[list]
+    instances: pulumi.Output[List['outputs.BrokerInstance']] = pulumi.output_property("instances")
     """
     A list of information about allocated brokers (both active & standby).
     * `instances.0.console_url` - The URL of the broker's [ActiveMQ Web Console](http://activemq.apache.org/web-console.html).
@@ -68,52 +64,37 @@ class Broker(pulumi.CustomResource):
     * `stomp+ssl://broker-id.mq.us-west-2.amazonaws.com:61614`
     * `mqtt+ssl://broker-id.mq.us-west-2.amazonaws.com:8883`
     * `wss://broker-id.mq.us-west-2.amazonaws.com:61619`
-
-      * `consoleUrl` (`str`)
-      * `endpoints` (`list`)
-      * `ip_address` (`str`)
     """
-    logs: pulumi.Output[dict]
+    logs: pulumi.Output[Optional['outputs.BrokerLogs']] = pulumi.output_property("logs")
     """
     Logging configuration of the broker. See below.
-
-      * `audit` (`bool`) - Enables audit logging. User management action made using JMX or the ActiveMQ Web Console is logged. Defaults to `false`.
-      * `general` (`bool`) - Enables general logging via CloudWatch. Defaults to `false`.
     """
-    maintenance_window_start_time: pulumi.Output[dict]
+    maintenance_window_start_time: pulumi.Output['outputs.BrokerMaintenanceWindowStartTime'] = pulumi.output_property("maintenanceWindowStartTime")
     """
     Maintenance window start time. See below.
-
-      * `dayOfWeek` (`str`) - The day of the week. e.g. `MONDAY`, `TUESDAY`, or `WEDNESDAY`
-      * `timeOfDay` (`str`) - The time, in 24-hour format. e.g. `02:00`
-      * `timeZone` (`str`) - The time zone, UTC by default, in either the Country/City format, or the UTC offset format. e.g. `CET`
     """
-    publicly_accessible: pulumi.Output[bool]
+    publicly_accessible: pulumi.Output[Optional[bool]] = pulumi.output_property("publiclyAccessible")
     """
     Whether to enable connections from applications outside of the VPC that hosts the broker's subnets.
     """
-    security_groups: pulumi.Output[list]
+    security_groups: pulumi.Output[List[str]] = pulumi.output_property("securityGroups")
     """
     The list of security group IDs assigned to the broker.
     """
-    subnet_ids: pulumi.Output[list]
+    subnet_ids: pulumi.Output[List[str]] = pulumi.output_property("subnetIds")
     """
     The list of subnet IDs in which to launch the broker. A `SINGLE_INSTANCE` deployment requires one subnet. An `ACTIVE_STANDBY_MULTI_AZ` deployment requires two subnets.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    users: pulumi.Output[list]
+    users: pulumi.Output[List['outputs.BrokerUser']] = pulumi.output_property("users")
     """
     The list of all ActiveMQ usernames for the specified broker. See below.
-
-      * `consoleAccess` (`bool`) - Whether to enable access to the [ActiveMQ Web Console](http://activemq.apache.org/web-console.html) for the user.
-      * `groups` (`list`) - The list of groups (20 maximum) to which the ActiveMQ user belongs.
-      * `password` (`str`) - The password of the user. It must be 12 to 250 characters long, at least 4 unique characters, and must not contain commas.
-      * `username` (`str`) - The username of the user.
     """
-    def __init__(__self__, resource_name, opts=None, apply_immediately=None, auto_minor_version_upgrade=None, broker_name=None, configuration=None, deployment_mode=None, encryption_options=None, engine_type=None, engine_version=None, host_instance_type=None, logs=None, maintenance_window_start_time=None, publicly_accessible=None, security_groups=None, subnet_ids=None, tags=None, users=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, apply_immediately=None, auto_minor_version_upgrade=None, broker_name=None, configuration=None, deployment_mode=None, encryption_options=None, engine_type=None, engine_version=None, host_instance_type=None, logs=None, maintenance_window_start_time=None, publicly_accessible=None, security_groups=None, subnet_ids=None, tags=None, users=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an MQ Broker Resource. This resources also manages users for the broker.
 
@@ -159,47 +140,19 @@ class Broker(pulumi.CustomResource):
                are applied immediately, or during the next maintenance window. Default is `false`.
         :param pulumi.Input[bool] auto_minor_version_upgrade: Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions.
         :param pulumi.Input[str] broker_name: The name of the broker.
-        :param pulumi.Input[dict] configuration: Configuration of the broker. See below.
+        :param pulumi.Input['BrokerConfigurationArgs'] configuration: Configuration of the broker. See below.
         :param pulumi.Input[str] deployment_mode: The deployment mode of the broker. Supported: `SINGLE_INSTANCE` and `ACTIVE_STANDBY_MULTI_AZ`. Defaults to `SINGLE_INSTANCE`.
-        :param pulumi.Input[dict] encryption_options: Configuration block containing encryption options. See below.
+        :param pulumi.Input['BrokerEncryptionOptionsArgs'] encryption_options: Configuration block containing encryption options. See below.
         :param pulumi.Input[str] engine_type: The type of broker engine. Currently, Amazon MQ supports only `ActiveMQ`.
         :param pulumi.Input[str] engine_version: The version of the broker engine. See the [AmazonMQ Broker Engine docs](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html) for supported versions.
         :param pulumi.Input[str] host_instance_type: The broker's instance type. e.g. `mq.t2.micro` or `mq.m4.large`
-        :param pulumi.Input[dict] logs: Logging configuration of the broker. See below.
-        :param pulumi.Input[dict] maintenance_window_start_time: Maintenance window start time. See below.
+        :param pulumi.Input['BrokerLogsArgs'] logs: Logging configuration of the broker. See below.
+        :param pulumi.Input['BrokerMaintenanceWindowStartTimeArgs'] maintenance_window_start_time: Maintenance window start time. See below.
         :param pulumi.Input[bool] publicly_accessible: Whether to enable connections from applications outside of the VPC that hosts the broker's subnets.
-        :param pulumi.Input[list] security_groups: The list of security group IDs assigned to the broker.
-        :param pulumi.Input[list] subnet_ids: The list of subnet IDs in which to launch the broker. A `SINGLE_INSTANCE` deployment requires one subnet. An `ACTIVE_STANDBY_MULTI_AZ` deployment requires two subnets.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-        :param pulumi.Input[list] users: The list of all ActiveMQ usernames for the specified broker. See below.
-
-        The **configuration** object supports the following:
-
-          * `id` (`pulumi.Input[str]`) - The Configuration ID.
-          * `revision` (`pulumi.Input[float]`) - Revision of the Configuration.
-
-        The **encryption_options** object supports the following:
-
-          * `kms_key_id` (`pulumi.Input[str]`) - Amazon Resource Name (ARN) of Key Management Service (KMS) Customer Master Key (CMK) to use for encryption at rest. Requires setting `use_aws_owned_key` to `false`. To perform drift detection when AWS managed CMKs or customer managed CMKs are in use, this value must be configured.
-          * `useAwsOwnedKey` (`pulumi.Input[bool]`) - Boolean to enable an AWS owned Key Management Service (KMS) Customer Master Key (CMK) that is not in your account. Defaults to `true`. Setting to `false` without configuring `kms_key_id` will create an AWS managed Customer Master Key (CMK) aliased to `aws/mq` in your account.
-
-        The **logs** object supports the following:
-
-          * `audit` (`pulumi.Input[bool]`) - Enables audit logging. User management action made using JMX or the ActiveMQ Web Console is logged. Defaults to `false`.
-          * `general` (`pulumi.Input[bool]`) - Enables general logging via CloudWatch. Defaults to `false`.
-
-        The **maintenance_window_start_time** object supports the following:
-
-          * `dayOfWeek` (`pulumi.Input[str]`) - The day of the week. e.g. `MONDAY`, `TUESDAY`, or `WEDNESDAY`
-          * `timeOfDay` (`pulumi.Input[str]`) - The time, in 24-hour format. e.g. `02:00`
-          * `timeZone` (`pulumi.Input[str]`) - The time zone, UTC by default, in either the Country/City format, or the UTC offset format. e.g. `CET`
-
-        The **users** object supports the following:
-
-          * `consoleAccess` (`pulumi.Input[bool]`) - Whether to enable access to the [ActiveMQ Web Console](http://activemq.apache.org/web-console.html) for the user.
-          * `groups` (`pulumi.Input[list]`) - The list of groups (20 maximum) to which the ActiveMQ user belongs.
-          * `password` (`pulumi.Input[str]`) - The password of the user. It must be 12 to 250 characters long, at least 4 unique characters, and must not contain commas.
-          * `username` (`pulumi.Input[str]`) - The username of the user.
+        :param pulumi.Input[List[pulumi.Input[str]]] security_groups: The list of security group IDs assigned to the broker.
+        :param pulumi.Input[List[pulumi.Input[str]]] subnet_ids: The list of subnet IDs in which to launch the broker. A `SINGLE_INSTANCE` deployment requires one subnet. An `ACTIVE_STANDBY_MULTI_AZ` deployment requires two subnets.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[List[pulumi.Input['BrokerUserArgs']]] users: The list of all ActiveMQ usernames for the specified broker. See below.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -268,13 +221,13 @@ class Broker(pulumi.CustomResource):
         :param pulumi.Input[str] arn: The ARN of the broker.
         :param pulumi.Input[bool] auto_minor_version_upgrade: Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions.
         :param pulumi.Input[str] broker_name: The name of the broker.
-        :param pulumi.Input[dict] configuration: Configuration of the broker. See below.
+        :param pulumi.Input['BrokerConfigurationArgs'] configuration: Configuration of the broker. See below.
         :param pulumi.Input[str] deployment_mode: The deployment mode of the broker. Supported: `SINGLE_INSTANCE` and `ACTIVE_STANDBY_MULTI_AZ`. Defaults to `SINGLE_INSTANCE`.
-        :param pulumi.Input[dict] encryption_options: Configuration block containing encryption options. See below.
+        :param pulumi.Input['BrokerEncryptionOptionsArgs'] encryption_options: Configuration block containing encryption options. See below.
         :param pulumi.Input[str] engine_type: The type of broker engine. Currently, Amazon MQ supports only `ActiveMQ`.
         :param pulumi.Input[str] engine_version: The version of the broker engine. See the [AmazonMQ Broker Engine docs](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html) for supported versions.
         :param pulumi.Input[str] host_instance_type: The broker's instance type. e.g. `mq.t2.micro` or `mq.m4.large`
-        :param pulumi.Input[list] instances: A list of information about allocated brokers (both active & standby).
+        :param pulumi.Input[List[pulumi.Input['BrokerInstanceArgs']]] instances: A list of information about allocated brokers (both active & standby).
                * `instances.0.console_url` - The URL of the broker's [ActiveMQ Web Console](http://activemq.apache.org/web-console.html).
                * `instances.0.ip_address` - The IP Address of the broker.
                * `instances.0.endpoints` - The broker's wire-level protocol endpoints in the following order & format referenceable e.g. as `instances.0.endpoints.0` (SSL):
@@ -283,47 +236,13 @@ class Broker(pulumi.CustomResource):
                * `stomp+ssl://broker-id.mq.us-west-2.amazonaws.com:61614`
                * `mqtt+ssl://broker-id.mq.us-west-2.amazonaws.com:8883`
                * `wss://broker-id.mq.us-west-2.amazonaws.com:61619`
-        :param pulumi.Input[dict] logs: Logging configuration of the broker. See below.
-        :param pulumi.Input[dict] maintenance_window_start_time: Maintenance window start time. See below.
+        :param pulumi.Input['BrokerLogsArgs'] logs: Logging configuration of the broker. See below.
+        :param pulumi.Input['BrokerMaintenanceWindowStartTimeArgs'] maintenance_window_start_time: Maintenance window start time. See below.
         :param pulumi.Input[bool] publicly_accessible: Whether to enable connections from applications outside of the VPC that hosts the broker's subnets.
-        :param pulumi.Input[list] security_groups: The list of security group IDs assigned to the broker.
-        :param pulumi.Input[list] subnet_ids: The list of subnet IDs in which to launch the broker. A `SINGLE_INSTANCE` deployment requires one subnet. An `ACTIVE_STANDBY_MULTI_AZ` deployment requires two subnets.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-        :param pulumi.Input[list] users: The list of all ActiveMQ usernames for the specified broker. See below.
-
-        The **configuration** object supports the following:
-
-          * `id` (`pulumi.Input[str]`) - The Configuration ID.
-          * `revision` (`pulumi.Input[float]`) - Revision of the Configuration.
-
-        The **encryption_options** object supports the following:
-
-          * `kms_key_id` (`pulumi.Input[str]`) - Amazon Resource Name (ARN) of Key Management Service (KMS) Customer Master Key (CMK) to use for encryption at rest. Requires setting `use_aws_owned_key` to `false`. To perform drift detection when AWS managed CMKs or customer managed CMKs are in use, this value must be configured.
-          * `useAwsOwnedKey` (`pulumi.Input[bool]`) - Boolean to enable an AWS owned Key Management Service (KMS) Customer Master Key (CMK) that is not in your account. Defaults to `true`. Setting to `false` without configuring `kms_key_id` will create an AWS managed Customer Master Key (CMK) aliased to `aws/mq` in your account.
-
-        The **instances** object supports the following:
-
-          * `consoleUrl` (`pulumi.Input[str]`)
-          * `endpoints` (`pulumi.Input[list]`)
-          * `ip_address` (`pulumi.Input[str]`)
-
-        The **logs** object supports the following:
-
-          * `audit` (`pulumi.Input[bool]`) - Enables audit logging. User management action made using JMX or the ActiveMQ Web Console is logged. Defaults to `false`.
-          * `general` (`pulumi.Input[bool]`) - Enables general logging via CloudWatch. Defaults to `false`.
-
-        The **maintenance_window_start_time** object supports the following:
-
-          * `dayOfWeek` (`pulumi.Input[str]`) - The day of the week. e.g. `MONDAY`, `TUESDAY`, or `WEDNESDAY`
-          * `timeOfDay` (`pulumi.Input[str]`) - The time, in 24-hour format. e.g. `02:00`
-          * `timeZone` (`pulumi.Input[str]`) - The time zone, UTC by default, in either the Country/City format, or the UTC offset format. e.g. `CET`
-
-        The **users** object supports the following:
-
-          * `consoleAccess` (`pulumi.Input[bool]`) - Whether to enable access to the [ActiveMQ Web Console](http://activemq.apache.org/web-console.html) for the user.
-          * `groups` (`pulumi.Input[list]`) - The list of groups (20 maximum) to which the ActiveMQ user belongs.
-          * `password` (`pulumi.Input[str]`) - The password of the user. It must be 12 to 250 characters long, at least 4 unique characters, and must not contain commas.
-          * `username` (`pulumi.Input[str]`) - The username of the user.
+        :param pulumi.Input[List[pulumi.Input[str]]] security_groups: The list of security group IDs assigned to the broker.
+        :param pulumi.Input[List[pulumi.Input[str]]] subnet_ids: The list of subnet IDs in which to launch the broker. A `SINGLE_INSTANCE` deployment requires one subnet. An `ACTIVE_STANDBY_MULTI_AZ` deployment requires two subnets.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[List[pulumi.Input['BrokerUserArgs']]] users: The list of all ActiveMQ usernames for the specified broker. See below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -354,3 +273,4 @@ class Broker(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

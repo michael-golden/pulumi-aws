@@ -5,15 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
 
 
 class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, arn=None, certificate_authority=None, created_at=None, enabled_cluster_log_types=None, endpoint=None, id=None, identities=None, name=None, platform_version=None, role_arn=None, status=None, tags=None, version=None, vpc_config=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, certificate_authority=None, created_at=None, enabled_cluster_log_types=None, endpoint=None, id=None, identities=None, name=None, platform_version=None, role_arn=None, status=None, tags=None, version=None, vpc_config=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn
@@ -125,7 +127,7 @@ def get_cluster(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the cluster
-    :param dict tags: Key-value map of resource tags.
+    :param Dict[str, str] tags: Key-value map of resource tags.
     """
     __args__ = dict()
     __args__['name'] = name

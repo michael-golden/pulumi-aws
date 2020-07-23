@@ -5,15 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
 
 
 class GetOrganizationResult:
     """
     A collection of values returned by getOrganization.
     """
-    def __init__(__self__, accounts=None, arn=None, aws_service_access_principals=None, enabled_policy_types=None, feature_set=None, id=None, master_account_arn=None, master_account_email=None, master_account_id=None, non_master_accounts=None, roots=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, accounts=None, arn=None, aws_service_access_principals=None, enabled_policy_types=None, feature_set=None, id=None, master_account_arn=None, master_account_email=None, master_account_id=None, non_master_accounts=None, roots=None) -> None:
         if accounts and not isinstance(accounts, list):
             raise TypeError("Expected argument 'accounts' to be a list")
         __self__.accounts = accounts

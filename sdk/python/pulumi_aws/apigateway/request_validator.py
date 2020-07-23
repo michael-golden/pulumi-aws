@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class RequestValidator(pulumi.CustomResource):
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the request validator
     """
-    rest_api: pulumi.Output[str]
+    rest_api: pulumi.Output[str] = pulumi.output_property("restApi")
     """
     The ID of the associated Rest API
     """
-    validate_request_body: pulumi.Output[bool]
+    validate_request_body: pulumi.Output[Optional[bool]] = pulumi.output_property("validateRequestBody")
     """
     Boolean whether to validate request body. Defaults to `false`.
     """
-    validate_request_parameters: pulumi.Output[bool]
+    validate_request_parameters: pulumi.Output[Optional[bool]] = pulumi.output_property("validateRequestParameters")
     """
     Boolean whether to validate request parameters. Defaults to `false`.
     """
-    def __init__(__self__, resource_name, opts=None, name=None, rest_api=None, validate_request_body=None, validate_request_parameters=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, rest_api=None, validate_request_body=None, validate_request_parameters=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an API Gateway Request Validator.
 
@@ -45,7 +46,7 @@ class RequestValidator(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the request validator
-        :param pulumi.Input[dict] rest_api: The ID of the associated Rest API
+        :param pulumi.Input[str] rest_api: The ID of the associated Rest API
         :param pulumi.Input[bool] validate_request_body: Boolean whether to validate request body. Defaults to `false`.
         :param pulumi.Input[bool] validate_request_parameters: Boolean whether to validate request parameters. Defaults to `false`.
         """
@@ -88,7 +89,7 @@ class RequestValidator(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the request validator
-        :param pulumi.Input[dict] rest_api: The ID of the associated Rest API
+        :param pulumi.Input[str] rest_api: The ID of the associated Rest API
         :param pulumi.Input[bool] validate_request_body: Boolean whether to validate request body. Defaults to `false`.
         :param pulumi.Input[bool] validate_request_parameters: Boolean whether to validate request parameters. Defaults to `false`.
         """
@@ -107,3 +108,4 @@ class RequestValidator(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

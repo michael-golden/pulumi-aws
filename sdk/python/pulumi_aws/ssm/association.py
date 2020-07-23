@@ -5,70 +5,67 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Association(pulumi.CustomResource):
-    association_id: pulumi.Output[str]
+    association_id: pulumi.Output[str] = pulumi.output_property("associationId")
     """
     The ID of the SSM association.
     """
-    association_name: pulumi.Output[str]
+    association_name: pulumi.Output[Optional[str]] = pulumi.output_property("associationName")
     """
     The descriptive name for the association.
     """
-    automation_target_parameter_name: pulumi.Output[str]
+    automation_target_parameter_name: pulumi.Output[Optional[str]] = pulumi.output_property("automationTargetParameterName")
     """
     Specify the target for the association. This target is required for associations that use an `Automation` document and target resources by using rate controls.
     """
-    compliance_severity: pulumi.Output[str]
+    compliance_severity: pulumi.Output[Optional[str]] = pulumi.output_property("complianceSeverity")
     """
     The compliance severity for the association. Can be one of the following: `UNSPECIFIED`, `LOW`, `MEDIUM`, `HIGH` or `CRITICAL`
     """
-    document_version: pulumi.Output[str]
+    document_version: pulumi.Output[str] = pulumi.output_property("documentVersion")
     """
     The document version you want to associate with the target(s). Can be a specific version or the default version.
     """
-    instance_id: pulumi.Output[str]
+    instance_id: pulumi.Output[Optional[str]] = pulumi.output_property("instanceId")
     """
     The instance ID to apply an SSM document to. Use `targets` with key `InstanceIds` for document schema versions 2.0 and above.
     """
-    max_concurrency: pulumi.Output[str]
+    max_concurrency: pulumi.Output[Optional[str]] = pulumi.output_property("maxConcurrency")
     """
     The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%.
     """
-    max_errors: pulumi.Output[str]
+    max_errors: pulumi.Output[Optional[str]] = pulumi.output_property("maxErrors")
     """
     The number of errors that are allowed before the system stops sending requests to run the association on additional targets. You can specify a number, for example 10, or a percentage of the target set, for example 10%.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the SSM document to apply.
     """
-    output_location: pulumi.Output[dict]
+    output_location: pulumi.Output[Optional['outputs.AssociationOutputLocation']] = pulumi.output_property("outputLocation")
     """
     An output location block. Output Location is documented below.
-
-      * `s3_bucket_name` (`str`) - The S3 bucket name.
-      * `s3_key_prefix` (`str`) - The S3 bucket prefix. Results stored in the root if not configured.
     """
-    parameters: pulumi.Output[dict]
+    parameters: pulumi.Output[Dict[str, str]] = pulumi.output_property("parameters")
     """
     A block of arbitrary string parameters to pass to the SSM document.
     """
-    schedule_expression: pulumi.Output[str]
+    schedule_expression: pulumi.Output[Optional[str]] = pulumi.output_property("scheduleExpression")
     """
     A cron expression when the association will be applied to the target(s).
     """
-    targets: pulumi.Output[list]
+    targets: pulumi.Output[List['outputs.AssociationTarget']] = pulumi.output_property("targets")
     """
     A block containing the targets of the SSM association. Targets are documented below. AWS currently supports a maximum of 5 targets.
-
-      * `key` (`str`) - Either `InstanceIds` or `tag:Tag Name` to specify an EC2 tag.
-      * `values` (`list`) - A list of instance IDs or tag values. AWS currently limits this list size to one value.
     """
-    def __init__(__self__, resource_name, opts=None, association_name=None, automation_target_parameter_name=None, compliance_severity=None, document_version=None, instance_id=None, max_concurrency=None, max_errors=None, name=None, output_location=None, parameters=None, schedule_expression=None, targets=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, association_name=None, automation_target_parameter_name=None, compliance_severity=None, document_version=None, instance_id=None, max_concurrency=None, max_errors=None, name=None, output_location=None, parameters=None, schedule_expression=None, targets=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Associates an SSM Document to an instance or EC2 tag.
 
@@ -94,20 +91,10 @@ class Association(pulumi.CustomResource):
         :param pulumi.Input[str] max_concurrency: The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%.
         :param pulumi.Input[str] max_errors: The number of errors that are allowed before the system stops sending requests to run the association on additional targets. You can specify a number, for example 10, or a percentage of the target set, for example 10%.
         :param pulumi.Input[str] name: The name of the SSM document to apply.
-        :param pulumi.Input[dict] output_location: An output location block. Output Location is documented below.
-        :param pulumi.Input[dict] parameters: A block of arbitrary string parameters to pass to the SSM document.
+        :param pulumi.Input['AssociationOutputLocationArgs'] output_location: An output location block. Output Location is documented below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] parameters: A block of arbitrary string parameters to pass to the SSM document.
         :param pulumi.Input[str] schedule_expression: A cron expression when the association will be applied to the target(s).
-        :param pulumi.Input[list] targets: A block containing the targets of the SSM association. Targets are documented below. AWS currently supports a maximum of 5 targets.
-
-        The **output_location** object supports the following:
-
-          * `s3_bucket_name` (`pulumi.Input[str]`) - The S3 bucket name.
-          * `s3_key_prefix` (`pulumi.Input[str]`) - The S3 bucket prefix. Results stored in the root if not configured.
-
-        The **targets** object supports the following:
-
-          * `key` (`pulumi.Input[str]`) - Either `InstanceIds` or `tag:Tag Name` to specify an EC2 tag.
-          * `values` (`pulumi.Input[list]`) - A list of instance IDs or tag values. AWS currently limits this list size to one value.
+        :param pulumi.Input[List[pulumi.Input['AssociationTargetArgs']]] targets: A block containing the targets of the SSM association. Targets are documented below. AWS currently supports a maximum of 5 targets.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -163,20 +150,10 @@ class Association(pulumi.CustomResource):
         :param pulumi.Input[str] max_concurrency: The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%.
         :param pulumi.Input[str] max_errors: The number of errors that are allowed before the system stops sending requests to run the association on additional targets. You can specify a number, for example 10, or a percentage of the target set, for example 10%.
         :param pulumi.Input[str] name: The name of the SSM document to apply.
-        :param pulumi.Input[dict] output_location: An output location block. Output Location is documented below.
-        :param pulumi.Input[dict] parameters: A block of arbitrary string parameters to pass to the SSM document.
+        :param pulumi.Input['AssociationOutputLocationArgs'] output_location: An output location block. Output Location is documented below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] parameters: A block of arbitrary string parameters to pass to the SSM document.
         :param pulumi.Input[str] schedule_expression: A cron expression when the association will be applied to the target(s).
-        :param pulumi.Input[list] targets: A block containing the targets of the SSM association. Targets are documented below. AWS currently supports a maximum of 5 targets.
-
-        The **output_location** object supports the following:
-
-          * `s3_bucket_name` (`pulumi.Input[str]`) - The S3 bucket name.
-          * `s3_key_prefix` (`pulumi.Input[str]`) - The S3 bucket prefix. Results stored in the root if not configured.
-
-        The **targets** object supports the following:
-
-          * `key` (`pulumi.Input[str]`) - Either `InstanceIds` or `tag:Tag Name` to specify an EC2 tag.
-          * `values` (`pulumi.Input[list]`) - A list of instance IDs or tag values. AWS currently limits this list size to one value.
+        :param pulumi.Input[List[pulumi.Input['AssociationTargetArgs']]] targets: A block containing the targets of the SSM association. Targets are documented below. AWS currently supports a maximum of 5 targets.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -202,3 +179,4 @@ class Association(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,84 +5,72 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Fleet(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     Fleet ARN.
     """
-    build_id: pulumi.Output[str]
+    build_id: pulumi.Output[str] = pulumi.output_property("buildId")
     """
     ID of the Gamelift Build to be deployed on the fleet.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     Human-readable description of the fleet.
     """
-    ec2_inbound_permissions: pulumi.Output[list]
+    ec2_inbound_permissions: pulumi.Output[Optional[List['outputs.FleetEc2InboundPermission']]] = pulumi.output_property("ec2InboundPermissions")
     """
     Range of IP addresses and port settings that permit inbound traffic to access server processes running on the fleet. See below.
-
-      * `from_port` (`float`) - Starting value for a range of allowed port numbers.
-      * `ipRange` (`str`) - Range of allowed IP addresses expressed in CIDR notation. e.g. `000.000.000.000/[subnet mask]` or `0.0.0.0/[subnet mask]`.
-      * `protocol` (`str`) - Network communication protocol used by the fleet. e.g. `TCP` or `UDP`
-      * `to_port` (`float`) - Ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than `from_port`.
     """
-    ec2_instance_type: pulumi.Output[str]
+    ec2_instance_type: pulumi.Output[str] = pulumi.output_property("ec2InstanceType")
     """
     Name of an EC2 instance type. e.g. `t2.micro`
     """
-    fleet_type: pulumi.Output[str]
+    fleet_type: pulumi.Output[Optional[str]] = pulumi.output_property("fleetType")
     """
     Type of fleet. This value must be `ON_DEMAND` or `SPOT`. Defaults to `ON_DEMAND`.
     """
-    instance_role_arn: pulumi.Output[str]
+    instance_role_arn: pulumi.Output[Optional[str]] = pulumi.output_property("instanceRoleArn")
     """
     ARN of an IAM role that instances in the fleet can assume.
     """
-    log_paths: pulumi.Output[list]
-    metric_groups: pulumi.Output[list]
+    log_paths: pulumi.Output[List[str]] = pulumi.output_property("logPaths")
+    metric_groups: pulumi.Output[List[str]] = pulumi.output_property("metricGroups")
     """
     List of names of metric groups to add this fleet to. A metric group tracks metrics across all fleets in the group. Defaults to `default`.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the fleet.
     """
-    new_game_session_protection_policy: pulumi.Output[str]
+    new_game_session_protection_policy: pulumi.Output[Optional[str]] = pulumi.output_property("newGameSessionProtectionPolicy")
     """
     Game session protection policy to apply to all instances in this fleet. e.g. `FullProtection`. Defaults to `NoProtection`.
     """
-    operating_system: pulumi.Output[str]
+    operating_system: pulumi.Output[str] = pulumi.output_property("operatingSystem")
     """
     Operating system of the fleet's computing resources.
     """
-    resource_creation_limit_policy: pulumi.Output[dict]
+    resource_creation_limit_policy: pulumi.Output[Optional['outputs.FleetResourceCreationLimitPolicy']] = pulumi.output_property("resourceCreationLimitPolicy")
     """
     Policy that limits the number of game sessions an individual player can create over a span of time for this fleet. See below.
-
-      * `newGameSessionsPerCreator` (`float`) - Maximum number of game sessions that an individual can create during the policy period.
-      * `policyPeriodInMinutes` (`float`) - Time span used in evaluating the resource creation limit policy.
     """
-    runtime_configuration: pulumi.Output[dict]
+    runtime_configuration: pulumi.Output[Optional['outputs.FleetRuntimeConfiguration']] = pulumi.output_property("runtimeConfiguration")
     """
     Instructions for launching server processes on each instance in the fleet. See below.
-
-      * `gameSessionActivationTimeoutSeconds` (`float`) - Maximum amount of time (in seconds) that a game session can remain in status `ACTIVATING`.
-      * `maxConcurrentGameSessionActivations` (`float`) - Maximum number of game sessions with status `ACTIVATING` to allow on an instance simultaneously.
-      * `serverProcesses` (`list`) - Collection of server process configurations that describe which server processes to run on each instance in a fleet. See below.
-        * `concurrentExecutions` (`float`) - Number of server processes using this configuration to run concurrently on an instance.
-        * `launchPath` (`str`) - Location of the server executable in a game build. All game builds are installed on instances at the root : for Windows instances `C:\game`, and for Linux instances `/local/game`.
-        * `parameters` (`str`) - Optional list of parameters to pass to the server executable on launch.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Key-value map of resource tags
     """
-    def __init__(__self__, resource_name, opts=None, build_id=None, description=None, ec2_inbound_permissions=None, ec2_instance_type=None, fleet_type=None, instance_role_arn=None, metric_groups=None, name=None, new_game_session_protection_policy=None, resource_creation_limit_policy=None, runtime_configuration=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, build_id=None, description=None, ec2_inbound_permissions=None, ec2_instance_type=None, fleet_type=None, instance_role_arn=None, metric_groups=None, name=None, new_game_session_protection_policy=None, resource_creation_limit_policy=None, runtime_configuration=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Gamelift Fleet resource.
 
@@ -108,37 +96,16 @@ class Fleet(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] build_id: ID of the Gamelift Build to be deployed on the fleet.
         :param pulumi.Input[str] description: Human-readable description of the fleet.
-        :param pulumi.Input[list] ec2_inbound_permissions: Range of IP addresses and port settings that permit inbound traffic to access server processes running on the fleet. See below.
+        :param pulumi.Input[List[pulumi.Input['FleetEc2InboundPermissionArgs']]] ec2_inbound_permissions: Range of IP addresses and port settings that permit inbound traffic to access server processes running on the fleet. See below.
         :param pulumi.Input[str] ec2_instance_type: Name of an EC2 instance type. e.g. `t2.micro`
         :param pulumi.Input[str] fleet_type: Type of fleet. This value must be `ON_DEMAND` or `SPOT`. Defaults to `ON_DEMAND`.
         :param pulumi.Input[str] instance_role_arn: ARN of an IAM role that instances in the fleet can assume.
-        :param pulumi.Input[list] metric_groups: List of names of metric groups to add this fleet to. A metric group tracks metrics across all fleets in the group. Defaults to `default`.
+        :param pulumi.Input[List[pulumi.Input[str]]] metric_groups: List of names of metric groups to add this fleet to. A metric group tracks metrics across all fleets in the group. Defaults to `default`.
         :param pulumi.Input[str] name: The name of the fleet.
         :param pulumi.Input[str] new_game_session_protection_policy: Game session protection policy to apply to all instances in this fleet. e.g. `FullProtection`. Defaults to `NoProtection`.
-        :param pulumi.Input[dict] resource_creation_limit_policy: Policy that limits the number of game sessions an individual player can create over a span of time for this fleet. See below.
-        :param pulumi.Input[dict] runtime_configuration: Instructions for launching server processes on each instance in the fleet. See below.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-
-        The **ec2_inbound_permissions** object supports the following:
-
-          * `from_port` (`pulumi.Input[float]`) - Starting value for a range of allowed port numbers.
-          * `ipRange` (`pulumi.Input[str]`) - Range of allowed IP addresses expressed in CIDR notation. e.g. `000.000.000.000/[subnet mask]` or `0.0.0.0/[subnet mask]`.
-          * `protocol` (`pulumi.Input[str]`) - Network communication protocol used by the fleet. e.g. `TCP` or `UDP`
-          * `to_port` (`pulumi.Input[float]`) - Ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than `from_port`.
-
-        The **resource_creation_limit_policy** object supports the following:
-
-          * `newGameSessionsPerCreator` (`pulumi.Input[float]`) - Maximum number of game sessions that an individual can create during the policy period.
-          * `policyPeriodInMinutes` (`pulumi.Input[float]`) - Time span used in evaluating the resource creation limit policy.
-
-        The **runtime_configuration** object supports the following:
-
-          * `gameSessionActivationTimeoutSeconds` (`pulumi.Input[float]`) - Maximum amount of time (in seconds) that a game session can remain in status `ACTIVATING`.
-          * `maxConcurrentGameSessionActivations` (`pulumi.Input[float]`) - Maximum number of game sessions with status `ACTIVATING` to allow on an instance simultaneously.
-          * `serverProcesses` (`pulumi.Input[list]`) - Collection of server process configurations that describe which server processes to run on each instance in a fleet. See below.
-            * `concurrentExecutions` (`pulumi.Input[float]`) - Number of server processes using this configuration to run concurrently on an instance.
-            * `launchPath` (`pulumi.Input[str]`) - Location of the server executable in a game build. All game builds are installed on instances at the root : for Windows instances `C:\game`, and for Linux instances `/local/game`.
-            * `parameters` (`pulumi.Input[str]`) - Optional list of parameters to pass to the server executable on launch.
+        :param pulumi.Input['FleetResourceCreationLimitPolicyArgs'] resource_creation_limit_policy: Policy that limits the number of game sessions an individual player can create over a span of time for this fleet. See below.
+        :param pulumi.Input['FleetRuntimeConfigurationArgs'] runtime_configuration: Instructions for launching server processes on each instance in the fleet. See below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -194,38 +161,17 @@ class Fleet(pulumi.CustomResource):
         :param pulumi.Input[str] arn: Fleet ARN.
         :param pulumi.Input[str] build_id: ID of the Gamelift Build to be deployed on the fleet.
         :param pulumi.Input[str] description: Human-readable description of the fleet.
-        :param pulumi.Input[list] ec2_inbound_permissions: Range of IP addresses and port settings that permit inbound traffic to access server processes running on the fleet. See below.
+        :param pulumi.Input[List[pulumi.Input['FleetEc2InboundPermissionArgs']]] ec2_inbound_permissions: Range of IP addresses and port settings that permit inbound traffic to access server processes running on the fleet. See below.
         :param pulumi.Input[str] ec2_instance_type: Name of an EC2 instance type. e.g. `t2.micro`
         :param pulumi.Input[str] fleet_type: Type of fleet. This value must be `ON_DEMAND` or `SPOT`. Defaults to `ON_DEMAND`.
         :param pulumi.Input[str] instance_role_arn: ARN of an IAM role that instances in the fleet can assume.
-        :param pulumi.Input[list] metric_groups: List of names of metric groups to add this fleet to. A metric group tracks metrics across all fleets in the group. Defaults to `default`.
+        :param pulumi.Input[List[pulumi.Input[str]]] metric_groups: List of names of metric groups to add this fleet to. A metric group tracks metrics across all fleets in the group. Defaults to `default`.
         :param pulumi.Input[str] name: The name of the fleet.
         :param pulumi.Input[str] new_game_session_protection_policy: Game session protection policy to apply to all instances in this fleet. e.g. `FullProtection`. Defaults to `NoProtection`.
         :param pulumi.Input[str] operating_system: Operating system of the fleet's computing resources.
-        :param pulumi.Input[dict] resource_creation_limit_policy: Policy that limits the number of game sessions an individual player can create over a span of time for this fleet. See below.
-        :param pulumi.Input[dict] runtime_configuration: Instructions for launching server processes on each instance in the fleet. See below.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-
-        The **ec2_inbound_permissions** object supports the following:
-
-          * `from_port` (`pulumi.Input[float]`) - Starting value for a range of allowed port numbers.
-          * `ipRange` (`pulumi.Input[str]`) - Range of allowed IP addresses expressed in CIDR notation. e.g. `000.000.000.000/[subnet mask]` or `0.0.0.0/[subnet mask]`.
-          * `protocol` (`pulumi.Input[str]`) - Network communication protocol used by the fleet. e.g. `TCP` or `UDP`
-          * `to_port` (`pulumi.Input[float]`) - Ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than `from_port`.
-
-        The **resource_creation_limit_policy** object supports the following:
-
-          * `newGameSessionsPerCreator` (`pulumi.Input[float]`) - Maximum number of game sessions that an individual can create during the policy period.
-          * `policyPeriodInMinutes` (`pulumi.Input[float]`) - Time span used in evaluating the resource creation limit policy.
-
-        The **runtime_configuration** object supports the following:
-
-          * `gameSessionActivationTimeoutSeconds` (`pulumi.Input[float]`) - Maximum amount of time (in seconds) that a game session can remain in status `ACTIVATING`.
-          * `maxConcurrentGameSessionActivations` (`pulumi.Input[float]`) - Maximum number of game sessions with status `ACTIVATING` to allow on an instance simultaneously.
-          * `serverProcesses` (`pulumi.Input[list]`) - Collection of server process configurations that describe which server processes to run on each instance in a fleet. See below.
-            * `concurrentExecutions` (`pulumi.Input[float]`) - Number of server processes using this configuration to run concurrently on an instance.
-            * `launchPath` (`pulumi.Input[str]`) - Location of the server executable in a game build. All game builds are installed on instances at the root : for Windows instances `C:\game`, and for Linux instances `/local/game`.
-            * `parameters` (`pulumi.Input[str]`) - Optional list of parameters to pass to the server executable on launch.
+        :param pulumi.Input['FleetResourceCreationLimitPolicyArgs'] resource_creation_limit_policy: Policy that limits the number of game sessions an individual player can create over a span of time for this fleet. See below.
+        :param pulumi.Input['FleetRuntimeConfigurationArgs'] runtime_configuration: Instructions for launching server processes on each instance in the fleet. See below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -253,3 +199,4 @@ class Fleet(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

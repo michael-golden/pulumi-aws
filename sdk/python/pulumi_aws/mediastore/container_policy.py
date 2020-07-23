@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class ContainerPolicy(pulumi.CustomResource):
-    container_name: pulumi.Output[str]
+    container_name: pulumi.Output[str] = pulumi.output_property("containerName")
     """
     The name of the container.
     """
-    policy: pulumi.Output[str]
+    policy: pulumi.Output[str] = pulumi.output_property("policy")
     """
     The contents of the policy.
     """
-    def __init__(__self__, resource_name, opts=None, container_name=None, policy=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, container_name=None, policy=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a MediaStore Container Policy.
 
@@ -109,3 +110,4 @@ class ContainerPolicy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

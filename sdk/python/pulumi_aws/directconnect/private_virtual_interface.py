@@ -5,74 +5,75 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class PrivateVirtualInterface(pulumi.CustomResource):
-    address_family: pulumi.Output[str]
+    address_family: pulumi.Output[str] = pulumi.output_property("addressFamily")
     """
     The address family for the BGP peer. `ipv4 ` or `ipv6`.
     """
-    amazon_address: pulumi.Output[str]
+    amazon_address: pulumi.Output[str] = pulumi.output_property("amazonAddress")
     """
     The IPv4 CIDR address to use to send traffic to Amazon. Required for IPv4 BGP peers.
     """
-    amazon_side_asn: pulumi.Output[str]
-    arn: pulumi.Output[str]
+    amazon_side_asn: pulumi.Output[str] = pulumi.output_property("amazonSideAsn")
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the virtual interface.
     """
-    aws_device: pulumi.Output[str]
+    aws_device: pulumi.Output[str] = pulumi.output_property("awsDevice")
     """
     The Direct Connect endpoint on which the virtual interface terminates.
     """
-    bgp_asn: pulumi.Output[float]
+    bgp_asn: pulumi.Output[float] = pulumi.output_property("bgpAsn")
     """
     The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
     """
-    bgp_auth_key: pulumi.Output[str]
+    bgp_auth_key: pulumi.Output[str] = pulumi.output_property("bgpAuthKey")
     """
     The authentication key for BGP configuration.
     """
-    connection_id: pulumi.Output[str]
+    connection_id: pulumi.Output[str] = pulumi.output_property("connectionId")
     """
     The ID of the Direct Connect connection (or LAG) on which to create the virtual interface.
     """
-    customer_address: pulumi.Output[str]
+    customer_address: pulumi.Output[str] = pulumi.output_property("customerAddress")
     """
     The IPv4 CIDR destination address to which Amazon should send traffic. Required for IPv4 BGP peers.
     """
-    dx_gateway_id: pulumi.Output[str]
+    dx_gateway_id: pulumi.Output[Optional[str]] = pulumi.output_property("dxGatewayId")
     """
     The ID of the Direct Connect gateway to which to connect the virtual interface.
     """
-    jumbo_frame_capable: pulumi.Output[bool]
+    jumbo_frame_capable: pulumi.Output[bool] = pulumi.output_property("jumboFrameCapable")
     """
     Indicates whether jumbo frames (9001 MTU) are supported.
     """
-    mtu: pulumi.Output[float]
+    mtu: pulumi.Output[Optional[float]] = pulumi.output_property("mtu")
     """
     The maximum transmission unit (MTU) is the size, in bytes, of the largest permissible packet that can be passed over the connection.
     The MTU of a virtual private interface can be either `1500` or `9001` (jumbo frames). Default is `1500`.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name for the virtual interface.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    vlan: pulumi.Output[float]
+    vlan: pulumi.Output[float] = pulumi.output_property("vlan")
     """
     The VLAN ID.
     """
-    vpn_gateway_id: pulumi.Output[str]
+    vpn_gateway_id: pulumi.Output[Optional[str]] = pulumi.output_property("vpnGatewayId")
     """
     The ID of the virtual private gateway to which to connect the virtual interface.
     """
-    def __init__(__self__, resource_name, opts=None, address_family=None, amazon_address=None, bgp_asn=None, bgp_auth_key=None, connection_id=None, customer_address=None, dx_gateway_id=None, mtu=None, name=None, tags=None, vlan=None, vpn_gateway_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, address_family=None, amazon_address=None, bgp_asn=None, bgp_auth_key=None, connection_id=None, customer_address=None, dx_gateway_id=None, mtu=None, name=None, tags=None, vlan=None, vpn_gateway_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Direct Connect private virtual interface resource.
 
@@ -101,7 +102,7 @@ class PrivateVirtualInterface(pulumi.CustomResource):
         :param pulumi.Input[float] mtu: The maximum transmission unit (MTU) is the size, in bytes, of the largest permissible packet that can be passed over the connection.
                The MTU of a virtual private interface can be either `1500` or `9001` (jumbo frames). Default is `1500`.
         :param pulumi.Input[str] name: The name for the virtual interface.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[float] vlan: The VLAN ID.
         :param pulumi.Input[str] vpn_gateway_id: The ID of the virtual private gateway to which to connect the virtual interface.
         """
@@ -174,7 +175,7 @@ class PrivateVirtualInterface(pulumi.CustomResource):
         :param pulumi.Input[float] mtu: The maximum transmission unit (MTU) is the size, in bytes, of the largest permissible packet that can be passed over the connection.
                The MTU of a virtual private interface can be either `1500` or `9001` (jumbo frames). Default is `1500`.
         :param pulumi.Input[str] name: The name for the virtual interface.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[float] vlan: The VLAN ID.
         :param pulumi.Input[str] vpn_gateway_id: The ID of the virtual private gateway to which to connect the virtual interface.
         """
@@ -205,3 +206,4 @@ class PrivateVirtualInterface(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

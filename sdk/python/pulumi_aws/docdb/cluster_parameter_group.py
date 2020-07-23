@@ -5,44 +5,43 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class ClusterParameterGroup(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the documentDB cluster parameter group.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     The description of the documentDB cluster parameter group. Defaults to "Managed by Pulumi".
     """
-    family: pulumi.Output[str]
+    family: pulumi.Output[str] = pulumi.output_property("family")
     """
     The family of the documentDB cluster parameter group.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the documentDB parameter.
     """
-    name_prefix: pulumi.Output[str]
+    name_prefix: pulumi.Output[str] = pulumi.output_property("namePrefix")
     """
     Creates a unique name beginning with the specified prefix. Conflicts with `name`.
     """
-    parameters: pulumi.Output[list]
+    parameters: pulumi.Output[Optional[List['outputs.ClusterParameterGroupParameter']]] = pulumi.output_property("parameters")
     """
     A list of documentDB parameters to apply.
-
-      * `applyMethod` (`str`) - Valid values are `immediate` and `pending-reboot`. Defaults to `pending-reboot`.
-      * `name` (`str`) - The name of the documentDB parameter.
-      * `value` (`str`) - The value of the documentDB parameter.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, family=None, name=None, name_prefix=None, parameters=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, family=None, name=None, name_prefix=None, parameters=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a DocumentDB Cluster Parameter Group
 
@@ -67,14 +66,8 @@ class ClusterParameterGroup(pulumi.CustomResource):
         :param pulumi.Input[str] family: The family of the documentDB cluster parameter group.
         :param pulumi.Input[str] name: The name of the documentDB parameter.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-        :param pulumi.Input[list] parameters: A list of documentDB parameters to apply.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-
-        The **parameters** object supports the following:
-
-          * `applyMethod` (`pulumi.Input[str]`) - Valid values are `immediate` and `pending-reboot`. Defaults to `pending-reboot`.
-          * `name` (`pulumi.Input[str]`) - The name of the documentDB parameter.
-          * `value` (`pulumi.Input[str]`) - The value of the documentDB parameter.
+        :param pulumi.Input[List[pulumi.Input['ClusterParameterGroupParameterArgs']]] parameters: A list of documentDB parameters to apply.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -122,14 +115,8 @@ class ClusterParameterGroup(pulumi.CustomResource):
         :param pulumi.Input[str] family: The family of the documentDB cluster parameter group.
         :param pulumi.Input[str] name: The name of the documentDB parameter.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-        :param pulumi.Input[list] parameters: A list of documentDB parameters to apply.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-
-        The **parameters** object supports the following:
-
-          * `applyMethod` (`pulumi.Input[str]`) - Valid values are `immediate` and `pending-reboot`. Defaults to `pending-reboot`.
-          * `name` (`pulumi.Input[str]`) - The name of the documentDB parameter.
-          * `value` (`pulumi.Input[str]`) - The value of the documentDB parameter.
+        :param pulumi.Input[List[pulumi.Input['ClusterParameterGroupParameterArgs']]] parameters: A list of documentDB parameters to apply.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -149,3 +136,4 @@ class ClusterParameterGroup(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

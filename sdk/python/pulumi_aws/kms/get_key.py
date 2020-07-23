@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetKeyResult:
     """
     A collection of values returned by getKey.
     """
-    def __init__(__self__, arn=None, aws_account_id=None, creation_date=None, customer_master_key_spec=None, deletion_date=None, description=None, enabled=None, expiration_model=None, grant_tokens=None, id=None, key_id=None, key_manager=None, key_state=None, key_usage=None, origin=None, valid_to=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, aws_account_id=None, creation_date=None, customer_master_key_spec=None, deletion_date=None, description=None, enabled=None, expiration_model=None, grant_tokens=None, id=None, key_id=None, key_manager=None, key_state=None, key_usage=None, origin=None, valid_to=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn
@@ -108,7 +109,7 @@ def get_key(grant_tokens=None, key_id=None, opts=None):
     ```
 
 
-    :param list grant_tokens: List of grant tokens
+    :param List[str] grant_tokens: List of grant tokens
     :param str key_id: Key identifier which can be one of the following format:
            * Key ID. E.g: `1234abcd-12ab-34cd-56ef-1234567890ab`
            * Key ARN. E.g.: `arn:aws:kms:us-east-1:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab`

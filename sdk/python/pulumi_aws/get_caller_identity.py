@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetCallerIdentityResult:
     """
     A collection of values returned by getCallerIdentity.
     """
-    def __init__(__self__, account_id=None, arn=None, id=None, user_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, account_id=None, arn=None, id=None, user_id=None) -> None:
         if account_id and not isinstance(account_id, str):
             raise TypeError("Expected argument 'account_id' to be a str")
         __self__.account_id = account_id

@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class RdsDbInstance(pulumi.CustomResource):
-    db_password: pulumi.Output[str]
+    db_password: pulumi.Output[str] = pulumi.output_property("dbPassword")
     """
     A db password
     """
-    db_user: pulumi.Output[str]
+    db_user: pulumi.Output[str] = pulumi.output_property("dbUser")
     """
     A db username
     """
-    rds_db_instance_arn: pulumi.Output[str]
+    rds_db_instance_arn: pulumi.Output[str] = pulumi.output_property("rdsDbInstanceArn")
     """
     The db instance to register for this stack. Changing this will force a new resource.
     """
-    stack_id: pulumi.Output[str]
+    stack_id: pulumi.Output[str] = pulumi.output_property("stackId")
     """
     The stack to register a db instance for. Changing this will force a new resource.
     """
-    def __init__(__self__, resource_name, opts=None, db_password=None, db_user=None, rds_db_instance_arn=None, stack_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, db_password=None, db_user=None, rds_db_instance_arn=None, stack_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an OpsWorks RDS DB Instance resource.
 
@@ -116,3 +117,4 @@ class RdsDbInstance(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

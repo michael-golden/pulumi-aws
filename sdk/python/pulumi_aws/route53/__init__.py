@@ -16,3 +16,5 @@ from .resolver_rule import *
 from .resolver_rule_association import *
 from .zone import *
 from .zone_association import *
+from ._inputs import *
+from . import outputs

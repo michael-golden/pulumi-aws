@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetClusterSnapshotResult:
     """
     A collection of values returned by getClusterSnapshot.
     """
-    def __init__(__self__, allocated_storage=None, availability_zones=None, db_cluster_identifier=None, db_cluster_snapshot_arn=None, db_cluster_snapshot_identifier=None, engine=None, engine_version=None, id=None, include_public=None, include_shared=None, kms_key_id=None, license_model=None, most_recent=None, port=None, snapshot_create_time=None, snapshot_type=None, source_db_cluster_snapshot_arn=None, status=None, storage_encrypted=None, tags=None, vpc_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, allocated_storage=None, availability_zones=None, db_cluster_identifier=None, db_cluster_snapshot_arn=None, db_cluster_snapshot_identifier=None, engine=None, engine_version=None, id=None, include_public=None, include_shared=None, kms_key_id=None, license_model=None, most_recent=None, port=None, snapshot_create_time=None, snapshot_type=None, source_db_cluster_snapshot_arn=None, status=None, storage_encrypted=None, tags=None, vpc_id=None) -> None:
         if allocated_storage and not isinstance(allocated_storage, float):
             raise TypeError("Expected argument 'allocated_storage' to be a float")
         __self__.allocated_storage = allocated_storage
@@ -195,7 +196,7 @@ def get_cluster_snapshot(db_cluster_identifier=None, db_cluster_snapshot_identif
     :param str snapshot_type: The type of snapshots to be returned. If you don't specify a SnapshotType
            value, then both automated and manual DB cluster snapshots are returned. Shared and public DB Cluster Snapshots are not
            included in the returned results by default. Possible values are, `automated`, `manual`, `shared` and `public`.
-    :param dict tags: A map of tags for the resource.
+    :param Dict[str, str] tags: A map of tags for the resource.
     """
     __args__ = dict()
     __args__['dbClusterIdentifier'] = db_cluster_identifier

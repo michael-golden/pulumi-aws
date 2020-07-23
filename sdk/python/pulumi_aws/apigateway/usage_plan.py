@@ -5,54 +5,47 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class UsagePlan(pulumi.CustomResource):
-    api_stages: pulumi.Output[list]
+    api_stages: pulumi.Output[Optional[List['outputs.UsagePlanApiStage']]] = pulumi.output_property("apiStages")
     """
     The associated API stages of the usage plan.
-
-      * `api_id` (`str`) - API Id of the associated API stage in a usage plan.
-      * `stage` (`str`) - API stage name of the associated API stage in a usage plan.
     """
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     Amazon Resource Name (ARN)
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     The description of a usage plan.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the usage plan.
     """
-    product_code: pulumi.Output[str]
+    product_code: pulumi.Output[Optional[str]] = pulumi.output_property("productCode")
     """
     The AWS Markeplace product identifier to associate with the usage plan as a SaaS product on AWS Marketplace.
     """
-    quota_settings: pulumi.Output[dict]
+    quota_settings: pulumi.Output[Optional['outputs.UsagePlanQuotaSettings']] = pulumi.output_property("quotaSettings")
     """
     The quota settings of the usage plan.
-
-      * `limit` (`float`) - The maximum number of requests that can be made in a given time period.
-      * `offset` (`float`) - The number of requests subtracted from the given limit in the initial time period.
-      * `period` (`str`) - The time period in which the limit applies. Valid values are "DAY", "WEEK" or "MONTH".
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Key-value map of resource tags
     """
-    throttle_settings: pulumi.Output[dict]
+    throttle_settings: pulumi.Output[Optional['outputs.UsagePlanThrottleSettings']] = pulumi.output_property("throttleSettings")
     """
     The throttling limits of the usage plan.
-
-      * `burstLimit` (`float`) - The API request burst limit, the maximum rate limit over a time ranging from one to a few seconds, depending upon whether the underlying token bucket is at its full capacity.
-      * `rate_limit` (`float`) - The API request steady-state rate limit.
     """
-    def __init__(__self__, resource_name, opts=None, api_stages=None, description=None, name=None, product_code=None, quota_settings=None, tags=None, throttle_settings=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_stages=None, description=None, name=None, product_code=None, quota_settings=None, tags=None, throttle_settings=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an API Gateway Usage Plan.
 
@@ -95,29 +88,13 @@ class UsagePlan(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] api_stages: The associated API stages of the usage plan.
+        :param pulumi.Input[List[pulumi.Input['UsagePlanApiStageArgs']]] api_stages: The associated API stages of the usage plan.
         :param pulumi.Input[str] description: The description of a usage plan.
         :param pulumi.Input[str] name: The name of the usage plan.
         :param pulumi.Input[str] product_code: The AWS Markeplace product identifier to associate with the usage plan as a SaaS product on AWS Marketplace.
-        :param pulumi.Input[dict] quota_settings: The quota settings of the usage plan.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-        :param pulumi.Input[dict] throttle_settings: The throttling limits of the usage plan.
-
-        The **api_stages** object supports the following:
-
-          * `api_id` (`pulumi.Input[str]`) - API Id of the associated API stage in a usage plan.
-          * `stage` (`pulumi.Input[str]`) - API stage name of the associated API stage in a usage plan.
-
-        The **quota_settings** object supports the following:
-
-          * `limit` (`pulumi.Input[float]`) - The maximum number of requests that can be made in a given time period.
-          * `offset` (`pulumi.Input[float]`) - The number of requests subtracted from the given limit in the initial time period.
-          * `period` (`pulumi.Input[str]`) - The time period in which the limit applies. Valid values are "DAY", "WEEK" or "MONTH".
-
-        The **throttle_settings** object supports the following:
-
-          * `burstLimit` (`pulumi.Input[float]`) - The API request burst limit, the maximum rate limit over a time ranging from one to a few seconds, depending upon whether the underlying token bucket is at its full capacity.
-          * `rate_limit` (`pulumi.Input[float]`) - The API request steady-state rate limit.
+        :param pulumi.Input['UsagePlanQuotaSettingsArgs'] quota_settings: The quota settings of the usage plan.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
+        :param pulumi.Input['UsagePlanThrottleSettingsArgs'] throttle_settings: The throttling limits of the usage plan.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -159,30 +136,14 @@ class UsagePlan(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] api_stages: The associated API stages of the usage plan.
+        :param pulumi.Input[List[pulumi.Input['UsagePlanApiStageArgs']]] api_stages: The associated API stages of the usage plan.
         :param pulumi.Input[str] arn: Amazon Resource Name (ARN)
         :param pulumi.Input[str] description: The description of a usage plan.
         :param pulumi.Input[str] name: The name of the usage plan.
         :param pulumi.Input[str] product_code: The AWS Markeplace product identifier to associate with the usage plan as a SaaS product on AWS Marketplace.
-        :param pulumi.Input[dict] quota_settings: The quota settings of the usage plan.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-        :param pulumi.Input[dict] throttle_settings: The throttling limits of the usage plan.
-
-        The **api_stages** object supports the following:
-
-          * `api_id` (`pulumi.Input[str]`) - API Id of the associated API stage in a usage plan.
-          * `stage` (`pulumi.Input[str]`) - API stage name of the associated API stage in a usage plan.
-
-        The **quota_settings** object supports the following:
-
-          * `limit` (`pulumi.Input[float]`) - The maximum number of requests that can be made in a given time period.
-          * `offset` (`pulumi.Input[float]`) - The number of requests subtracted from the given limit in the initial time period.
-          * `period` (`pulumi.Input[str]`) - The time period in which the limit applies. Valid values are "DAY", "WEEK" or "MONTH".
-
-        The **throttle_settings** object supports the following:
-
-          * `burstLimit` (`pulumi.Input[float]`) - The API request burst limit, the maximum rate limit over a time ranging from one to a few seconds, depending upon whether the underlying token bucket is at its full capacity.
-          * `rate_limit` (`pulumi.Input[float]`) - The API request steady-state rate limit.
+        :param pulumi.Input['UsagePlanQuotaSettingsArgs'] quota_settings: The quota settings of the usage plan.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
+        :param pulumi.Input['UsagePlanThrottleSettingsArgs'] throttle_settings: The throttling limits of the usage plan.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -203,3 +164,4 @@ class UsagePlan(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

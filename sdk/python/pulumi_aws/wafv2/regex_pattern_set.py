@@ -5,39 +5,40 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class RegexPatternSet(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The Amazon Resource Name (ARN) that identifies the cluster.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     A friendly description of the regular expression pattern set.
     """
-    lock_token: pulumi.Output[str]
-    name: pulumi.Output[str]
+    lock_token: pulumi.Output[str] = pulumi.output_property("lockToken")
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     A friendly name of the regular expression pattern set.
     """
-    regular_expressions: pulumi.Output[list]
+    regular_expressions: pulumi.Output[Optional[List['outputs.RegexPatternSetRegularExpression']]] = pulumi.output_property("regularExpressions")
     """
     One or more blocks of regular expression patterns that you want AWS WAF to search for, such as `B[a@]dB[o0]t`. See Regular Expression below for details.
-
-      * `regexString` (`str`) - The string representing the regular expression, see the AWS WAF [documentation](https://docs.aws.amazon.com/waf/latest/developerguide/waf-regex-pattern-set-creating.html) for more information.
     """
-    scope: pulumi.Output[str]
+    scope: pulumi.Output[str] = pulumi.output_property("scope")
     """
     Specifies whether this is for an AWS CloudFront distribution or for a regional application. Valid values are `CLOUDFRONT` or `REGIONAL`. To work with CloudFront, you must also specify the region `us-east-1` (N. Virginia) on the AWS provider.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     An array of key:value pairs to associate with the resource.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, name=None, regular_expressions=None, scope=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, name=None, regular_expressions=None, scope=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AWS WAFv2 Regex Pattern Set Resource
 
@@ -68,13 +69,9 @@ class RegexPatternSet(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A friendly description of the regular expression pattern set.
         :param pulumi.Input[str] name: A friendly name of the regular expression pattern set.
-        :param pulumi.Input[list] regular_expressions: One or more blocks of regular expression patterns that you want AWS WAF to search for, such as `B[a@]dB[o0]t`. See Regular Expression below for details.
+        :param pulumi.Input[List[pulumi.Input['RegexPatternSetRegularExpressionArgs']]] regular_expressions: One or more blocks of regular expression patterns that you want AWS WAF to search for, such as `B[a@]dB[o0]t`. See Regular Expression below for details.
         :param pulumi.Input[str] scope: Specifies whether this is for an AWS CloudFront distribution or for a regional application. Valid values are `CLOUDFRONT` or `REGIONAL`. To work with CloudFront, you must also specify the region `us-east-1` (N. Virginia) on the AWS provider.
-        :param pulumi.Input[dict] tags: An array of key:value pairs to associate with the resource.
-
-        The **regular_expressions** object supports the following:
-
-          * `regexString` (`pulumi.Input[str]`) - The string representing the regular expression, see the AWS WAF [documentation](https://docs.aws.amazon.com/waf/latest/developerguide/waf-regex-pattern-set-creating.html) for more information.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: An array of key:value pairs to associate with the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -120,13 +117,9 @@ class RegexPatternSet(pulumi.CustomResource):
         :param pulumi.Input[str] arn: The Amazon Resource Name (ARN) that identifies the cluster.
         :param pulumi.Input[str] description: A friendly description of the regular expression pattern set.
         :param pulumi.Input[str] name: A friendly name of the regular expression pattern set.
-        :param pulumi.Input[list] regular_expressions: One or more blocks of regular expression patterns that you want AWS WAF to search for, such as `B[a@]dB[o0]t`. See Regular Expression below for details.
+        :param pulumi.Input[List[pulumi.Input['RegexPatternSetRegularExpressionArgs']]] regular_expressions: One or more blocks of regular expression patterns that you want AWS WAF to search for, such as `B[a@]dB[o0]t`. See Regular Expression below for details.
         :param pulumi.Input[str] scope: Specifies whether this is for an AWS CloudFront distribution or for a regional application. Valid values are `CLOUDFRONT` or `REGIONAL`. To work with CloudFront, you must also specify the region `us-east-1` (N. Virginia) on the AWS provider.
-        :param pulumi.Input[dict] tags: An array of key:value pairs to associate with the resource.
-
-        The **regular_expressions** object supports the following:
-
-          * `regexString` (`pulumi.Input[str]`) - The string representing the regular expression, see the AWS WAF [documentation](https://docs.aws.amazon.com/waf/latest/developerguide/waf-regex-pattern-set-creating.html) for more information.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: An array of key:value pairs to associate with the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -146,3 +139,4 @@ class RegexPatternSet(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

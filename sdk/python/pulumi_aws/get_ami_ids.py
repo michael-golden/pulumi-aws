@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetAmiIdsResult:
     """
     A collection of values returned by getAmiIds.
     """
-    def __init__(__self__, executable_users=None, filters=None, id=None, ids=None, name_regex=None, owners=None, sort_ascending=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, executable_users=None, filters=None, id=None, ids=None, name_regex=None, owners=None, sort_ascending=None) -> None:
         if executable_users and not isinstance(executable_users, list):
             raise TypeError("Expected argument 'executable_users' to be a list")
         __self__.executable_users = executable_users
@@ -73,9 +76,9 @@ def get_ami_ids(executable_users=None, filters=None, name_regex=None, owners=Non
     ```
 
 
-    :param list executable_users: Limit search to users with *explicit* launch
+    :param List[str] executable_users: Limit search to users with *explicit* launch
            permission on  the image. Valid items are the numeric account ID or `self`.
-    :param list filters: One or more name/value pairs to filter off of. There
+    :param List['GetAmiIdsFilterArgs'] filters: One or more name/value pairs to filter off of. There
            are several valid keys, for a full reference, check out
            [describe-images in the AWS CLI reference][1].
     :param str name_regex: A regex string to apply to the AMI list returned
@@ -83,13 +86,8 @@ def get_ami_ids(executable_users=None, filters=None, name_regex=None, owners=Non
            This filtering is done locally on what AWS returns, and could have a performance
            impact if the result is large. It is recommended to combine this with other
            options to narrow down the list AWS returns.
-    :param list owners: List of AMI owners to limit search. At least 1 value must be specified. Valid values: an AWS account ID, `self` (the current account), or an AWS owner alias (e.g. `amazon`, `aws-marketplace`, `microsoft`).
+    :param List[str] owners: List of AMI owners to limit search. At least 1 value must be specified. Valid values: an AWS account ID, `self` (the current account), or an AWS owner alias (e.g. `amazon`, `aws-marketplace`, `microsoft`).
     :param bool sort_ascending: Used to sort AMIs by creation time.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`)
-      * `values` (`list`)
     """
     __args__ = dict()
     __args__['executableUsers'] = executable_users

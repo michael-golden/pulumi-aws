@@ -5,32 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class UsagePlanKey(pulumi.CustomResource):
-    key_id: pulumi.Output[str]
+    key_id: pulumi.Output[str] = pulumi.output_property("keyId")
     """
     The identifier of the API key resource.
     """
-    key_type: pulumi.Output[str]
+    key_type: pulumi.Output[str] = pulumi.output_property("keyType")
     """
     The type of the API key resource. Currently, the valid key type is API_KEY.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of a usage plan key.
     """
-    usage_plan_id: pulumi.Output[str]
+    usage_plan_id: pulumi.Output[str] = pulumi.output_property("usagePlanId")
     """
     The Id of the usage plan resource representing to associate the key to.
     """
-    value: pulumi.Output[str]
+    value: pulumi.Output[str] = pulumi.output_property("value")
     """
     The value of a usage plan key.
     """
-    def __init__(__self__, resource_name, opts=None, key_id=None, key_type=None, usage_plan_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, key_id=None, key_type=None, usage_plan_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an API Gateway Usage Plan Key.
 
@@ -123,3 +124,4 @@ class UsagePlanKey(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

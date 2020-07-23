@@ -5,56 +5,57 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class ExternalKey(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The Amazon Resource Name (ARN) of the key.
     """
-    deletion_window_in_days: pulumi.Output[float]
+    deletion_window_in_days: pulumi.Output[Optional[float]] = pulumi.output_property("deletionWindowInDays")
     """
     Duration in days after which the key is deleted after destruction of the resource. Must be between `7` and `30` days. Defaults to `30`.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     Description of the key.
     """
-    enabled: pulumi.Output[bool]
+    enabled: pulumi.Output[bool] = pulumi.output_property("enabled")
     """
     Specifies whether the key is enabled. Keys pending import can only be `false`. Imported keys default to `true` unless expired.
     """
-    expiration_model: pulumi.Output[str]
+    expiration_model: pulumi.Output[str] = pulumi.output_property("expirationModel")
     """
     Whether the key material expires. Empty when pending key material import, otherwise `KEY_MATERIAL_EXPIRES` or `KEY_MATERIAL_DOES_NOT_EXPIRE`.
     """
-    key_material_base64: pulumi.Output[str]
+    key_material_base64: pulumi.Output[Optional[str]] = pulumi.output_property("keyMaterialBase64")
     """
     Base64 encoded 256-bit symmetric encryption key material to import. The CMK is permanently associated with this key material. The same key material can be reimported, but you cannot import different key material.
     """
-    key_state: pulumi.Output[str]
+    key_state: pulumi.Output[str] = pulumi.output_property("keyState")
     """
     The state of the CMK.
     """
-    key_usage: pulumi.Output[str]
+    key_usage: pulumi.Output[str] = pulumi.output_property("keyUsage")
     """
     The cryptographic operations for which you can use the CMK.
     """
-    policy: pulumi.Output[str]
+    policy: pulumi.Output[str] = pulumi.output_property("policy")
     """
     A key policy JSON document. If you do not provide a key policy, AWS KMS attaches a default key policy to the CMK.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A key-value map of tags to assign to the key.
     """
-    valid_to: pulumi.Output[str]
+    valid_to: pulumi.Output[Optional[str]] = pulumi.output_property("validTo")
     """
     Time at which the imported key material expires. When the key material expires, AWS KMS deletes the key material and the CMK becomes unusable. If not specified, key material does not expire. Valid values: [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`)
     """
-    def __init__(__self__, resource_name, opts=None, deletion_window_in_days=None, description=None, enabled=None, key_material_base64=None, policy=None, tags=None, valid_to=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, deletion_window_in_days=None, description=None, enabled=None, key_material_base64=None, policy=None, tags=None, valid_to=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a KMS Customer Master Key that uses external key material. To instead manage a KMS Customer Master Key where AWS automatically generates and potentially rotates key material, see the `kms.Key` resource.
 
@@ -76,7 +77,7 @@ class ExternalKey(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: Specifies whether the key is enabled. Keys pending import can only be `false`. Imported keys default to `true` unless expired.
         :param pulumi.Input[str] key_material_base64: Base64 encoded 256-bit symmetric encryption key material to import. The CMK is permanently associated with this key material. The same key material can be reimported, but you cannot import different key material.
         :param pulumi.Input[str] policy: A key policy JSON document. If you do not provide a key policy, AWS KMS attaches a default key policy to the CMK.
-        :param pulumi.Input[dict] tags: A key-value map of tags to assign to the key.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A key-value map of tags to assign to the key.
         :param pulumi.Input[str] valid_to: Time at which the imported key material expires. When the key material expires, AWS KMS deletes the key material and the CMK becomes unusable. If not specified, key material does not expire. Valid values: [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`)
         """
         if __name__ is not None:
@@ -131,7 +132,7 @@ class ExternalKey(pulumi.CustomResource):
         :param pulumi.Input[str] key_state: The state of the CMK.
         :param pulumi.Input[str] key_usage: The cryptographic operations for which you can use the CMK.
         :param pulumi.Input[str] policy: A key policy JSON document. If you do not provide a key policy, AWS KMS attaches a default key policy to the CMK.
-        :param pulumi.Input[dict] tags: A key-value map of tags to assign to the key.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A key-value map of tags to assign to the key.
         :param pulumi.Input[str] valid_to: Time at which the imported key material expires. When the key material expires, AWS KMS deletes the key material and the CMK becomes unusable. If not specified, key material does not expire. Valid values: [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -156,3 +157,4 @@ class ExternalKey(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

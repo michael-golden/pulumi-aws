@@ -5,15 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
 
 
 class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, arn=None, cluster_name=None, id=None, pending_tasks_count=None, registered_container_instances_count=None, running_tasks_count=None, settings=None, status=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, cluster_name=None, id=None, pending_tasks_count=None, registered_container_instances_count=None, running_tasks_count=None, settings=None, status=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn

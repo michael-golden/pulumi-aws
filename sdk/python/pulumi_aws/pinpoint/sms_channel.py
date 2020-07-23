@@ -5,36 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class SmsChannel(pulumi.CustomResource):
-    application_id: pulumi.Output[str]
+    application_id: pulumi.Output[str] = pulumi.output_property("applicationId")
     """
     The application ID.
     """
-    enabled: pulumi.Output[bool]
+    enabled: pulumi.Output[Optional[bool]] = pulumi.output_property("enabled")
     """
     Whether the channel is enabled or disabled. Defaults to `true`.
     """
-    promotional_messages_per_second: pulumi.Output[float]
+    promotional_messages_per_second: pulumi.Output[float] = pulumi.output_property("promotionalMessagesPerSecond")
     """
     Promotional messages per second that can be sent.
     """
-    sender_id: pulumi.Output[str]
+    sender_id: pulumi.Output[Optional[str]] = pulumi.output_property("senderId")
     """
     Sender identifier of your messages.
     """
-    short_code: pulumi.Output[str]
+    short_code: pulumi.Output[Optional[str]] = pulumi.output_property("shortCode")
     """
     The Short Code registered with the phone provider.
     """
-    transactional_messages_per_second: pulumi.Output[float]
+    transactional_messages_per_second: pulumi.Output[float] = pulumi.output_property("transactionalMessagesPerSecond")
     """
     Transactional messages per second that can be sent.
     """
-    def __init__(__self__, resource_name, opts=None, application_id=None, enabled=None, sender_id=None, short_code=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application_id=None, enabled=None, sender_id=None, short_code=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Pinpoint SMS Channel resource.
 
@@ -119,3 +120,4 @@ class SmsChannel(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

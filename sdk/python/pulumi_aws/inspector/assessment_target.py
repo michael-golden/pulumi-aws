@@ -5,24 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class AssessmentTarget(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The target assessment ARN.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the assessment target.
     """
-    resource_group_arn: pulumi.Output[str]
+    resource_group_arn: pulumi.Output[Optional[str]] = pulumi.output_property("resourceGroupArn")
     """
     Inspector Resource Group Amazon Resource Name (ARN) stating tags for instance matching. If not specified, all EC2 instances in the current AWS account and region are included in the assessment target.
     """
-    def __init__(__self__, resource_name, opts=None, name=None, resource_group_arn=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, resource_group_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Inspector assessment target
 
@@ -97,3 +98,4 @@ class AssessmentTarget(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

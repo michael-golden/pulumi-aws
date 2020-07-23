@@ -5,15 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
 
 
 class GetApplicationResult:
     """
     A collection of values returned by getApplication.
     """
-    def __init__(__self__, appversion_lifecycle=None, arn=None, description=None, id=None, name=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, appversion_lifecycle=None, arn=None, description=None, id=None, name=None) -> None:
         if appversion_lifecycle and not isinstance(appversion_lifecycle, dict):
             raise TypeError("Expected argument 'appversion_lifecycle' to be a dict")
         __self__.appversion_lifecycle = appversion_lifecycle

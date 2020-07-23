@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetLocalGatewayVirtualInterfaceGroupsResult:
     """
     A collection of values returned by getLocalGatewayVirtualInterfaceGroups.
     """
-    def __init__(__self__, filters=None, id=None, ids=None, local_gateway_virtual_interface_ids=None, tags=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, filters=None, id=None, ids=None, local_gateway_virtual_interface_ids=None, tags=None) -> None:
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
         __self__.filters = filters
@@ -67,13 +70,8 @@ def get_local_gateway_virtual_interface_groups(filters=None, tags=None, opts=Non
     ```
 
 
-    :param list filters: One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLocalGatewayVirtualInterfaceGroups.html) for supported filters. Detailed below.
-    :param dict tags: Key-value map of resource tags, each pair of which must exactly match a pair on the desired local gateway route table.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - Name of the filter.
-      * `values` (`list`) - List of one or more values for the filter.
+    :param List['GetLocalGatewayVirtualInterfaceGroupsFilterArgs'] filters: One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLocalGatewayVirtualInterfaceGroups.html) for supported filters. Detailed below.
+    :param Dict[str, str] tags: Key-value map of resource tags, each pair of which must exactly match a pair on the desired local gateway route table.
     """
     __args__ = dict()
     __args__['filters'] = filters

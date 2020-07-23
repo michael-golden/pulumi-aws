@@ -5,43 +5,44 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Account(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN for this account.
     """
-    email: pulumi.Output[str]
+    email: pulumi.Output[str] = pulumi.output_property("email")
     """
     The email address of the owner to assign to the new member account. This email address must not already be associated with another AWS account.
     """
-    iam_user_access_to_billing: pulumi.Output[str]
+    iam_user_access_to_billing: pulumi.Output[Optional[str]] = pulumi.output_property("iamUserAccessToBilling")
     """
     If set to `ALLOW`, the new account enables IAM users to access account billing information if they have the required permissions. If set to `DENY`, then only the root user of the new account can access account billing information.
     """
-    joined_method: pulumi.Output[str]
-    joined_timestamp: pulumi.Output[str]
-    name: pulumi.Output[str]
+    joined_method: pulumi.Output[str] = pulumi.output_property("joinedMethod")
+    joined_timestamp: pulumi.Output[str] = pulumi.output_property("joinedTimestamp")
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     A friendly name for the member account.
     """
-    parent_id: pulumi.Output[str]
+    parent_id: pulumi.Output[str] = pulumi.output_property("parentId")
     """
     Parent Organizational Unit ID or Root ID for the account. Defaults to the Organization default Root ID. A configuration must be present for this argument to perform drift detection.
     """
-    role_name: pulumi.Output[str]
+    role_name: pulumi.Output[Optional[str]] = pulumi.output_property("roleName")
     """
     The name of an IAM role that Organizations automatically preconfigures in the new member account. This role trusts the master account, allowing users in the master account to assume the role, as permitted by the master account administrator. The role has administrator permissions in the new member account. The Organizations API provides no method for reading this information after account creation, so this provider cannot perform drift detection on its value and will always show a difference for a configured value after import unless [`ignoreChanges`](https://www.pulumi.com/docs/intro/concepts/programming-model/#ignorechanges) is used.
     """
-    status: pulumi.Output[str]
-    tags: pulumi.Output[dict]
+    status: pulumi.Output[str] = pulumi.output_property("status")
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Key-value mapping of resource tags.
     """
-    def __init__(__self__, resource_name, opts=None, email=None, iam_user_access_to_billing=None, name=None, parent_id=None, role_name=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, email=None, iam_user_access_to_billing=None, name=None, parent_id=None, role_name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to create a member account in the current organization.
 
@@ -65,7 +66,7 @@ class Account(pulumi.CustomResource):
         :param pulumi.Input[str] name: A friendly name for the member account.
         :param pulumi.Input[str] parent_id: Parent Organizational Unit ID or Root ID for the account. Defaults to the Organization default Root ID. A configuration must be present for this argument to perform drift detection.
         :param pulumi.Input[str] role_name: The name of an IAM role that Organizations automatically preconfigures in the new member account. This role trusts the master account, allowing users in the master account to assume the role, as permitted by the master account administrator. The role has administrator permissions in the new member account. The Organizations API provides no method for reading this information after account creation, so this provider cannot perform drift detection on its value and will always show a difference for a configured value after import unless [`ignoreChanges`](https://www.pulumi.com/docs/intro/concepts/programming-model/#ignorechanges) is used.
-        :param pulumi.Input[dict] tags: Key-value mapping of resource tags.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value mapping of resource tags.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -117,7 +118,7 @@ class Account(pulumi.CustomResource):
         :param pulumi.Input[str] name: A friendly name for the member account.
         :param pulumi.Input[str] parent_id: Parent Organizational Unit ID or Root ID for the account. Defaults to the Organization default Root ID. A configuration must be present for this argument to perform drift detection.
         :param pulumi.Input[str] role_name: The name of an IAM role that Organizations automatically preconfigures in the new member account. This role trusts the master account, allowing users in the master account to assume the role, as permitted by the master account administrator. The role has administrator permissions in the new member account. The Organizations API provides no method for reading this information after account creation, so this provider cannot perform drift detection on its value and will always show a difference for a configured value after import unless [`ignoreChanges`](https://www.pulumi.com/docs/intro/concepts/programming-model/#ignorechanges) is used.
-        :param pulumi.Input[dict] tags: Key-value mapping of resource tags.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value mapping of resource tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -140,3 +141,4 @@ class Account(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

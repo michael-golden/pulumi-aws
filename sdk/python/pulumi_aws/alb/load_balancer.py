@@ -5,102 +5,98 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class LoadBalancer(pulumi.CustomResource):
-    access_logs: pulumi.Output[dict]
+    access_logs: pulumi.Output[Optional['outputs.LoadBalancerAccessLogs']] = pulumi.output_property("accessLogs")
     """
     An Access Logs block. Access Logs documented below.
-
-      * `bucket` (`str`) - The S3 bucket name to store the logs in.
-      * `enabled` (`bool`) - Boolean to enable / disable `access_logs`. Defaults to `false`, even when `bucket` is specified.
-      * `prefix` (`str`) - The S3 bucket prefix. Logs are stored in the root if not configured.
     """
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the load balancer (matches `id`).
     """
-    arn_suffix: pulumi.Output[str]
+    arn_suffix: pulumi.Output[str] = pulumi.output_property("arnSuffix")
     """
     The ARN suffix for use with CloudWatch Metrics.
     """
-    dns_name: pulumi.Output[str]
+    dns_name: pulumi.Output[str] = pulumi.output_property("dnsName")
     """
     The DNS name of the load balancer.
     """
-    drop_invalid_header_fields: pulumi.Output[bool]
+    drop_invalid_header_fields: pulumi.Output[Optional[bool]] = pulumi.output_property("dropInvalidHeaderFields")
     """
     Indicates whether HTTP headers with header fields that are not valid are removed by the load balancer (true) or routed to targets (false). The default is false. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens. Only valid for Load Balancers of type `application`.
     """
-    enable_cross_zone_load_balancing: pulumi.Output[bool]
+    enable_cross_zone_load_balancing: pulumi.Output[Optional[bool]] = pulumi.output_property("enableCrossZoneLoadBalancing")
     """
     If true, cross-zone load balancing of the load balancer will be enabled.
     This is a `network` load balancer feature. Defaults to `false`.
     """
-    enable_deletion_protection: pulumi.Output[bool]
+    enable_deletion_protection: pulumi.Output[Optional[bool]] = pulumi.output_property("enableDeletionProtection")
     """
     If true, deletion of the load balancer will be disabled via
     the AWS API. This will prevent this provider from deleting the load balancer. Defaults to `false`.
     """
-    enable_http2: pulumi.Output[bool]
+    enable_http2: pulumi.Output[Optional[bool]] = pulumi.output_property("enableHttp2")
     """
     Indicates whether HTTP/2 is enabled in `application` load balancers. Defaults to `true`.
     """
-    idle_timeout: pulumi.Output[float]
+    idle_timeout: pulumi.Output[Optional[float]] = pulumi.output_property("idleTimeout")
     """
     The time in seconds that the connection is allowed to be idle. Only valid for Load Balancers of type `application`. Default: 60.
     """
-    internal: pulumi.Output[bool]
+    internal: pulumi.Output[bool] = pulumi.output_property("internal")
     """
     If true, the LB will be internal.
     """
-    ip_address_type: pulumi.Output[str]
+    ip_address_type: pulumi.Output[str] = pulumi.output_property("ipAddressType")
     """
     The type of IP addresses used by the subnets for your load balancer. The possible values are `ipv4` and `dualstack`
     """
-    load_balancer_type: pulumi.Output[str]
+    load_balancer_type: pulumi.Output[Optional[str]] = pulumi.output_property("loadBalancerType")
     """
     The type of load balancer to create. Possible values are `application` or `network`. The default value is `application`.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the LB. This name must be unique within your AWS account, can have a maximum of 32 characters,
     must contain only alphanumeric characters or hyphens, and must not begin or end with a hyphen. If not specified,
     this provider will autogenerate a name beginning with `tf-lb`.
     """
-    name_prefix: pulumi.Output[str]
+    name_prefix: pulumi.Output[Optional[str]] = pulumi.output_property("namePrefix")
     """
     Creates a unique name beginning with the specified prefix. Conflicts with `name`.
     """
-    security_groups: pulumi.Output[list]
+    security_groups: pulumi.Output[List[str]] = pulumi.output_property("securityGroups")
     """
     A list of security group IDs to assign to the LB. Only valid for Load Balancers of type `application`.
     """
-    subnet_mappings: pulumi.Output[list]
+    subnet_mappings: pulumi.Output[List['outputs.LoadBalancerSubnetMapping']] = pulumi.output_property("subnetMappings")
     """
     A subnet mapping block as documented below.
-
-      * `allocation_id` (`str`) - The allocation ID of the Elastic IP address.
-      * `subnet_id` (`str`) - The id of the subnet of which to attach to the load balancer. You can specify only one subnet per Availability Zone.
     """
-    subnets: pulumi.Output[list]
+    subnets: pulumi.Output[List[str]] = pulumi.output_property("subnets")
     """
     A list of subnet IDs to attach to the LB. Subnets
     cannot be updated for Load Balancers of type `network`. Changing this value
     for load balancers of type `network` will force a recreation of the resource.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    vpc_id: pulumi.Output[str]
-    zone_id: pulumi.Output[str]
+    vpc_id: pulumi.Output[str] = pulumi.output_property("vpcId")
+    zone_id: pulumi.Output[str] = pulumi.output_property("zoneId")
     """
     The canonical hosted zone ID of the load balancer (to be used in a Route 53 Alias record).
     """
-    def __init__(__self__, resource_name, opts=None, access_logs=None, drop_invalid_header_fields=None, enable_cross_zone_load_balancing=None, enable_deletion_protection=None, enable_http2=None, idle_timeout=None, internal=None, ip_address_type=None, load_balancer_type=None, name=None, name_prefix=None, security_groups=None, subnet_mappings=None, subnets=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, access_logs=None, drop_invalid_header_fields=None, enable_cross_zone_load_balancing=None, enable_deletion_protection=None, enable_http2=None, idle_timeout=None, internal=None, ip_address_type=None, load_balancer_type=None, name=None, name_prefix=None, security_groups=None, subnet_mappings=None, subnets=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Load Balancer resource.
 
@@ -165,7 +161,7 @@ class LoadBalancer(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] access_logs: An Access Logs block. Access Logs documented below.
+        :param pulumi.Input['LoadBalancerAccessLogsArgs'] access_logs: An Access Logs block. Access Logs documented below.
         :param pulumi.Input[bool] drop_invalid_header_fields: Indicates whether HTTP headers with header fields that are not valid are removed by the load balancer (true) or routed to targets (false). The default is false. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens. Only valid for Load Balancers of type `application`.
         :param pulumi.Input[bool] enable_cross_zone_load_balancing: If true, cross-zone load balancing of the load balancer will be enabled.
                This is a `network` load balancer feature. Defaults to `false`.
@@ -180,23 +176,12 @@ class LoadBalancer(pulumi.CustomResource):
                must contain only alphanumeric characters or hyphens, and must not begin or end with a hyphen. If not specified,
                this provider will autogenerate a name beginning with `tf-lb`.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-        :param pulumi.Input[list] security_groups: A list of security group IDs to assign to the LB. Only valid for Load Balancers of type `application`.
-        :param pulumi.Input[list] subnet_mappings: A subnet mapping block as documented below.
-        :param pulumi.Input[list] subnets: A list of subnet IDs to attach to the LB. Subnets
+        :param pulumi.Input[List[pulumi.Input[str]]] security_groups: A list of security group IDs to assign to the LB. Only valid for Load Balancers of type `application`.
+        :param pulumi.Input[List[pulumi.Input['LoadBalancerSubnetMappingArgs']]] subnet_mappings: A subnet mapping block as documented below.
+        :param pulumi.Input[List[pulumi.Input[str]]] subnets: A list of subnet IDs to attach to the LB. Subnets
                cannot be updated for Load Balancers of type `network`. Changing this value
                for load balancers of type `network` will force a recreation of the resource.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-
-        The **access_logs** object supports the following:
-
-          * `bucket` (`pulumi.Input[str]`) - The S3 bucket name to store the logs in.
-          * `enabled` (`pulumi.Input[bool]`) - Boolean to enable / disable `access_logs`. Defaults to `false`, even when `bucket` is specified.
-          * `prefix` (`pulumi.Input[str]`) - The S3 bucket prefix. Logs are stored in the root if not configured.
-
-        The **subnet_mappings** object supports the following:
-
-          * `allocation_id` (`pulumi.Input[str]`) - The allocation ID of the Elastic IP address.
-          * `subnet_id` (`pulumi.Input[str]`) - The id of the subnet of which to attach to the load balancer. You can specify only one subnet per Availability Zone.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -252,7 +237,7 @@ class LoadBalancer(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] access_logs: An Access Logs block. Access Logs documented below.
+        :param pulumi.Input['LoadBalancerAccessLogsArgs'] access_logs: An Access Logs block. Access Logs documented below.
         :param pulumi.Input[str] arn: The ARN of the load balancer (matches `id`).
         :param pulumi.Input[str] arn_suffix: The ARN suffix for use with CloudWatch Metrics.
         :param pulumi.Input[str] dns_name: The DNS name of the load balancer.
@@ -270,24 +255,13 @@ class LoadBalancer(pulumi.CustomResource):
                must contain only alphanumeric characters or hyphens, and must not begin or end with a hyphen. If not specified,
                this provider will autogenerate a name beginning with `tf-lb`.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-        :param pulumi.Input[list] security_groups: A list of security group IDs to assign to the LB. Only valid for Load Balancers of type `application`.
-        :param pulumi.Input[list] subnet_mappings: A subnet mapping block as documented below.
-        :param pulumi.Input[list] subnets: A list of subnet IDs to attach to the LB. Subnets
+        :param pulumi.Input[List[pulumi.Input[str]]] security_groups: A list of security group IDs to assign to the LB. Only valid for Load Balancers of type `application`.
+        :param pulumi.Input[List[pulumi.Input['LoadBalancerSubnetMappingArgs']]] subnet_mappings: A subnet mapping block as documented below.
+        :param pulumi.Input[List[pulumi.Input[str]]] subnets: A list of subnet IDs to attach to the LB. Subnets
                cannot be updated for Load Balancers of type `network`. Changing this value
                for load balancers of type `network` will force a recreation of the resource.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] zone_id: The canonical hosted zone ID of the load balancer (to be used in a Route 53 Alias record).
-
-        The **access_logs** object supports the following:
-
-          * `bucket` (`pulumi.Input[str]`) - The S3 bucket name to store the logs in.
-          * `enabled` (`pulumi.Input[bool]`) - Boolean to enable / disable `access_logs`. Defaults to `false`, even when `bucket` is specified.
-          * `prefix` (`pulumi.Input[str]`) - The S3 bucket prefix. Logs are stored in the root if not configured.
-
-        The **subnet_mappings** object supports the following:
-
-          * `allocation_id` (`pulumi.Input[str]`) - The allocation ID of the Elastic IP address.
-          * `subnet_id` (`pulumi.Input[str]`) - The id of the subnet of which to attach to the load balancer. You can specify only one subnet per Availability Zone.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -320,3 +294,4 @@ class LoadBalancer(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

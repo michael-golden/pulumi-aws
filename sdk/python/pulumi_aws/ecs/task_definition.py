@@ -5,16 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class TaskDefinition(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     Full ARN of the Task Definition (including both `family` and `revision`).
     """
-    container_definitions: pulumi.Output[str]
+    container_definitions: pulumi.Output[str] = pulumi.output_property("containerDefinitions")
     """
     A list of valid [container definitions]
     (http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerDefinition.html) provided as a
@@ -23,101 +25,68 @@ class TaskDefinition(pulumi.CustomResource):
     (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html) section from the
     official [Developer Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide).
     """
-    cpu: pulumi.Output[str]
+    cpu: pulumi.Output[Optional[str]] = pulumi.output_property("cpu")
     """
     The number of cpu units used by the task. If the `requires_compatibilities` is `FARGATE` this field is required.
     """
-    execution_role_arn: pulumi.Output[str]
+    execution_role_arn: pulumi.Output[Optional[str]] = pulumi.output_property("executionRoleArn")
     """
     The Amazon Resource Name (ARN) of the task execution role that the Amazon ECS container agent and the Docker daemon can assume.
     """
-    family: pulumi.Output[str]
+    family: pulumi.Output[str] = pulumi.output_property("family")
     """
     A unique name for your task definition.
     """
-    inference_accelerators: pulumi.Output[list]
+    inference_accelerators: pulumi.Output[Optional[List['outputs.TaskDefinitionInferenceAccelerator']]] = pulumi.output_property("inferenceAccelerators")
     """
     Configuration block(s) with Inference Accelerators settings. Detailed below.
-
-      * `device_name` (`str`) - The Elastic Inference accelerator device name. The deviceName must also be referenced in a container definition as a ResourceRequirement.
-      * `deviceType` (`str`) - The Elastic Inference accelerator type to use.
     """
-    ipc_mode: pulumi.Output[str]
+    ipc_mode: pulumi.Output[Optional[str]] = pulumi.output_property("ipcMode")
     """
     The IPC resource namespace to be used for the containers in the task The valid values are `host`, `task`, and `none`.
     """
-    memory: pulumi.Output[str]
+    memory: pulumi.Output[Optional[str]] = pulumi.output_property("memory")
     """
     The amount (in MiB) of memory used by the task. If the `requires_compatibilities` is `FARGATE` this field is required.
     """
-    network_mode: pulumi.Output[str]
+    network_mode: pulumi.Output[str] = pulumi.output_property("networkMode")
     """
     The Docker networking mode to use for the containers in the task. The valid values are `none`, `bridge`, `awsvpc`, and `host`.
     """
-    pid_mode: pulumi.Output[str]
+    pid_mode: pulumi.Output[Optional[str]] = pulumi.output_property("pidMode")
     """
     The process namespace to use for the containers in the task. The valid values are `host` and `task`.
     """
-    placement_constraints: pulumi.Output[list]
+    placement_constraints: pulumi.Output[Optional[List['outputs.TaskDefinitionPlacementConstraint']]] = pulumi.output_property("placementConstraints")
     """
     A set of placement constraints rules that are taken into consideration during task placement. Maximum number of `placement_constraints` is `10`.
-
-      * `expression` (`str`) - Cluster Query Language expression to apply to the constraint.
-        For more information, see [Cluster Query Language in the Amazon EC2 Container
-        Service Developer
-        Guide](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-query-language.html).
-      * `type` (`str`) - The proxy type. The default value is `APPMESH`. The only supported value is `APPMESH`.
     """
-    proxy_configuration: pulumi.Output[dict]
+    proxy_configuration: pulumi.Output[Optional['outputs.TaskDefinitionProxyConfiguration']] = pulumi.output_property("proxyConfiguration")
     """
     The proxy configuration details for the App Mesh proxy.
-
-      * `container_name` (`str`) - The name of the container that will serve as the App Mesh proxy.
-      * `properties` (`dict`) - The set of network configuration parameters to provide the Container Network Interface (CNI) plugin, specified a key-value mapping.
-      * `type` (`str`) - The proxy type. The default value is `APPMESH`. The only supported value is `APPMESH`.
     """
-    requires_compatibilities: pulumi.Output[list]
+    requires_compatibilities: pulumi.Output[Optional[List[str]]] = pulumi.output_property("requiresCompatibilities")
     """
     A set of launch types required by the task. The valid values are `EC2` and `FARGATE`.
     """
-    revision: pulumi.Output[float]
+    revision: pulumi.Output[float] = pulumi.output_property("revision")
     """
     The revision of the task in a particular family.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Key-value map of resource tags
     """
-    task_role_arn: pulumi.Output[str]
+    task_role_arn: pulumi.Output[Optional[str]] = pulumi.output_property("taskRoleArn")
     """
     The ARN of IAM role that allows your Amazon ECS container task to make calls to other AWS services.
     """
-    volumes: pulumi.Output[list]
+    volumes: pulumi.Output[Optional[List['outputs.TaskDefinitionVolume']]] = pulumi.output_property("volumes")
     """
     A set of volume blocks that containers in your task may use.
-
-      * `dockerVolumeConfiguration` (`dict`) - Used to configure a docker volume
-        * `autoprovision` (`bool`) - If this value is `true`, the Docker volume is created if it does not already exist. *Note*: This field is only used if the scope is `shared`.
-        * `driver` (`str`) - The Docker volume driver to use. The driver value must match the driver name provided by Docker because it is used for task placement.
-        * `driverOpts` (`dict`) - A map of Docker driver specific options.
-        * `labels` (`dict`) - A map of custom metadata to add to your Docker volume.
-        * `scope` (`str`) - The scope for the Docker volume, which determines its lifecycle, either `task` or `shared`.  Docker volumes that are scoped to a `task` are automatically provisioned when the task starts and destroyed when the task stops. Docker volumes that are `scoped` as shared persist after the task stops.
-
-      * `efsVolumeConfiguration` (`dict`) - Used to configure a EFS volume.
-        * `authorizationConfig` (`dict`) - The authorization configuration details for the Amazon EFS file system.
-          * `accessPointId` (`str`) - The access point ID to use. If an access point is specified, the root directory value will be relative to the directory set for the access point. If specified, transit encryption must be enabled in the EFSVolumeConfiguration.
-          * `iam` (`str`) - Whether or not to use the Amazon ECS task IAM role defined in a task definition when mounting the Amazon EFS file system. If enabled, transit encryption must be enabled in the EFSVolumeConfiguration. Valid values: `ENABLED`, `DISABLED`. If this parameter is omitted, the default value of `DISABLED` is used.
-
-        * `file_system_id` (`str`) - The ID of the EFS File System.
-        * `root_directory` (`str`) - The directory within the Amazon EFS file system to mount as the root directory inside the host. If this parameter is omitted, the root of the Amazon EFS volume will be used. Specifying / will have the same effect as omitting this parameter. This argument is ignored when using `authorization_config`.
-        * `transitEncryption` (`str`) - Whether or not to enable encryption for Amazon EFS data in transit between the Amazon ECS host and the Amazon EFS server. Transit encryption must be enabled if Amazon EFS IAM authorization is used. Valid values: `ENABLED`, `DISABLED`. If this parameter is omitted, the default value of `DISABLED` is used.
-        * `transitEncryptionPort` (`float`) - The port to use for transit encryption. If you do not specify a transit encryption port, it will use the port selection strategy that the Amazon EFS mount helper uses.
-
-      * `hostPath` (`str`) - The path on the host container instance that is presented to the container. If not set, ECS will create a nonpersistent data volume that starts empty and is deleted after the task has finished.
-      * `name` (`str`) - The name of the volume. This name is referenced in the `sourceVolume`
-        parameter of container definition in the `mountPoints` section.
     """
-    def __init__(__self__, resource_name, opts=None, container_definitions=None, cpu=None, execution_role_arn=None, family=None, inference_accelerators=None, ipc_mode=None, memory=None, network_mode=None, pid_mode=None, placement_constraints=None, proxy_configuration=None, requires_compatibilities=None, tags=None, task_role_arn=None, volumes=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, container_definitions=None, cpu=None, execution_role_arn=None, family=None, inference_accelerators=None, ipc_mode=None, memory=None, network_mode=None, pid_mode=None, placement_constraints=None, proxy_configuration=None, requires_compatibilities=None, tags=None, task_role_arn=None, volumes=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a revision of an ECS task definition to be used in `ecs.Service`.
 
@@ -155,59 +124,17 @@ class TaskDefinition(pulumi.CustomResource):
         :param pulumi.Input[str] cpu: The number of cpu units used by the task. If the `requires_compatibilities` is `FARGATE` this field is required.
         :param pulumi.Input[str] execution_role_arn: The Amazon Resource Name (ARN) of the task execution role that the Amazon ECS container agent and the Docker daemon can assume.
         :param pulumi.Input[str] family: A unique name for your task definition.
-        :param pulumi.Input[list] inference_accelerators: Configuration block(s) with Inference Accelerators settings. Detailed below.
+        :param pulumi.Input[List[pulumi.Input['TaskDefinitionInferenceAcceleratorArgs']]] inference_accelerators: Configuration block(s) with Inference Accelerators settings. Detailed below.
         :param pulumi.Input[str] ipc_mode: The IPC resource namespace to be used for the containers in the task The valid values are `host`, `task`, and `none`.
         :param pulumi.Input[str] memory: The amount (in MiB) of memory used by the task. If the `requires_compatibilities` is `FARGATE` this field is required.
         :param pulumi.Input[str] network_mode: The Docker networking mode to use for the containers in the task. The valid values are `none`, `bridge`, `awsvpc`, and `host`.
         :param pulumi.Input[str] pid_mode: The process namespace to use for the containers in the task. The valid values are `host` and `task`.
-        :param pulumi.Input[list] placement_constraints: A set of placement constraints rules that are taken into consideration during task placement. Maximum number of `placement_constraints` is `10`.
-        :param pulumi.Input[dict] proxy_configuration: The proxy configuration details for the App Mesh proxy.
-        :param pulumi.Input[list] requires_compatibilities: A set of launch types required by the task. The valid values are `EC2` and `FARGATE`.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[List[pulumi.Input['TaskDefinitionPlacementConstraintArgs']]] placement_constraints: A set of placement constraints rules that are taken into consideration during task placement. Maximum number of `placement_constraints` is `10`.
+        :param pulumi.Input['TaskDefinitionProxyConfigurationArgs'] proxy_configuration: The proxy configuration details for the App Mesh proxy.
+        :param pulumi.Input[List[pulumi.Input[str]]] requires_compatibilities: A set of launch types required by the task. The valid values are `EC2` and `FARGATE`.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         :param pulumi.Input[str] task_role_arn: The ARN of IAM role that allows your Amazon ECS container task to make calls to other AWS services.
-        :param pulumi.Input[list] volumes: A set of volume blocks that containers in your task may use.
-
-        The **inference_accelerators** object supports the following:
-
-          * `device_name` (`pulumi.Input[str]`) - The Elastic Inference accelerator device name. The deviceName must also be referenced in a container definition as a ResourceRequirement.
-          * `deviceType` (`pulumi.Input[str]`) - The Elastic Inference accelerator type to use.
-
-        The **placement_constraints** object supports the following:
-
-          * `expression` (`pulumi.Input[str]`) - Cluster Query Language expression to apply to the constraint.
-            For more information, see [Cluster Query Language in the Amazon EC2 Container
-            Service Developer
-            Guide](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-query-language.html).
-          * `type` (`pulumi.Input[str]`) - The proxy type. The default value is `APPMESH`. The only supported value is `APPMESH`.
-
-        The **proxy_configuration** object supports the following:
-
-          * `container_name` (`pulumi.Input[str]`) - The name of the container that will serve as the App Mesh proxy.
-          * `properties` (`pulumi.Input[dict]`) - The set of network configuration parameters to provide the Container Network Interface (CNI) plugin, specified a key-value mapping.
-          * `type` (`pulumi.Input[str]`) - The proxy type. The default value is `APPMESH`. The only supported value is `APPMESH`.
-
-        The **volumes** object supports the following:
-
-          * `dockerVolumeConfiguration` (`pulumi.Input[dict]`) - Used to configure a docker volume
-            * `autoprovision` (`pulumi.Input[bool]`) - If this value is `true`, the Docker volume is created if it does not already exist. *Note*: This field is only used if the scope is `shared`.
-            * `driver` (`pulumi.Input[str]`) - The Docker volume driver to use. The driver value must match the driver name provided by Docker because it is used for task placement.
-            * `driverOpts` (`pulumi.Input[dict]`) - A map of Docker driver specific options.
-            * `labels` (`pulumi.Input[dict]`) - A map of custom metadata to add to your Docker volume.
-            * `scope` (`pulumi.Input[str]`) - The scope for the Docker volume, which determines its lifecycle, either `task` or `shared`.  Docker volumes that are scoped to a `task` are automatically provisioned when the task starts and destroyed when the task stops. Docker volumes that are `scoped` as shared persist after the task stops.
-
-          * `efsVolumeConfiguration` (`pulumi.Input[dict]`) - Used to configure a EFS volume.
-            * `authorizationConfig` (`pulumi.Input[dict]`) - The authorization configuration details for the Amazon EFS file system.
-              * `accessPointId` (`pulumi.Input[str]`) - The access point ID to use. If an access point is specified, the root directory value will be relative to the directory set for the access point. If specified, transit encryption must be enabled in the EFSVolumeConfiguration.
-              * `iam` (`pulumi.Input[str]`) - Whether or not to use the Amazon ECS task IAM role defined in a task definition when mounting the Amazon EFS file system. If enabled, transit encryption must be enabled in the EFSVolumeConfiguration. Valid values: `ENABLED`, `DISABLED`. If this parameter is omitted, the default value of `DISABLED` is used.
-
-            * `file_system_id` (`pulumi.Input[str]`) - The ID of the EFS File System.
-            * `root_directory` (`pulumi.Input[str]`) - The directory within the Amazon EFS file system to mount as the root directory inside the host. If this parameter is omitted, the root of the Amazon EFS volume will be used. Specifying / will have the same effect as omitting this parameter. This argument is ignored when using `authorization_config`.
-            * `transitEncryption` (`pulumi.Input[str]`) - Whether or not to enable encryption for Amazon EFS data in transit between the Amazon ECS host and the Amazon EFS server. Transit encryption must be enabled if Amazon EFS IAM authorization is used. Valid values: `ENABLED`, `DISABLED`. If this parameter is omitted, the default value of `DISABLED` is used.
-            * `transitEncryptionPort` (`pulumi.Input[float]`) - The port to use for transit encryption. If you do not specify a transit encryption port, it will use the port selection strategy that the Amazon EFS mount helper uses.
-
-          * `hostPath` (`pulumi.Input[str]`) - The path on the host container instance that is presented to the container. If not set, ECS will create a nonpersistent data volume that starts empty and is deleted after the task has finished.
-          * `name` (`pulumi.Input[str]`) - The name of the volume. This name is referenced in the `sourceVolume`
-            parameter of container definition in the `mountPoints` section.
+        :param pulumi.Input[List[pulumi.Input['TaskDefinitionVolumeArgs']]] volumes: A set of volume blocks that containers in your task may use.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -272,60 +199,18 @@ class TaskDefinition(pulumi.CustomResource):
         :param pulumi.Input[str] cpu: The number of cpu units used by the task. If the `requires_compatibilities` is `FARGATE` this field is required.
         :param pulumi.Input[str] execution_role_arn: The Amazon Resource Name (ARN) of the task execution role that the Amazon ECS container agent and the Docker daemon can assume.
         :param pulumi.Input[str] family: A unique name for your task definition.
-        :param pulumi.Input[list] inference_accelerators: Configuration block(s) with Inference Accelerators settings. Detailed below.
+        :param pulumi.Input[List[pulumi.Input['TaskDefinitionInferenceAcceleratorArgs']]] inference_accelerators: Configuration block(s) with Inference Accelerators settings. Detailed below.
         :param pulumi.Input[str] ipc_mode: The IPC resource namespace to be used for the containers in the task The valid values are `host`, `task`, and `none`.
         :param pulumi.Input[str] memory: The amount (in MiB) of memory used by the task. If the `requires_compatibilities` is `FARGATE` this field is required.
         :param pulumi.Input[str] network_mode: The Docker networking mode to use for the containers in the task. The valid values are `none`, `bridge`, `awsvpc`, and `host`.
         :param pulumi.Input[str] pid_mode: The process namespace to use for the containers in the task. The valid values are `host` and `task`.
-        :param pulumi.Input[list] placement_constraints: A set of placement constraints rules that are taken into consideration during task placement. Maximum number of `placement_constraints` is `10`.
-        :param pulumi.Input[dict] proxy_configuration: The proxy configuration details for the App Mesh proxy.
-        :param pulumi.Input[list] requires_compatibilities: A set of launch types required by the task. The valid values are `EC2` and `FARGATE`.
+        :param pulumi.Input[List[pulumi.Input['TaskDefinitionPlacementConstraintArgs']]] placement_constraints: A set of placement constraints rules that are taken into consideration during task placement. Maximum number of `placement_constraints` is `10`.
+        :param pulumi.Input['TaskDefinitionProxyConfigurationArgs'] proxy_configuration: The proxy configuration details for the App Mesh proxy.
+        :param pulumi.Input[List[pulumi.Input[str]]] requires_compatibilities: A set of launch types required by the task. The valid values are `EC2` and `FARGATE`.
         :param pulumi.Input[float] revision: The revision of the task in a particular family.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         :param pulumi.Input[str] task_role_arn: The ARN of IAM role that allows your Amazon ECS container task to make calls to other AWS services.
-        :param pulumi.Input[list] volumes: A set of volume blocks that containers in your task may use.
-
-        The **inference_accelerators** object supports the following:
-
-          * `device_name` (`pulumi.Input[str]`) - The Elastic Inference accelerator device name. The deviceName must also be referenced in a container definition as a ResourceRequirement.
-          * `deviceType` (`pulumi.Input[str]`) - The Elastic Inference accelerator type to use.
-
-        The **placement_constraints** object supports the following:
-
-          * `expression` (`pulumi.Input[str]`) - Cluster Query Language expression to apply to the constraint.
-            For more information, see [Cluster Query Language in the Amazon EC2 Container
-            Service Developer
-            Guide](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-query-language.html).
-          * `type` (`pulumi.Input[str]`) - The proxy type. The default value is `APPMESH`. The only supported value is `APPMESH`.
-
-        The **proxy_configuration** object supports the following:
-
-          * `container_name` (`pulumi.Input[str]`) - The name of the container that will serve as the App Mesh proxy.
-          * `properties` (`pulumi.Input[dict]`) - The set of network configuration parameters to provide the Container Network Interface (CNI) plugin, specified a key-value mapping.
-          * `type` (`pulumi.Input[str]`) - The proxy type. The default value is `APPMESH`. The only supported value is `APPMESH`.
-
-        The **volumes** object supports the following:
-
-          * `dockerVolumeConfiguration` (`pulumi.Input[dict]`) - Used to configure a docker volume
-            * `autoprovision` (`pulumi.Input[bool]`) - If this value is `true`, the Docker volume is created if it does not already exist. *Note*: This field is only used if the scope is `shared`.
-            * `driver` (`pulumi.Input[str]`) - The Docker volume driver to use. The driver value must match the driver name provided by Docker because it is used for task placement.
-            * `driverOpts` (`pulumi.Input[dict]`) - A map of Docker driver specific options.
-            * `labels` (`pulumi.Input[dict]`) - A map of custom metadata to add to your Docker volume.
-            * `scope` (`pulumi.Input[str]`) - The scope for the Docker volume, which determines its lifecycle, either `task` or `shared`.  Docker volumes that are scoped to a `task` are automatically provisioned when the task starts and destroyed when the task stops. Docker volumes that are `scoped` as shared persist after the task stops.
-
-          * `efsVolumeConfiguration` (`pulumi.Input[dict]`) - Used to configure a EFS volume.
-            * `authorizationConfig` (`pulumi.Input[dict]`) - The authorization configuration details for the Amazon EFS file system.
-              * `accessPointId` (`pulumi.Input[str]`) - The access point ID to use. If an access point is specified, the root directory value will be relative to the directory set for the access point. If specified, transit encryption must be enabled in the EFSVolumeConfiguration.
-              * `iam` (`pulumi.Input[str]`) - Whether or not to use the Amazon ECS task IAM role defined in a task definition when mounting the Amazon EFS file system. If enabled, transit encryption must be enabled in the EFSVolumeConfiguration. Valid values: `ENABLED`, `DISABLED`. If this parameter is omitted, the default value of `DISABLED` is used.
-
-            * `file_system_id` (`pulumi.Input[str]`) - The ID of the EFS File System.
-            * `root_directory` (`pulumi.Input[str]`) - The directory within the Amazon EFS file system to mount as the root directory inside the host. If this parameter is omitted, the root of the Amazon EFS volume will be used. Specifying / will have the same effect as omitting this parameter. This argument is ignored when using `authorization_config`.
-            * `transitEncryption` (`pulumi.Input[str]`) - Whether or not to enable encryption for Amazon EFS data in transit between the Amazon ECS host and the Amazon EFS server. Transit encryption must be enabled if Amazon EFS IAM authorization is used. Valid values: `ENABLED`, `DISABLED`. If this parameter is omitted, the default value of `DISABLED` is used.
-            * `transitEncryptionPort` (`pulumi.Input[float]`) - The port to use for transit encryption. If you do not specify a transit encryption port, it will use the port selection strategy that the Amazon EFS mount helper uses.
-
-          * `hostPath` (`pulumi.Input[str]`) - The path on the host container instance that is presented to the container. If not set, ECS will create a nonpersistent data volume that starts empty and is deleted after the task has finished.
-          * `name` (`pulumi.Input[str]`) - The name of the volume. This name is referenced in the `sourceVolume`
-            parameter of container definition in the `mountPoints` section.
+        :param pulumi.Input[List[pulumi.Input['TaskDefinitionVolumeArgs']]] volumes: A set of volume blocks that containers in your task may use.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -355,3 +240,4 @@ class TaskDefinition(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

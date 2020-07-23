@@ -5,49 +5,43 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class EventDestination(pulumi.CustomResource):
-    cloudwatch_destinations: pulumi.Output[list]
+    cloudwatch_destinations: pulumi.Output[Optional[List['outputs.EventDestinationCloudwatchDestination']]] = pulumi.output_property("cloudwatchDestinations")
     """
     CloudWatch destination for the events
-
-      * `default_value` (`str`) - The default value for the event
-      * `dimensionName` (`str`) - The name for the dimension
-      * `valueSource` (`str`) - The source for the value. It can be either `"messageTag"` or `"emailHeader"`
     """
-    configuration_set_name: pulumi.Output[str]
+    configuration_set_name: pulumi.Output[str] = pulumi.output_property("configurationSetName")
     """
     The name of the configuration set
     """
-    enabled: pulumi.Output[bool]
+    enabled: pulumi.Output[Optional[bool]] = pulumi.output_property("enabled")
     """
     If true, the event destination will be enabled
     """
-    kinesis_destination: pulumi.Output[dict]
+    kinesis_destination: pulumi.Output[Optional['outputs.EventDestinationKinesisDestination']] = pulumi.output_property("kinesisDestination")
     """
     Send the events to a kinesis firehose destination
-
-      * `role_arn` (`str`) - The ARN of the role that has permissions to access the Kinesis Stream
-      * `stream_arn` (`str`) - The ARN of the Kinesis Stream
     """
-    matching_types: pulumi.Output[list]
+    matching_types: pulumi.Output[List[str]] = pulumi.output_property("matchingTypes")
     """
     A list of matching types. May be any of `"send"`, `"reject"`, `"bounce"`, `"complaint"`, `"delivery"`, `"open"`, `"click"`, or `"renderingFailure"`.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the event destination
     """
-    sns_destination: pulumi.Output[dict]
+    sns_destination: pulumi.Output[Optional['outputs.EventDestinationSnsDestination']] = pulumi.output_property("snsDestination")
     """
     Send the events to an SNS Topic destination
-
-      * `topic_arn` (`str`) - The ARN of the SNS topic
     """
-    def __init__(__self__, resource_name, opts=None, cloudwatch_destinations=None, configuration_set_name=None, enabled=None, kinesis_destination=None, matching_types=None, name=None, sns_destination=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cloudwatch_destinations=None, configuration_set_name=None, enabled=None, kinesis_destination=None, matching_types=None, name=None, sns_destination=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an SES event destination
 
@@ -109,28 +103,13 @@ class EventDestination(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] cloudwatch_destinations: CloudWatch destination for the events
+        :param pulumi.Input[List[pulumi.Input['EventDestinationCloudwatchDestinationArgs']]] cloudwatch_destinations: CloudWatch destination for the events
         :param pulumi.Input[str] configuration_set_name: The name of the configuration set
         :param pulumi.Input[bool] enabled: If true, the event destination will be enabled
-        :param pulumi.Input[dict] kinesis_destination: Send the events to a kinesis firehose destination
-        :param pulumi.Input[list] matching_types: A list of matching types. May be any of `"send"`, `"reject"`, `"bounce"`, `"complaint"`, `"delivery"`, `"open"`, `"click"`, or `"renderingFailure"`.
+        :param pulumi.Input['EventDestinationKinesisDestinationArgs'] kinesis_destination: Send the events to a kinesis firehose destination
+        :param pulumi.Input[List[pulumi.Input[str]]] matching_types: A list of matching types. May be any of `"send"`, `"reject"`, `"bounce"`, `"complaint"`, `"delivery"`, `"open"`, `"click"`, or `"renderingFailure"`.
         :param pulumi.Input[str] name: The name of the event destination
-        :param pulumi.Input[dict] sns_destination: Send the events to an SNS Topic destination
-
-        The **cloudwatch_destinations** object supports the following:
-
-          * `default_value` (`pulumi.Input[str]`) - The default value for the event
-          * `dimensionName` (`pulumi.Input[str]`) - The name for the dimension
-          * `valueSource` (`pulumi.Input[str]`) - The source for the value. It can be either `"messageTag"` or `"emailHeader"`
-
-        The **kinesis_destination** object supports the following:
-
-          * `role_arn` (`pulumi.Input[str]`) - The ARN of the role that has permissions to access the Kinesis Stream
-          * `stream_arn` (`pulumi.Input[str]`) - The ARN of the Kinesis Stream
-
-        The **sns_destination** object supports the following:
-
-          * `topic_arn` (`pulumi.Input[str]`) - The ARN of the SNS topic
+        :param pulumi.Input['EventDestinationSnsDestinationArgs'] sns_destination: Send the events to an SNS Topic destination
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -175,28 +154,13 @@ class EventDestination(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] cloudwatch_destinations: CloudWatch destination for the events
+        :param pulumi.Input[List[pulumi.Input['EventDestinationCloudwatchDestinationArgs']]] cloudwatch_destinations: CloudWatch destination for the events
         :param pulumi.Input[str] configuration_set_name: The name of the configuration set
         :param pulumi.Input[bool] enabled: If true, the event destination will be enabled
-        :param pulumi.Input[dict] kinesis_destination: Send the events to a kinesis firehose destination
-        :param pulumi.Input[list] matching_types: A list of matching types. May be any of `"send"`, `"reject"`, `"bounce"`, `"complaint"`, `"delivery"`, `"open"`, `"click"`, or `"renderingFailure"`.
+        :param pulumi.Input['EventDestinationKinesisDestinationArgs'] kinesis_destination: Send the events to a kinesis firehose destination
+        :param pulumi.Input[List[pulumi.Input[str]]] matching_types: A list of matching types. May be any of `"send"`, `"reject"`, `"bounce"`, `"complaint"`, `"delivery"`, `"open"`, `"click"`, or `"renderingFailure"`.
         :param pulumi.Input[str] name: The name of the event destination
-        :param pulumi.Input[dict] sns_destination: Send the events to an SNS Topic destination
-
-        The **cloudwatch_destinations** object supports the following:
-
-          * `default_value` (`pulumi.Input[str]`) - The default value for the event
-          * `dimensionName` (`pulumi.Input[str]`) - The name for the dimension
-          * `valueSource` (`pulumi.Input[str]`) - The source for the value. It can be either `"messageTag"` or `"emailHeader"`
-
-        The **kinesis_destination** object supports the following:
-
-          * `role_arn` (`pulumi.Input[str]`) - The ARN of the role that has permissions to access the Kinesis Stream
-          * `stream_arn` (`pulumi.Input[str]`) - The ARN of the Kinesis Stream
-
-        The **sns_destination** object supports the following:
-
-          * `topic_arn` (`pulumi.Input[str]`) - The ARN of the SNS topic
+        :param pulumi.Input['EventDestinationSnsDestinationArgs'] sns_destination: Send the events to an SNS Topic destination
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -216,3 +180,4 @@ class EventDestination(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

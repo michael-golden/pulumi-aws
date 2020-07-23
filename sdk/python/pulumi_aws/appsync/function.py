@@ -5,48 +5,49 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Function(pulumi.CustomResource):
-    api_id: pulumi.Output[str]
+    api_id: pulumi.Output[str] = pulumi.output_property("apiId")
     """
     The ID of the associated AppSync API.
     """
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the Function object.
     """
-    data_source: pulumi.Output[str]
+    data_source: pulumi.Output[str] = pulumi.output_property("dataSource")
     """
     The Function DataSource name.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     The Function description.
     """
-    function_id: pulumi.Output[str]
+    function_id: pulumi.Output[str] = pulumi.output_property("functionId")
     """
     A unique ID representing the Function object.
     """
-    function_version: pulumi.Output[str]
+    function_version: pulumi.Output[Optional[str]] = pulumi.output_property("functionVersion")
     """
     The version of the request mapping template. Currently the supported value is `2018-05-29`.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The Function name. The function name does not have to be unique.
     """
-    request_mapping_template: pulumi.Output[str]
+    request_mapping_template: pulumi.Output[str] = pulumi.output_property("requestMappingTemplate")
     """
     The Function request mapping template. Functions support only the 2018-05-29 version of the request mapping template.
     """
-    response_mapping_template: pulumi.Output[str]
+    response_mapping_template: pulumi.Output[str] = pulumi.output_property("responseMappingTemplate")
     """
     The Function response mapping template.
     """
-    def __init__(__self__, resource_name, opts=None, api_id=None, data_source=None, description=None, function_version=None, name=None, request_mapping_template=None, response_mapping_template=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id=None, data_source=None, description=None, function_version=None, name=None, request_mapping_template=None, response_mapping_template=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AppSync Function.
 
@@ -195,3 +196,4 @@ class Function(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

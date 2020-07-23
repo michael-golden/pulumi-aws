@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetEncryptionByDefaultResult:
     """
     A collection of values returned by getEncryptionByDefault.
     """
-    def __init__(__self__, enabled=None, id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, enabled=None, id=None) -> None:
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
         __self__.enabled = enabled

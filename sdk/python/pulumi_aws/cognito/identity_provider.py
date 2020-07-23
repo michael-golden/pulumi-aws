@@ -5,36 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class IdentityProvider(pulumi.CustomResource):
-    attribute_mapping: pulumi.Output[dict]
+    attribute_mapping: pulumi.Output[Dict[str, str]] = pulumi.output_property("attributeMapping")
     """
     The map of attribute mapping of user pool attributes. [AttributeMapping in AWS API documentation](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html#CognitoUserPools-CreateIdentityProvider-request-AttributeMapping)
     """
-    idp_identifiers: pulumi.Output[list]
+    idp_identifiers: pulumi.Output[Optional[List[str]]] = pulumi.output_property("idpIdentifiers")
     """
     The list of identity providers.
     """
-    provider_details: pulumi.Output[dict]
+    provider_details: pulumi.Output[Dict[str, str]] = pulumi.output_property("providerDetails")
     """
     The map of identity details, such as access token
     """
-    provider_name: pulumi.Output[str]
+    provider_name: pulumi.Output[str] = pulumi.output_property("providerName")
     """
     The provider name
     """
-    provider_type: pulumi.Output[str]
+    provider_type: pulumi.Output[str] = pulumi.output_property("providerType")
     """
     The provider type.  [See AWS API for valid values](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html#CognitoUserPools-CreateIdentityProvider-request-ProviderType)
     """
-    user_pool_id: pulumi.Output[str]
+    user_pool_id: pulumi.Output[str] = pulumi.output_property("userPoolId")
     """
     The user pool id
     """
-    def __init__(__self__, resource_name, opts=None, attribute_mapping=None, idp_identifiers=None, provider_details=None, provider_name=None, provider_type=None, user_pool_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, attribute_mapping=None, idp_identifiers=None, provider_details=None, provider_name=None, provider_type=None, user_pool_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Cognito User Identity Provider resource.
 
@@ -62,9 +63,9 @@ class IdentityProvider(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] attribute_mapping: The map of attribute mapping of user pool attributes. [AttributeMapping in AWS API documentation](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html#CognitoUserPools-CreateIdentityProvider-request-AttributeMapping)
-        :param pulumi.Input[list] idp_identifiers: The list of identity providers.
-        :param pulumi.Input[dict] provider_details: The map of identity details, such as access token
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] attribute_mapping: The map of attribute mapping of user pool attributes. [AttributeMapping in AWS API documentation](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html#CognitoUserPools-CreateIdentityProvider-request-AttributeMapping)
+        :param pulumi.Input[List[pulumi.Input[str]]] idp_identifiers: The list of identity providers.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] provider_details: The map of identity details, such as access token
         :param pulumi.Input[str] provider_name: The provider name
         :param pulumi.Input[str] provider_type: The provider type.  [See AWS API for valid values](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html#CognitoUserPools-CreateIdentityProvider-request-ProviderType)
         :param pulumi.Input[str] user_pool_id: The user pool id
@@ -115,9 +116,9 @@ class IdentityProvider(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] attribute_mapping: The map of attribute mapping of user pool attributes. [AttributeMapping in AWS API documentation](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html#CognitoUserPools-CreateIdentityProvider-request-AttributeMapping)
-        :param pulumi.Input[list] idp_identifiers: The list of identity providers.
-        :param pulumi.Input[dict] provider_details: The map of identity details, such as access token
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] attribute_mapping: The map of attribute mapping of user pool attributes. [AttributeMapping in AWS API documentation](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html#CognitoUserPools-CreateIdentityProvider-request-AttributeMapping)
+        :param pulumi.Input[List[pulumi.Input[str]]] idp_identifiers: The list of identity providers.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] provider_details: The map of identity details, such as access token
         :param pulumi.Input[str] provider_name: The provider name
         :param pulumi.Input[str] provider_type: The provider type.  [See AWS API for valid values](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html#CognitoUserPools-CreateIdentityProvider-request-ProviderType)
         :param pulumi.Input[str] user_pool_id: The user pool id
@@ -139,3 +140,4 @@ class IdentityProvider(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

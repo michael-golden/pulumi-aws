@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class VpnGatewayRoutePropagation(pulumi.CustomResource):
-    route_table_id: pulumi.Output[str]
+    route_table_id: pulumi.Output[str] = pulumi.output_property("routeTableId")
     """
     The id of the `ec2.RouteTable` to propagate routes into.
     """
-    vpn_gateway_id: pulumi.Output[str]
+    vpn_gateway_id: pulumi.Output[str] = pulumi.output_property("vpnGatewayId")
     """
     The id of the `ec2.VpnGateway` to propagate routes from.
     """
-    def __init__(__self__, resource_name, opts=None, route_table_id=None, vpn_gateway_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, route_table_id=None, vpn_gateway_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Requests automatic route propagation between a VPN gateway and a route table.
 
@@ -96,3 +97,4 @@ class VpnGatewayRoutePropagation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

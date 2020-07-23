@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class LogResourcePolicy(pulumi.CustomResource):
-    policy_document: pulumi.Output[str]
+    policy_document: pulumi.Output[str] = pulumi.output_property("policyDocument")
     """
     Details of the resource policy, including the identity of the principal that is enabled to put logs to this account. This is formatted as a JSON string. Maximum length of 5120 characters.
     """
-    policy_name: pulumi.Output[str]
+    policy_name: pulumi.Output[str] = pulumi.output_property("policyName")
     """
     Name of the resource policy.
     """
-    def __init__(__self__, resource_name, opts=None, policy_document=None, policy_name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, policy_document=None, policy_name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage a CloudWatch log resource policy.
 
@@ -126,3 +127,4 @@ class LogResourcePolicy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

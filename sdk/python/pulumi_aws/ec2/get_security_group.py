@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetSecurityGroupResult:
     """
     A collection of values returned by getSecurityGroup.
     """
-    def __init__(__self__, arn=None, description=None, filters=None, id=None, name=None, tags=None, vpc_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, description=None, filters=None, id=None, name=None, tags=None, vpc_id=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn
@@ -84,20 +87,13 @@ def get_security_group(filters=None, id=None, name=None, tags=None, vpc_id=None,
     ```
 
 
-    :param list filters: Custom filter block as described below.
+    :param List['GetSecurityGroupFilterArgs'] filters: Custom filter block as described below.
     :param str id: The id of the specific security group to retrieve.
     :param str name: The name of the field to filter by, as defined by
            [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSecurityGroups.html).
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param Dict[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired security group.
     :param str vpc_id: The id of the VPC that the desired security group belongs to.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSecurityGroups.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A Security Group will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters

@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetVpcPeeringConnectionResult:
     """
     A collection of values returned by getVpcPeeringConnection.
     """
-    def __init__(__self__, accepter=None, cidr_block=None, filters=None, id=None, owner_id=None, peer_cidr_block=None, peer_owner_id=None, peer_region=None, peer_vpc_id=None, region=None, requester=None, status=None, tags=None, vpc_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, accepter=None, cidr_block=None, filters=None, id=None, owner_id=None, peer_cidr_block=None, peer_owner_id=None, peer_region=None, peer_vpc_id=None, region=None, requester=None, status=None, tags=None, vpc_id=None) -> None:
         if accepter and not isinstance(accepter, dict):
             raise TypeError("Expected argument 'accepter' to be a dict")
         __self__.accepter = accepter
@@ -112,7 +115,7 @@ def get_vpc_peering_connection(cidr_block=None, filters=None, id=None, owner_id=
 
 
     :param str cidr_block: The CIDR block of the requester VPC of the specific VPC Peering Connection to retrieve.
-    :param list filters: Custom filter block as described below.
+    :param List['GetVpcPeeringConnectionFilterArgs'] filters: Custom filter block as described below.
     :param str id: The ID of the specific VPC Peering Connection to retrieve.
     :param str owner_id: The AWS account ID of the owner of the requester VPC of the specific VPC Peering Connection to retrieve.
     :param str peer_cidr_block: The CIDR block of the accepter VPC of the specific VPC Peering Connection to retrieve.
@@ -121,16 +124,9 @@ def get_vpc_peering_connection(cidr_block=None, filters=None, id=None, owner_id=
     :param str peer_vpc_id: The ID of the accepter VPC of the specific VPC Peering Connection to retrieve.
     :param str region: The region of the requester VPC of the specific VPC Peering Connection to retrieve.
     :param str status: The status of the specific VPC Peering Connection to retrieve.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param Dict[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired VPC Peering Connection.
     :param str vpc_id: The ID of the requester VPC of the specific VPC Peering Connection to retrieve.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpcPeeringConnections.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A VPC Peering Connection will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['cidrBlock'] = cidr_block

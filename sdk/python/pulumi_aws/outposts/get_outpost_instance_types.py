@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetOutpostInstanceTypesResult:
     """
     A collection of values returned by getOutpostInstanceTypes.
     """
-    def __init__(__self__, arn=None, id=None, instance_types=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, id=None, instance_types=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn

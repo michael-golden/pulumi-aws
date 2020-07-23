@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetImageResult:
     """
     A collection of values returned by getImage.
     """
-    def __init__(__self__, id=None, image_digest=None, image_pushed_at=None, image_size_in_bytes=None, image_tag=None, image_tags=None, registry_id=None, repository_name=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, id=None, image_digest=None, image_pushed_at=None, image_size_in_bytes=None, image_tag=None, image_tags=None, registry_id=None, repository_name=None) -> None:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id

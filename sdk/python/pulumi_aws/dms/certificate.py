@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Certificate(pulumi.CustomResource):
-    certificate_arn: pulumi.Output[str]
+    certificate_arn: pulumi.Output[str] = pulumi.output_property("certificateArn")
     """
     The Amazon Resource Name (ARN) for the certificate.
     """
-    certificate_id: pulumi.Output[str]
+    certificate_id: pulumi.Output[str] = pulumi.output_property("certificateId")
     """
     The certificate identifier.
     """
-    certificate_pem: pulumi.Output[str]
+    certificate_pem: pulumi.Output[Optional[str]] = pulumi.output_property("certificatePem")
     """
     The contents of the .pem X.509 certificate file for the certificate. Either `certificate_pem` or `certificate_wallet` must be set.
     """
-    certificate_wallet: pulumi.Output[str]
+    certificate_wallet: pulumi.Output[Optional[str]] = pulumi.output_property("certificateWallet")
     """
     The contents of the Oracle Wallet certificate for use with SSL. Either `certificate_pem` or `certificate_wallet` must be set.
     """
-    def __init__(__self__, resource_name, opts=None, certificate_id=None, certificate_pem=None, certificate_wallet=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, certificate_id=None, certificate_pem=None, certificate_wallet=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a DMS (Data Migration Service) certificate resource. DMS certificates can be created, deleted, and imported.
 
@@ -108,3 +109,4 @@ class Certificate(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

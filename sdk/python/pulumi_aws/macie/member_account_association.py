@@ -5,16 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class MemberAccountAssociation(pulumi.CustomResource):
-    member_account_id: pulumi.Output[str]
+    member_account_id: pulumi.Output[str] = pulumi.output_property("memberAccountId")
     """
     The ID of the AWS account that you want to associate with Amazon Macie as a member account.
     """
-    def __init__(__self__, resource_name, opts=None, member_account_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, member_account_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         > **NOTE:** This resource interacts with [Amazon Macie Classic](https://docs.aws.amazon.com/macie/latest/userguide/what-is-macie.html). Macie Classic cannot be activated in new accounts. See the [FAQ](https://aws.amazon.com/macie/classic-faqs/) for more details.
 
@@ -84,3 +85,4 @@ class MemberAccountAssociation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Association(pulumi.CustomResource):
-    license_configuration_arn: pulumi.Output[str]
+    license_configuration_arn: pulumi.Output[str] = pulumi.output_property("licenseConfigurationArn")
     """
     ARN of the license configuration.
     """
-    resource_arn: pulumi.Output[str]
+    resource_arn: pulumi.Output[str] = pulumi.output_property("resourceArn")
     """
     ARN of the resource associated with the license configuration.
     """
-    def __init__(__self__, resource_name, opts=None, license_configuration_arn=None, resource_arn=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, license_configuration_arn=None, resource_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a License Manager association.
 
@@ -83,3 +84,4 @@ class Association(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

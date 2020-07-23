@@ -5,40 +5,41 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Hsm(pulumi.CustomResource):
-    availability_zone: pulumi.Output[str]
+    availability_zone: pulumi.Output[str] = pulumi.output_property("availabilityZone")
     """
     The IDs of AZ in which HSM module will be located. Do not use together with subnet_id.
     """
-    cluster_id: pulumi.Output[str]
+    cluster_id: pulumi.Output[str] = pulumi.output_property("clusterId")
     """
     The ID of Cloud HSM v2 cluster to which HSM will be added.
     """
-    hsm_eni_id: pulumi.Output[str]
+    hsm_eni_id: pulumi.Output[str] = pulumi.output_property("hsmEniId")
     """
     The id of the ENI interface allocated for HSM module.
     """
-    hsm_id: pulumi.Output[str]
+    hsm_id: pulumi.Output[str] = pulumi.output_property("hsmId")
     """
     The id of the HSM module.
     """
-    hsm_state: pulumi.Output[str]
+    hsm_state: pulumi.Output[str] = pulumi.output_property("hsmState")
     """
     The state of the HSM module.
     """
-    ip_address: pulumi.Output[str]
+    ip_address: pulumi.Output[str] = pulumi.output_property("ipAddress")
     """
     The IP address of HSM module. Must be within the CIDR of selected subnet.
     """
-    subnet_id: pulumi.Output[str]
+    subnet_id: pulumi.Output[str] = pulumi.output_property("subnetId")
     """
     The ID of subnet in which HSM module will be located.
     """
-    def __init__(__self__, resource_name, opts=None, availability_zone=None, cluster_id=None, ip_address=None, subnet_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zone=None, cluster_id=None, ip_address=None, subnet_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates an HSM module in Amazon CloudHSM v2 cluster.
 
@@ -130,3 +131,4 @@ class Hsm(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

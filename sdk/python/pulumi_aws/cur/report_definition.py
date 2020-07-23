@@ -5,48 +5,49 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class ReportDefinition(pulumi.CustomResource):
-    additional_artifacts: pulumi.Output[list]
+    additional_artifacts: pulumi.Output[Optional[List[str]]] = pulumi.output_property("additionalArtifacts")
     """
     A list of additional artifacts. Valid values are: REDSHIFT, QUICKSIGHT.
     """
-    additional_schema_elements: pulumi.Output[list]
+    additional_schema_elements: pulumi.Output[List[str]] = pulumi.output_property("additionalSchemaElements")
     """
     A list of schema elements. Valid values are: RESOURCES.
     """
-    compression: pulumi.Output[str]
+    compression: pulumi.Output[str] = pulumi.output_property("compression")
     """
     Compression format for report. Valid values are: GZIP, ZIP.
     """
-    format: pulumi.Output[str]
+    format: pulumi.Output[str] = pulumi.output_property("format")
     """
     Format for report. Valid values are: textORcsv.
     """
-    report_name: pulumi.Output[str]
+    report_name: pulumi.Output[str] = pulumi.output_property("reportName")
     """
     Unique name for the report. Must start with a number/letter and is case sensitive. Limited to 256 characters.
     """
-    s3_bucket: pulumi.Output[str]
+    s3_bucket: pulumi.Output[str] = pulumi.output_property("s3Bucket")
     """
     Name of the existing S3 bucket to hold generated reports.
     """
-    s3_prefix: pulumi.Output[str]
+    s3_prefix: pulumi.Output[Optional[str]] = pulumi.output_property("s3Prefix")
     """
     Report path prefix. Limited to 256 characters.
     """
-    s3_region: pulumi.Output[str]
+    s3_region: pulumi.Output[str] = pulumi.output_property("s3Region")
     """
     Region of the existing S3 bucket to hold generated reports.
     """
-    time_unit: pulumi.Output[str]
+    time_unit: pulumi.Output[str] = pulumi.output_property("timeUnit")
     """
     The frequency on which report data are measured and displayed.  Valid values are: HOURLY, DAILY.
     """
-    def __init__(__self__, resource_name, opts=None, additional_artifacts=None, additional_schema_elements=None, compression=None, format=None, report_name=None, s3_bucket=None, s3_prefix=None, s3_region=None, time_unit=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, additional_artifacts=None, additional_schema_elements=None, compression=None, format=None, report_name=None, s3_bucket=None, s3_prefix=None, s3_region=None, time_unit=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages Cost and Usage Report Definitions.
 
@@ -76,8 +77,8 @@ class ReportDefinition(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] additional_artifacts: A list of additional artifacts. Valid values are: REDSHIFT, QUICKSIGHT.
-        :param pulumi.Input[list] additional_schema_elements: A list of schema elements. Valid values are: RESOURCES.
+        :param pulumi.Input[List[pulumi.Input[str]]] additional_artifacts: A list of additional artifacts. Valid values are: REDSHIFT, QUICKSIGHT.
+        :param pulumi.Input[List[pulumi.Input[str]]] additional_schema_elements: A list of schema elements. Valid values are: RESOURCES.
         :param pulumi.Input[str] compression: Compression format for report. Valid values are: GZIP, ZIP.
         :param pulumi.Input[str] format: Format for report. Valid values are: textORcsv.
         :param pulumi.Input[str] report_name: Unique name for the report. Must start with a number/letter and is case sensitive. Limited to 256 characters.
@@ -141,8 +142,8 @@ class ReportDefinition(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] additional_artifacts: A list of additional artifacts. Valid values are: REDSHIFT, QUICKSIGHT.
-        :param pulumi.Input[list] additional_schema_elements: A list of schema elements. Valid values are: RESOURCES.
+        :param pulumi.Input[List[pulumi.Input[str]]] additional_artifacts: A list of additional artifacts. Valid values are: REDSHIFT, QUICKSIGHT.
+        :param pulumi.Input[List[pulumi.Input[str]]] additional_schema_elements: A list of schema elements. Valid values are: RESOURCES.
         :param pulumi.Input[str] compression: Compression format for report. Valid values are: GZIP, ZIP.
         :param pulumi.Input[str] format: Format for report. Valid values are: textORcsv.
         :param pulumi.Input[str] report_name: Unique name for the report. Must start with a number/letter and is case sensitive. Limited to 256 characters.
@@ -171,3 +172,4 @@ class ReportDefinition(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

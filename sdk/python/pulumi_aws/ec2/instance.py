@@ -5,70 +5,54 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Instance(pulumi.CustomResource):
-    ami: pulumi.Output[str]
+    ami: pulumi.Output[str] = pulumi.output_property("ami")
     """
     The AMI to use for the instance.
     """
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the instance.
     """
-    associate_public_ip_address: pulumi.Output[bool]
+    associate_public_ip_address: pulumi.Output[bool] = pulumi.output_property("associatePublicIpAddress")
     """
     Associate a public ip address with an instance in a VPC.  Boolean value.
     """
-    availability_zone: pulumi.Output[str]
+    availability_zone: pulumi.Output[str] = pulumi.output_property("availabilityZone")
     """
     The AZ to start the instance in.
     """
-    cpu_core_count: pulumi.Output[float]
+    cpu_core_count: pulumi.Output[float] = pulumi.output_property("cpuCoreCount")
     """
     Sets the number of CPU cores for an instance. This option is
     only supported on creation of instance type that support CPU Options
     [CPU Cores and Threads Per CPU Core Per Instance Type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html#cpu-options-supported-instances-values) - specifying this option for unsupported instance types will return an error from the EC2 API.
     """
-    cpu_threads_per_core: pulumi.Output[float]
+    cpu_threads_per_core: pulumi.Output[float] = pulumi.output_property("cpuThreadsPerCore")
     """
     If set to to 1, hyperthreading is disabled on the launched instance. Defaults to 2 if not set. See [Optimizing CPU Options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html) for more information.
     """
-    credit_specification: pulumi.Output[dict]
+    credit_specification: pulumi.Output[Optional['outputs.InstanceCreditSpecification']] = pulumi.output_property("creditSpecification")
     """
     Customize the credit specification of the instance. See Credit Specification below for more details.
-
-      * `cpuCredits` (`str`) - The credit option for CPU usage. Can be `"standard"` or `"unlimited"`. T3 instances are launched as unlimited by default. T2 instances are launched as standard by default.
     """
-    disable_api_termination: pulumi.Output[bool]
+    disable_api_termination: pulumi.Output[Optional[bool]] = pulumi.output_property("disableApiTermination")
     """
     If true, enables [EC2 Instance
     Termination Protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination)
     """
-    ebs_block_devices: pulumi.Output[list]
+    ebs_block_devices: pulumi.Output[List['outputs.InstanceEbsBlockDevice']] = pulumi.output_property("ebsBlockDevices")
     """
     Additional EBS block devices to attach to the
     instance.  Block device configurations only apply on resource creation. See Block Devices below for details on attributes and drift detection.
-
-      * `deleteOnTermination` (`bool`) - Whether the volume should be destroyed
-        on instance termination (Default: `true`).
-      * `device_name` (`str`) - The name of the device to mount.
-      * `encrypted` (`bool`) - Enables [EBS
-        encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
-        on the volume (Default: `false`). Cannot be used with `snapshot_id`. Must be configured to perform drift detection.
-      * `iops` (`float`) - The amount of provisioned
-        [IOPS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-io-characteristics.html).
-        This must be set with a `volume_type` of `"io1"`.
-      * `kms_key_id` (`str`) - Amazon Resource Name (ARN) of the KMS Key to use when encrypting the volume. Must be configured to perform drift detection.
-      * `snapshot_id` (`str`) - The Snapshot ID to mount.
-      * `volume_id` (`str`)
-      * `volume_size` (`float`) - The size of the volume in gibibytes (GiB).
-      * `volumeType` (`str`) - The type of volume. Can be `"standard"`, `"gp2"`,
-        or `"io1"`. (Default: `"gp2"`).
     """
-    ebs_optimized: pulumi.Output[bool]
+    ebs_optimized: pulumi.Output[Optional[bool]] = pulumi.output_property("ebsOptimized")
     """
     If true, the launched EC2 instance will be EBS-optimized.
     Note that if this is not set on an instance type that is optimized by default then
@@ -76,86 +60,72 @@ class Instance(pulumi.CustomResource):
     there is no need to set this and there is no effect to disabling it.
     See the [EBS Optimized section](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html) of the AWS User Guide for more information.
     """
-    ephemeral_block_devices: pulumi.Output[list]
+    ephemeral_block_devices: pulumi.Output[List['outputs.InstanceEphemeralBlockDevice']] = pulumi.output_property("ephemeralBlockDevices")
     """
     Customize Ephemeral (also known as
     "Instance Store") volumes on the instance. See Block Devices below for details.
-
-      * `device_name` (`str`) - The name of the block device to mount on the instance.
-      * `noDevice` (`bool`) - Suppresses the specified device included in the AMI's block device mapping.
-      * `virtualName` (`str`) - The [Instance Store Device
-        Name](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStoreDeviceNames)
-        (e.g. `"ephemeral0"`).
     """
-    get_password_data: pulumi.Output[bool]
+    get_password_data: pulumi.Output[Optional[bool]] = pulumi.output_property("getPasswordData")
     """
     If true, wait for password data to become available and retrieve it. Useful for getting the administrator password for instances running Microsoft Windows. The password data is exported to the `password_data` attribute. See [GetPasswordData](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetPasswordData.html) for more information.
     """
-    hibernation: pulumi.Output[bool]
+    hibernation: pulumi.Output[Optional[bool]] = pulumi.output_property("hibernation")
     """
     If true, the launched EC2 instance will support hibernation.
     """
-    host_id: pulumi.Output[str]
+    host_id: pulumi.Output[str] = pulumi.output_property("hostId")
     """
     The Id of a dedicated host that the instance will be assigned to. Use when an instance is to be launched on a specific dedicated host.
     """
-    iam_instance_profile: pulumi.Output[str]
+    iam_instance_profile: pulumi.Output[Optional[str]] = pulumi.output_property("iamInstanceProfile")
     """
     The IAM Instance Profile to
     launch the instance with. Specified as the name of the Instance Profile. Ensure your credentials have the correct permission to assign the instance profile according to the [EC2 documentation](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-permissions), notably `iam:PassRole`.
     """
-    instance_initiated_shutdown_behavior: pulumi.Output[str]
+    instance_initiated_shutdown_behavior: pulumi.Output[Optional[str]] = pulumi.output_property("instanceInitiatedShutdownBehavior")
     """
     Shutdown behavior for the
     instance. Amazon defaults this to `stop` for EBS-backed instances and
     `terminate` for instance-store instances. Cannot be set on instance-store
     instances. See [Shutdown Behavior](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingInstanceInitiatedShutdownBehavior) for more information.
     """
-    instance_state: pulumi.Output[str]
+    instance_state: pulumi.Output[str] = pulumi.output_property("instanceState")
     """
     The state of the instance. One of: `pending`, `running`, `shutting-down`, `terminated`, `stopping`, `stopped`. See [Instance Lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html) for more information.
     """
-    instance_type: pulumi.Output[str]
+    instance_type: pulumi.Output[str] = pulumi.output_property("instanceType")
     """
     The type of instance to start. Updates to this field will trigger a stop/start of the EC2 instance.
     """
-    ipv6_address_count: pulumi.Output[float]
+    ipv6_address_count: pulumi.Output[float] = pulumi.output_property("ipv6AddressCount")
     """
     A number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet.
     """
-    ipv6_addresses: pulumi.Output[list]
+    ipv6_addresses: pulumi.Output[List[str]] = pulumi.output_property("ipv6Addresses")
     """
     Specify one or more IPv6 addresses from the range of the subnet to associate with the primary network interface
     """
-    key_name: pulumi.Output[str]
+    key_name: pulumi.Output[str] = pulumi.output_property("keyName")
     """
     The key name of the Key Pair to use for the instance; which can be managed using the `ec2.KeyPair` resource.
     """
-    metadata_options: pulumi.Output[dict]
+    metadata_options: pulumi.Output['outputs.InstanceMetadataOptions'] = pulumi.output_property("metadataOptions")
     """
     Customize the metadata options of the instance. See Metadata Options below for more details.
-
-      * `httpEndpoint` (`str`) - Whether the metadata service is available. Can be `"enabled"` or `"disabled"`. (Default: `"enabled"`).
-      * `httpPutResponseHopLimit` (`float`) - The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. Can be an integer from `1` to `64`. (Default: `1`).
-      * `httpTokens` (`str`) - Whether or not the metadata service requires session tokens, also referred to as _Instance Metadata Service Version 2_. Can be `"optional"` or `"required"`. (Default: `"optional"`).
     """
-    monitoring: pulumi.Output[bool]
+    monitoring: pulumi.Output[Optional[bool]] = pulumi.output_property("monitoring")
     """
     If true, the launched EC2 instance will have detailed monitoring enabled. (Available since v0.6.0)
     """
-    network_interfaces: pulumi.Output[list]
+    network_interfaces: pulumi.Output[List['outputs.InstanceNetworkInterface']] = pulumi.output_property("networkInterfaces")
     """
     Customize network interfaces to be attached at instance boot time. See Network Interfaces below for more details.
-
-      * `deleteOnTermination` (`bool`) - Whether or not to delete the network interface on instance termination. Defaults to `false`. Currently, the only valid value is `false`, as this is only supported when creating new network interfaces when launching an instance.
-      * `device_index` (`float`) - The integer index of the network interface attachment. Limited by instance type.
-      * `network_interface_id` (`str`) - The ID of the network interface to attach.
     """
-    outpost_arn: pulumi.Output[str]
+    outpost_arn: pulumi.Output[str] = pulumi.output_property("outpostArn")
     """
     The ARN of the Outpost the instance is assigned to.
     """
-    password_data: pulumi.Output[str]
+    password_data: pulumi.Output[str] = pulumi.output_property("passwordData")
     """
     Base-64 encoded encrypted password data for the instance.
     Useful for getting the administrator password for instances running Microsoft Windows.
@@ -163,90 +133,78 @@ class Instance(pulumi.CustomResource):
     Note that this encrypted value will be stored in the state file, as with all exported attributes.
     See [GetPasswordData](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetPasswordData.html) for more information.
     """
-    placement_group: pulumi.Output[str]
+    placement_group: pulumi.Output[str] = pulumi.output_property("placementGroup")
     """
     The Placement Group to start the instance in.
     """
-    primary_network_interface_id: pulumi.Output[str]
+    primary_network_interface_id: pulumi.Output[str] = pulumi.output_property("primaryNetworkInterfaceId")
     """
     The ID of the instance's primary network interface.
     """
-    private_dns: pulumi.Output[str]
+    private_dns: pulumi.Output[str] = pulumi.output_property("privateDns")
     """
     The private DNS name assigned to the instance. Can only be
     used inside the Amazon EC2, and only available if you've enabled DNS hostnames
     for your VPC
     """
-    private_ip: pulumi.Output[str]
+    private_ip: pulumi.Output[str] = pulumi.output_property("privateIp")
     """
     Private IP address to associate with the
     instance in a VPC.
     """
-    public_dns: pulumi.Output[str]
+    public_dns: pulumi.Output[str] = pulumi.output_property("publicDns")
     """
     The public DNS name assigned to the instance. For EC2-VPC, this
     is only available if you've enabled DNS hostnames for your VPC
     """
-    public_ip: pulumi.Output[str]
+    public_ip: pulumi.Output[str] = pulumi.output_property("publicIp")
     """
     The public IP address assigned to the instance, if applicable. **NOTE**: If you are using an `ec2.Eip` with your instance, you should refer to the EIP's address directly and not use `public_ip`, as this field will change after the EIP is attached.
     """
-    root_block_device: pulumi.Output[dict]
+    root_block_device: pulumi.Output['outputs.InstanceRootBlockDevice'] = pulumi.output_property("rootBlockDevice")
     """
     Customize details about the root block
     device of the instance. See Block Devices below for details.
-
-      * `deleteOnTermination` (`bool`) - Whether the volume should be destroyed
-        on instance termination (Default: `true`).
-      * `device_name` (`str`) - The name of the device to mount.
-      * `encrypted` (`bool`) - Enable volume encryption. (Default: `false`). Must be configured to perform drift detection.
-      * `iops` (`float`) - The amount of provisioned
-        [IOPS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-io-characteristics.html).
-        This is only valid for `volume_type` of `"io1"`, and must be specified if
-        using that type
-      * `kms_key_id` (`str`) - Amazon Resource Name (ARN) of the KMS Key to use when encrypting the volume. Must be configured to perform drift detection.
-      * `volume_id` (`str`)
-      * `volume_size` (`float`) - The size of the volume in gibibytes (GiB).
-      * `volumeType` (`str`) - The type of volume. Can be `"standard"`, `"gp2"`, `"io1"`, `"sc1"`, or `"st1"`. (Default: `"standard"`).
     """
-    security_groups: pulumi.Output[list]
+    security_groups: pulumi.Output[List[str]] = pulumi.output_property("securityGroups")
     """
     A list of security group names (EC2-Classic) or IDs (default VPC) to associate with.
     """
-    source_dest_check: pulumi.Output[bool]
+    source_dest_check: pulumi.Output[Optional[bool]] = pulumi.output_property("sourceDestCheck")
     """
     Controls if traffic is routed to the instance when
     the destination address does not match the instance. Used for NAT or VPNs. Defaults true.
     """
-    subnet_id: pulumi.Output[str]
+    subnet_id: pulumi.Output[str] = pulumi.output_property("subnetId")
     """
     The VPC Subnet ID to launch in.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    tenancy: pulumi.Output[str]
+    tenancy: pulumi.Output[str] = pulumi.output_property("tenancy")
     """
     The tenancy of the instance (if the instance is running in a VPC). An instance with a tenancy of dedicated runs on single-tenant hardware. The host tenancy is not supported for the import-instance command.
     """
-    user_data: pulumi.Output[str]
+    user_data: pulumi.Output[Optional[str]] = pulumi.output_property("userData")
     """
     The user data to provide when launching the instance. Do not pass gzip-compressed data via this argument; see `user_data_base64` instead.
     """
-    user_data_base64: pulumi.Output[str]
+    user_data_base64: pulumi.Output[Optional[str]] = pulumi.output_property("userDataBase64")
     """
     Can be used instead of `user_data` to pass base64-encoded binary data directly. Use this instead of `user_data` whenever the value is not a valid UTF-8 string. For example, gzip-encoded user data must be base64-encoded and passed via this argument to avoid corruption.
     """
-    volume_tags: pulumi.Output[dict]
+    volume_tags: pulumi.Output[Dict[str, str]] = pulumi.output_property("volumeTags")
     """
     A map of tags to assign to the devices created by the instance at launch time.
     """
-    vpc_security_group_ids: pulumi.Output[list]
+    vpc_security_group_ids: pulumi.Output[List[str]] = pulumi.output_property("vpcSecurityGroupIds")
     """
     A list of security group IDs to associate with.
     """
-    def __init__(__self__, resource_name, opts=None, ami=None, associate_public_ip_address=None, availability_zone=None, cpu_core_count=None, cpu_threads_per_core=None, credit_specification=None, disable_api_termination=None, ebs_block_devices=None, ebs_optimized=None, ephemeral_block_devices=None, get_password_data=None, hibernation=None, host_id=None, iam_instance_profile=None, instance_initiated_shutdown_behavior=None, instance_type=None, ipv6_address_count=None, ipv6_addresses=None, key_name=None, metadata_options=None, monitoring=None, network_interfaces=None, placement_group=None, private_ip=None, root_block_device=None, security_groups=None, source_dest_check=None, subnet_id=None, tags=None, tenancy=None, user_data=None, user_data_base64=None, volume_tags=None, vpc_security_group_ids=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, ami=None, associate_public_ip_address=None, availability_zone=None, cpu_core_count=None, cpu_threads_per_core=None, credit_specification=None, disable_api_termination=None, ebs_block_devices=None, ebs_optimized=None, ephemeral_block_devices=None, get_password_data=None, hibernation=None, host_id=None, iam_instance_profile=None, instance_initiated_shutdown_behavior=None, instance_type=None, ipv6_address_count=None, ipv6_addresses=None, key_name=None, metadata_options=None, monitoring=None, network_interfaces=None, placement_group=None, private_ip=None, root_block_device=None, security_groups=None, source_dest_check=None, subnet_id=None, tags=None, tenancy=None, user_data=None, user_data_base64=None, volume_tags=None, vpc_security_group_ids=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an EC2 instance resource. This allows instances to be created, updated,
         and deleted.
@@ -286,22 +244,22 @@ class Instance(pulumi.CustomResource):
                only supported on creation of instance type that support CPU Options
                [CPU Cores and Threads Per CPU Core Per Instance Type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html#cpu-options-supported-instances-values) - specifying this option for unsupported instance types will return an error from the EC2 API.
         :param pulumi.Input[float] cpu_threads_per_core: If set to to 1, hyperthreading is disabled on the launched instance. Defaults to 2 if not set. See [Optimizing CPU Options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html) for more information.
-        :param pulumi.Input[dict] credit_specification: Customize the credit specification of the instance. See Credit Specification below for more details.
+        :param pulumi.Input['InstanceCreditSpecificationArgs'] credit_specification: Customize the credit specification of the instance. See Credit Specification below for more details.
         :param pulumi.Input[bool] disable_api_termination: If true, enables [EC2 Instance
                Termination Protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination)
-        :param pulumi.Input[list] ebs_block_devices: Additional EBS block devices to attach to the
+        :param pulumi.Input[List[pulumi.Input['InstanceEbsBlockDeviceArgs']]] ebs_block_devices: Additional EBS block devices to attach to the
                instance.  Block device configurations only apply on resource creation. See Block Devices below for details on attributes and drift detection.
         :param pulumi.Input[bool] ebs_optimized: If true, the launched EC2 instance will be EBS-optimized.
                Note that if this is not set on an instance type that is optimized by default then
                this will show as disabled but if the instance type is optimized by default then
                there is no need to set this and there is no effect to disabling it.
                See the [EBS Optimized section](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html) of the AWS User Guide for more information.
-        :param pulumi.Input[list] ephemeral_block_devices: Customize Ephemeral (also known as
+        :param pulumi.Input[List[pulumi.Input['InstanceEphemeralBlockDeviceArgs']]] ephemeral_block_devices: Customize Ephemeral (also known as
                "Instance Store") volumes on the instance. See Block Devices below for details.
         :param pulumi.Input[bool] get_password_data: If true, wait for password data to become available and retrieve it. Useful for getting the administrator password for instances running Microsoft Windows. The password data is exported to the `password_data` attribute. See [GetPasswordData](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetPasswordData.html) for more information.
         :param pulumi.Input[bool] hibernation: If true, the launched EC2 instance will support hibernation.
         :param pulumi.Input[str] host_id: The Id of a dedicated host that the instance will be assigned to. Use when an instance is to be launched on a specific dedicated host.
-        :param pulumi.Input[dict] iam_instance_profile: The IAM Instance Profile to
+        :param pulumi.Input[str] iam_instance_profile: The IAM Instance Profile to
                launch the instance with. Specified as the name of the Instance Profile. Ensure your credentials have the correct permission to assign the instance profile according to the [EC2 documentation](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-permissions), notably `iam:PassRole`.
         :param pulumi.Input[str] instance_initiated_shutdown_behavior: Shutdown behavior for the
                instance. Amazon defaults this to `stop` for EBS-backed instances and
@@ -309,83 +267,26 @@ class Instance(pulumi.CustomResource):
                instances. See [Shutdown Behavior](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingInstanceInitiatedShutdownBehavior) for more information.
         :param pulumi.Input[str] instance_type: The type of instance to start. Updates to this field will trigger a stop/start of the EC2 instance.
         :param pulumi.Input[float] ipv6_address_count: A number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet.
-        :param pulumi.Input[list] ipv6_addresses: Specify one or more IPv6 addresses from the range of the subnet to associate with the primary network interface
+        :param pulumi.Input[List[pulumi.Input[str]]] ipv6_addresses: Specify one or more IPv6 addresses from the range of the subnet to associate with the primary network interface
         :param pulumi.Input[str] key_name: The key name of the Key Pair to use for the instance; which can be managed using the `ec2.KeyPair` resource.
-        :param pulumi.Input[dict] metadata_options: Customize the metadata options of the instance. See Metadata Options below for more details.
+        :param pulumi.Input['InstanceMetadataOptionsArgs'] metadata_options: Customize the metadata options of the instance. See Metadata Options below for more details.
         :param pulumi.Input[bool] monitoring: If true, the launched EC2 instance will have detailed monitoring enabled. (Available since v0.6.0)
-        :param pulumi.Input[list] network_interfaces: Customize network interfaces to be attached at instance boot time. See Network Interfaces below for more details.
+        :param pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceArgs']]] network_interfaces: Customize network interfaces to be attached at instance boot time. See Network Interfaces below for more details.
         :param pulumi.Input[str] placement_group: The Placement Group to start the instance in.
         :param pulumi.Input[str] private_ip: Private IP address to associate with the
                instance in a VPC.
-        :param pulumi.Input[dict] root_block_device: Customize details about the root block
+        :param pulumi.Input['InstanceRootBlockDeviceArgs'] root_block_device: Customize details about the root block
                device of the instance. See Block Devices below for details.
-        :param pulumi.Input[list] security_groups: A list of security group names (EC2-Classic) or IDs (default VPC) to associate with.
+        :param pulumi.Input[List[pulumi.Input[str]]] security_groups: A list of security group names (EC2-Classic) or IDs (default VPC) to associate with.
         :param pulumi.Input[bool] source_dest_check: Controls if traffic is routed to the instance when
                the destination address does not match the instance. Used for NAT or VPNs. Defaults true.
         :param pulumi.Input[str] subnet_id: The VPC Subnet ID to launch in.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] tenancy: The tenancy of the instance (if the instance is running in a VPC). An instance with a tenancy of dedicated runs on single-tenant hardware. The host tenancy is not supported for the import-instance command.
         :param pulumi.Input[str] user_data: The user data to provide when launching the instance. Do not pass gzip-compressed data via this argument; see `user_data_base64` instead.
         :param pulumi.Input[str] user_data_base64: Can be used instead of `user_data` to pass base64-encoded binary data directly. Use this instead of `user_data` whenever the value is not a valid UTF-8 string. For example, gzip-encoded user data must be base64-encoded and passed via this argument to avoid corruption.
-        :param pulumi.Input[dict] volume_tags: A map of tags to assign to the devices created by the instance at launch time.
-        :param pulumi.Input[list] vpc_security_group_ids: A list of security group IDs to associate with.
-
-        The **credit_specification** object supports the following:
-
-          * `cpuCredits` (`pulumi.Input[str]`) - The credit option for CPU usage. Can be `"standard"` or `"unlimited"`. T3 instances are launched as unlimited by default. T2 instances are launched as standard by default.
-
-        The **ebs_block_devices** object supports the following:
-
-          * `deleteOnTermination` (`pulumi.Input[bool]`) - Whether the volume should be destroyed
-            on instance termination (Default: `true`).
-          * `device_name` (`pulumi.Input[str]`) - The name of the device to mount.
-          * `encrypted` (`pulumi.Input[bool]`) - Enables [EBS
-            encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
-            on the volume (Default: `false`). Cannot be used with `snapshot_id`. Must be configured to perform drift detection.
-          * `iops` (`pulumi.Input[float]`) - The amount of provisioned
-            [IOPS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-io-characteristics.html).
-            This must be set with a `volume_type` of `"io1"`.
-          * `kms_key_id` (`pulumi.Input[str]`) - Amazon Resource Name (ARN) of the KMS Key to use when encrypting the volume. Must be configured to perform drift detection.
-          * `snapshot_id` (`pulumi.Input[str]`) - The Snapshot ID to mount.
-          * `volume_id` (`pulumi.Input[str]`)
-          * `volume_size` (`pulumi.Input[float]`) - The size of the volume in gibibytes (GiB).
-          * `volumeType` (`pulumi.Input[str]`) - The type of volume. Can be `"standard"`, `"gp2"`,
-            or `"io1"`. (Default: `"gp2"`).
-
-        The **ephemeral_block_devices** object supports the following:
-
-          * `device_name` (`pulumi.Input[str]`) - The name of the block device to mount on the instance.
-          * `noDevice` (`pulumi.Input[bool]`) - Suppresses the specified device included in the AMI's block device mapping.
-          * `virtualName` (`pulumi.Input[str]`) - The [Instance Store Device
-            Name](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStoreDeviceNames)
-            (e.g. `"ephemeral0"`).
-
-        The **metadata_options** object supports the following:
-
-          * `httpEndpoint` (`pulumi.Input[str]`) - Whether the metadata service is available. Can be `"enabled"` or `"disabled"`. (Default: `"enabled"`).
-          * `httpPutResponseHopLimit` (`pulumi.Input[float]`) - The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. Can be an integer from `1` to `64`. (Default: `1`).
-          * `httpTokens` (`pulumi.Input[str]`) - Whether or not the metadata service requires session tokens, also referred to as _Instance Metadata Service Version 2_. Can be `"optional"` or `"required"`. (Default: `"optional"`).
-
-        The **network_interfaces** object supports the following:
-
-          * `deleteOnTermination` (`pulumi.Input[bool]`) - Whether or not to delete the network interface on instance termination. Defaults to `false`. Currently, the only valid value is `false`, as this is only supported when creating new network interfaces when launching an instance.
-          * `device_index` (`pulumi.Input[float]`) - The integer index of the network interface attachment. Limited by instance type.
-          * `network_interface_id` (`pulumi.Input[str]`) - The ID of the network interface to attach.
-
-        The **root_block_device** object supports the following:
-
-          * `deleteOnTermination` (`pulumi.Input[bool]`) - Whether the volume should be destroyed
-            on instance termination (Default: `true`).
-          * `device_name` (`pulumi.Input[str]`) - The name of the device to mount.
-          * `encrypted` (`pulumi.Input[bool]`) - Enable volume encryption. (Default: `false`). Must be configured to perform drift detection.
-          * `iops` (`pulumi.Input[float]`) - The amount of provisioned
-            [IOPS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-io-characteristics.html).
-            This is only valid for `volume_type` of `"io1"`, and must be specified if
-            using that type
-          * `kms_key_id` (`pulumi.Input[str]`) - Amazon Resource Name (ARN) of the KMS Key to use when encrypting the volume. Must be configured to perform drift detection.
-          * `volume_id` (`pulumi.Input[str]`)
-          * `volume_size` (`pulumi.Input[float]`) - The size of the volume in gibibytes (GiB).
-          * `volumeType` (`pulumi.Input[str]`) - The type of volume. Can be `"standard"`, `"gp2"`, `"io1"`, `"sc1"`, or `"st1"`. (Default: `"standard"`).
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] volume_tags: A map of tags to assign to the devices created by the instance at launch time.
+        :param pulumi.Input[List[pulumi.Input[str]]] vpc_security_group_ids: A list of security group IDs to associate with.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -476,22 +377,22 @@ class Instance(pulumi.CustomResource):
                only supported on creation of instance type that support CPU Options
                [CPU Cores and Threads Per CPU Core Per Instance Type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html#cpu-options-supported-instances-values) - specifying this option for unsupported instance types will return an error from the EC2 API.
         :param pulumi.Input[float] cpu_threads_per_core: If set to to 1, hyperthreading is disabled on the launched instance. Defaults to 2 if not set. See [Optimizing CPU Options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html) for more information.
-        :param pulumi.Input[dict] credit_specification: Customize the credit specification of the instance. See Credit Specification below for more details.
+        :param pulumi.Input['InstanceCreditSpecificationArgs'] credit_specification: Customize the credit specification of the instance. See Credit Specification below for more details.
         :param pulumi.Input[bool] disable_api_termination: If true, enables [EC2 Instance
                Termination Protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination)
-        :param pulumi.Input[list] ebs_block_devices: Additional EBS block devices to attach to the
+        :param pulumi.Input[List[pulumi.Input['InstanceEbsBlockDeviceArgs']]] ebs_block_devices: Additional EBS block devices to attach to the
                instance.  Block device configurations only apply on resource creation. See Block Devices below for details on attributes and drift detection.
         :param pulumi.Input[bool] ebs_optimized: If true, the launched EC2 instance will be EBS-optimized.
                Note that if this is not set on an instance type that is optimized by default then
                this will show as disabled but if the instance type is optimized by default then
                there is no need to set this and there is no effect to disabling it.
                See the [EBS Optimized section](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html) of the AWS User Guide for more information.
-        :param pulumi.Input[list] ephemeral_block_devices: Customize Ephemeral (also known as
+        :param pulumi.Input[List[pulumi.Input['InstanceEphemeralBlockDeviceArgs']]] ephemeral_block_devices: Customize Ephemeral (also known as
                "Instance Store") volumes on the instance. See Block Devices below for details.
         :param pulumi.Input[bool] get_password_data: If true, wait for password data to become available and retrieve it. Useful for getting the administrator password for instances running Microsoft Windows. The password data is exported to the `password_data` attribute. See [GetPasswordData](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetPasswordData.html) for more information.
         :param pulumi.Input[bool] hibernation: If true, the launched EC2 instance will support hibernation.
         :param pulumi.Input[str] host_id: The Id of a dedicated host that the instance will be assigned to. Use when an instance is to be launched on a specific dedicated host.
-        :param pulumi.Input[dict] iam_instance_profile: The IAM Instance Profile to
+        :param pulumi.Input[str] iam_instance_profile: The IAM Instance Profile to
                launch the instance with. Specified as the name of the Instance Profile. Ensure your credentials have the correct permission to assign the instance profile according to the [EC2 documentation](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-permissions), notably `iam:PassRole`.
         :param pulumi.Input[str] instance_initiated_shutdown_behavior: Shutdown behavior for the
                instance. Amazon defaults this to `stop` for EBS-backed instances and
@@ -500,11 +401,11 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] instance_state: The state of the instance. One of: `pending`, `running`, `shutting-down`, `terminated`, `stopping`, `stopped`. See [Instance Lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html) for more information.
         :param pulumi.Input[str] instance_type: The type of instance to start. Updates to this field will trigger a stop/start of the EC2 instance.
         :param pulumi.Input[float] ipv6_address_count: A number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet.
-        :param pulumi.Input[list] ipv6_addresses: Specify one or more IPv6 addresses from the range of the subnet to associate with the primary network interface
+        :param pulumi.Input[List[pulumi.Input[str]]] ipv6_addresses: Specify one or more IPv6 addresses from the range of the subnet to associate with the primary network interface
         :param pulumi.Input[str] key_name: The key name of the Key Pair to use for the instance; which can be managed using the `ec2.KeyPair` resource.
-        :param pulumi.Input[dict] metadata_options: Customize the metadata options of the instance. See Metadata Options below for more details.
+        :param pulumi.Input['InstanceMetadataOptionsArgs'] metadata_options: Customize the metadata options of the instance. See Metadata Options below for more details.
         :param pulumi.Input[bool] monitoring: If true, the launched EC2 instance will have detailed monitoring enabled. (Available since v0.6.0)
-        :param pulumi.Input[list] network_interfaces: Customize network interfaces to be attached at instance boot time. See Network Interfaces below for more details.
+        :param pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceArgs']]] network_interfaces: Customize network interfaces to be attached at instance boot time. See Network Interfaces below for more details.
         :param pulumi.Input[str] outpost_arn: The ARN of the Outpost the instance is assigned to.
         :param pulumi.Input[str] password_data: Base-64 encoded encrypted password data for the instance.
                Useful for getting the administrator password for instances running Microsoft Windows.
@@ -521,75 +422,18 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] public_dns: The public DNS name assigned to the instance. For EC2-VPC, this
                is only available if you've enabled DNS hostnames for your VPC
         :param pulumi.Input[str] public_ip: The public IP address assigned to the instance, if applicable. **NOTE**: If you are using an `ec2.Eip` with your instance, you should refer to the EIP's address directly and not use `public_ip`, as this field will change after the EIP is attached.
-        :param pulumi.Input[dict] root_block_device: Customize details about the root block
+        :param pulumi.Input['InstanceRootBlockDeviceArgs'] root_block_device: Customize details about the root block
                device of the instance. See Block Devices below for details.
-        :param pulumi.Input[list] security_groups: A list of security group names (EC2-Classic) or IDs (default VPC) to associate with.
+        :param pulumi.Input[List[pulumi.Input[str]]] security_groups: A list of security group names (EC2-Classic) or IDs (default VPC) to associate with.
         :param pulumi.Input[bool] source_dest_check: Controls if traffic is routed to the instance when
                the destination address does not match the instance. Used for NAT or VPNs. Defaults true.
         :param pulumi.Input[str] subnet_id: The VPC Subnet ID to launch in.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] tenancy: The tenancy of the instance (if the instance is running in a VPC). An instance with a tenancy of dedicated runs on single-tenant hardware. The host tenancy is not supported for the import-instance command.
         :param pulumi.Input[str] user_data: The user data to provide when launching the instance. Do not pass gzip-compressed data via this argument; see `user_data_base64` instead.
         :param pulumi.Input[str] user_data_base64: Can be used instead of `user_data` to pass base64-encoded binary data directly. Use this instead of `user_data` whenever the value is not a valid UTF-8 string. For example, gzip-encoded user data must be base64-encoded and passed via this argument to avoid corruption.
-        :param pulumi.Input[dict] volume_tags: A map of tags to assign to the devices created by the instance at launch time.
-        :param pulumi.Input[list] vpc_security_group_ids: A list of security group IDs to associate with.
-
-        The **credit_specification** object supports the following:
-
-          * `cpuCredits` (`pulumi.Input[str]`) - The credit option for CPU usage. Can be `"standard"` or `"unlimited"`. T3 instances are launched as unlimited by default. T2 instances are launched as standard by default.
-
-        The **ebs_block_devices** object supports the following:
-
-          * `deleteOnTermination` (`pulumi.Input[bool]`) - Whether the volume should be destroyed
-            on instance termination (Default: `true`).
-          * `device_name` (`pulumi.Input[str]`) - The name of the device to mount.
-          * `encrypted` (`pulumi.Input[bool]`) - Enables [EBS
-            encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
-            on the volume (Default: `false`). Cannot be used with `snapshot_id`. Must be configured to perform drift detection.
-          * `iops` (`pulumi.Input[float]`) - The amount of provisioned
-            [IOPS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-io-characteristics.html).
-            This must be set with a `volume_type` of `"io1"`.
-          * `kms_key_id` (`pulumi.Input[str]`) - Amazon Resource Name (ARN) of the KMS Key to use when encrypting the volume. Must be configured to perform drift detection.
-          * `snapshot_id` (`pulumi.Input[str]`) - The Snapshot ID to mount.
-          * `volume_id` (`pulumi.Input[str]`)
-          * `volume_size` (`pulumi.Input[float]`) - The size of the volume in gibibytes (GiB).
-          * `volumeType` (`pulumi.Input[str]`) - The type of volume. Can be `"standard"`, `"gp2"`,
-            or `"io1"`. (Default: `"gp2"`).
-
-        The **ephemeral_block_devices** object supports the following:
-
-          * `device_name` (`pulumi.Input[str]`) - The name of the block device to mount on the instance.
-          * `noDevice` (`pulumi.Input[bool]`) - Suppresses the specified device included in the AMI's block device mapping.
-          * `virtualName` (`pulumi.Input[str]`) - The [Instance Store Device
-            Name](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStoreDeviceNames)
-            (e.g. `"ephemeral0"`).
-
-        The **metadata_options** object supports the following:
-
-          * `httpEndpoint` (`pulumi.Input[str]`) - Whether the metadata service is available. Can be `"enabled"` or `"disabled"`. (Default: `"enabled"`).
-          * `httpPutResponseHopLimit` (`pulumi.Input[float]`) - The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. Can be an integer from `1` to `64`. (Default: `1`).
-          * `httpTokens` (`pulumi.Input[str]`) - Whether or not the metadata service requires session tokens, also referred to as _Instance Metadata Service Version 2_. Can be `"optional"` or `"required"`. (Default: `"optional"`).
-
-        The **network_interfaces** object supports the following:
-
-          * `deleteOnTermination` (`pulumi.Input[bool]`) - Whether or not to delete the network interface on instance termination. Defaults to `false`. Currently, the only valid value is `false`, as this is only supported when creating new network interfaces when launching an instance.
-          * `device_index` (`pulumi.Input[float]`) - The integer index of the network interface attachment. Limited by instance type.
-          * `network_interface_id` (`pulumi.Input[str]`) - The ID of the network interface to attach.
-
-        The **root_block_device** object supports the following:
-
-          * `deleteOnTermination` (`pulumi.Input[bool]`) - Whether the volume should be destroyed
-            on instance termination (Default: `true`).
-          * `device_name` (`pulumi.Input[str]`) - The name of the device to mount.
-          * `encrypted` (`pulumi.Input[bool]`) - Enable volume encryption. (Default: `false`). Must be configured to perform drift detection.
-          * `iops` (`pulumi.Input[float]`) - The amount of provisioned
-            [IOPS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-io-characteristics.html).
-            This is only valid for `volume_type` of `"io1"`, and must be specified if
-            using that type
-          * `kms_key_id` (`pulumi.Input[str]`) - Amazon Resource Name (ARN) of the KMS Key to use when encrypting the volume. Must be configured to perform drift detection.
-          * `volume_id` (`pulumi.Input[str]`)
-          * `volume_size` (`pulumi.Input[float]`) - The size of the volume in gibibytes (GiB).
-          * `volumeType` (`pulumi.Input[str]`) - The type of volume. Can be `"standard"`, `"gp2"`, `"io1"`, `"sc1"`, or `"st1"`. (Default: `"standard"`).
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] volume_tags: A map of tags to assign to the devices created by the instance at launch time.
+        :param pulumi.Input[List[pulumi.Input[str]]] vpc_security_group_ids: A list of security group IDs to associate with.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -644,3 +488,4 @@ class Instance(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

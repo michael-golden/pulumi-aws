@@ -5,24 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class DocumentationVersion(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     The description of the API documentation version.
     """
-    rest_api_id: pulumi.Output[str]
+    rest_api_id: pulumi.Output[str] = pulumi.output_property("restApiId")
     """
     The ID of the associated Rest API
     """
-    version: pulumi.Output[str]
+    version: pulumi.Output[str] = pulumi.output_property("version")
     """
     The version identifier of the API documentation snapshot.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, rest_api_id=None, version=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, rest_api_id=None, version=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage an API Gateway Documentation Version.
 
@@ -109,3 +110,4 @@ class DocumentationVersion(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

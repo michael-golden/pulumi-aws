@@ -5,32 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Group(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     Amazon Resource Name (ARN) of group
     """
-    aws_account_id: pulumi.Output[str]
+    aws_account_id: pulumi.Output[str] = pulumi.output_property("awsAccountId")
     """
     The ID for the AWS account that the group is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     A description for the group.
     """
-    group_name: pulumi.Output[str]
+    group_name: pulumi.Output[str] = pulumi.output_property("groupName")
     """
     A name for the group.
     """
-    namespace: pulumi.Output[str]
+    namespace: pulumi.Output[Optional[str]] = pulumi.output_property("namespace")
     """
     The namespace. Currently, you should set this to `default`.
     """
-    def __init__(__self__, resource_name, opts=None, aws_account_id=None, description=None, group_name=None, namespace=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, aws_account_id=None, description=None, group_name=None, namespace=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Resource for managing QuickSight Group
 
@@ -111,3 +112,4 @@ class Group(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

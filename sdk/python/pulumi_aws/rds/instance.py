@@ -5,73 +5,75 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Instance(pulumi.CustomResource):
-    address: pulumi.Output[str]
+    address: pulumi.Output[str] = pulumi.output_property("address")
     """
     The hostname of the RDS instance. See also `endpoint` and `port`.
     """
-    allocated_storage: pulumi.Output[float]
+    allocated_storage: pulumi.Output[float] = pulumi.output_property("allocatedStorage")
     """
     The allocated storage in gibibytes. If `max_allocated_storage` is configured, this argument represents the initial storage allocation and differences from the configuration will be ignored automatically when Storage Autoscaling occurs.
     """
-    allow_major_version_upgrade: pulumi.Output[bool]
+    allow_major_version_upgrade: pulumi.Output[Optional[bool]] = pulumi.output_property("allowMajorVersionUpgrade")
     """
     Indicates that major version
     upgrades are allowed. Changing this parameter does not result in an outage and
     the change is asynchronously applied as soon as possible.
     """
-    apply_immediately: pulumi.Output[bool]
+    apply_immediately: pulumi.Output[bool] = pulumi.output_property("applyImmediately")
     """
     Specifies whether any database modifications
     are applied immediately, or during the next maintenance window. Default is
     `false`. See [Amazon RDS Documentation for more
     information.](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.DBInstance.Modifying.html)
     """
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the RDS instance.
     """
-    auto_minor_version_upgrade: pulumi.Output[bool]
+    auto_minor_version_upgrade: pulumi.Output[Optional[bool]] = pulumi.output_property("autoMinorVersionUpgrade")
     """
     Indicates that minor engine upgrades
     will be applied automatically to the DB instance during the maintenance window.
     Defaults to true.
     """
-    availability_zone: pulumi.Output[str]
+    availability_zone: pulumi.Output[str] = pulumi.output_property("availabilityZone")
     """
     The AZ for the RDS instance.
     """
-    backup_retention_period: pulumi.Output[float]
+    backup_retention_period: pulumi.Output[float] = pulumi.output_property("backupRetentionPeriod")
     """
     The days to retain backups for. Must be
     between `0` and `35`. Must be greater than `0` if the database is used as a source for a Read Replica. [See Read Replica][1].
     """
-    backup_window: pulumi.Output[str]
+    backup_window: pulumi.Output[str] = pulumi.output_property("backupWindow")
     """
     The daily time range (in UTC) during which
     automated backups are created if they are enabled. Example: "09:46-10:16". Must
     not overlap with `maintenance_window`.
     """
-    ca_cert_identifier: pulumi.Output[str]
+    ca_cert_identifier: pulumi.Output[str] = pulumi.output_property("caCertIdentifier")
     """
     The identifier of the CA certificate for the DB instance.
     """
-    character_set_name: pulumi.Output[str]
+    character_set_name: pulumi.Output[str] = pulumi.output_property("characterSetName")
     """
     The character set name to use for DB
     encoding in Oracle and Microsoft SQL instances (collation). This can't be changed. See [Oracle Character Sets
     Supported in Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.OracleCharacterSets.html)
     or [Server-Level Collation for Microsoft SQL Server](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.CommonDBATasks.Collation.html) for more information.
     """
-    copy_tags_to_snapshot: pulumi.Output[bool]
+    copy_tags_to_snapshot: pulumi.Output[Optional[bool]] = pulumi.output_property("copyTagsToSnapshot")
     """
     Copy all Instance `tags` to snapshots. Default is `false`.
     """
-    db_subnet_group_name: pulumi.Output[str]
+    db_subnet_group_name: pulumi.Output[str] = pulumi.output_property("dbSubnetGroupName")
     """
     Name of `DB subnet group`. DB instance will
     be created in the VPC associated with the DB subnet group. If unspecified, will
@@ -81,31 +83,31 @@ class Instance(pulumi.CustomResource):
     action CreateDBInstanceReadReplica](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstanceReadReplica.html)
     for additional read replica contraints.
     """
-    delete_automated_backups: pulumi.Output[bool]
+    delete_automated_backups: pulumi.Output[Optional[bool]] = pulumi.output_property("deleteAutomatedBackups")
     """
     Specifies whether to remove automated backups immediately after the DB instance is deleted. Default is `true`.
     """
-    deletion_protection: pulumi.Output[bool]
+    deletion_protection: pulumi.Output[Optional[bool]] = pulumi.output_property("deletionProtection")
     """
     If the DB instance should have deletion protection enabled. The database can't be deleted when this value is set to `true`. The default is `false`.
     """
-    domain: pulumi.Output[str]
+    domain: pulumi.Output[Optional[str]] = pulumi.output_property("domain")
     """
     The ID of the Directory Service Active Directory domain to create the instance in.
     """
-    domain_iam_role_name: pulumi.Output[str]
+    domain_iam_role_name: pulumi.Output[Optional[str]] = pulumi.output_property("domainIamRoleName")
     """
     The name of the IAM role to be used when making API calls to the Directory Service.
     """
-    enabled_cloudwatch_logs_exports: pulumi.Output[list]
+    enabled_cloudwatch_logs_exports: pulumi.Output[Optional[List[str]]] = pulumi.output_property("enabledCloudwatchLogsExports")
     """
     List of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on `engine`). MySQL and MariaDB: `audit`, `error`, `general`, `slowquery`. PostgreSQL: `postgresql`, `upgrade`. MSSQL: `agent` , `error`. Oracle: `alert`, `audit`, `listener`, `trace`.
     """
-    endpoint: pulumi.Output[str]
+    endpoint: pulumi.Output[str] = pulumi.output_property("endpoint")
     """
     The connection endpoint in `address:port` format.
     """
-    engine: pulumi.Output[str]
+    engine: pulumi.Output[str] = pulumi.output_property("engine")
     """
     (Required unless a `snapshot_identifier` or `replicate_source_db`
     is provided) The database engine to use.  For supported values, see the Engine parameter in [API action CreateDBInstance](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html).
@@ -114,7 +116,7 @@ class Instance(pulumi.CustomResource):
     see [Comparison between Aurora MySQL 1 and Aurora MySQL 2](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AuroraMySQL.Updates.20180206.html)
     in the Amazon RDS User Guide.
     """
-    engine_version: pulumi.Output[str]
+    engine_version: pulumi.Output[str] = pulumi.output_property("engineVersion")
     """
     The engine version to use. If `auto_minor_version_upgrade`
     is enabled, you can provide a prefix of the version such as `5.7` (for `5.7.10`) and
@@ -122,53 +124,53 @@ class Instance(pulumi.CustomResource):
     For supported values, see the EngineVersion parameter in [API action CreateDBInstance](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html).
     Note that for Amazon Aurora instances the engine version must match the `DB cluster`'s engine version'.
     """
-    final_snapshot_identifier: pulumi.Output[str]
+    final_snapshot_identifier: pulumi.Output[Optional[str]] = pulumi.output_property("finalSnapshotIdentifier")
     """
     The name of your final DB snapshot
     when this DB instance is deleted. Must be provided if `skip_final_snapshot` is
     set to `false`.
     """
-    hosted_zone_id: pulumi.Output[str]
+    hosted_zone_id: pulumi.Output[str] = pulumi.output_property("hostedZoneId")
     """
     The canonical hosted zone ID of the DB instance (to be used
     in a Route 53 Alias record).
     """
-    iam_database_authentication_enabled: pulumi.Output[bool]
+    iam_database_authentication_enabled: pulumi.Output[Optional[bool]] = pulumi.output_property("iamDatabaseAuthenticationEnabled")
     """
     Specifies whether or
     mappings of AWS Identity and Access Management (IAM) accounts to database
     accounts is enabled.
     """
-    identifier: pulumi.Output[str]
+    identifier: pulumi.Output[str] = pulumi.output_property("identifier")
     """
     The name of the RDS instance,
     if omitted, this provider will assign a random, unique identifier.
     """
-    identifier_prefix: pulumi.Output[str]
+    identifier_prefix: pulumi.Output[str] = pulumi.output_property("identifierPrefix")
     """
     Creates a unique
     identifier beginning with the specified prefix. Conflicts with `identifier`.
     """
-    instance_class: pulumi.Output[str]
+    instance_class: pulumi.Output[str] = pulumi.output_property("instanceClass")
     """
     The instance type of the RDS instance.
     """
-    iops: pulumi.Output[float]
+    iops: pulumi.Output[Optional[float]] = pulumi.output_property("iops")
     """
     The amount of provisioned IOPS. Setting this implies a
     storage_type of "io1".
     """
-    kms_key_id: pulumi.Output[str]
+    kms_key_id: pulumi.Output[str] = pulumi.output_property("kmsKeyId")
     """
     The ARN for the KMS encryption key. If creating an
     encrypted replica, set this to the destination KMS ARN.
     """
-    license_model: pulumi.Output[str]
+    license_model: pulumi.Output[str] = pulumi.output_property("licenseModel")
     """
     (Optional, but required for some DB engines, i.e. Oracle
     SE1) License model information for this DB instance.
     """
-    maintenance_window: pulumi.Output[str]
+    maintenance_window: pulumi.Output[str] = pulumi.output_property("maintenanceWindow")
     """
     The window to perform maintenance in.
     Syntax: "ddd:hh24:mi-ddd:hh24:mi". Eg: "Mon:00:00-Mon:03:00". See [RDS
@@ -176,18 +178,18 @@ class Instance(pulumi.CustomResource):
     docs](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#AdjustingTheMaintenanceWindow)
     for more information.
     """
-    max_allocated_storage: pulumi.Output[float]
+    max_allocated_storage: pulumi.Output[Optional[float]] = pulumi.output_property("maxAllocatedStorage")
     """
     When configured, the upper limit to which Amazon RDS can automatically scale the storage of the DB instance. Configuring this will automatically ignore differences to `allocated_storage`. Must be greater than or equal to `allocated_storage` or `0` to disable Storage Autoscaling.
     """
-    monitoring_interval: pulumi.Output[float]
+    monitoring_interval: pulumi.Output[Optional[float]] = pulumi.output_property("monitoringInterval")
     """
     The interval, in seconds, between points
     when Enhanced Monitoring metrics are collected for the DB instance. To disable
     collecting Enhanced Monitoring metrics, specify 0. The default is 0. Valid
     Values: 0, 1, 5, 10, 15, 30, 60.
     """
-    monitoring_role_arn: pulumi.Output[str]
+    monitoring_role_arn: pulumi.Output[str] = pulumi.output_property("monitoringRoleArn")
     """
     The ARN for the IAM role that permits RDS
     to send enhanced monitoring metrics to CloudWatch Logs. You can find more
@@ -195,52 +197,52 @@ class Instance(pulumi.CustomResource):
     Documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.html)
     what IAM permissions are needed to allow Enhanced Monitoring for RDS Instances.
     """
-    multi_az: pulumi.Output[bool]
+    multi_az: pulumi.Output[bool] = pulumi.output_property("multiAz")
     """
     Specifies if the RDS instance is multi-AZ
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the database to create when the DB instance is created. If this parameter is not specified, no database is created in the DB instance. Note that this does not apply for Oracle or SQL Server engines. See the [AWS documentation](http://docs.aws.amazon.com/cli/latest/reference/rds/create-db-instance.html) for more details on what applies for those engines.
     """
-    option_group_name: pulumi.Output[str]
+    option_group_name: pulumi.Output[str] = pulumi.output_property("optionGroupName")
     """
     Name of the DB option group to associate.
     """
-    parameter_group_name: pulumi.Output[str]
+    parameter_group_name: pulumi.Output[str] = pulumi.output_property("parameterGroupName")
     """
     Name of the DB parameter group to
     associate.
     """
-    password: pulumi.Output[str]
+    password: pulumi.Output[Optional[str]] = pulumi.output_property("password")
     """
     (Required unless a `snapshot_identifier` or `replicate_source_db`
     is provided) Password for the master DB user. Note that this may show up in
     logs, and it will be stored in the state file.
     """
-    performance_insights_enabled: pulumi.Output[bool]
+    performance_insights_enabled: pulumi.Output[Optional[bool]] = pulumi.output_property("performanceInsightsEnabled")
     """
     Specifies whether Performance Insights are enabled. Defaults to false.
     """
-    performance_insights_kms_key_id: pulumi.Output[str]
+    performance_insights_kms_key_id: pulumi.Output[str] = pulumi.output_property("performanceInsightsKmsKeyId")
     """
     The ARN for the KMS key to encrypt Performance Insights data. When specifying `performance_insights_kms_key_id`, `performance_insights_enabled` needs to be set to true. Once KMS key is set, it can never be changed.
     """
-    performance_insights_retention_period: pulumi.Output[float]
+    performance_insights_retention_period: pulumi.Output[float] = pulumi.output_property("performanceInsightsRetentionPeriod")
     """
     The amount of time in days to retain Performance Insights data. Either 7 (7 days) or 731 (2 years). When specifying `performance_insights_retention_period`, `performance_insights_enabled` needs to be set to true. Defaults to '7'.
     """
-    port: pulumi.Output[float]
+    port: pulumi.Output[float] = pulumi.output_property("port")
     """
     The port on which the DB accepts connections.
     """
-    publicly_accessible: pulumi.Output[bool]
+    publicly_accessible: pulumi.Output[Optional[bool]] = pulumi.output_property("publiclyAccessible")
     """
     Bool to control if instance is publicly
     accessible. Default is `false`.
     """
-    replicas: pulumi.Output[list]
-    replicate_source_db: pulumi.Output[str]
+    replicas: pulumi.Output[List[str]] = pulumi.output_property("replicas")
+    replicate_source_db: pulumi.Output[Optional[str]] = pulumi.output_property("replicateSourceDb")
     """
     Specifies that this resource is a Replicate
     database, and to use this value as the source database. This correlates to the
@@ -252,27 +254,21 @@ class Instance(pulumi.CustomResource):
     PostgreSQL and MySQL Read Replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html)
     for more information on using Replication.
     """
-    resource_id: pulumi.Output[str]
+    resource_id: pulumi.Output[str] = pulumi.output_property("resourceId")
     """
     The RDS Resource ID of this instance.
     """
-    s3_import: pulumi.Output[dict]
+    s3_import: pulumi.Output[Optional['outputs.InstanceS3Import']] = pulumi.output_property("s3Import")
     """
     Restore from a Percona Xtrabackup in S3.  See [Importing Data into an Amazon RDS MySQL DB Instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Procedural.Importing.html)
-
-      * `bucket_name` (`str`) - The bucket name where your backup is stored
-      * `bucket_prefix` (`str`) - Can be blank, but is the path to your backup
-      * `ingestionRole` (`str`) - Role applied to load the data.
-      * `sourceEngine` (`str`) - Source engine for the backup
-      * `sourceEngineVersion` (`str`) - Version of the source engine used to make the backup
     """
-    security_group_names: pulumi.Output[list]
+    security_group_names: pulumi.Output[Optional[List[str]]] = pulumi.output_property("securityGroupNames")
     """
     List of DB Security Groups to
     associate. Only used for [DB Instances on the _EC2-Classic_
     Platform](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.html#USER_VPC.FindDefaultVPC).
     """
-    skip_final_snapshot: pulumi.Output[bool]
+    skip_final_snapshot: pulumi.Output[Optional[bool]] = pulumi.output_property("skipFinalSnapshot")
     """
     Determines whether a final DB snapshot is
     created before the DB instance is deleted. If true is specified, no DBSnapshot
@@ -280,34 +276,34 @@ class Instance(pulumi.CustomResource):
     instance is deleted, using the value from `final_snapshot_identifier`. Default
     is `false`.
     """
-    snapshot_identifier: pulumi.Output[str]
+    snapshot_identifier: pulumi.Output[Optional[str]] = pulumi.output_property("snapshotIdentifier")
     """
     Specifies whether or not to create this
     database from a snapshot. This correlates to the snapshot ID you'd find in the
     RDS console, e.g: rds:production-2015-06-26-06-05.
     """
-    status: pulumi.Output[str]
+    status: pulumi.Output[str] = pulumi.output_property("status")
     """
     The RDS instance status.
     """
-    storage_encrypted: pulumi.Output[bool]
+    storage_encrypted: pulumi.Output[Optional[bool]] = pulumi.output_property("storageEncrypted")
     """
     Specifies whether the DB instance is
     encrypted. Note that if you are creating a cross-region read replica this field
     is ignored and you should instead declare `kms_key_id` with a valid ARN. The
     default is `false` if not specified.
     """
-    storage_type: pulumi.Output[str]
+    storage_type: pulumi.Output[str] = pulumi.output_property("storageType")
     """
     One of "standard" (magnetic), "gp2" (general
     purpose SSD), or "io1" (provisioned IOPS SSD). The default is "io1" if `iops` is
     specified, "gp2" if not.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    timezone: pulumi.Output[str]
+    timezone: pulumi.Output[str] = pulumi.output_property("timezone")
     """
     Time zone of the DB instance. `timezone` is currently
     only supported by Microsoft SQL Server. The `timezone` can only be set on
@@ -315,17 +311,18 @@ class Instance(pulumi.CustomResource):
     Guide](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone)
     for more information.
     """
-    username: pulumi.Output[str]
+    username: pulumi.Output[str] = pulumi.output_property("username")
     """
     (Required unless a `snapshot_identifier` or `replicate_source_db`
     is provided) Username for the master DB user.
     """
-    vpc_security_group_ids: pulumi.Output[list]
+    vpc_security_group_ids: pulumi.Output[List[str]] = pulumi.output_property("vpcSecurityGroupIds")
     """
     List of VPC security groups to
     associate.
     """
-    def __init__(__self__, resource_name, opts=None, allocated_storage=None, allow_major_version_upgrade=None, apply_immediately=None, auto_minor_version_upgrade=None, availability_zone=None, backup_retention_period=None, backup_window=None, ca_cert_identifier=None, character_set_name=None, copy_tags_to_snapshot=None, db_subnet_group_name=None, delete_automated_backups=None, deletion_protection=None, domain=None, domain_iam_role_name=None, enabled_cloudwatch_logs_exports=None, engine=None, engine_version=None, final_snapshot_identifier=None, iam_database_authentication_enabled=None, identifier=None, identifier_prefix=None, instance_class=None, iops=None, kms_key_id=None, license_model=None, maintenance_window=None, max_allocated_storage=None, monitoring_interval=None, monitoring_role_arn=None, multi_az=None, name=None, option_group_name=None, parameter_group_name=None, password=None, performance_insights_enabled=None, performance_insights_kms_key_id=None, performance_insights_retention_period=None, port=None, publicly_accessible=None, replicate_source_db=None, s3_import=None, security_group_names=None, skip_final_snapshot=None, snapshot_identifier=None, storage_encrypted=None, storage_type=None, tags=None, timezone=None, username=None, vpc_security_group_ids=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allocated_storage=None, allow_major_version_upgrade=None, apply_immediately=None, auto_minor_version_upgrade=None, availability_zone=None, backup_retention_period=None, backup_window=None, ca_cert_identifier=None, character_set_name=None, copy_tags_to_snapshot=None, db_subnet_group_name=None, delete_automated_backups=None, deletion_protection=None, domain=None, domain_iam_role_name=None, enabled_cloudwatch_logs_exports=None, engine=None, engine_version=None, final_snapshot_identifier=None, iam_database_authentication_enabled=None, identifier=None, identifier_prefix=None, instance_class=None, iops=None, kms_key_id=None, license_model=None, maintenance_window=None, max_allocated_storage=None, monitoring_interval=None, monitoring_role_arn=None, multi_az=None, name=None, option_group_name=None, parameter_group_name=None, password=None, performance_insights_enabled=None, performance_insights_kms_key_id=None, performance_insights_retention_period=None, port=None, publicly_accessible=None, replicate_source_db=None, s3_import=None, security_group_names=None, skip_final_snapshot=None, snapshot_identifier=None, storage_encrypted=None, storage_type=None, tags=None, timezone=None, username=None, vpc_security_group_ids=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an RDS instance resource.  A DB instance is an isolated database
         environment in the cloud.  A DB instance can contain multiple user-created
@@ -420,7 +417,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[bool] deletion_protection: If the DB instance should have deletion protection enabled. The database can't be deleted when this value is set to `true`. The default is `false`.
         :param pulumi.Input[str] domain: The ID of the Directory Service Active Directory domain to create the instance in.
         :param pulumi.Input[str] domain_iam_role_name: The name of the IAM role to be used when making API calls to the Directory Service.
-        :param pulumi.Input[list] enabled_cloudwatch_logs_exports: List of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on `engine`). MySQL and MariaDB: `audit`, `error`, `general`, `slowquery`. PostgreSQL: `postgresql`, `upgrade`. MSSQL: `agent` , `error`. Oracle: `alert`, `audit`, `listener`, `trace`.
+        :param pulumi.Input[List[pulumi.Input[str]]] enabled_cloudwatch_logs_exports: List of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on `engine`). MySQL and MariaDB: `audit`, `error`, `general`, `slowquery`. PostgreSQL: `postgresql`, `upgrade`. MSSQL: `agent` , `error`. Oracle: `alert`, `audit`, `listener`, `trace`.
         :param pulumi.Input[str] engine: (Required unless a `snapshot_identifier` or `replicate_source_db`
                is provided) The database engine to use.  For supported values, see the Engine parameter in [API action CreateDBInstance](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html).
                Note that for Amazon Aurora instances the engine must match the `DB cluster`'s engine'.
@@ -442,7 +439,7 @@ class Instance(pulumi.CustomResource):
                if omitted, this provider will assign a random, unique identifier.
         :param pulumi.Input[str] identifier_prefix: Creates a unique
                identifier beginning with the specified prefix. Conflicts with `identifier`.
-        :param pulumi.Input[dict] instance_class: The instance type of the RDS instance.
+        :param pulumi.Input[str] instance_class: The instance type of the RDS instance.
         :param pulumi.Input[float] iops: The amount of provisioned IOPS. Setting this implies a
                storage_type of "io1".
         :param pulumi.Input[str] kms_key_id: The ARN for the KMS encryption key. If creating an
@@ -487,8 +484,8 @@ class Instance(pulumi.CustomResource):
                specify a `kms_key_id`. See [DB Instance Replication][1] and [Working with
                PostgreSQL and MySQL Read Replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html)
                for more information on using Replication.
-        :param pulumi.Input[dict] s3_import: Restore from a Percona Xtrabackup in S3.  See [Importing Data into an Amazon RDS MySQL DB Instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Procedural.Importing.html)
-        :param pulumi.Input[list] security_group_names: List of DB Security Groups to
+        :param pulumi.Input['InstanceS3ImportArgs'] s3_import: Restore from a Percona Xtrabackup in S3.  See [Importing Data into an Amazon RDS MySQL DB Instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Procedural.Importing.html)
+        :param pulumi.Input[List[pulumi.Input[str]]] security_group_names: List of DB Security Groups to
                associate. Only used for [DB Instances on the _EC2-Classic_
                Platform](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.html#USER_VPC.FindDefaultVPC).
         :param pulumi.Input[bool] skip_final_snapshot: Determines whether a final DB snapshot is
@@ -503,10 +500,10 @@ class Instance(pulumi.CustomResource):
                encrypted. Note that if you are creating a cross-region read replica this field
                is ignored and you should instead declare `kms_key_id` with a valid ARN. The
                default is `false` if not specified.
-        :param pulumi.Input[dict] storage_type: One of "standard" (magnetic), "gp2" (general
+        :param pulumi.Input[str] storage_type: One of "standard" (magnetic), "gp2" (general
                purpose SSD), or "io1" (provisioned IOPS SSD). The default is "io1" if `iops` is
                specified, "gp2" if not.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] timezone: Time zone of the DB instance. `timezone` is currently
                only supported by Microsoft SQL Server. The `timezone` can only be set on
                creation. See [MSSQL User
@@ -514,16 +511,8 @@ class Instance(pulumi.CustomResource):
                for more information.
         :param pulumi.Input[str] username: (Required unless a `snapshot_identifier` or `replicate_source_db`
                is provided) Username for the master DB user.
-        :param pulumi.Input[list] vpc_security_group_ids: List of VPC security groups to
+        :param pulumi.Input[List[pulumi.Input[str]]] vpc_security_group_ids: List of VPC security groups to
                associate.
-
-        The **s3_import** object supports the following:
-
-          * `bucket_name` (`pulumi.Input[str]`) - The bucket name where your backup is stored
-          * `bucket_prefix` (`pulumi.Input[str]`) - Can be blank, but is the path to your backup
-          * `ingestionRole` (`pulumi.Input[str]`) - Role applied to load the data.
-          * `sourceEngine` (`pulumi.Input[str]`) - Source engine for the backup
-          * `sourceEngineVersion` (`pulumi.Input[str]`) - Version of the source engine used to make the backup
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -653,7 +642,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[bool] deletion_protection: If the DB instance should have deletion protection enabled. The database can't be deleted when this value is set to `true`. The default is `false`.
         :param pulumi.Input[str] domain: The ID of the Directory Service Active Directory domain to create the instance in.
         :param pulumi.Input[str] domain_iam_role_name: The name of the IAM role to be used when making API calls to the Directory Service.
-        :param pulumi.Input[list] enabled_cloudwatch_logs_exports: List of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on `engine`). MySQL and MariaDB: `audit`, `error`, `general`, `slowquery`. PostgreSQL: `postgresql`, `upgrade`. MSSQL: `agent` , `error`. Oracle: `alert`, `audit`, `listener`, `trace`.
+        :param pulumi.Input[List[pulumi.Input[str]]] enabled_cloudwatch_logs_exports: List of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on `engine`). MySQL and MariaDB: `audit`, `error`, `general`, `slowquery`. PostgreSQL: `postgresql`, `upgrade`. MSSQL: `agent` , `error`. Oracle: `alert`, `audit`, `listener`, `trace`.
         :param pulumi.Input[str] endpoint: The connection endpoint in `address:port` format.
         :param pulumi.Input[str] engine: (Required unless a `snapshot_identifier` or `replicate_source_db`
                is provided) The database engine to use.  For supported values, see the Engine parameter in [API action CreateDBInstance](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html).
@@ -678,7 +667,7 @@ class Instance(pulumi.CustomResource):
                if omitted, this provider will assign a random, unique identifier.
         :param pulumi.Input[str] identifier_prefix: Creates a unique
                identifier beginning with the specified prefix. Conflicts with `identifier`.
-        :param pulumi.Input[dict] instance_class: The instance type of the RDS instance.
+        :param pulumi.Input[str] instance_class: The instance type of the RDS instance.
         :param pulumi.Input[float] iops: The amount of provisioned IOPS. Setting this implies a
                storage_type of "io1".
         :param pulumi.Input[str] kms_key_id: The ARN for the KMS encryption key. If creating an
@@ -724,8 +713,8 @@ class Instance(pulumi.CustomResource):
                PostgreSQL and MySQL Read Replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html)
                for more information on using Replication.
         :param pulumi.Input[str] resource_id: The RDS Resource ID of this instance.
-        :param pulumi.Input[dict] s3_import: Restore from a Percona Xtrabackup in S3.  See [Importing Data into an Amazon RDS MySQL DB Instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Procedural.Importing.html)
-        :param pulumi.Input[list] security_group_names: List of DB Security Groups to
+        :param pulumi.Input['InstanceS3ImportArgs'] s3_import: Restore from a Percona Xtrabackup in S3.  See [Importing Data into an Amazon RDS MySQL DB Instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Procedural.Importing.html)
+        :param pulumi.Input[List[pulumi.Input[str]]] security_group_names: List of DB Security Groups to
                associate. Only used for [DB Instances on the _EC2-Classic_
                Platform](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.html#USER_VPC.FindDefaultVPC).
         :param pulumi.Input[bool] skip_final_snapshot: Determines whether a final DB snapshot is
@@ -741,10 +730,10 @@ class Instance(pulumi.CustomResource):
                encrypted. Note that if you are creating a cross-region read replica this field
                is ignored and you should instead declare `kms_key_id` with a valid ARN. The
                default is `false` if not specified.
-        :param pulumi.Input[dict] storage_type: One of "standard" (magnetic), "gp2" (general
+        :param pulumi.Input[str] storage_type: One of "standard" (magnetic), "gp2" (general
                purpose SSD), or "io1" (provisioned IOPS SSD). The default is "io1" if `iops` is
                specified, "gp2" if not.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] timezone: Time zone of the DB instance. `timezone` is currently
                only supported by Microsoft SQL Server. The `timezone` can only be set on
                creation. See [MSSQL User
@@ -752,16 +741,8 @@ class Instance(pulumi.CustomResource):
                for more information.
         :param pulumi.Input[str] username: (Required unless a `snapshot_identifier` or `replicate_source_db`
                is provided) Username for the master DB user.
-        :param pulumi.Input[list] vpc_security_group_ids: List of VPC security groups to
+        :param pulumi.Input[List[pulumi.Input[str]]] vpc_security_group_ids: List of VPC security groups to
                associate.
-
-        The **s3_import** object supports the following:
-
-          * `bucket_name` (`pulumi.Input[str]`) - The bucket name where your backup is stored
-          * `bucket_prefix` (`pulumi.Input[str]`) - Can be blank, but is the path to your backup
-          * `ingestionRole` (`pulumi.Input[str]`) - Role applied to load the data.
-          * `sourceEngine` (`pulumi.Input[str]`) - Source engine for the backup
-          * `sourceEngineVersion` (`pulumi.Input[str]`) - Version of the source engine used to make the backup
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -832,3 +813,4 @@ class Instance(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

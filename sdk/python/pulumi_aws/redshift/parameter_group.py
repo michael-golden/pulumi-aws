@@ -5,39 +5,39 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class ParameterGroup(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     Amazon Resource Name (ARN) of parameter group
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[str] = pulumi.output_property("description")
     """
     The description of the Redshift parameter group. Defaults to "Managed by Pulumi".
     """
-    family: pulumi.Output[str]
+    family: pulumi.Output[str] = pulumi.output_property("family")
     """
     The family of the Redshift parameter group.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the Redshift parameter.
     """
-    parameters: pulumi.Output[list]
+    parameters: pulumi.Output[Optional[List['outputs.ParameterGroupParameter']]] = pulumi.output_property("parameters")
     """
     A list of Redshift parameters to apply.
-
-      * `name` (`str`) - The name of the Redshift parameter.
-      * `value` (`str`) - The value of the Redshift parameter.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, family=None, name=None, parameters=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, family=None, name=None, parameters=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Redshift Cluster parameter group resource.
 
@@ -70,13 +70,8 @@ class ParameterGroup(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the Redshift parameter group. Defaults to "Managed by Pulumi".
         :param pulumi.Input[str] family: The family of the Redshift parameter group.
         :param pulumi.Input[str] name: The name of the Redshift parameter.
-        :param pulumi.Input[list] parameters: A list of Redshift parameters to apply.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-
-        The **parameters** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The name of the Redshift parameter.
-          * `value` (`pulumi.Input[str]`) - The value of the Redshift parameter.
+        :param pulumi.Input[List[pulumi.Input['ParameterGroupParameterArgs']]] parameters: A list of Redshift parameters to apply.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -124,13 +119,8 @@ class ParameterGroup(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the Redshift parameter group. Defaults to "Managed by Pulumi".
         :param pulumi.Input[str] family: The family of the Redshift parameter group.
         :param pulumi.Input[str] name: The name of the Redshift parameter.
-        :param pulumi.Input[list] parameters: A list of Redshift parameters to apply.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-
-        The **parameters** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The name of the Redshift parameter.
-          * `value` (`pulumi.Input[str]`) - The value of the Redshift parameter.
+        :param pulumi.Input[List[pulumi.Input['ParameterGroupParameterArgs']]] parameters: A list of Redshift parameters to apply.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -149,3 +139,4 @@ class ParameterGroup(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

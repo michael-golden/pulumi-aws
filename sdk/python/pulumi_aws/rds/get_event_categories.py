@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetEventCategoriesResult:
     """
     A collection of values returned by getEventCategories.
     """
-    def __init__(__self__, event_categories=None, id=None, source_type=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, event_categories=None, id=None, source_type=None) -> None:
         if event_categories and not isinstance(event_categories, list):
             raise TypeError("Expected argument 'event_categories' to be a list")
         __self__.event_categories = event_categories

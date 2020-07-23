@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetBillingServiceAccountResult:
     """
     A collection of values returned by getBillingServiceAccount.
     """
-    def __init__(__self__, arn=None, id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, id=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn

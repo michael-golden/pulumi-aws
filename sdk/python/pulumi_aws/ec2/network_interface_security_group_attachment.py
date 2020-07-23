@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class NetworkInterfaceSecurityGroupAttachment(pulumi.CustomResource):
-    network_interface_id: pulumi.Output[str]
+    network_interface_id: pulumi.Output[str] = pulumi.output_property("networkInterfaceId")
     """
     The ID of the network interface to attach to.
     """
-    security_group_id: pulumi.Output[str]
+    security_group_id: pulumi.Output[str] = pulumi.output_property("securityGroupId")
     """
     The ID of the security group.
     """
-    def __init__(__self__, resource_name, opts=None, network_interface_id=None, security_group_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, network_interface_id=None, security_group_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         This resource attaches a security group to an Elastic Network Interface (ENI).
         It can be used to attach a security group to any existing ENI, be it a
@@ -145,3 +146,4 @@ class NetworkInterfaceSecurityGroupAttachment(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

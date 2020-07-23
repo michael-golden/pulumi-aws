@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetCustomerGatewayResult:
     """
     A collection of values returned by getCustomerGateway.
     """
-    def __init__(__self__, arn=None, bgp_asn=None, filters=None, id=None, ip_address=None, tags=None, type=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, bgp_asn=None, filters=None, id=None, ip_address=None, tags=None, type=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn
@@ -92,14 +95,9 @@ def get_customer_gateway(filters=None, id=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: One or more [name-value pairs][dcg-filters] to filter by.
+    :param List['GetCustomerGatewayFilterArgs'] filters: One or more [name-value pairs][dcg-filters] to filter by.
     :param str id: The ID of the gateway.
-    :param dict tags: Map of key-value pairs assigned to the gateway.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`)
-      * `values` (`list`)
+    :param Dict[str, str] tags: Map of key-value pairs assigned to the gateway.
     """
     __args__ = dict()
     __args__['filters'] = filters

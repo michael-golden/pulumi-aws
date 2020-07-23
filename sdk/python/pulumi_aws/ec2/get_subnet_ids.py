@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetSubnetIdsResult:
     """
     A collection of values returned by getSubnetIds.
     """
-    def __init__(__self__, filters=None, id=None, ids=None, tags=None, vpc_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, filters=None, id=None, ids=None, tags=None, vpc_id=None) -> None:
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
         __self__.filters = filters
@@ -90,18 +93,10 @@ def get_subnet_ids(filters=None, tags=None, vpc_id=None, opts=None):
     ```
 
 
-    :param list filters: Custom filter block as described below.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param List['GetSubnetIdsFilterArgs'] filters: Custom filter block as described below.
+    :param Dict[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired subnets.
     :param str vpc_id: The VPC ID that you want to filter from.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSubnets.html).
-        For example, if matching against tag `Name`, use:
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        Subnet IDs will be selected if any one of the given values match.
     """
     __args__ = dict()
     __args__['filters'] = filters

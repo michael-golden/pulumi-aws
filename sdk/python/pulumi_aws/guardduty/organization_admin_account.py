@@ -5,16 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class OrganizationAdminAccount(pulumi.CustomResource):
-    admin_account_id: pulumi.Output[str]
+    admin_account_id: pulumi.Output[str] = pulumi.output_property("adminAccountId")
     """
     AWS account identifier to designate as a delegated administrator for GuardDuty.
     """
-    def __init__(__self__, resource_name, opts=None, admin_account_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, admin_account_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a GuardDuty Organization Admin Account. The AWS account utilizing this resource must be an Organizations master account. More information about Organizations support in GuardDuty can be found in the [GuardDuty User Guide](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html).
 
@@ -85,3 +86,4 @@ class OrganizationAdminAccount(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

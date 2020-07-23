@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class ReceiptFilter(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The SES receipt filter ARN.
     """
-    cidr: pulumi.Output[str]
+    cidr: pulumi.Output[str] = pulumi.output_property("cidr")
     """
     The IP address or address range to filter, in CIDR notation
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the filter
     """
-    policy: pulumi.Output[str]
+    policy: pulumi.Output[str] = pulumi.output_property("policy")
     """
     Block or Allow
     """
-    def __init__(__self__, resource_name, opts=None, cidr=None, name=None, policy=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cidr=None, name=None, policy=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an SES receipt filter resource
 
@@ -107,3 +108,4 @@ class ReceiptFilter(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

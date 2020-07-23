@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetResourceResult:
     """
     A collection of values returned by getResource.
     """
-    def __init__(__self__, id=None, parent_id=None, path=None, path_part=None, rest_api_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, id=None, parent_id=None, path=None, path_part=None, rest_api_id=None) -> None:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id

@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Attachment(pulumi.CustomResource):
-    elb: pulumi.Output[str]
+    elb: pulumi.Output[str] = pulumi.output_property("elb")
     """
     The name of the ELB.
     """
-    instance: pulumi.Output[str]
+    instance: pulumi.Output[str] = pulumi.output_property("instance")
     """
     Instance ID to place in the ELB pool.
     """
-    def __init__(__self__, resource_name, opts=None, elb=None, instance=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, elb=None, instance=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Attaches an EC2 instance to an Elastic Load Balancer (ELB). For attaching resources with Application Load Balancer (ALB) or Network Load Balancer (NLB), see the `lb.TargetGroupAttachment` resource.
 
@@ -102,3 +103,4 @@ class Attachment(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

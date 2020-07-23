@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class RoleAlias(pulumi.CustomResource):
-    alias: pulumi.Output[str]
+    alias: pulumi.Output[str] = pulumi.output_property("alias")
     """
     The name of the role alias.
     """
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN assigned by AWS to this role alias.
     """
-    credential_duration: pulumi.Output[float]
+    credential_duration: pulumi.Output[Optional[float]] = pulumi.output_property("credentialDuration")
     """
     The duration of the credential, in seconds. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 900 seconds (15 minutes) to 3600 seconds (60 minutes).
     """
-    role_arn: pulumi.Output[str]
+    role_arn: pulumi.Output[str] = pulumi.output_property("roleArn")
     """
     The identity of the role to which the alias refers.
     """
-    def __init__(__self__, resource_name, opts=None, alias=None, credential_duration=None, role_arn=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, alias=None, credential_duration=None, role_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an IoT role alias.
 
@@ -119,3 +120,4 @@ class RoleAlias(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

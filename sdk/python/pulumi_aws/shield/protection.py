@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Protection(pulumi.CustomResource):
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     A friendly name for the Protection you are creating.
     """
-    resource_arn: pulumi.Output[str]
+    resource_arn: pulumi.Output[str] = pulumi.output_property("resourceArn")
     """
     The ARN (Amazon Resource Name) of the resource to be protected.
     """
-    def __init__(__self__, resource_name, opts=None, name=None, resource_arn=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, resource_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Enables AWS Shield Advanced for a specific AWS resource.
         The resource can be an Amazon CloudFront distribution, Elastic Load Balancing load balancer, AWS Global Accelerator accelerator, Elastic IP Address, or an Amazon Route 53 hosted zone.
@@ -94,3 +95,4 @@ class Protection(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,38 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class FunctionEventInvokeConfig(pulumi.CustomResource):
-    destination_config: pulumi.Output[dict]
+    destination_config: pulumi.Output[Optional['outputs.FunctionEventInvokeConfigDestinationConfig']] = pulumi.output_property("destinationConfig")
     """
     Configuration block with destination configuration. See below for details.
-
-      * `on_failure` (`dict`) - Configuration block with destination configuration for failed asynchronous invocations. See below for details.
-        * `destination` (`str`) - Amazon Resource Name (ARN) of the destination resource. See the [Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations) for acceptable resource types and associated IAM permissions.
-
-      * `onSuccess` (`dict`) - Configuration block with destination configuration for successful asynchronous invocations. See below for details.
-        * `destination` (`str`) - Amazon Resource Name (ARN) of the destination resource. See the [Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations) for acceptable resource types and associated IAM permissions.
     """
-    function_name: pulumi.Output[str]
+    function_name: pulumi.Output[str] = pulumi.output_property("functionName")
     """
     Name or Amazon Resource Name (ARN) of the Lambda Function, omitting any version or alias qualifier.
     """
-    maximum_event_age_in_seconds: pulumi.Output[float]
+    maximum_event_age_in_seconds: pulumi.Output[Optional[float]] = pulumi.output_property("maximumEventAgeInSeconds")
     """
     Maximum age of a request that Lambda sends to a function for processing in seconds. Valid values between 60 and 21600.
     """
-    maximum_retry_attempts: pulumi.Output[float]
+    maximum_retry_attempts: pulumi.Output[Optional[float]] = pulumi.output_property("maximumRetryAttempts")
     """
     Maximum number of times to retry when the function returns an error. Valid values between 0 and 2. Defaults to 2.
     """
-    qualifier: pulumi.Output[str]
+    qualifier: pulumi.Output[Optional[str]] = pulumi.output_property("qualifier")
     """
     Lambda Function published version, `$LATEST`, or Lambda Alias name.
     """
-    def __init__(__self__, resource_name, opts=None, destination_config=None, function_name=None, maximum_event_age_in_seconds=None, maximum_retry_attempts=None, qualifier=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, destination_config=None, function_name=None, maximum_event_age_in_seconds=None, maximum_retry_attempts=None, qualifier=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an asynchronous invocation configuration for a Lambda Function or Alias. More information about asynchronous invocations and the configurable values can be found in the [Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html).
 
@@ -107,19 +104,11 @@ class FunctionEventInvokeConfig(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] destination_config: Configuration block with destination configuration. See below for details.
+        :param pulumi.Input['FunctionEventInvokeConfigDestinationConfigArgs'] destination_config: Configuration block with destination configuration. See below for details.
         :param pulumi.Input[str] function_name: Name or Amazon Resource Name (ARN) of the Lambda Function, omitting any version or alias qualifier.
         :param pulumi.Input[float] maximum_event_age_in_seconds: Maximum age of a request that Lambda sends to a function for processing in seconds. Valid values between 60 and 21600.
         :param pulumi.Input[float] maximum_retry_attempts: Maximum number of times to retry when the function returns an error. Valid values between 0 and 2. Defaults to 2.
         :param pulumi.Input[str] qualifier: Lambda Function published version, `$LATEST`, or Lambda Alias name.
-
-        The **destination_config** object supports the following:
-
-          * `on_failure` (`pulumi.Input[dict]`) - Configuration block with destination configuration for failed asynchronous invocations. See below for details.
-            * `destination` (`pulumi.Input[str]`) - Amazon Resource Name (ARN) of the destination resource. See the [Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations) for acceptable resource types and associated IAM permissions.
-
-          * `onSuccess` (`pulumi.Input[dict]`) - Configuration block with destination configuration for successful asynchronous invocations. See below for details.
-            * `destination` (`pulumi.Input[str]`) - Amazon Resource Name (ARN) of the destination resource. See the [Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations) for acceptable resource types and associated IAM permissions.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -160,19 +149,11 @@ class FunctionEventInvokeConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] destination_config: Configuration block with destination configuration. See below for details.
+        :param pulumi.Input['FunctionEventInvokeConfigDestinationConfigArgs'] destination_config: Configuration block with destination configuration. See below for details.
         :param pulumi.Input[str] function_name: Name or Amazon Resource Name (ARN) of the Lambda Function, omitting any version or alias qualifier.
         :param pulumi.Input[float] maximum_event_age_in_seconds: Maximum age of a request that Lambda sends to a function for processing in seconds. Valid values between 60 and 21600.
         :param pulumi.Input[float] maximum_retry_attempts: Maximum number of times to retry when the function returns an error. Valid values between 0 and 2. Defaults to 2.
         :param pulumi.Input[str] qualifier: Lambda Function published version, `$LATEST`, or Lambda Alias name.
-
-        The **destination_config** object supports the following:
-
-          * `on_failure` (`pulumi.Input[dict]`) - Configuration block with destination configuration for failed asynchronous invocations. See below for details.
-            * `destination` (`pulumi.Input[str]`) - Amazon Resource Name (ARN) of the destination resource. See the [Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations) for acceptable resource types and associated IAM permissions.
-
-          * `onSuccess` (`pulumi.Input[dict]`) - Configuration block with destination configuration for successful asynchronous invocations. See below for details.
-            * `destination` (`pulumi.Input[str]`) - Amazon Resource Name (ARN) of the destination resource. See the [Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations) for acceptable resource types and associated IAM permissions.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -190,3 +171,4 @@ class FunctionEventInvokeConfig(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

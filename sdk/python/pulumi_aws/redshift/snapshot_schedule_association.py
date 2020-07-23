@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class SnapshotScheduleAssociation(pulumi.CustomResource):
-    cluster_identifier: pulumi.Output[str]
+    cluster_identifier: pulumi.Output[str] = pulumi.output_property("clusterIdentifier")
     """
     The cluster identifier.
     """
-    schedule_identifier: pulumi.Output[str]
+    schedule_identifier: pulumi.Output[str] = pulumi.output_property("scheduleIdentifier")
     """
     The snapshot schedule identifier.
     """
-    def __init__(__self__, resource_name, opts=None, cluster_identifier=None, schedule_identifier=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cluster_identifier=None, schedule_identifier=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         ## Example Usage
 
@@ -100,3 +101,4 @@ class SnapshotScheduleAssociation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

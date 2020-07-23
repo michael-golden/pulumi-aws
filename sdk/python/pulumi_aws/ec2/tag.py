@@ -5,24 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Tag(pulumi.CustomResource):
-    key: pulumi.Output[str]
+    key: pulumi.Output[str] = pulumi.output_property("key")
     """
     The tag name.
     """
-    resource_id: pulumi.Output[str]
+    resource_id: pulumi.Output[str] = pulumi.output_property("resourceId")
     """
     The ID of the EC2 resource to manage the tag for.
     """
-    value: pulumi.Output[str]
+    value: pulumi.Output[str] = pulumi.output_property("value")
     """
     The value of the tag.
     """
-    def __init__(__self__, resource_name, opts=None, key=None, resource_id=None, value=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, key=None, resource_id=None, value=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Create a Tag resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -90,3 +91,4 @@ class Tag(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

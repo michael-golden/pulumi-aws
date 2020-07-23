@@ -5,15 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
 
 
 class GetJobQueueResult:
     """
     A collection of values returned by getJobQueue.
     """
-    def __init__(__self__, arn=None, compute_environment_orders=None, id=None, name=None, priority=None, state=None, status=None, status_reason=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, compute_environment_orders=None, id=None, name=None, priority=None, state=None, status=None, status_reason=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn

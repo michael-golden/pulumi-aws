@@ -5,94 +5,77 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Stage(pulumi.CustomResource):
-    access_log_settings: pulumi.Output[dict]
+    access_log_settings: pulumi.Output[Optional['outputs.StageAccessLogSettings']] = pulumi.output_property("accessLogSettings")
     """
     Settings for logging access in this stage.
     Use the `apigateway.Account` resource to configure [permissions for CloudWatch Logging](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html#set-up-access-logging-permissions).
-
-      * `destination_arn` (`str`) - The ARN of the CloudWatch Logs log group to receive access logs. Any trailing `:*` is trimmed from the ARN.
-      * `format` (`str`) - A single line [format](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html#apigateway-cloudwatch-log-formats) of the access logs of data, as specified by [selected $context variables](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-logging.html).
     """
-    api_id: pulumi.Output[str]
+    api_id: pulumi.Output[str] = pulumi.output_property("apiId")
     """
     The API identifier.
     """
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the stage.
     """
-    auto_deploy: pulumi.Output[bool]
+    auto_deploy: pulumi.Output[Optional[bool]] = pulumi.output_property("autoDeploy")
     """
     Whether updates to an API automatically trigger a new deployment. Defaults to `false`.
     """
-    client_certificate_id: pulumi.Output[str]
+    client_certificate_id: pulumi.Output[Optional[str]] = pulumi.output_property("clientCertificateId")
     """
     The identifier of a client certificate for the stage. Use the `apigateway.ClientCertificate` resource to configure a client certificate.
     Supported only for WebSocket APIs.
     """
-    default_route_settings: pulumi.Output[dict]
+    default_route_settings: pulumi.Output[Optional['outputs.StageDefaultRouteSettings']] = pulumi.output_property("defaultRouteSettings")
     """
     The default route settings for the stage.
-
-      * `dataTraceEnabled` (`bool`) - Whether data trace logging is enabled for the default route. Affects the log entries pushed to Amazon CloudWatch Logs.
-        Defaults to `false`. Supported only for WebSocket APIs.
-      * `detailedMetricsEnabled` (`bool`) - Whether detailed metrics are enabled for the default route. Defaults to `false`.
-      * `loggingLevel` (`str`) - The logging level for the default route. Affects the log entries pushed to Amazon CloudWatch Logs.
-        Valid values: `ERROR`, `INFO`, `OFF`. Defaults to `OFF`. Supported only for WebSocket APIs.
-      * `throttlingBurstLimit` (`float`) - The throttling burst limit for the default route.
-      * `throttlingRateLimit` (`float`) - The throttling rate limit for the default route.
     """
-    deployment_id: pulumi.Output[str]
+    deployment_id: pulumi.Output[Optional[str]] = pulumi.output_property("deploymentId")
     """
     The deployment identifier of the stage. Use the `apigatewayv2.Deployment` resource to configure a deployment.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     The description for the stage.
     """
-    execution_arn: pulumi.Output[str]
+    execution_arn: pulumi.Output[str] = pulumi.output_property("executionArn")
     """
     The ARN prefix to be used in an `lambda.Permission`'s `source_arn` attribute
     or in an `iam.Policy` to authorize access to the [`@connections` API](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-how-to-call-websocket-api-connections.html).
     See the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-control-access-iam.html) for details.
     Set only for WebSocket APIs.
     """
-    invoke_url: pulumi.Output[str]
+    invoke_url: pulumi.Output[str] = pulumi.output_property("invokeUrl")
     """
     The URL to invoke the API pointing to the stage,
     e.g. `wss://z4675bid1j.execute-api.eu-west-2.amazonaws.com/example-stage`, or `https://z4675bid1j.execute-api.eu-west-2.amazonaws.com/`
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the stage.
     """
-    route_settings: pulumi.Output[list]
+    route_settings: pulumi.Output[Optional[List['outputs.StageRouteSetting']]] = pulumi.output_property("routeSettings")
     """
     Route settings for the stage.
-
-      * `dataTraceEnabled` (`bool`) - Whether data trace logging is enabled for the route. Affects the log entries pushed to Amazon CloudWatch Logs.
-        Defaults to `false`. Supported only for WebSocket APIs.
-      * `detailedMetricsEnabled` (`bool`) - Whether detailed metrics are enabled for the route. Defaults to `false`.
-      * `loggingLevel` (`str`) - The logging level for the route. Affects the log entries pushed to Amazon CloudWatch Logs.
-        Valid values: `ERROR`, `INFO`, `OFF`. Defaults to `OFF`. Supported only for WebSocket APIs.
-      * `route_key` (`str`) - Route key.
-      * `throttlingBurstLimit` (`float`) - The throttling burst limit for the route.
-      * `throttlingRateLimit` (`float`) - The throttling rate limit for the route.
     """
-    stage_variables: pulumi.Output[dict]
+    stage_variables: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("stageVariables")
     """
     A map that defines the stage variables for the stage.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the stage.
     """
-    def __init__(__self__, resource_name, opts=None, access_log_settings=None, api_id=None, auto_deploy=None, client_certificate_id=None, default_route_settings=None, deployment_id=None, description=None, name=None, route_settings=None, stage_variables=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, access_log_settings=None, api_id=None, auto_deploy=None, client_certificate_id=None, default_route_settings=None, deployment_id=None, description=None, name=None, route_settings=None, stage_variables=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an Amazon API Gateway Version 2 stage.
         More information can be found in the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html).
@@ -109,45 +92,19 @@ class Stage(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] access_log_settings: Settings for logging access in this stage.
+        :param pulumi.Input['StageAccessLogSettingsArgs'] access_log_settings: Settings for logging access in this stage.
                Use the `apigateway.Account` resource to configure [permissions for CloudWatch Logging](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html#set-up-access-logging-permissions).
         :param pulumi.Input[str] api_id: The API identifier.
         :param pulumi.Input[bool] auto_deploy: Whether updates to an API automatically trigger a new deployment. Defaults to `false`.
         :param pulumi.Input[str] client_certificate_id: The identifier of a client certificate for the stage. Use the `apigateway.ClientCertificate` resource to configure a client certificate.
                Supported only for WebSocket APIs.
-        :param pulumi.Input[dict] default_route_settings: The default route settings for the stage.
+        :param pulumi.Input['StageDefaultRouteSettingsArgs'] default_route_settings: The default route settings for the stage.
         :param pulumi.Input[str] deployment_id: The deployment identifier of the stage. Use the `apigatewayv2.Deployment` resource to configure a deployment.
         :param pulumi.Input[str] description: The description for the stage.
         :param pulumi.Input[str] name: The name of the stage.
-        :param pulumi.Input[list] route_settings: Route settings for the stage.
-        :param pulumi.Input[dict] stage_variables: A map that defines the stage variables for the stage.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the stage.
-
-        The **access_log_settings** object supports the following:
-
-          * `destination_arn` (`pulumi.Input[str]`) - The ARN of the CloudWatch Logs log group to receive access logs. Any trailing `:*` is trimmed from the ARN.
-          * `format` (`pulumi.Input[str]`) - A single line [format](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html#apigateway-cloudwatch-log-formats) of the access logs of data, as specified by [selected $context variables](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-logging.html).
-
-        The **default_route_settings** object supports the following:
-
-          * `dataTraceEnabled` (`pulumi.Input[bool]`) - Whether data trace logging is enabled for the default route. Affects the log entries pushed to Amazon CloudWatch Logs.
-            Defaults to `false`. Supported only for WebSocket APIs.
-          * `detailedMetricsEnabled` (`pulumi.Input[bool]`) - Whether detailed metrics are enabled for the default route. Defaults to `false`.
-          * `loggingLevel` (`pulumi.Input[str]`) - The logging level for the default route. Affects the log entries pushed to Amazon CloudWatch Logs.
-            Valid values: `ERROR`, `INFO`, `OFF`. Defaults to `OFF`. Supported only for WebSocket APIs.
-          * `throttlingBurstLimit` (`pulumi.Input[float]`) - The throttling burst limit for the default route.
-          * `throttlingRateLimit` (`pulumi.Input[float]`) - The throttling rate limit for the default route.
-
-        The **route_settings** object supports the following:
-
-          * `dataTraceEnabled` (`pulumi.Input[bool]`) - Whether data trace logging is enabled for the route. Affects the log entries pushed to Amazon CloudWatch Logs.
-            Defaults to `false`. Supported only for WebSocket APIs.
-          * `detailedMetricsEnabled` (`pulumi.Input[bool]`) - Whether detailed metrics are enabled for the route. Defaults to `false`.
-          * `loggingLevel` (`pulumi.Input[str]`) - The logging level for the route. Affects the log entries pushed to Amazon CloudWatch Logs.
-            Valid values: `ERROR`, `INFO`, `OFF`. Defaults to `OFF`. Supported only for WebSocket APIs.
-          * `route_key` (`pulumi.Input[str]`) - Route key.
-          * `throttlingBurstLimit` (`pulumi.Input[float]`) - The throttling burst limit for the route.
-          * `throttlingRateLimit` (`pulumi.Input[float]`) - The throttling rate limit for the route.
+        :param pulumi.Input[List[pulumi.Input['StageRouteSettingArgs']]] route_settings: Route settings for the stage.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] stage_variables: A map that defines the stage variables for the stage.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the stage.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -197,14 +154,14 @@ class Stage(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] access_log_settings: Settings for logging access in this stage.
+        :param pulumi.Input['StageAccessLogSettingsArgs'] access_log_settings: Settings for logging access in this stage.
                Use the `apigateway.Account` resource to configure [permissions for CloudWatch Logging](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html#set-up-access-logging-permissions).
         :param pulumi.Input[str] api_id: The API identifier.
         :param pulumi.Input[str] arn: The ARN of the stage.
         :param pulumi.Input[bool] auto_deploy: Whether updates to an API automatically trigger a new deployment. Defaults to `false`.
         :param pulumi.Input[str] client_certificate_id: The identifier of a client certificate for the stage. Use the `apigateway.ClientCertificate` resource to configure a client certificate.
                Supported only for WebSocket APIs.
-        :param pulumi.Input[dict] default_route_settings: The default route settings for the stage.
+        :param pulumi.Input['StageDefaultRouteSettingsArgs'] default_route_settings: The default route settings for the stage.
         :param pulumi.Input[str] deployment_id: The deployment identifier of the stage. Use the `apigatewayv2.Deployment` resource to configure a deployment.
         :param pulumi.Input[str] description: The description for the stage.
         :param pulumi.Input[str] execution_arn: The ARN prefix to be used in an `lambda.Permission`'s `source_arn` attribute
@@ -214,35 +171,9 @@ class Stage(pulumi.CustomResource):
         :param pulumi.Input[str] invoke_url: The URL to invoke the API pointing to the stage,
                e.g. `wss://z4675bid1j.execute-api.eu-west-2.amazonaws.com/example-stage`, or `https://z4675bid1j.execute-api.eu-west-2.amazonaws.com/`
         :param pulumi.Input[str] name: The name of the stage.
-        :param pulumi.Input[list] route_settings: Route settings for the stage.
-        :param pulumi.Input[dict] stage_variables: A map that defines the stage variables for the stage.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the stage.
-
-        The **access_log_settings** object supports the following:
-
-          * `destination_arn` (`pulumi.Input[str]`) - The ARN of the CloudWatch Logs log group to receive access logs. Any trailing `:*` is trimmed from the ARN.
-          * `format` (`pulumi.Input[str]`) - A single line [format](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html#apigateway-cloudwatch-log-formats) of the access logs of data, as specified by [selected $context variables](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-logging.html).
-
-        The **default_route_settings** object supports the following:
-
-          * `dataTraceEnabled` (`pulumi.Input[bool]`) - Whether data trace logging is enabled for the default route. Affects the log entries pushed to Amazon CloudWatch Logs.
-            Defaults to `false`. Supported only for WebSocket APIs.
-          * `detailedMetricsEnabled` (`pulumi.Input[bool]`) - Whether detailed metrics are enabled for the default route. Defaults to `false`.
-          * `loggingLevel` (`pulumi.Input[str]`) - The logging level for the default route. Affects the log entries pushed to Amazon CloudWatch Logs.
-            Valid values: `ERROR`, `INFO`, `OFF`. Defaults to `OFF`. Supported only for WebSocket APIs.
-          * `throttlingBurstLimit` (`pulumi.Input[float]`) - The throttling burst limit for the default route.
-          * `throttlingRateLimit` (`pulumi.Input[float]`) - The throttling rate limit for the default route.
-
-        The **route_settings** object supports the following:
-
-          * `dataTraceEnabled` (`pulumi.Input[bool]`) - Whether data trace logging is enabled for the route. Affects the log entries pushed to Amazon CloudWatch Logs.
-            Defaults to `false`. Supported only for WebSocket APIs.
-          * `detailedMetricsEnabled` (`pulumi.Input[bool]`) - Whether detailed metrics are enabled for the route. Defaults to `false`.
-          * `loggingLevel` (`pulumi.Input[str]`) - The logging level for the route. Affects the log entries pushed to Amazon CloudWatch Logs.
-            Valid values: `ERROR`, `INFO`, `OFF`. Defaults to `OFF`. Supported only for WebSocket APIs.
-          * `route_key` (`pulumi.Input[str]`) - Route key.
-          * `throttlingBurstLimit` (`pulumi.Input[float]`) - The throttling burst limit for the route.
-          * `throttlingRateLimit` (`pulumi.Input[float]`) - The throttling rate limit for the route.
+        :param pulumi.Input[List[pulumi.Input['StageRouteSettingArgs']]] route_settings: Route settings for the stage.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] stage_variables: A map that defines the stage variables for the stage.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the stage.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -269,3 +200,4 @@ class Stage(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

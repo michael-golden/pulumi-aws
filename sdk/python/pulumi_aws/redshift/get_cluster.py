@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, allow_version_upgrade=None, automated_snapshot_retention_period=None, availability_zone=None, bucket_name=None, cluster_identifier=None, cluster_parameter_group_name=None, cluster_public_key=None, cluster_revision_number=None, cluster_security_groups=None, cluster_subnet_group_name=None, cluster_type=None, cluster_version=None, database_name=None, elastic_ip=None, enable_logging=None, encrypted=None, endpoint=None, enhanced_vpc_routing=None, iam_roles=None, id=None, kms_key_id=None, master_username=None, node_type=None, number_of_nodes=None, port=None, preferred_maintenance_window=None, publicly_accessible=None, s3_key_prefix=None, tags=None, vpc_id=None, vpc_security_group_ids=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, allow_version_upgrade=None, automated_snapshot_retention_period=None, availability_zone=None, bucket_name=None, cluster_identifier=None, cluster_parameter_group_name=None, cluster_public_key=None, cluster_revision_number=None, cluster_security_groups=None, cluster_subnet_group_name=None, cluster_type=None, cluster_version=None, database_name=None, elastic_ip=None, enable_logging=None, encrypted=None, endpoint=None, enhanced_vpc_routing=None, iam_roles=None, id=None, kms_key_id=None, master_username=None, node_type=None, number_of_nodes=None, port=None, preferred_maintenance_window=None, publicly_accessible=None, s3_key_prefix=None, tags=None, vpc_id=None, vpc_security_group_ids=None) -> None:
         if allow_version_upgrade and not isinstance(allow_version_upgrade, bool):
             raise TypeError("Expected argument 'allow_version_upgrade' to be a bool")
         __self__.allow_version_upgrade = allow_version_upgrade
@@ -271,7 +272,7 @@ def get_cluster(cluster_identifier=None, tags=None, opts=None):
 
 
     :param str cluster_identifier: The cluster identifier
-    :param dict tags: The tags associated to the cluster
+    :param Dict[str, str] tags: The tags associated to the cluster
     """
     __args__ = dict()
     __args__['clusterIdentifier'] = cluster_identifier

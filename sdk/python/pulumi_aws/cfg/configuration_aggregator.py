@@ -5,40 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class ConfigurationAggregator(pulumi.CustomResource):
-    account_aggregation_source: pulumi.Output[dict]
+    account_aggregation_source: pulumi.Output[Optional['outputs.ConfigurationAggregatorAccountAggregationSource']] = pulumi.output_property("accountAggregationSource")
     """
     The account(s) to aggregate config data from as documented below.
-
-      * `accountIds` (`list`) - List of 12-digit account IDs of the account(s) being aggregated.
-      * `allRegions` (`bool`) - If true, aggregate existing AWS Config regions and future regions.
-      * `regions` (`list`) - List of source regions being aggregated.
     """
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the aggregator
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the configuration aggregator.
     """
-    organization_aggregation_source: pulumi.Output[dict]
+    organization_aggregation_source: pulumi.Output[Optional['outputs.ConfigurationAggregatorOrganizationAggregationSource']] = pulumi.output_property("organizationAggregationSource")
     """
     The organization to aggregate config data from as documented below.
-
-      * `allRegions` (`bool`) - If true, aggregate existing AWS Config regions and future regions.
-      * `regions` (`list`) - List of source regions being aggregated.
-      * `role_arn` (`str`) - ARN of the IAM role used to retrieve AWS Organization details associated with the aggregator account.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    def __init__(__self__, resource_name, opts=None, account_aggregation_source=None, name=None, organization_aggregation_source=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, account_aggregation_source=None, name=None, organization_aggregation_source=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an AWS Config Configuration Aggregator
 
@@ -87,22 +82,10 @@ class ConfigurationAggregator(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] account_aggregation_source: The account(s) to aggregate config data from as documented below.
+        :param pulumi.Input['ConfigurationAggregatorAccountAggregationSourceArgs'] account_aggregation_source: The account(s) to aggregate config data from as documented below.
         :param pulumi.Input[str] name: The name of the configuration aggregator.
-        :param pulumi.Input[dict] organization_aggregation_source: The organization to aggregate config data from as documented below.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-
-        The **account_aggregation_source** object supports the following:
-
-          * `accountIds` (`pulumi.Input[list]`) - List of 12-digit account IDs of the account(s) being aggregated.
-          * `allRegions` (`pulumi.Input[bool]`) - If true, aggregate existing AWS Config regions and future regions.
-          * `regions` (`pulumi.Input[list]`) - List of source regions being aggregated.
-
-        The **organization_aggregation_source** object supports the following:
-
-          * `allRegions` (`pulumi.Input[bool]`) - If true, aggregate existing AWS Config regions and future regions.
-          * `regions` (`pulumi.Input[list]`) - List of source regions being aggregated.
-          * `role_arn` (`pulumi.Input[str]`) - ARN of the IAM role used to retrieve AWS Organization details associated with the aggregator account.
+        :param pulumi.Input['ConfigurationAggregatorOrganizationAggregationSourceArgs'] organization_aggregation_source: The organization to aggregate config data from as documented below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -141,23 +124,11 @@ class ConfigurationAggregator(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] account_aggregation_source: The account(s) to aggregate config data from as documented below.
+        :param pulumi.Input['ConfigurationAggregatorAccountAggregationSourceArgs'] account_aggregation_source: The account(s) to aggregate config data from as documented below.
         :param pulumi.Input[str] arn: The ARN of the aggregator
         :param pulumi.Input[str] name: The name of the configuration aggregator.
-        :param pulumi.Input[dict] organization_aggregation_source: The organization to aggregate config data from as documented below.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-
-        The **account_aggregation_source** object supports the following:
-
-          * `accountIds` (`pulumi.Input[list]`) - List of 12-digit account IDs of the account(s) being aggregated.
-          * `allRegions` (`pulumi.Input[bool]`) - If true, aggregate existing AWS Config regions and future regions.
-          * `regions` (`pulumi.Input[list]`) - List of source regions being aggregated.
-
-        The **organization_aggregation_source** object supports the following:
-
-          * `allRegions` (`pulumi.Input[bool]`) - If true, aggregate existing AWS Config regions and future regions.
-          * `regions` (`pulumi.Input[list]`) - List of source regions being aggregated.
-          * `role_arn` (`pulumi.Input[str]`) - ARN of the IAM role used to retrieve AWS Organization details associated with the aggregator account.
+        :param pulumi.Input['ConfigurationAggregatorOrganizationAggregationSourceArgs'] organization_aggregation_source: The organization to aggregate config data from as documented below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -175,3 +146,4 @@ class ConfigurationAggregator(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

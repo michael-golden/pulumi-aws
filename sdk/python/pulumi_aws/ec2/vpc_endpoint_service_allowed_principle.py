@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class VpcEndpointServiceAllowedPrinciple(pulumi.CustomResource):
-    principal_arn: pulumi.Output[str]
+    principal_arn: pulumi.Output[str] = pulumi.output_property("principalArn")
     """
     The ARN of the principal to allow permissions.
     """
-    vpc_endpoint_service_id: pulumi.Output[str]
+    vpc_endpoint_service_id: pulumi.Output[str] = pulumi.output_property("vpcEndpointServiceId")
     """
     The ID of the VPC endpoint service to allow permission.
     """
-    def __init__(__self__, resource_name, opts=None, principal_arn=None, vpc_endpoint_service_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, principal_arn=None, vpc_endpoint_service_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to allow a principal to discover a VPC endpoint service.
 
@@ -101,3 +102,4 @@ class VpcEndpointServiceAllowedPrinciple(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

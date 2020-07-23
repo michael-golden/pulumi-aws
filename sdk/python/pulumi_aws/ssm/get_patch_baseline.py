@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetPatchBaselineResult:
     """
     A collection of values returned by getPatchBaseline.
     """
-    def __init__(__self__, default_baseline=None, description=None, id=None, name=None, name_prefix=None, operating_system=None, owner=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, default_baseline=None, description=None, id=None, name=None, name_prefix=None, operating_system=None, owner=None) -> None:
         if default_baseline and not isinstance(default_baseline, bool):
             raise TypeError("Expected argument 'default_baseline' to be a bool")
         __self__.default_baseline = default_baseline

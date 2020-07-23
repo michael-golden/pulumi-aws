@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetPartitionResult:
     """
     A collection of values returned by getPartition.
     """
-    def __init__(__self__, dns_suffix=None, id=None, partition=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, dns_suffix=None, id=None, partition=None) -> None:
         if dns_suffix and not isinstance(dns_suffix, str):
             raise TypeError("Expected argument 'dns_suffix' to be a str")
         __self__.dns_suffix = dns_suffix

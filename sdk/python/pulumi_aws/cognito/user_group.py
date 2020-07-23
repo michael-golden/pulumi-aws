@@ -5,32 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class UserGroup(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     The description of the user group.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the user group.
     """
-    precedence: pulumi.Output[float]
+    precedence: pulumi.Output[Optional[float]] = pulumi.output_property("precedence")
     """
     The precedence of the user group.
     """
-    role_arn: pulumi.Output[str]
+    role_arn: pulumi.Output[Optional[str]] = pulumi.output_property("roleArn")
     """
     The ARN of the IAM role to be associated with the user group.
     """
-    user_pool_id: pulumi.Output[str]
+    user_pool_id: pulumi.Output[str] = pulumi.output_property("userPoolId")
     """
     The user pool ID.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, name=None, precedence=None, role_arn=None, user_pool_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, name=None, precedence=None, role_arn=None, user_pool_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Cognito User Group resource.
 
@@ -140,3 +141,4 @@ class UserGroup(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

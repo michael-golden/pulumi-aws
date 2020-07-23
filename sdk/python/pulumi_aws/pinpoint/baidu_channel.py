@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class BaiduChannel(pulumi.CustomResource):
-    api_key: pulumi.Output[str]
+    api_key: pulumi.Output[str] = pulumi.output_property("apiKey")
     """
     Platform credential API key from Baidu.
     """
-    application_id: pulumi.Output[str]
+    application_id: pulumi.Output[str] = pulumi.output_property("applicationId")
     """
     The application ID.
     """
-    enabled: pulumi.Output[bool]
+    enabled: pulumi.Output[Optional[bool]] = pulumi.output_property("enabled")
     """
     Specifies whether to enable the channel. Defaults to `true`.
     """
-    secret_key: pulumi.Output[str]
+    secret_key: pulumi.Output[str] = pulumi.output_property("secretKey")
     """
     Platform credential Secret key from Baidu.
     """
-    def __init__(__self__, resource_name, opts=None, api_key=None, application_id=None, enabled=None, secret_key=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_key=None, application_id=None, enabled=None, secret_key=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Pinpoint Baidu Channel resource.
 
@@ -114,3 +115,4 @@ class BaiduChannel(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

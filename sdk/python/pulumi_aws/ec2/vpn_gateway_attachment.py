@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class VpnGatewayAttachment(pulumi.CustomResource):
-    vpc_id: pulumi.Output[str]
+    vpc_id: pulumi.Output[str] = pulumi.output_property("vpcId")
     """
     The ID of the VPC.
     """
-    vpn_gateway_id: pulumi.Output[str]
+    vpn_gateway_id: pulumi.Output[str] = pulumi.output_property("vpnGatewayId")
     """
     The ID of the Virtual Private Gateway.
     """
-    def __init__(__self__, resource_name, opts=None, vpc_id=None, vpn_gateway_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, vpc_id=None, vpn_gateway_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Virtual Private Gateway attachment resource, allowing for an existing
         hardware VPN gateway to be attached and/or detached from a VPC.
@@ -105,3 +106,4 @@ class VpnGatewayAttachment(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

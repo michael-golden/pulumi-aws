@@ -5,42 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class RouteTable(pulumi.CustomResource):
-    owner_id: pulumi.Output[str]
+    owner_id: pulumi.Output[str] = pulumi.output_property("ownerId")
     """
     The ID of the AWS account that owns the route table.
     """
-    propagating_vgws: pulumi.Output[list]
+    propagating_vgws: pulumi.Output[List[str]] = pulumi.output_property("propagatingVgws")
     """
     A list of virtual gateways for propagation.
     """
-    routes: pulumi.Output[list]
+    routes: pulumi.Output[List['outputs.RouteTableRoute']] = pulumi.output_property("routes")
     """
     A list of route objects. Their keys are documented below.
-
-      * `cidr_block` (`str`) - The CIDR block of the route.
-      * `egress_only_gateway_id` (`str`) - Identifier of a VPC Egress Only Internet Gateway.
-      * `gateway_id` (`str`) - Identifier of a VPC internet gateway or a virtual private gateway.
-      * `instance_id` (`str`) - Identifier of an EC2 instance.
-      * `ipv6_cidr_block` (`str`) - The Ipv6 CIDR block of the route.
-      * `nat_gateway_id` (`str`) - Identifier of a VPC NAT gateway.
-      * `network_interface_id` (`str`) - Identifier of an EC2 network interface.
-      * `transit_gateway_id` (`str`) - Identifier of an EC2 Transit Gateway.
-      * `vpc_peering_connection_id` (`str`) - Identifier of a VPC peering connection.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A mapping of tags to assign to the resource.
     """
-    vpc_id: pulumi.Output[str]
+    vpc_id: pulumi.Output[str] = pulumi.output_property("vpcId")
     """
     The VPC ID.
     """
-    def __init__(__self__, resource_name, opts=None, propagating_vgws=None, routes=None, tags=None, vpc_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, propagating_vgws=None, routes=None, tags=None, vpc_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to create a VPC routing table.
 
@@ -88,22 +81,10 @@ class RouteTable(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] propagating_vgws: A list of virtual gateways for propagation.
-        :param pulumi.Input[list] routes: A list of route objects. Their keys are documented below.
-        :param pulumi.Input[dict] tags: A mapping of tags to assign to the resource.
+        :param pulumi.Input[List[pulumi.Input[str]]] propagating_vgws: A list of virtual gateways for propagation.
+        :param pulumi.Input[List[pulumi.Input['RouteTableRouteArgs']]] routes: A list of route objects. Their keys are documented below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A mapping of tags to assign to the resource.
         :param pulumi.Input[str] vpc_id: The VPC ID.
-
-        The **routes** object supports the following:
-
-          * `cidr_block` (`pulumi.Input[str]`) - The CIDR block of the route.
-          * `egress_only_gateway_id` (`pulumi.Input[str]`) - Identifier of a VPC Egress Only Internet Gateway.
-          * `gateway_id` (`pulumi.Input[str]`) - Identifier of a VPC internet gateway or a virtual private gateway.
-          * `instance_id` (`pulumi.Input[str]`) - Identifier of an EC2 instance.
-          * `ipv6_cidr_block` (`pulumi.Input[str]`) - The Ipv6 CIDR block of the route.
-          * `nat_gateway_id` (`pulumi.Input[str]`) - Identifier of a VPC NAT gateway.
-          * `network_interface_id` (`pulumi.Input[str]`) - Identifier of an EC2 network interface.
-          * `transit_gateway_id` (`pulumi.Input[str]`) - Identifier of an EC2 Transit Gateway.
-          * `vpc_peering_connection_id` (`pulumi.Input[str]`) - Identifier of a VPC peering connection.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -145,22 +126,10 @@ class RouteTable(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] owner_id: The ID of the AWS account that owns the route table.
-        :param pulumi.Input[list] propagating_vgws: A list of virtual gateways for propagation.
-        :param pulumi.Input[list] routes: A list of route objects. Their keys are documented below.
-        :param pulumi.Input[dict] tags: A mapping of tags to assign to the resource.
+        :param pulumi.Input[List[pulumi.Input[str]]] propagating_vgws: A list of virtual gateways for propagation.
+        :param pulumi.Input[List[pulumi.Input['RouteTableRouteArgs']]] routes: A list of route objects. Their keys are documented below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A mapping of tags to assign to the resource.
         :param pulumi.Input[str] vpc_id: The VPC ID.
-
-        The **routes** object supports the following:
-
-          * `cidr_block` (`pulumi.Input[str]`) - The CIDR block of the route.
-          * `egress_only_gateway_id` (`pulumi.Input[str]`) - Identifier of a VPC Egress Only Internet Gateway.
-          * `gateway_id` (`pulumi.Input[str]`) - Identifier of a VPC internet gateway or a virtual private gateway.
-          * `instance_id` (`pulumi.Input[str]`) - Identifier of an EC2 instance.
-          * `ipv6_cidr_block` (`pulumi.Input[str]`) - The Ipv6 CIDR block of the route.
-          * `nat_gateway_id` (`pulumi.Input[str]`) - Identifier of a VPC NAT gateway.
-          * `network_interface_id` (`pulumi.Input[str]`) - Identifier of an EC2 network interface.
-          * `transit_gateway_id` (`pulumi.Input[str]`) - Identifier of an EC2 Transit Gateway.
-          * `vpc_peering_connection_id` (`pulumi.Input[str]`) - Identifier of a VPC peering connection.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -178,3 +147,4 @@ class RouteTable(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

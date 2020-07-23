@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetInvocationResult:
     """
     A collection of values returned by getInvocation.
     """
-    def __init__(__self__, function_name=None, id=None, input=None, qualifier=None, result=None, result_map=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, function_name=None, id=None, input=None, qualifier=None, result=None, result_map=None) -> None:
         if function_name and not isinstance(function_name, str):
             raise TypeError("Expected argument 'function_name' to be a str")
         __self__.function_name = function_name

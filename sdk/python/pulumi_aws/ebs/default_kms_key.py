@@ -5,16 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class DefaultKmsKey(pulumi.CustomResource):
-    key_arn: pulumi.Output[str]
+    key_arn: pulumi.Output[str] = pulumi.output_property("keyArn")
     """
     The ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use to encrypt the EBS volume.
     """
-    def __init__(__self__, resource_name, opts=None, key_arn=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, key_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage the default customer master key (CMK) that your AWS account uses to encrypt EBS volumes.
 
@@ -87,3 +88,4 @@ class DefaultKmsKey(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

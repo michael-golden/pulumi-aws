@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class PrincipalAssociation(pulumi.CustomResource):
-    principal: pulumi.Output[str]
+    principal: pulumi.Output[str] = pulumi.output_property("principal")
     """
     The principal to associate with the resource share. Possible values are an AWS account ID, an AWS Organizations Organization ARN, or an AWS Organizations Organization Unit ARN.
     """
-    resource_share_arn: pulumi.Output[str]
+    resource_share_arn: pulumi.Output[str] = pulumi.output_property("resourceShareArn")
     """
     The Amazon Resource Name (ARN) of the resource share.
     """
-    def __init__(__self__, resource_name, opts=None, principal=None, resource_share_arn=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, principal=None, resource_share_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Resource Access Manager (RAM) principal association. Depending if [RAM Sharing with AWS Organizations is enabled](https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html#getting-started-sharing-orgs), the RAM behavior with different principal types changes.
 
@@ -114,3 +115,4 @@ class PrincipalAssociation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

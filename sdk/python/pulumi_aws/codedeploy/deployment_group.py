@@ -5,137 +5,75 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class DeploymentGroup(pulumi.CustomResource):
-    alarm_configuration: pulumi.Output[dict]
+    alarm_configuration: pulumi.Output[Optional['outputs.DeploymentGroupAlarmConfiguration']] = pulumi.output_property("alarmConfiguration")
     """
     Configuration block of alarms associated with the deployment group (documented below).
-
-      * `alarms` (`list`) - A list of alarms configured for the deployment group. _A maximum of 10 alarms can be added to a deployment group_.
-      * `enabled` (`bool`) - Indicates whether the alarm configuration is enabled. This option is useful when you want to temporarily deactivate alarm monitoring for a deployment group without having to add the same alarms again later.
-      * `ignorePollAlarmFailure` (`bool`) - Indicates whether a deployment should continue if information about the current state of alarms cannot be retrieved from CloudWatch. The default value is `false`.
-        * `true`: The deployment will proceed even if alarm status information can't be retrieved.
-        * `false`: The deployment will stop if alarm status information can't be retrieved.
     """
-    app_name: pulumi.Output[str]
+    app_name: pulumi.Output[str] = pulumi.output_property("appName")
     """
     The name of the application.
     """
-    auto_rollback_configuration: pulumi.Output[dict]
+    auto_rollback_configuration: pulumi.Output[Optional['outputs.DeploymentGroupAutoRollbackConfiguration']] = pulumi.output_property("autoRollbackConfiguration")
     """
     Configuration block of the automatic rollback configuration associated with the deployment group (documented below).
-
-      * `enabled` (`bool`) - Indicates whether a defined automatic rollback configuration is currently enabled for this Deployment Group. If you enable automatic rollback, you must specify at least one event type.
-      * `events` (`list`) - The event type or types that trigger a rollback. Supported types are `DEPLOYMENT_FAILURE` and `DEPLOYMENT_STOP_ON_ALARM`.
     """
-    autoscaling_groups: pulumi.Output[list]
+    autoscaling_groups: pulumi.Output[Optional[List[str]]] = pulumi.output_property("autoscalingGroups")
     """
     Autoscaling groups associated with the deployment group.
     """
-    blue_green_deployment_config: pulumi.Output[dict]
+    blue_green_deployment_config: pulumi.Output['outputs.DeploymentGroupBlueGreenDeploymentConfig'] = pulumi.output_property("blueGreenDeploymentConfig")
     """
     Configuration block of the blue/green deployment options for a deployment group (documented below).
-
-      * `deploymentReadyOption` (`dict`) - Information about the action to take when newly provisioned instances are ready to receive traffic in a blue/green deployment (documented below).
-        * `actionOnTimeout` (`str`) - When to reroute traffic from an original environment to a replacement environment in a blue/green deployment.
-          * `CONTINUE_DEPLOYMENT`: Register new instances with the load balancer immediately after the new application revision is installed on the instances in the replacement environment.
-          * `STOP_DEPLOYMENT`: Do not register new instances with load balancer unless traffic is rerouted manually. If traffic is not rerouted manually before the end of the specified wait period, the deployment status is changed to Stopped.
-        * `waitTimeInMinutes` (`float`) - The number of minutes to wait before the status of a blue/green deployment changed to Stopped if rerouting is not started manually. Applies only to the `STOP_DEPLOYMENT` option for `action_on_timeout`.
-
-      * `greenFleetProvisioningOption` (`dict`) - Information about how instances are provisioned for a replacement environment in a blue/green deployment (documented below).
-        * `action` (`str`) - The method used to add instances to a replacement environment.
-          * `DISCOVER_EXISTING`: Use instances that already exist or will be created manually.
-          * `COPY_AUTO_SCALING_GROUP`: Use settings from a specified **Auto Scaling** group to define and create instances in a new Auto Scaling group. _Exactly one Auto Scaling group must be specified_ when selecting `COPY_AUTO_SCALING_GROUP`. Use `autoscaling_groups` to specify the Auto Scaling group.
-
-      * `terminateBlueInstancesOnDeploymentSuccess` (`dict`) - Information about whether to terminate instances in the original fleet during a blue/green deployment (documented below).
-        * `action` (`str`) - The action to take on instances in the original environment after a successful blue/green deployment.
-          * `TERMINATE`: Instances are terminated after a specified wait time.
-          * `KEEP_ALIVE`: Instances are left running after they are deregistered from the load balancer and removed from the deployment group.
-        * `terminationWaitTimeInMinutes` (`float`) - The number of minutes to wait after a successful blue/green deployment before terminating instances from the original environment.
     """
-    deployment_config_name: pulumi.Output[str]
+    deployment_config_name: pulumi.Output[Optional[str]] = pulumi.output_property("deploymentConfigName")
     """
     The name of the group's deployment config. The default is "CodeDeployDefault.OneAtATime".
     """
-    deployment_group_name: pulumi.Output[str]
+    deployment_group_name: pulumi.Output[str] = pulumi.output_property("deploymentGroupName")
     """
     The name of the deployment group.
     """
-    deployment_style: pulumi.Output[dict]
+    deployment_style: pulumi.Output[Optional['outputs.DeploymentGroupDeploymentStyle']] = pulumi.output_property("deploymentStyle")
     """
     Configuration block of the type of deployment, either in-place or blue/green, you want to run and whether to route deployment traffic behind a load balancer (documented below).
-
-      * `deploymentOption` (`str`) - Indicates whether to route deployment traffic behind a load balancer. Valid Values are `WITH_TRAFFIC_CONTROL` or `WITHOUT_TRAFFIC_CONTROL`. Default is `WITHOUT_TRAFFIC_CONTROL`.
-      * `deploymentType` (`str`) - Indicates whether to run an in-place deployment or a blue/green deployment. Valid Values are `IN_PLACE` or `BLUE_GREEN`. Default is `IN_PLACE`.
     """
-    ec2_tag_filters: pulumi.Output[list]
+    ec2_tag_filters: pulumi.Output[Optional[List['outputs.DeploymentGroupEc2TagFilter']]] = pulumi.output_property("ec2TagFilters")
     """
     Tag filters associated with the deployment group. See the AWS docs for details.
-
-      * `key` (`str`) - The key of the tag filter.
-      * `type` (`str`) - The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
-      * `value` (`str`) - The value of the tag filter.
     """
-    ec2_tag_sets: pulumi.Output[list]
+    ec2_tag_sets: pulumi.Output[Optional[List['outputs.DeploymentGroupEc2TagSet']]] = pulumi.output_property("ec2TagSets")
     """
     Configuration block(s) of Tag filters associated with the deployment group, which are also referred to as tag groups (documented below). See the AWS docs for details.
-
-      * `ec2_tag_filters` (`list`) - Tag filters associated with the deployment group. See the AWS docs for details.
-        * `key` (`str`) - The key of the tag filter.
-        * `type` (`str`) - The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
-        * `value` (`str`) - The value of the tag filter.
     """
-    ecs_service: pulumi.Output[dict]
+    ecs_service: pulumi.Output[Optional['outputs.DeploymentGroupEcsService']] = pulumi.output_property("ecsService")
     """
     Configuration block(s) of the ECS services for a deployment group (documented below).
-
-      * `cluster_name` (`str`) - The name of the ECS cluster.
-      * `service_name` (`str`) - The name of the ECS service.
     """
-    load_balancer_info: pulumi.Output[dict]
+    load_balancer_info: pulumi.Output[Optional['outputs.DeploymentGroupLoadBalancerInfo']] = pulumi.output_property("loadBalancerInfo")
     """
     Single configuration block of the load balancer to use in a blue/green deployment (documented below).
-
-      * `elbInfos` (`list`) - The Classic Elastic Load Balancer to use in a deployment. Conflicts with `target_group_info` and `target_group_pair_info`.
-        * `name` (`str`) - The name of the load balancer that will be used to route traffic from original instances to replacement instances in a blue/green deployment. For in-place deployments, the name of the load balancer that instances are deregistered from so they are not serving traffic during a deployment, and then re-registered with after the deployment completes.
-
-      * `targetGroupInfos` (`list`) - The (Application/Network Load Balancer) target group to use in a deployment. Conflicts with `elb_info` and `target_group_pair_info`.
-        * `name` (`str`) - The name of the target group that instances in the original environment are deregistered from, and instances in the replacement environment registered with. For in-place deployments, the name of the target group that instances are deregistered from, so they are not serving traffic during a deployment, and then re-registered with after the deployment completes.
-
-      * `targetGroupPairInfo` (`dict`) - The (Application/Network Load Balancer) target group pair to use in a deployment. Conflicts with `elb_info` and `target_group_info`.
-        * `prodTrafficRoute` (`dict`) - Configuration block for the production traffic route (documented below).
-          * `listenerArns` (`list`) - List of Amazon Resource Names (ARNs) of the load balancer listeners.
-
-        * `targetGroups` (`list`) - Configuration blocks for a target group within a target group pair (documented below).
-          * `name` (`str`) - Name of the target group.
-
-        * `testTrafficRoute` (`dict`) - Configuration block for the test traffic route (documented below).
-          * `listenerArns` (`list`) - List of Amazon Resource Names (ARNs) of the load balancer listeners.
     """
-    on_premises_instance_tag_filters: pulumi.Output[list]
+    on_premises_instance_tag_filters: pulumi.Output[Optional[List['outputs.DeploymentGroupOnPremisesInstanceTagFilter']]] = pulumi.output_property("onPremisesInstanceTagFilters")
     """
     On premise tag filters associated with the group. See the AWS docs for details.
-
-      * `key` (`str`) - The key of the tag filter.
-      * `type` (`str`) - The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
-      * `value` (`str`) - The value of the tag filter.
     """
-    service_role_arn: pulumi.Output[str]
+    service_role_arn: pulumi.Output[str] = pulumi.output_property("serviceRoleArn")
     """
     The service role ARN that allows deployments.
     """
-    trigger_configurations: pulumi.Output[list]
+    trigger_configurations: pulumi.Output[Optional[List['outputs.DeploymentGroupTriggerConfiguration']]] = pulumi.output_property("triggerConfigurations")
     """
     Configuration block(s) of the triggers for the deployment group (documented below).
-
-      * `triggerEvents` (`list`) - The event type or types for which notifications are triggered. Some values that are supported: `DeploymentStart`, `DeploymentSuccess`, `DeploymentFailure`, `DeploymentStop`, `DeploymentRollback`, `InstanceStart`, `InstanceSuccess`, `InstanceFailure`.  See [the CodeDeploy documentation](http://docs.aws.amazon.com/codedeploy/latest/userguide/monitoring-sns-event-notifications-create-trigger.html) for all possible values.
-      * `triggerName` (`str`) - The name of the notification trigger.
-      * `triggerTargetArn` (`str`) - The ARN of the SNS topic through which notifications are sent.
     """
-    def __init__(__self__, resource_name, opts=None, alarm_configuration=None, app_name=None, auto_rollback_configuration=None, autoscaling_groups=None, blue_green_deployment_config=None, deployment_config_name=None, deployment_group_name=None, deployment_style=None, ec2_tag_filters=None, ec2_tag_sets=None, ecs_service=None, load_balancer_info=None, on_premises_instance_tag_filters=None, service_role_arn=None, trigger_configurations=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, alarm_configuration=None, app_name=None, auto_rollback_configuration=None, autoscaling_groups=None, blue_green_deployment_config=None, deployment_config_name=None, deployment_group_name=None, deployment_style=None, ec2_tag_filters=None, ec2_tag_sets=None, ecs_service=None, load_balancer_info=None, on_premises_instance_tag_filters=None, service_role_arn=None, trigger_configurations=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CodeDeploy Deployment Group for a CodeDeploy Application
 
@@ -284,106 +222,21 @@ class DeploymentGroup(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] alarm_configuration: Configuration block of alarms associated with the deployment group (documented below).
+        :param pulumi.Input['DeploymentGroupAlarmConfigurationArgs'] alarm_configuration: Configuration block of alarms associated with the deployment group (documented below).
         :param pulumi.Input[str] app_name: The name of the application.
-        :param pulumi.Input[dict] auto_rollback_configuration: Configuration block of the automatic rollback configuration associated with the deployment group (documented below).
-        :param pulumi.Input[list] autoscaling_groups: Autoscaling groups associated with the deployment group.
-        :param pulumi.Input[dict] blue_green_deployment_config: Configuration block of the blue/green deployment options for a deployment group (documented below).
+        :param pulumi.Input['DeploymentGroupAutoRollbackConfigurationArgs'] auto_rollback_configuration: Configuration block of the automatic rollback configuration associated with the deployment group (documented below).
+        :param pulumi.Input[List[pulumi.Input[str]]] autoscaling_groups: Autoscaling groups associated with the deployment group.
+        :param pulumi.Input['DeploymentGroupBlueGreenDeploymentConfigArgs'] blue_green_deployment_config: Configuration block of the blue/green deployment options for a deployment group (documented below).
         :param pulumi.Input[str] deployment_config_name: The name of the group's deployment config. The default is "CodeDeployDefault.OneAtATime".
         :param pulumi.Input[str] deployment_group_name: The name of the deployment group.
-        :param pulumi.Input[dict] deployment_style: Configuration block of the type of deployment, either in-place or blue/green, you want to run and whether to route deployment traffic behind a load balancer (documented below).
-        :param pulumi.Input[list] ec2_tag_filters: Tag filters associated with the deployment group. See the AWS docs for details.
-        :param pulumi.Input[list] ec2_tag_sets: Configuration block(s) of Tag filters associated with the deployment group, which are also referred to as tag groups (documented below). See the AWS docs for details.
-        :param pulumi.Input[dict] ecs_service: Configuration block(s) of the ECS services for a deployment group (documented below).
-        :param pulumi.Input[dict] load_balancer_info: Single configuration block of the load balancer to use in a blue/green deployment (documented below).
-        :param pulumi.Input[list] on_premises_instance_tag_filters: On premise tag filters associated with the group. See the AWS docs for details.
+        :param pulumi.Input['DeploymentGroupDeploymentStyleArgs'] deployment_style: Configuration block of the type of deployment, either in-place or blue/green, you want to run and whether to route deployment traffic behind a load balancer (documented below).
+        :param pulumi.Input[List[pulumi.Input['DeploymentGroupEc2TagFilterArgs']]] ec2_tag_filters: Tag filters associated with the deployment group. See the AWS docs for details.
+        :param pulumi.Input[List[pulumi.Input['DeploymentGroupEc2TagSetArgs']]] ec2_tag_sets: Configuration block(s) of Tag filters associated with the deployment group, which are also referred to as tag groups (documented below). See the AWS docs for details.
+        :param pulumi.Input['DeploymentGroupEcsServiceArgs'] ecs_service: Configuration block(s) of the ECS services for a deployment group (documented below).
+        :param pulumi.Input['DeploymentGroupLoadBalancerInfoArgs'] load_balancer_info: Single configuration block of the load balancer to use in a blue/green deployment (documented below).
+        :param pulumi.Input[List[pulumi.Input['DeploymentGroupOnPremisesInstanceTagFilterArgs']]] on_premises_instance_tag_filters: On premise tag filters associated with the group. See the AWS docs for details.
         :param pulumi.Input[str] service_role_arn: The service role ARN that allows deployments.
-        :param pulumi.Input[list] trigger_configurations: Configuration block(s) of the triggers for the deployment group (documented below).
-
-        The **alarm_configuration** object supports the following:
-
-          * `alarms` (`pulumi.Input[list]`) - A list of alarms configured for the deployment group. _A maximum of 10 alarms can be added to a deployment group_.
-          * `enabled` (`pulumi.Input[bool]`) - Indicates whether the alarm configuration is enabled. This option is useful when you want to temporarily deactivate alarm monitoring for a deployment group without having to add the same alarms again later.
-          * `ignorePollAlarmFailure` (`pulumi.Input[bool]`) - Indicates whether a deployment should continue if information about the current state of alarms cannot be retrieved from CloudWatch. The default value is `false`.
-            * `true`: The deployment will proceed even if alarm status information can't be retrieved.
-            * `false`: The deployment will stop if alarm status information can't be retrieved.
-
-        The **auto_rollback_configuration** object supports the following:
-
-          * `enabled` (`pulumi.Input[bool]`) - Indicates whether a defined automatic rollback configuration is currently enabled for this Deployment Group. If you enable automatic rollback, you must specify at least one event type.
-          * `events` (`pulumi.Input[list]`) - The event type or types that trigger a rollback. Supported types are `DEPLOYMENT_FAILURE` and `DEPLOYMENT_STOP_ON_ALARM`.
-
-        The **blue_green_deployment_config** object supports the following:
-
-          * `deploymentReadyOption` (`pulumi.Input[dict]`) - Information about the action to take when newly provisioned instances are ready to receive traffic in a blue/green deployment (documented below).
-            * `actionOnTimeout` (`pulumi.Input[str]`) - When to reroute traffic from an original environment to a replacement environment in a blue/green deployment.
-              * `CONTINUE_DEPLOYMENT`: Register new instances with the load balancer immediately after the new application revision is installed on the instances in the replacement environment.
-              * `STOP_DEPLOYMENT`: Do not register new instances with load balancer unless traffic is rerouted manually. If traffic is not rerouted manually before the end of the specified wait period, the deployment status is changed to Stopped.
-            * `waitTimeInMinutes` (`pulumi.Input[float]`) - The number of minutes to wait before the status of a blue/green deployment changed to Stopped if rerouting is not started manually. Applies only to the `STOP_DEPLOYMENT` option for `action_on_timeout`.
-
-          * `greenFleetProvisioningOption` (`pulumi.Input[dict]`) - Information about how instances are provisioned for a replacement environment in a blue/green deployment (documented below).
-            * `action` (`pulumi.Input[str]`) - The method used to add instances to a replacement environment.
-              * `DISCOVER_EXISTING`: Use instances that already exist or will be created manually.
-              * `COPY_AUTO_SCALING_GROUP`: Use settings from a specified **Auto Scaling** group to define and create instances in a new Auto Scaling group. _Exactly one Auto Scaling group must be specified_ when selecting `COPY_AUTO_SCALING_GROUP`. Use `autoscaling_groups` to specify the Auto Scaling group.
-
-          * `terminateBlueInstancesOnDeploymentSuccess` (`pulumi.Input[dict]`) - Information about whether to terminate instances in the original fleet during a blue/green deployment (documented below).
-            * `action` (`pulumi.Input[str]`) - The action to take on instances in the original environment after a successful blue/green deployment.
-              * `TERMINATE`: Instances are terminated after a specified wait time.
-              * `KEEP_ALIVE`: Instances are left running after they are deregistered from the load balancer and removed from the deployment group.
-            * `terminationWaitTimeInMinutes` (`pulumi.Input[float]`) - The number of minutes to wait after a successful blue/green deployment before terminating instances from the original environment.
-
-        The **deployment_style** object supports the following:
-
-          * `deploymentOption` (`pulumi.Input[str]`) - Indicates whether to route deployment traffic behind a load balancer. Valid Values are `WITH_TRAFFIC_CONTROL` or `WITHOUT_TRAFFIC_CONTROL`. Default is `WITHOUT_TRAFFIC_CONTROL`.
-          * `deploymentType` (`pulumi.Input[str]`) - Indicates whether to run an in-place deployment or a blue/green deployment. Valid Values are `IN_PLACE` or `BLUE_GREEN`. Default is `IN_PLACE`.
-
-        The **ec2_tag_filters** object supports the following:
-
-          * `key` (`pulumi.Input[str]`) - The key of the tag filter.
-          * `type` (`pulumi.Input[str]`) - The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
-          * `value` (`pulumi.Input[str]`) - The value of the tag filter.
-
-        The **ec2_tag_sets** object supports the following:
-
-          * `ec2_tag_filters` (`pulumi.Input[list]`) - Tag filters associated with the deployment group. See the AWS docs for details.
-            * `key` (`pulumi.Input[str]`) - The key of the tag filter.
-            * `type` (`pulumi.Input[str]`) - The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
-            * `value` (`pulumi.Input[str]`) - The value of the tag filter.
-
-        The **ecs_service** object supports the following:
-
-          * `cluster_name` (`pulumi.Input[str]`) - The name of the ECS cluster.
-          * `service_name` (`pulumi.Input[str]`) - The name of the ECS service.
-
-        The **load_balancer_info** object supports the following:
-
-          * `elbInfos` (`pulumi.Input[list]`) - The Classic Elastic Load Balancer to use in a deployment. Conflicts with `target_group_info` and `target_group_pair_info`.
-            * `name` (`pulumi.Input[str]`) - The name of the load balancer that will be used to route traffic from original instances to replacement instances in a blue/green deployment. For in-place deployments, the name of the load balancer that instances are deregistered from so they are not serving traffic during a deployment, and then re-registered with after the deployment completes.
-
-          * `targetGroupInfos` (`pulumi.Input[list]`) - The (Application/Network Load Balancer) target group to use in a deployment. Conflicts with `elb_info` and `target_group_pair_info`.
-            * `name` (`pulumi.Input[str]`) - The name of the target group that instances in the original environment are deregistered from, and instances in the replacement environment registered with. For in-place deployments, the name of the target group that instances are deregistered from, so they are not serving traffic during a deployment, and then re-registered with after the deployment completes.
-
-          * `targetGroupPairInfo` (`pulumi.Input[dict]`) - The (Application/Network Load Balancer) target group pair to use in a deployment. Conflicts with `elb_info` and `target_group_info`.
-            * `prodTrafficRoute` (`pulumi.Input[dict]`) - Configuration block for the production traffic route (documented below).
-              * `listenerArns` (`pulumi.Input[list]`) - List of Amazon Resource Names (ARNs) of the load balancer listeners.
-
-            * `targetGroups` (`pulumi.Input[list]`) - Configuration blocks for a target group within a target group pair (documented below).
-              * `name` (`pulumi.Input[str]`) - Name of the target group.
-
-            * `testTrafficRoute` (`pulumi.Input[dict]`) - Configuration block for the test traffic route (documented below).
-              * `listenerArns` (`pulumi.Input[list]`) - List of Amazon Resource Names (ARNs) of the load balancer listeners.
-
-        The **on_premises_instance_tag_filters** object supports the following:
-
-          * `key` (`pulumi.Input[str]`) - The key of the tag filter.
-          * `type` (`pulumi.Input[str]`) - The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
-          * `value` (`pulumi.Input[str]`) - The value of the tag filter.
-
-        The **trigger_configurations** object supports the following:
-
-          * `triggerEvents` (`pulumi.Input[list]`) - The event type or types for which notifications are triggered. Some values that are supported: `DeploymentStart`, `DeploymentSuccess`, `DeploymentFailure`, `DeploymentStop`, `DeploymentRollback`, `InstanceStart`, `InstanceSuccess`, `InstanceFailure`.  See [the CodeDeploy documentation](http://docs.aws.amazon.com/codedeploy/latest/userguide/monitoring-sns-event-notifications-create-trigger.html) for all possible values.
-          * `triggerName` (`pulumi.Input[str]`) - The name of the notification trigger.
-          * `triggerTargetArn` (`pulumi.Input[str]`) - The ARN of the SNS topic through which notifications are sent.
+        :param pulumi.Input[List[pulumi.Input['DeploymentGroupTriggerConfigurationArgs']]] trigger_configurations: Configuration block(s) of the triggers for the deployment group (documented below).
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -438,106 +291,21 @@ class DeploymentGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] alarm_configuration: Configuration block of alarms associated with the deployment group (documented below).
+        :param pulumi.Input['DeploymentGroupAlarmConfigurationArgs'] alarm_configuration: Configuration block of alarms associated with the deployment group (documented below).
         :param pulumi.Input[str] app_name: The name of the application.
-        :param pulumi.Input[dict] auto_rollback_configuration: Configuration block of the automatic rollback configuration associated with the deployment group (documented below).
-        :param pulumi.Input[list] autoscaling_groups: Autoscaling groups associated with the deployment group.
-        :param pulumi.Input[dict] blue_green_deployment_config: Configuration block of the blue/green deployment options for a deployment group (documented below).
+        :param pulumi.Input['DeploymentGroupAutoRollbackConfigurationArgs'] auto_rollback_configuration: Configuration block of the automatic rollback configuration associated with the deployment group (documented below).
+        :param pulumi.Input[List[pulumi.Input[str]]] autoscaling_groups: Autoscaling groups associated with the deployment group.
+        :param pulumi.Input['DeploymentGroupBlueGreenDeploymentConfigArgs'] blue_green_deployment_config: Configuration block of the blue/green deployment options for a deployment group (documented below).
         :param pulumi.Input[str] deployment_config_name: The name of the group's deployment config. The default is "CodeDeployDefault.OneAtATime".
         :param pulumi.Input[str] deployment_group_name: The name of the deployment group.
-        :param pulumi.Input[dict] deployment_style: Configuration block of the type of deployment, either in-place or blue/green, you want to run and whether to route deployment traffic behind a load balancer (documented below).
-        :param pulumi.Input[list] ec2_tag_filters: Tag filters associated with the deployment group. See the AWS docs for details.
-        :param pulumi.Input[list] ec2_tag_sets: Configuration block(s) of Tag filters associated with the deployment group, which are also referred to as tag groups (documented below). See the AWS docs for details.
-        :param pulumi.Input[dict] ecs_service: Configuration block(s) of the ECS services for a deployment group (documented below).
-        :param pulumi.Input[dict] load_balancer_info: Single configuration block of the load balancer to use in a blue/green deployment (documented below).
-        :param pulumi.Input[list] on_premises_instance_tag_filters: On premise tag filters associated with the group. See the AWS docs for details.
+        :param pulumi.Input['DeploymentGroupDeploymentStyleArgs'] deployment_style: Configuration block of the type of deployment, either in-place or blue/green, you want to run and whether to route deployment traffic behind a load balancer (documented below).
+        :param pulumi.Input[List[pulumi.Input['DeploymentGroupEc2TagFilterArgs']]] ec2_tag_filters: Tag filters associated with the deployment group. See the AWS docs for details.
+        :param pulumi.Input[List[pulumi.Input['DeploymentGroupEc2TagSetArgs']]] ec2_tag_sets: Configuration block(s) of Tag filters associated with the deployment group, which are also referred to as tag groups (documented below). See the AWS docs for details.
+        :param pulumi.Input['DeploymentGroupEcsServiceArgs'] ecs_service: Configuration block(s) of the ECS services for a deployment group (documented below).
+        :param pulumi.Input['DeploymentGroupLoadBalancerInfoArgs'] load_balancer_info: Single configuration block of the load balancer to use in a blue/green deployment (documented below).
+        :param pulumi.Input[List[pulumi.Input['DeploymentGroupOnPremisesInstanceTagFilterArgs']]] on_premises_instance_tag_filters: On premise tag filters associated with the group. See the AWS docs for details.
         :param pulumi.Input[str] service_role_arn: The service role ARN that allows deployments.
-        :param pulumi.Input[list] trigger_configurations: Configuration block(s) of the triggers for the deployment group (documented below).
-
-        The **alarm_configuration** object supports the following:
-
-          * `alarms` (`pulumi.Input[list]`) - A list of alarms configured for the deployment group. _A maximum of 10 alarms can be added to a deployment group_.
-          * `enabled` (`pulumi.Input[bool]`) - Indicates whether the alarm configuration is enabled. This option is useful when you want to temporarily deactivate alarm monitoring for a deployment group without having to add the same alarms again later.
-          * `ignorePollAlarmFailure` (`pulumi.Input[bool]`) - Indicates whether a deployment should continue if information about the current state of alarms cannot be retrieved from CloudWatch. The default value is `false`.
-            * `true`: The deployment will proceed even if alarm status information can't be retrieved.
-            * `false`: The deployment will stop if alarm status information can't be retrieved.
-
-        The **auto_rollback_configuration** object supports the following:
-
-          * `enabled` (`pulumi.Input[bool]`) - Indicates whether a defined automatic rollback configuration is currently enabled for this Deployment Group. If you enable automatic rollback, you must specify at least one event type.
-          * `events` (`pulumi.Input[list]`) - The event type or types that trigger a rollback. Supported types are `DEPLOYMENT_FAILURE` and `DEPLOYMENT_STOP_ON_ALARM`.
-
-        The **blue_green_deployment_config** object supports the following:
-
-          * `deploymentReadyOption` (`pulumi.Input[dict]`) - Information about the action to take when newly provisioned instances are ready to receive traffic in a blue/green deployment (documented below).
-            * `actionOnTimeout` (`pulumi.Input[str]`) - When to reroute traffic from an original environment to a replacement environment in a blue/green deployment.
-              * `CONTINUE_DEPLOYMENT`: Register new instances with the load balancer immediately after the new application revision is installed on the instances in the replacement environment.
-              * `STOP_DEPLOYMENT`: Do not register new instances with load balancer unless traffic is rerouted manually. If traffic is not rerouted manually before the end of the specified wait period, the deployment status is changed to Stopped.
-            * `waitTimeInMinutes` (`pulumi.Input[float]`) - The number of minutes to wait before the status of a blue/green deployment changed to Stopped if rerouting is not started manually. Applies only to the `STOP_DEPLOYMENT` option for `action_on_timeout`.
-
-          * `greenFleetProvisioningOption` (`pulumi.Input[dict]`) - Information about how instances are provisioned for a replacement environment in a blue/green deployment (documented below).
-            * `action` (`pulumi.Input[str]`) - The method used to add instances to a replacement environment.
-              * `DISCOVER_EXISTING`: Use instances that already exist or will be created manually.
-              * `COPY_AUTO_SCALING_GROUP`: Use settings from a specified **Auto Scaling** group to define and create instances in a new Auto Scaling group. _Exactly one Auto Scaling group must be specified_ when selecting `COPY_AUTO_SCALING_GROUP`. Use `autoscaling_groups` to specify the Auto Scaling group.
-
-          * `terminateBlueInstancesOnDeploymentSuccess` (`pulumi.Input[dict]`) - Information about whether to terminate instances in the original fleet during a blue/green deployment (documented below).
-            * `action` (`pulumi.Input[str]`) - The action to take on instances in the original environment after a successful blue/green deployment.
-              * `TERMINATE`: Instances are terminated after a specified wait time.
-              * `KEEP_ALIVE`: Instances are left running after they are deregistered from the load balancer and removed from the deployment group.
-            * `terminationWaitTimeInMinutes` (`pulumi.Input[float]`) - The number of minutes to wait after a successful blue/green deployment before terminating instances from the original environment.
-
-        The **deployment_style** object supports the following:
-
-          * `deploymentOption` (`pulumi.Input[str]`) - Indicates whether to route deployment traffic behind a load balancer. Valid Values are `WITH_TRAFFIC_CONTROL` or `WITHOUT_TRAFFIC_CONTROL`. Default is `WITHOUT_TRAFFIC_CONTROL`.
-          * `deploymentType` (`pulumi.Input[str]`) - Indicates whether to run an in-place deployment or a blue/green deployment. Valid Values are `IN_PLACE` or `BLUE_GREEN`. Default is `IN_PLACE`.
-
-        The **ec2_tag_filters** object supports the following:
-
-          * `key` (`pulumi.Input[str]`) - The key of the tag filter.
-          * `type` (`pulumi.Input[str]`) - The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
-          * `value` (`pulumi.Input[str]`) - The value of the tag filter.
-
-        The **ec2_tag_sets** object supports the following:
-
-          * `ec2_tag_filters` (`pulumi.Input[list]`) - Tag filters associated with the deployment group. See the AWS docs for details.
-            * `key` (`pulumi.Input[str]`) - The key of the tag filter.
-            * `type` (`pulumi.Input[str]`) - The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
-            * `value` (`pulumi.Input[str]`) - The value of the tag filter.
-
-        The **ecs_service** object supports the following:
-
-          * `cluster_name` (`pulumi.Input[str]`) - The name of the ECS cluster.
-          * `service_name` (`pulumi.Input[str]`) - The name of the ECS service.
-
-        The **load_balancer_info** object supports the following:
-
-          * `elbInfos` (`pulumi.Input[list]`) - The Classic Elastic Load Balancer to use in a deployment. Conflicts with `target_group_info` and `target_group_pair_info`.
-            * `name` (`pulumi.Input[str]`) - The name of the load balancer that will be used to route traffic from original instances to replacement instances in a blue/green deployment. For in-place deployments, the name of the load balancer that instances are deregistered from so they are not serving traffic during a deployment, and then re-registered with after the deployment completes.
-
-          * `targetGroupInfos` (`pulumi.Input[list]`) - The (Application/Network Load Balancer) target group to use in a deployment. Conflicts with `elb_info` and `target_group_pair_info`.
-            * `name` (`pulumi.Input[str]`) - The name of the target group that instances in the original environment are deregistered from, and instances in the replacement environment registered with. For in-place deployments, the name of the target group that instances are deregistered from, so they are not serving traffic during a deployment, and then re-registered with after the deployment completes.
-
-          * `targetGroupPairInfo` (`pulumi.Input[dict]`) - The (Application/Network Load Balancer) target group pair to use in a deployment. Conflicts with `elb_info` and `target_group_info`.
-            * `prodTrafficRoute` (`pulumi.Input[dict]`) - Configuration block for the production traffic route (documented below).
-              * `listenerArns` (`pulumi.Input[list]`) - List of Amazon Resource Names (ARNs) of the load balancer listeners.
-
-            * `targetGroups` (`pulumi.Input[list]`) - Configuration blocks for a target group within a target group pair (documented below).
-              * `name` (`pulumi.Input[str]`) - Name of the target group.
-
-            * `testTrafficRoute` (`pulumi.Input[dict]`) - Configuration block for the test traffic route (documented below).
-              * `listenerArns` (`pulumi.Input[list]`) - List of Amazon Resource Names (ARNs) of the load balancer listeners.
-
-        The **on_premises_instance_tag_filters** object supports the following:
-
-          * `key` (`pulumi.Input[str]`) - The key of the tag filter.
-          * `type` (`pulumi.Input[str]`) - The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
-          * `value` (`pulumi.Input[str]`) - The value of the tag filter.
-
-        The **trigger_configurations** object supports the following:
-
-          * `triggerEvents` (`pulumi.Input[list]`) - The event type or types for which notifications are triggered. Some values that are supported: `DeploymentStart`, `DeploymentSuccess`, `DeploymentFailure`, `DeploymentStop`, `DeploymentRollback`, `InstanceStart`, `InstanceSuccess`, `InstanceFailure`.  See [the CodeDeploy documentation](http://docs.aws.amazon.com/codedeploy/latest/userguide/monitoring-sns-event-notifications-create-trigger.html) for all possible values.
-          * `triggerName` (`pulumi.Input[str]`) - The name of the notification trigger.
-          * `triggerTargetArn` (`pulumi.Input[str]`) - The ARN of the SNS topic through which notifications are sent.
+        :param pulumi.Input[List[pulumi.Input['DeploymentGroupTriggerConfigurationArgs']]] trigger_configurations: Configuration block(s) of the triggers for the deployment group (documented below).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -565,3 +333,4 @@ class DeploymentGroup(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

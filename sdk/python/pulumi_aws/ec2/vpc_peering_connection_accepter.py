@@ -5,68 +5,57 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class VpcPeeringConnectionAccepter(pulumi.CustomResource):
-    accept_status: pulumi.Output[str]
+    accept_status: pulumi.Output[str] = pulumi.output_property("acceptStatus")
     """
     The status of the VPC Peering Connection request.
     """
-    accepter: pulumi.Output[dict]
+    accepter: pulumi.Output['outputs.VpcPeeringConnectionAccepterAccepter'] = pulumi.output_property("accepter")
     """
     A configuration block that describes [VPC Peering Connection]
     (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the accepter VPC.
-
-      * `allowClassicLinkToRemoteVpc` (`bool`) - Indicates whether a local ClassicLink connection can communicate
-        with the peer VPC over the VPC Peering Connection.
-      * `allowRemoteVpcDnsResolution` (`bool`) - Indicates whether a local VPC can resolve public DNS hostnames to
-        private IP addresses when queried from instances in a peer VPC.
-      * `allowVpcToRemoteClassicLink` (`bool`) - Indicates whether a local VPC can communicate with a ClassicLink
-        connection in the peer VPC over the VPC Peering Connection.
     """
-    auto_accept: pulumi.Output[bool]
+    auto_accept: pulumi.Output[Optional[bool]] = pulumi.output_property("autoAccept")
     """
     Whether or not to accept the peering request. Defaults to `false`.
     """
-    peer_owner_id: pulumi.Output[str]
+    peer_owner_id: pulumi.Output[str] = pulumi.output_property("peerOwnerId")
     """
     The AWS account ID of the owner of the requester VPC.
     """
-    peer_region: pulumi.Output[str]
+    peer_region: pulumi.Output[str] = pulumi.output_property("peerRegion")
     """
     The region of the accepter VPC.
     """
-    peer_vpc_id: pulumi.Output[str]
+    peer_vpc_id: pulumi.Output[str] = pulumi.output_property("peerVpcId")
     """
     The ID of the requester VPC.
     """
-    requester: pulumi.Output[dict]
+    requester: pulumi.Output['outputs.VpcPeeringConnectionAccepterRequester'] = pulumi.output_property("requester")
     """
     A configuration block that describes [VPC Peering Connection]
     (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the requester VPC.
-
-      * `allowClassicLinkToRemoteVpc` (`bool`) - Indicates whether a local ClassicLink connection can communicate
-        with the peer VPC over the VPC Peering Connection.
-      * `allowRemoteVpcDnsResolution` (`bool`) - Indicates whether a local VPC can resolve public DNS hostnames to
-        private IP addresses when queried from instances in a peer VPC.
-      * `allowVpcToRemoteClassicLink` (`bool`) - Indicates whether a local VPC can communicate with a ClassicLink
-        connection in the peer VPC over the VPC Peering Connection.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    vpc_id: pulumi.Output[str]
+    vpc_id: pulumi.Output[str] = pulumi.output_property("vpcId")
     """
     The ID of the accepter VPC.
     """
-    vpc_peering_connection_id: pulumi.Output[str]
+    vpc_peering_connection_id: pulumi.Output[str] = pulumi.output_property("vpcPeeringConnectionId")
     """
     The VPC Peering Connection ID to manage.
     """
-    def __init__(__self__, resource_name, opts=None, accepter=None, auto_accept=None, requester=None, tags=None, vpc_peering_connection_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, accepter=None, auto_accept=None, requester=None, tags=None, vpc_peering_connection_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage the accepter's side of a VPC Peering Connection.
 
@@ -111,31 +100,13 @@ class VpcPeeringConnectionAccepter(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] accepter: A configuration block that describes [VPC Peering Connection]
+        :param pulumi.Input['VpcPeeringConnectionAccepterAccepterArgs'] accepter: A configuration block that describes [VPC Peering Connection]
                (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the accepter VPC.
         :param pulumi.Input[bool] auto_accept: Whether or not to accept the peering request. Defaults to `false`.
-        :param pulumi.Input[dict] requester: A configuration block that describes [VPC Peering Connection]
+        :param pulumi.Input['VpcPeeringConnectionAccepterRequesterArgs'] requester: A configuration block that describes [VPC Peering Connection]
                (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the requester VPC.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] vpc_peering_connection_id: The VPC Peering Connection ID to manage.
-
-        The **accepter** object supports the following:
-
-          * `allowClassicLinkToRemoteVpc` (`pulumi.Input[bool]`) - Indicates whether a local ClassicLink connection can communicate
-            with the peer VPC over the VPC Peering Connection.
-          * `allowRemoteVpcDnsResolution` (`pulumi.Input[bool]`) - Indicates whether a local VPC can resolve public DNS hostnames to
-            private IP addresses when queried from instances in a peer VPC.
-          * `allowVpcToRemoteClassicLink` (`pulumi.Input[bool]`) - Indicates whether a local VPC can communicate with a ClassicLink
-            connection in the peer VPC over the VPC Peering Connection.
-
-        The **requester** object supports the following:
-
-          * `allowClassicLinkToRemoteVpc` (`pulumi.Input[bool]`) - Indicates whether a local ClassicLink connection can communicate
-            with the peer VPC over the VPC Peering Connection.
-          * `allowRemoteVpcDnsResolution` (`pulumi.Input[bool]`) - Indicates whether a local VPC can resolve public DNS hostnames to
-            private IP addresses when queried from instances in a peer VPC.
-          * `allowVpcToRemoteClassicLink` (`pulumi.Input[bool]`) - Indicates whether a local VPC can communicate with a ClassicLink
-            connection in the peer VPC over the VPC Peering Connection.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -182,35 +153,17 @@ class VpcPeeringConnectionAccepter(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accept_status: The status of the VPC Peering Connection request.
-        :param pulumi.Input[dict] accepter: A configuration block that describes [VPC Peering Connection]
+        :param pulumi.Input['VpcPeeringConnectionAccepterAccepterArgs'] accepter: A configuration block that describes [VPC Peering Connection]
                (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the accepter VPC.
         :param pulumi.Input[bool] auto_accept: Whether or not to accept the peering request. Defaults to `false`.
         :param pulumi.Input[str] peer_owner_id: The AWS account ID of the owner of the requester VPC.
         :param pulumi.Input[str] peer_region: The region of the accepter VPC.
         :param pulumi.Input[str] peer_vpc_id: The ID of the requester VPC.
-        :param pulumi.Input[dict] requester: A configuration block that describes [VPC Peering Connection]
+        :param pulumi.Input['VpcPeeringConnectionAccepterRequesterArgs'] requester: A configuration block that describes [VPC Peering Connection]
                (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the requester VPC.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] vpc_id: The ID of the accepter VPC.
         :param pulumi.Input[str] vpc_peering_connection_id: The VPC Peering Connection ID to manage.
-
-        The **accepter** object supports the following:
-
-          * `allowClassicLinkToRemoteVpc` (`pulumi.Input[bool]`) - Indicates whether a local ClassicLink connection can communicate
-            with the peer VPC over the VPC Peering Connection.
-          * `allowRemoteVpcDnsResolution` (`pulumi.Input[bool]`) - Indicates whether a local VPC can resolve public DNS hostnames to
-            private IP addresses when queried from instances in a peer VPC.
-          * `allowVpcToRemoteClassicLink` (`pulumi.Input[bool]`) - Indicates whether a local VPC can communicate with a ClassicLink
-            connection in the peer VPC over the VPC Peering Connection.
-
-        The **requester** object supports the following:
-
-          * `allowClassicLinkToRemoteVpc` (`pulumi.Input[bool]`) - Indicates whether a local ClassicLink connection can communicate
-            with the peer VPC over the VPC Peering Connection.
-          * `allowRemoteVpcDnsResolution` (`pulumi.Input[bool]`) - Indicates whether a local VPC can resolve public DNS hostnames to
-            private IP addresses when queried from instances in a peer VPC.
-          * `allowVpcToRemoteClassicLink` (`pulumi.Input[bool]`) - Indicates whether a local VPC can communicate with a ClassicLink
-            connection in the peer VPC over the VPC Peering Connection.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -233,3 +186,4 @@ class VpcPeeringConnectionAccepter(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetEndpointResult:
     """
     A collection of values returned by getEndpoint.
     """
-    def __init__(__self__, endpoint_address=None, endpoint_type=None, id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, endpoint_address=None, endpoint_type=None, id=None) -> None:
         if endpoint_address and not isinstance(endpoint_address, str):
             raise TypeError("Expected argument 'endpoint_address' to be a str")
         __self__.endpoint_address = endpoint_address

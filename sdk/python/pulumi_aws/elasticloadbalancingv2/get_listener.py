@@ -5,8 +5,9 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
 
 warnings.warn("aws.elasticloadbalancingv2.getListener has been deprecated in favor of aws.lb.getListener", DeprecationWarning)
 
@@ -14,7 +15,8 @@ class GetListenerResult:
     """
     A collection of values returned by getListener.
     """
-    def __init__(__self__, arn=None, certificate_arn=None, default_actions=None, id=None, load_balancer_arn=None, port=None, protocol=None, ssl_policy=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, certificate_arn=None, default_actions=None, id=None, load_balancer_arn=None, port=None, protocol=None, ssl_policy=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn

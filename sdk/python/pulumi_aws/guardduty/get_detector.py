@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetDetectorResult:
     """
     A collection of values returned by getDetector.
     """
-    def __init__(__self__, finding_publishing_frequency=None, id=None, service_role_arn=None, status=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, finding_publishing_frequency=None, id=None, service_role_arn=None, status=None) -> None:
         if finding_publishing_frequency and not isinstance(finding_publishing_frequency, str):
             raise TypeError("Expected argument 'finding_publishing_frequency' to be a str")
         __self__.finding_publishing_frequency = finding_publishing_frequency

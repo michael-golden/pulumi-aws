@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class WebAclAssociation(pulumi.CustomResource):
-    resource_arn: pulumi.Output[str]
+    resource_arn: pulumi.Output[str] = pulumi.output_property("resourceArn")
     """
     The Amazon Resource Name (ARN) of the resource to associate with the web ACL. This must be an ARN of an Application Load Balancer or an Amazon API Gateway stage.
     """
-    web_acl_arn: pulumi.Output[str]
+    web_acl_arn: pulumi.Output[str] = pulumi.output_property("webAclArn")
     """
     The Amazon Resource Name (ARN) of the Web ACL that you want to associate with the resource.
     """
-    def __init__(__self__, resource_name, opts=None, resource_arn=None, web_acl_arn=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, resource_arn=None, web_acl_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates a WAFv2 Web ACL Association.
 
@@ -81,3 +82,4 @@ class WebAclAssociation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

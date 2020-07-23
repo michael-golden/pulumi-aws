@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetServiceQuotaResult:
     """
     A collection of values returned by getServiceQuota.
     """
-    def __init__(__self__, adjustable=None, arn=None, default_value=None, global_quota=None, id=None, quota_code=None, quota_name=None, service_code=None, service_name=None, value=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, adjustable=None, arn=None, default_value=None, global_quota=None, id=None, quota_code=None, quota_name=None, service_code=None, service_name=None, value=None) -> None:
         if adjustable and not isinstance(adjustable, bool):
             raise TypeError("Expected argument 'adjustable' to be a bool")
         __self__.adjustable = adjustable

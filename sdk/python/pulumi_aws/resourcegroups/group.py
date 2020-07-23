@@ -5,35 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Group(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN assigned by AWS for this resource group.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     A description of the resource group.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The resource group's name. A resource group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with `AWS` or `aws`.
     """
-    resource_query: pulumi.Output[dict]
+    resource_query: pulumi.Output['outputs.GroupResourceQuery'] = pulumi.output_property("resourceQuery")
     """
     A `resource_query` block. Resource queries are documented below.
-
-      * `query` (`str`) - The resource query as a JSON string.
-      * `type` (`str`) - The type of the resource query. Defaults to `TAG_FILTERS_1_0`.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Key-value map of resource tags
     """
-    def __init__(__self__, resource_name, opts=None, description=None, name=None, resource_query=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, name=None, resource_query=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Resource Group.
 
@@ -64,13 +64,8 @@ class Group(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A description of the resource group.
         :param pulumi.Input[str] name: The resource group's name. A resource group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with `AWS` or `aws`.
-        :param pulumi.Input[dict] resource_query: A `resource_query` block. Resource queries are documented below.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-
-        The **resource_query** object supports the following:
-
-          * `query` (`pulumi.Input[str]`) - The resource query as a JSON string.
-          * `type` (`pulumi.Input[str]`) - The type of the resource query. Defaults to `TAG_FILTERS_1_0`.
+        :param pulumi.Input['GroupResourceQueryArgs'] resource_query: A `resource_query` block. Resource queries are documented below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -114,13 +109,8 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] arn: The ARN assigned by AWS for this resource group.
         :param pulumi.Input[str] description: A description of the resource group.
         :param pulumi.Input[str] name: The resource group's name. A resource group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with `AWS` or `aws`.
-        :param pulumi.Input[dict] resource_query: A `resource_query` block. Resource queries are documented below.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-
-        The **resource_query** object supports the following:
-
-          * `query` (`pulumi.Input[str]`) - The resource query as a JSON string.
-          * `type` (`pulumi.Input[str]`) - The type of the resource query. Defaults to `TAG_FILTERS_1_0`.
+        :param pulumi.Input['GroupResourceQueryArgs'] resource_query: A `resource_query` block. Resource queries are documented below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -138,3 +128,4 @@ class Group(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

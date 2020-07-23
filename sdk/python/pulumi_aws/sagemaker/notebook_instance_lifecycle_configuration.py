@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class NotebookInstanceLifecycleConfiguration(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The Amazon Resource Name (ARN) assigned by AWS to this lifecycle configuration.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the lifecycle configuration (must be unique). If omitted, this provider will assign a random, unique name.
     """
-    on_create: pulumi.Output[str]
+    on_create: pulumi.Output[Optional[str]] = pulumi.output_property("onCreate")
     """
     A shell script (base64-encoded) that runs only once when the SageMaker Notebook Instance is created.
     """
-    on_start: pulumi.Output[str]
+    on_start: pulumi.Output[Optional[str]] = pulumi.output_property("onStart")
     """
     A shell script (base64-encoded) that runs every time the SageMaker Notebook Instance is started including the time it's created.
     """
-    def __init__(__self__, resource_name, opts=None, name=None, on_create=None, on_start=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, on_create=None, on_start=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a lifecycle configuration for SageMaker Notebook Instances.
 
@@ -92,3 +93,4 @@ class NotebookInstanceLifecycleConfiguration(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

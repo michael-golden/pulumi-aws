@@ -5,31 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Instance(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the Lightsail instance (matches `id`).
     """
-    availability_zone: pulumi.Output[str]
+    availability_zone: pulumi.Output[str] = pulumi.output_property("availabilityZone")
     """
     The Availability Zone in which to create your
     instance (see list below)
     """
-    blueprint_id: pulumi.Output[str]
+    blueprint_id: pulumi.Output[str] = pulumi.output_property("blueprintId")
     """
     The ID for a virtual private server image
     (see list below)
     """
-    bundle_id: pulumi.Output[str]
+    bundle_id: pulumi.Output[str] = pulumi.output_property("bundleId")
     """
     The bundle of specification information (see list below)
     """
-    cpu_count: pulumi.Output[float]
-    created_at: pulumi.Output[str]
+    cpu_count: pulumi.Output[float] = pulumi.output_property("cpuCount")
+    created_at: pulumi.Output[str] = pulumi.output_property("createdAt")
     """
     The timestamp when the instance was created.
     * `availability_zone`
@@ -38,30 +38,31 @@ class Instance(pulumi.CustomResource):
     * `key_pair_name`
     * `user_data`
     """
-    ipv6_address: pulumi.Output[str]
-    is_static_ip: pulumi.Output[bool]
-    key_pair_name: pulumi.Output[str]
+    ipv6_address: pulumi.Output[str] = pulumi.output_property("ipv6Address")
+    is_static_ip: pulumi.Output[bool] = pulumi.output_property("isStaticIp")
+    key_pair_name: pulumi.Output[Optional[str]] = pulumi.output_property("keyPairName")
     """
     The name of your key pair. Created in the
     Lightsail console (cannot use `ec2.KeyPair` at this time)
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the Lightsail Instance. Names be unique within each AWS Region in your Lightsail account.
     """
-    private_ip_address: pulumi.Output[str]
-    public_ip_address: pulumi.Output[str]
-    ram_size: pulumi.Output[float]
-    tags: pulumi.Output[dict]
+    private_ip_address: pulumi.Output[str] = pulumi.output_property("privateIpAddress")
+    public_ip_address: pulumi.Output[str] = pulumi.output_property("publicIpAddress")
+    ram_size: pulumi.Output[float] = pulumi.output_property("ramSize")
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    user_data: pulumi.Output[str]
+    user_data: pulumi.Output[Optional[str]] = pulumi.output_property("userData")
     """
     launch script to configure server with additional user data
     """
-    username: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, availability_zone=None, blueprint_id=None, bundle_id=None, key_pair_name=None, name=None, tags=None, user_data=None, __props__=None, __name__=None, __opts__=None):
+    username: pulumi.Output[str] = pulumi.output_property("username")
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zone=None, blueprint_id=None, bundle_id=None, key_pair_name=None, name=None, tags=None, user_data=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Lightsail Instance. Amazon Lightsail is a service to provide easy virtual private servers
         with custom software already setup. See [What is Amazon Lightsail?](https://lightsail.aws.amazon.com/ls/docs/getting-started/article/what-is-amazon-lightsail)
@@ -178,7 +179,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] key_pair_name: The name of your key pair. Created in the
                Lightsail console (cannot use `ec2.KeyPair` at this time)
         :param pulumi.Input[str] name: The name of the Lightsail Instance. Names be unique within each AWS Region in your Lightsail account.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] user_data: launch script to configure server with additional user data
         """
         if __name__ is not None:
@@ -250,7 +251,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] key_pair_name: The name of your key pair. Created in the
                Lightsail console (cannot use `ec2.KeyPair` at this time)
         :param pulumi.Input[str] name: The name of the Lightsail Instance. Names be unique within each AWS Region in your Lightsail account.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] user_data: launch script to configure server with additional user data
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -280,3 +281,4 @@ class Instance(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetDocumentResult:
     """
     A collection of values returned by getDocument.
     """
-    def __init__(__self__, arn=None, content=None, document_format=None, document_type=None, document_version=None, id=None, name=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, content=None, document_format=None, document_type=None, document_version=None, id=None, name=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn

@@ -5,50 +5,47 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Webhook(pulumi.CustomResource):
-    authentication: pulumi.Output[str]
+    authentication: pulumi.Output[str] = pulumi.output_property("authentication")
     """
     The type of authentication  to use. One of `IP`, `GITHUB_HMAC`, or `UNAUTHENTICATED`.
     """
-    authentication_configuration: pulumi.Output[dict]
+    authentication_configuration: pulumi.Output[Optional['outputs.WebhookAuthenticationConfiguration']] = pulumi.output_property("authenticationConfiguration")
     """
     An `auth` block. Required for `IP` and `GITHUB_HMAC`. Auth blocks are documented below.
-
-      * `allowedIpRange` (`str`) - A valid CIDR block for `IP` filtering. Required for `IP`.
-      * `secretToken` (`str`) - The shared secret for the GitHub repository webhook. Set this as `secret` in your `github_repository_webhook`'s `configuration` block. Required for `GITHUB_HMAC`.
     """
-    filters: pulumi.Output[list]
+    filters: pulumi.Output[List['outputs.WebhookFilter']] = pulumi.output_property("filters")
     """
     One or more `filter` blocks. Filter blocks are documented below.
-
-      * `jsonPath` (`str`) - The [JSON path](https://github.com/json-path/JsonPath) to filter on.
-      * `matchEquals` (`str`) - The value to match on (e.g. `refs/heads/{Branch}`). See [AWS docs](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_WebhookFilterRule.html) for details.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the webhook.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    target_action: pulumi.Output[str]
+    target_action: pulumi.Output[str] = pulumi.output_property("targetAction")
     """
     The name of the action in a pipeline you want to connect to the webhook. The action must be from the source (first) stage of the pipeline.
     """
-    target_pipeline: pulumi.Output[str]
+    target_pipeline: pulumi.Output[str] = pulumi.output_property("targetPipeline")
     """
     The name of the pipeline.
     """
-    url: pulumi.Output[str]
+    url: pulumi.Output[str] = pulumi.output_property("url")
     """
     The CodePipeline webhook's URL. POST events to this endpoint to trigger the target.
     """
-    def __init__(__self__, resource_name, opts=None, authentication=None, authentication_configuration=None, filters=None, name=None, tags=None, target_action=None, target_pipeline=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, authentication=None, authentication_configuration=None, filters=None, name=None, tags=None, target_action=None, target_pipeline=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CodePipeline Webhook.
 
@@ -128,22 +125,12 @@ class Webhook(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] authentication: The type of authentication  to use. One of `IP`, `GITHUB_HMAC`, or `UNAUTHENTICATED`.
-        :param pulumi.Input[dict] authentication_configuration: An `auth` block. Required for `IP` and `GITHUB_HMAC`. Auth blocks are documented below.
-        :param pulumi.Input[list] filters: One or more `filter` blocks. Filter blocks are documented below.
+        :param pulumi.Input['WebhookAuthenticationConfigurationArgs'] authentication_configuration: An `auth` block. Required for `IP` and `GITHUB_HMAC`. Auth blocks are documented below.
+        :param pulumi.Input[List[pulumi.Input['WebhookFilterArgs']]] filters: One or more `filter` blocks. Filter blocks are documented below.
         :param pulumi.Input[str] name: The name of the webhook.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] target_action: The name of the action in a pipeline you want to connect to the webhook. The action must be from the source (first) stage of the pipeline.
         :param pulumi.Input[str] target_pipeline: The name of the pipeline.
-
-        The **authentication_configuration** object supports the following:
-
-          * `allowedIpRange` (`pulumi.Input[str]`) - A valid CIDR block for `IP` filtering. Required for `IP`.
-          * `secretToken` (`pulumi.Input[str]`) - The shared secret for the GitHub repository webhook. Set this as `secret` in your `github_repository_webhook`'s `configuration` block. Required for `GITHUB_HMAC`.
-
-        The **filters** object supports the following:
-
-          * `jsonPath` (`pulumi.Input[str]`) - The [JSON path](https://github.com/json-path/JsonPath) to filter on.
-          * `matchEquals` (`pulumi.Input[str]`) - The value to match on (e.g. `refs/heads/{Branch}`). See [AWS docs](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_WebhookFilterRule.html) for details.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -194,23 +181,13 @@ class Webhook(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] authentication: The type of authentication  to use. One of `IP`, `GITHUB_HMAC`, or `UNAUTHENTICATED`.
-        :param pulumi.Input[dict] authentication_configuration: An `auth` block. Required for `IP` and `GITHUB_HMAC`. Auth blocks are documented below.
-        :param pulumi.Input[list] filters: One or more `filter` blocks. Filter blocks are documented below.
+        :param pulumi.Input['WebhookAuthenticationConfigurationArgs'] authentication_configuration: An `auth` block. Required for `IP` and `GITHUB_HMAC`. Auth blocks are documented below.
+        :param pulumi.Input[List[pulumi.Input['WebhookFilterArgs']]] filters: One or more `filter` blocks. Filter blocks are documented below.
         :param pulumi.Input[str] name: The name of the webhook.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] target_action: The name of the action in a pipeline you want to connect to the webhook. The action must be from the source (first) stage of the pipeline.
         :param pulumi.Input[str] target_pipeline: The name of the pipeline.
         :param pulumi.Input[str] url: The CodePipeline webhook's URL. POST events to this endpoint to trigger the target.
-
-        The **authentication_configuration** object supports the following:
-
-          * `allowedIpRange` (`pulumi.Input[str]`) - A valid CIDR block for `IP` filtering. Required for `IP`.
-          * `secretToken` (`pulumi.Input[str]`) - The shared secret for the GitHub repository webhook. Set this as `secret` in your `github_repository_webhook`'s `configuration` block. Required for `GITHUB_HMAC`.
-
-        The **filters** object supports the following:
-
-          * `jsonPath` (`pulumi.Input[str]`) - The [JSON path](https://github.com/json-path/JsonPath) to filter on.
-          * `matchEquals` (`pulumi.Input[str]`) - The value to match on (e.g. `refs/heads/{Branch}`). See [AWS docs](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_WebhookFilterRule.html) for details.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -231,3 +208,4 @@ class Webhook(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

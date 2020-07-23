@@ -5,55 +5,56 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class AccountPasswordPolicy(pulumi.CustomResource):
-    allow_users_to_change_password: pulumi.Output[bool]
+    allow_users_to_change_password: pulumi.Output[Optional[bool]] = pulumi.output_property("allowUsersToChangePassword")
     """
     Whether to allow users to change their own password
     """
-    expire_passwords: pulumi.Output[bool]
+    expire_passwords: pulumi.Output[bool] = pulumi.output_property("expirePasswords")
     """
     Indicates whether passwords in the account expire.
     Returns `true` if `max_password_age` contains a value greater than `0`.
     Returns `false` if it is `0` or _not present_.
     """
-    hard_expiry: pulumi.Output[bool]
+    hard_expiry: pulumi.Output[bool] = pulumi.output_property("hardExpiry")
     """
     Whether users are prevented from setting a new password after their password has expired
     (i.e. require administrator reset)
     """
-    max_password_age: pulumi.Output[float]
+    max_password_age: pulumi.Output[float] = pulumi.output_property("maxPasswordAge")
     """
     The number of days that an user password is valid.
     """
-    minimum_password_length: pulumi.Output[float]
+    minimum_password_length: pulumi.Output[Optional[float]] = pulumi.output_property("minimumPasswordLength")
     """
     Minimum length to require for user passwords.
     """
-    password_reuse_prevention: pulumi.Output[float]
+    password_reuse_prevention: pulumi.Output[float] = pulumi.output_property("passwordReusePrevention")
     """
     The number of previous passwords that users are prevented from reusing.
     """
-    require_lowercase_characters: pulumi.Output[bool]
+    require_lowercase_characters: pulumi.Output[bool] = pulumi.output_property("requireLowercaseCharacters")
     """
     Whether to require lowercase characters for user passwords.
     """
-    require_numbers: pulumi.Output[bool]
+    require_numbers: pulumi.Output[bool] = pulumi.output_property("requireNumbers")
     """
     Whether to require numbers for user passwords.
     """
-    require_symbols: pulumi.Output[bool]
+    require_symbols: pulumi.Output[bool] = pulumi.output_property("requireSymbols")
     """
     Whether to require symbols for user passwords.
     """
-    require_uppercase_characters: pulumi.Output[bool]
+    require_uppercase_characters: pulumi.Output[bool] = pulumi.output_property("requireUppercaseCharacters")
     """
     Whether to require uppercase characters for user passwords.
     """
-    def __init__(__self__, resource_name, opts=None, allow_users_to_change_password=None, hard_expiry=None, max_password_age=None, minimum_password_length=None, password_reuse_prevention=None, require_lowercase_characters=None, require_numbers=None, require_symbols=None, require_uppercase_characters=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allow_users_to_change_password=None, hard_expiry=None, max_password_age=None, minimum_password_length=None, password_reuse_prevention=None, require_lowercase_characters=None, require_numbers=None, require_symbols=None, require_uppercase_characters=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         > **Note:** There is only a single policy allowed per AWS account. An existing policy will be lost when using this resource as an effect of this limitation.
 
@@ -166,3 +167,4 @@ class AccountPasswordPolicy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

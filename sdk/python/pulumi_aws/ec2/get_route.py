@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetRouteResult:
     """
     A collection of values returned by getRoute.
     """
-    def __init__(__self__, destination_cidr_block=None, destination_ipv6_cidr_block=None, egress_only_gateway_id=None, gateway_id=None, id=None, instance_id=None, nat_gateway_id=None, network_interface_id=None, route_table_id=None, transit_gateway_id=None, vpc_peering_connection_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, destination_cidr_block=None, destination_ipv6_cidr_block=None, egress_only_gateway_id=None, gateway_id=None, id=None, instance_id=None, nat_gateway_id=None, network_interface_id=None, route_table_id=None, transit_gateway_id=None, vpc_peering_connection_id=None) -> None:
         if destination_cidr_block and not isinstance(destination_cidr_block, str):
             raise TypeError("Expected argument 'destination_cidr_block' to be a str")
         __self__.destination_cidr_block = destination_cidr_block

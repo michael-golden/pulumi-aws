@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Ciphertext(pulumi.CustomResource):
-    ciphertext_blob: pulumi.Output[str]
+    ciphertext_blob: pulumi.Output[str] = pulumi.output_property("ciphertextBlob")
     """
     Base64 encoded ciphertext
     """
-    context: pulumi.Output[dict]
+    context: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("context")
     """
     An optional mapping that makes up the encryption context.
     """
-    key_id: pulumi.Output[str]
+    key_id: pulumi.Output[str] = pulumi.output_property("keyId")
     """
     Globally unique key ID for the customer master key.
     """
-    plaintext: pulumi.Output[str]
+    plaintext: pulumi.Output[str] = pulumi.output_property("plaintext")
     """
     Data to be encrypted. Note that this may show up in logs, and it will be stored in the state file.
     """
-    def __init__(__self__, resource_name, opts=None, context=None, key_id=None, plaintext=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, context=None, key_id=None, plaintext=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         The KMS ciphertext resource allows you to encrypt plaintext into ciphertext
         by using an AWS KMS customer master key. The value returned by this resource
@@ -56,7 +57,7 @@ class Ciphertext(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] context: An optional mapping that makes up the encryption context.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] context: An optional mapping that makes up the encryption context.
         :param pulumi.Input[str] key_id: Globally unique key ID for the customer master key.
         :param pulumi.Input[str] plaintext: Data to be encrypted. Note that this may show up in logs, and it will be stored in the state file.
         """
@@ -101,7 +102,7 @@ class Ciphertext(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] ciphertext_blob: Base64 encoded ciphertext
-        :param pulumi.Input[dict] context: An optional mapping that makes up the encryption context.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] context: An optional mapping that makes up the encryption context.
         :param pulumi.Input[str] key_id: Globally unique key ID for the customer master key.
         :param pulumi.Input[str] plaintext: Data to be encrypted. Note that this may show up in logs, and it will be stored in the state file.
         """
@@ -120,3 +121,4 @@ class Ciphertext(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

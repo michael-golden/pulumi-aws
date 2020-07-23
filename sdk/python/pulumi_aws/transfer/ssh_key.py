@@ -5,24 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class SshKey(pulumi.CustomResource):
-    body: pulumi.Output[str]
+    body: pulumi.Output[str] = pulumi.output_property("body")
     """
     The public key portion of an SSH key pair.
     """
-    server_id: pulumi.Output[str]
+    server_id: pulumi.Output[str] = pulumi.output_property("serverId")
     """
     The Server ID of the Transfer Server (e.g. `s-12345678`)
     """
-    user_name: pulumi.Output[str]
+    user_name: pulumi.Output[str] = pulumi.output_property("userName")
     """
     The name of the user account that is assigned to one or more servers.
     """
-    def __init__(__self__, resource_name, opts=None, body=None, server_id=None, user_name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, body=None, server_id=None, user_name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a AWS Transfer User SSH Key resource.
 
@@ -144,3 +145,4 @@ class SshKey(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,51 +5,51 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Authorizer(pulumi.CustomResource):
-    api_id: pulumi.Output[str]
+    api_id: pulumi.Output[str] = pulumi.output_property("apiId")
     """
     The API identifier.
     """
-    authorizer_credentials_arn: pulumi.Output[str]
+    authorizer_credentials_arn: pulumi.Output[Optional[str]] = pulumi.output_property("authorizerCredentialsArn")
     """
     The required credentials as an IAM role for API Gateway to invoke the authorizer.
     Supported only for `REQUEST` authorizers.
     """
-    authorizer_type: pulumi.Output[str]
+    authorizer_type: pulumi.Output[str] = pulumi.output_property("authorizerType")
     """
     The authorizer type. Valid values: `JWT`, `REQUEST`.
     For WebSocket APIs, specify `REQUEST` for a Lambda function using incoming request parameters.
     For HTTP APIs, specify `JWT` to use JSON Web Tokens.
     """
-    authorizer_uri: pulumi.Output[str]
+    authorizer_uri: pulumi.Output[Optional[str]] = pulumi.output_property("authorizerUri")
     """
     The authorizer's Uniform Resource Identifier (URI).
     For `REQUEST` authorizers this must be a well-formed Lambda function URI, such as the `invoke_arn` attribute of the `lambda.Function` resource.
     Supported only for `REQUEST` authorizers.
     """
-    identity_sources: pulumi.Output[list]
+    identity_sources: pulumi.Output[List[str]] = pulumi.output_property("identitySources")
     """
     The identity sources for which authorization is requested.
     For `REQUEST` authorizers the value is a list of one or more mapping expressions of the specified request parameters.
     For `JWT` authorizers the single entry specifies where to extract the JSON Web Token (JWT) from inbound requests.
     """
-    jwt_configuration: pulumi.Output[dict]
+    jwt_configuration: pulumi.Output[Optional['outputs.AuthorizerJwtConfiguration']] = pulumi.output_property("jwtConfiguration")
     """
     The configuration of a JWT authorizer. Required for the `JWT` authorizer type.
     Supported only for HTTP APIs.
-
-      * `audiences` (`list`) - A list of the intended recipients of the JWT. A valid JWT must provide an aud that matches at least one entry in this list.
-      * `issuer` (`str`) - The base domain of the identity provider that issues JSON Web Tokens, such as the `endpoint` attribute of the `cognito.UserPool` resource.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the authorizer.
     """
-    def __init__(__self__, resource_name, opts=None, api_id=None, authorizer_credentials_arn=None, authorizer_type=None, authorizer_uri=None, identity_sources=None, jwt_configuration=None, name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id=None, authorizer_credentials_arn=None, authorizer_type=None, authorizer_uri=None, identity_sources=None, jwt_configuration=None, name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an Amazon API Gateway Version 2 authorizer.
         More information can be found in the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html).
@@ -94,17 +94,12 @@ class Authorizer(pulumi.CustomResource):
         :param pulumi.Input[str] authorizer_uri: The authorizer's Uniform Resource Identifier (URI).
                For `REQUEST` authorizers this must be a well-formed Lambda function URI, such as the `invoke_arn` attribute of the `lambda.Function` resource.
                Supported only for `REQUEST` authorizers.
-        :param pulumi.Input[list] identity_sources: The identity sources for which authorization is requested.
+        :param pulumi.Input[List[pulumi.Input[str]]] identity_sources: The identity sources for which authorization is requested.
                For `REQUEST` authorizers the value is a list of one or more mapping expressions of the specified request parameters.
                For `JWT` authorizers the single entry specifies where to extract the JSON Web Token (JWT) from inbound requests.
-        :param pulumi.Input[dict] jwt_configuration: The configuration of a JWT authorizer. Required for the `JWT` authorizer type.
+        :param pulumi.Input['AuthorizerJwtConfigurationArgs'] jwt_configuration: The configuration of a JWT authorizer. Required for the `JWT` authorizer type.
                Supported only for HTTP APIs.
         :param pulumi.Input[str] name: The name of the authorizer.
-
-        The **jwt_configuration** object supports the following:
-
-          * `audiences` (`pulumi.Input[list]`) - A list of the intended recipients of the JWT. A valid JWT must provide an aud that matches at least one entry in this list.
-          * `issuer` (`pulumi.Input[str]`) - The base domain of the identity provider that issues JSON Web Tokens, such as the `endpoint` attribute of the `cognito.UserPool` resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -160,17 +155,12 @@ class Authorizer(pulumi.CustomResource):
         :param pulumi.Input[str] authorizer_uri: The authorizer's Uniform Resource Identifier (URI).
                For `REQUEST` authorizers this must be a well-formed Lambda function URI, such as the `invoke_arn` attribute of the `lambda.Function` resource.
                Supported only for `REQUEST` authorizers.
-        :param pulumi.Input[list] identity_sources: The identity sources for which authorization is requested.
+        :param pulumi.Input[List[pulumi.Input[str]]] identity_sources: The identity sources for which authorization is requested.
                For `REQUEST` authorizers the value is a list of one or more mapping expressions of the specified request parameters.
                For `JWT` authorizers the single entry specifies where to extract the JSON Web Token (JWT) from inbound requests.
-        :param pulumi.Input[dict] jwt_configuration: The configuration of a JWT authorizer. Required for the `JWT` authorizer type.
+        :param pulumi.Input['AuthorizerJwtConfigurationArgs'] jwt_configuration: The configuration of a JWT authorizer. Required for the `JWT` authorizer type.
                Supported only for HTTP APIs.
         :param pulumi.Input[str] name: The name of the authorizer.
-
-        The **jwt_configuration** object supports the following:
-
-          * `audiences` (`pulumi.Input[list]`) - A list of the intended recipients of the JWT. A valid JWT must provide an aud that matches at least one entry in this list.
-          * `issuer` (`pulumi.Input[str]`) - The base domain of the identity provider that issues JSON Web Tokens, such as the `endpoint` attribute of the `cognito.UserPool` resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -190,3 +180,4 @@ class Authorizer(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

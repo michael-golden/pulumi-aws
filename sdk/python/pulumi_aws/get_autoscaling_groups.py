@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetAutoscalingGroupsResult:
     """
     A collection of values returned by getAutoscalingGroups.
     """
-    def __init__(__self__, arns=None, filters=None, id=None, names=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arns=None, filters=None, id=None, names=None) -> None:
         if arns and not isinstance(arns, list):
             raise TypeError("Expected argument 'arns' to be a list")
         __self__.arns = arns
@@ -82,12 +85,7 @@ def get_autoscaling_groups(filters=None, opts=None):
     ```
 
 
-    :param list filters: A filter used to scope the list e.g. by tags. See [related docs](http://docs.aws.amazon.com/AutoScaling/latest/APIReference/API_Filter.html).
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the filter. The valid values are: `auto-scaling-group`, `key`, `value`, and `propagate-at-launch`.
-      * `values` (`list`) - The value of the filter.
+    :param List['GetAutoscalingGroupsFilterArgs'] filters: A filter used to scope the list e.g. by tags. See [related docs](http://docs.aws.amazon.com/AutoScaling/latest/APIReference/API_Filter.html).
     """
     __args__ = dict()
     __args__['filters'] = filters

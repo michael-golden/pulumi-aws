@@ -5,25 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class MainRouteTableAssociation(pulumi.CustomResource):
-    original_route_table_id: pulumi.Output[str]
+    original_route_table_id: pulumi.Output[str] = pulumi.output_property("originalRouteTableId")
     """
     Used internally, see __Notes__ below
     """
-    route_table_id: pulumi.Output[str]
+    route_table_id: pulumi.Output[str] = pulumi.output_property("routeTableId")
     """
     The ID of the Route Table to set as the new
     main route table for the target VPC
     """
-    vpc_id: pulumi.Output[str]
+    vpc_id: pulumi.Output[str] = pulumi.output_property("vpcId")
     """
     The ID of the VPC whose main route table should be set
     """
-    def __init__(__self__, resource_name, opts=None, route_table_id=None, vpc_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, route_table_id=None, vpc_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource for managing the main routing table of a VPC.
 
@@ -110,3 +111,4 @@ class MainRouteTableAssociation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

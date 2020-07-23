@@ -5,24 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class RepositoryPolicy(pulumi.CustomResource):
-    policy: pulumi.Output[str]
+    policy: pulumi.Output[str] = pulumi.output_property("policy")
     """
     The policy document. This is a JSON formatted string.
     """
-    registry_id: pulumi.Output[str]
+    registry_id: pulumi.Output[str] = pulumi.output_property("registryId")
     """
     The registry ID where the repository was created.
     """
-    repository: pulumi.Output[str]
+    repository: pulumi.Output[str] = pulumi.output_property("repository")
     """
     Name of the repository to apply the policy.
     """
-    def __init__(__self__, resource_name, opts=None, policy=None, repository=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, policy=None, repository=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Elastic Container Registry Repository Policy.
 
@@ -69,7 +70,7 @@ class RepositoryPolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] policy: The policy document. This is a JSON formatted string.
+        :param pulumi.Input[str] policy: The policy document. This is a JSON formatted string.
         :param pulumi.Input[str] repository: Name of the repository to apply the policy.
         """
         if __name__ is not None:
@@ -111,7 +112,7 @@ class RepositoryPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] policy: The policy document. This is a JSON formatted string.
+        :param pulumi.Input[str] policy: The policy document. This is a JSON formatted string.
         :param pulumi.Input[str] registry_id: The registry ID where the repository was created.
         :param pulumi.Input[str] repository: Name of the repository to apply the policy.
         """
@@ -129,3 +130,4 @@ class RepositoryPolicy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

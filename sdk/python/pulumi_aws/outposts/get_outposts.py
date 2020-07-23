@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetOutpostsResult:
     """
     A collection of values returned by getOutposts.
     """
-    def __init__(__self__, arns=None, availability_zone=None, availability_zone_id=None, id=None, ids=None, site_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arns=None, availability_zone=None, availability_zone_id=None, id=None, ids=None, site_id=None) -> None:
         if arns and not isinstance(arns, list):
             raise TypeError("Expected argument 'arns' to be a list")
         __self__.arns = arns

@@ -5,24 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Attachment(pulumi.CustomResource):
-    alb_target_group_arn: pulumi.Output[str]
+    alb_target_group_arn: pulumi.Output[Optional[str]] = pulumi.output_property("albTargetGroupArn")
     """
     The ARN of an ALB Target Group.
     """
-    autoscaling_group_name: pulumi.Output[str]
+    autoscaling_group_name: pulumi.Output[str] = pulumi.output_property("autoscalingGroupName")
     """
     Name of ASG to associate with the ELB.
     """
-    elb: pulumi.Output[str]
+    elb: pulumi.Output[Optional[str]] = pulumi.output_property("elb")
     """
     The name of the ELB.
     """
-    def __init__(__self__, resource_name, opts=None, alb_target_group_arn=None, autoscaling_group_name=None, elb=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, alb_target_group_arn=None, autoscaling_group_name=None, elb=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AutoScaling Attachment resource.
 
@@ -116,3 +117,4 @@ class Attachment(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

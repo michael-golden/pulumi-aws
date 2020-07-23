@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetRegionResult:
     """
     A collection of values returned by getRegion.
     """
-    def __init__(__self__, description=None, endpoint=None, id=None, name=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, description=None, endpoint=None, id=None, name=None) -> None:
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         __self__.description = description

@@ -5,33 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class S3BucketAssociation(pulumi.CustomResource):
-    bucket_name: pulumi.Output[str]
+    bucket_name: pulumi.Output[str] = pulumi.output_property("bucketName")
     """
     The name of the S3 bucket that you want to associate with Amazon Macie.
     """
-    classification_type: pulumi.Output[dict]
+    classification_type: pulumi.Output['outputs.S3BucketAssociationClassificationType'] = pulumi.output_property("classificationType")
     """
     The configuration of how Amazon Macie classifies the S3 objects.
-
-      * `continuous` (`str`) - A string value indicating that Macie perform a one-time classification of all of the existing objects in the bucket.
-        The only valid value is the default value, `FULL`.
-      * `oneTime` (`str`) - A string value indicating whether or not Macie performs a one-time classification of all of the existing objects in the bucket.
-        Valid values are `NONE` and `FULL`. Defaults to `NONE` indicating that Macie only classifies objects that are added after the association was created.
     """
-    member_account_id: pulumi.Output[str]
+    member_account_id: pulumi.Output[Optional[str]] = pulumi.output_property("memberAccountId")
     """
     The ID of the Amazon Macie member account whose S3 resources you want to associate with Macie. If `member_account_id` isn't specified, the action associates specified S3 resources with Macie for the current master account.
     """
-    prefix: pulumi.Output[str]
+    prefix: pulumi.Output[Optional[str]] = pulumi.output_property("prefix")
     """
     Object key prefix identifying one or more S3 objects to which the association applies.
     """
-    def __init__(__self__, resource_name, opts=None, bucket_name=None, classification_type=None, member_account_id=None, prefix=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, bucket_name=None, classification_type=None, member_account_id=None, prefix=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         > **NOTE:** This resource interacts with [Amazon Macie Classic](https://docs.aws.amazon.com/macie/latest/userguide/what-is-macie.html). Macie Classic cannot be activated in new accounts. See the [FAQ](https://aws.amazon.com/macie/classic-faqs/) for more details.
 
@@ -56,16 +54,9 @@ class S3BucketAssociation(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket_name: The name of the S3 bucket that you want to associate with Amazon Macie.
-        :param pulumi.Input[dict] classification_type: The configuration of how Amazon Macie classifies the S3 objects.
+        :param pulumi.Input['S3BucketAssociationClassificationTypeArgs'] classification_type: The configuration of how Amazon Macie classifies the S3 objects.
         :param pulumi.Input[str] member_account_id: The ID of the Amazon Macie member account whose S3 resources you want to associate with Macie. If `member_account_id` isn't specified, the action associates specified S3 resources with Macie for the current master account.
         :param pulumi.Input[str] prefix: Object key prefix identifying one or more S3 objects to which the association applies.
-
-        The **classification_type** object supports the following:
-
-          * `continuous` (`pulumi.Input[str]`) - A string value indicating that Macie perform a one-time classification of all of the existing objects in the bucket.
-            The only valid value is the default value, `FULL`.
-          * `oneTime` (`pulumi.Input[str]`) - A string value indicating whether or not Macie performs a one-time classification of all of the existing objects in the bucket.
-            Valid values are `NONE` and `FULL`. Defaults to `NONE` indicating that Macie only classifies objects that are added after the association was created.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -106,16 +97,9 @@ class S3BucketAssociation(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket_name: The name of the S3 bucket that you want to associate with Amazon Macie.
-        :param pulumi.Input[dict] classification_type: The configuration of how Amazon Macie classifies the S3 objects.
+        :param pulumi.Input['S3BucketAssociationClassificationTypeArgs'] classification_type: The configuration of how Amazon Macie classifies the S3 objects.
         :param pulumi.Input[str] member_account_id: The ID of the Amazon Macie member account whose S3 resources you want to associate with Macie. If `member_account_id` isn't specified, the action associates specified S3 resources with Macie for the current master account.
         :param pulumi.Input[str] prefix: Object key prefix identifying one or more S3 objects to which the association applies.
-
-        The **classification_type** object supports the following:
-
-          * `continuous` (`pulumi.Input[str]`) - A string value indicating that Macie perform a one-time classification of all of the existing objects in the bucket.
-            The only valid value is the default value, `FULL`.
-          * `oneTime` (`pulumi.Input[str]`) - A string value indicating whether or not Macie performs a one-time classification of all of the existing objects in the bucket.
-            Valid values are `NONE` and `FULL`. Defaults to `NONE` indicating that Macie only classifies objects that are added after the association was created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -132,3 +116,4 @@ class S3BucketAssociation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

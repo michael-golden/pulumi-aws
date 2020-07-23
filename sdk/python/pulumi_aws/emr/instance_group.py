@@ -5,55 +5,53 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class InstanceGroup(pulumi.CustomResource):
-    autoscaling_policy: pulumi.Output[str]
+    autoscaling_policy: pulumi.Output[Optional[str]] = pulumi.output_property("autoscalingPolicy")
     """
     The autoscaling policy document. This is a JSON formatted string. See [EMR Auto Scaling](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-automatic-scaling.html)
     """
-    bid_price: pulumi.Output[str]
+    bid_price: pulumi.Output[Optional[str]] = pulumi.output_property("bidPrice")
     """
     If set, the bid price for each EC2 instance in the instance group, expressed in USD. By setting this attribute, the instance group is being declared as a Spot Instance, and will implicitly create a Spot request. Leave this blank to use On-Demand Instances.
     """
-    cluster_id: pulumi.Output[str]
+    cluster_id: pulumi.Output[str] = pulumi.output_property("clusterId")
     """
     ID of the EMR Cluster to attach to. Changing this forces a new resource to be created.
     """
-    configurations_json: pulumi.Output[str]
+    configurations_json: pulumi.Output[Optional[str]] = pulumi.output_property("configurationsJson")
     """
     A JSON string for supplying list of configurations specific to the EMR instance group. Note that this can only be changed when using EMR release 5.21 or later.
     """
-    ebs_configs: pulumi.Output[list]
+    ebs_configs: pulumi.Output[List['outputs.InstanceGroupEbsConfig']] = pulumi.output_property("ebsConfigs")
     """
     One or more `ebs_config` blocks as defined below. Changing this forces a new resource to be created.
-
-      * `iops` (`float`) - The number of I/O operations per second (IOPS) that the volume supports.
-      * `size` (`float`) - The volume size, in gibibytes (GiB). This can be a number from 1 - 1024. If the volume type is EBS-optimized, the minimum value is 10.
-      * `type` (`str`) - The volume type. Valid options are 'gp2', 'io1' and 'standard'.
-      * `volumesPerInstance` (`float`) - The number of EBS Volumes to attach per instance.
     """
-    ebs_optimized: pulumi.Output[bool]
+    ebs_optimized: pulumi.Output[Optional[bool]] = pulumi.output_property("ebsOptimized")
     """
     Indicates whether an Amazon EBS volume is EBS-optimized. Changing this forces a new resource to be created.
     """
-    instance_count: pulumi.Output[float]
+    instance_count: pulumi.Output[Optional[float]] = pulumi.output_property("instanceCount")
     """
     target number of instances for the instance group. defaults to 0.
     """
-    instance_type: pulumi.Output[str]
+    instance_type: pulumi.Output[str] = pulumi.output_property("instanceType")
     """
     The EC2 instance type for all instances in the instance group. Changing this forces a new resource to be created.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Human friendly name given to the instance group. Changing this forces a new resource to be created.
     """
-    running_instance_count: pulumi.Output[float]
-    status: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, autoscaling_policy=None, bid_price=None, cluster_id=None, configurations_json=None, ebs_configs=None, ebs_optimized=None, instance_count=None, instance_type=None, name=None, __props__=None, __name__=None, __opts__=None):
+    running_instance_count: pulumi.Output[float] = pulumi.output_property("runningInstanceCount")
+    status: pulumi.Output[str] = pulumi.output_property("status")
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, autoscaling_policy=None, bid_price=None, cluster_id=None, configurations_json=None, ebs_configs=None, ebs_optimized=None, instance_count=None, instance_type=None, name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Elastic MapReduce Cluster Instance Group configuration.
         See [Amazon Elastic MapReduce Documentation](https://aws.amazon.com/documentation/emr/) for more information.
@@ -80,18 +78,11 @@ class InstanceGroup(pulumi.CustomResource):
         :param pulumi.Input[str] bid_price: If set, the bid price for each EC2 instance in the instance group, expressed in USD. By setting this attribute, the instance group is being declared as a Spot Instance, and will implicitly create a Spot request. Leave this blank to use On-Demand Instances.
         :param pulumi.Input[str] cluster_id: ID of the EMR Cluster to attach to. Changing this forces a new resource to be created.
         :param pulumi.Input[str] configurations_json: A JSON string for supplying list of configurations specific to the EMR instance group. Note that this can only be changed when using EMR release 5.21 or later.
-        :param pulumi.Input[list] ebs_configs: One or more `ebs_config` blocks as defined below. Changing this forces a new resource to be created.
+        :param pulumi.Input[List[pulumi.Input['InstanceGroupEbsConfigArgs']]] ebs_configs: One or more `ebs_config` blocks as defined below. Changing this forces a new resource to be created.
         :param pulumi.Input[bool] ebs_optimized: Indicates whether an Amazon EBS volume is EBS-optimized. Changing this forces a new resource to be created.
         :param pulumi.Input[float] instance_count: target number of instances for the instance group. defaults to 0.
         :param pulumi.Input[str] instance_type: The EC2 instance type for all instances in the instance group. Changing this forces a new resource to be created.
         :param pulumi.Input[str] name: Human friendly name given to the instance group. Changing this forces a new resource to be created.
-
-        The **ebs_configs** object supports the following:
-
-          * `iops` (`pulumi.Input[float]`) - The number of I/O operations per second (IOPS) that the volume supports.
-          * `size` (`pulumi.Input[float]`) - The volume size, in gibibytes (GiB). This can be a number from 1 - 1024. If the volume type is EBS-optimized, the minimum value is 10.
-          * `type` (`pulumi.Input[str]`) - The volume type. Valid options are 'gp2', 'io1' and 'standard'.
-          * `volumesPerInstance` (`pulumi.Input[float]`) - The number of EBS Volumes to attach per instance.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -144,18 +135,11 @@ class InstanceGroup(pulumi.CustomResource):
         :param pulumi.Input[str] bid_price: If set, the bid price for each EC2 instance in the instance group, expressed in USD. By setting this attribute, the instance group is being declared as a Spot Instance, and will implicitly create a Spot request. Leave this blank to use On-Demand Instances.
         :param pulumi.Input[str] cluster_id: ID of the EMR Cluster to attach to. Changing this forces a new resource to be created.
         :param pulumi.Input[str] configurations_json: A JSON string for supplying list of configurations specific to the EMR instance group. Note that this can only be changed when using EMR release 5.21 or later.
-        :param pulumi.Input[list] ebs_configs: One or more `ebs_config` blocks as defined below. Changing this forces a new resource to be created.
+        :param pulumi.Input[List[pulumi.Input['InstanceGroupEbsConfigArgs']]] ebs_configs: One or more `ebs_config` blocks as defined below. Changing this forces a new resource to be created.
         :param pulumi.Input[bool] ebs_optimized: Indicates whether an Amazon EBS volume is EBS-optimized. Changing this forces a new resource to be created.
         :param pulumi.Input[float] instance_count: target number of instances for the instance group. defaults to 0.
         :param pulumi.Input[str] instance_type: The EC2 instance type for all instances in the instance group. Changing this forces a new resource to be created.
         :param pulumi.Input[str] name: Human friendly name given to the instance group. Changing this forces a new resource to be created.
-
-        The **ebs_configs** object supports the following:
-
-          * `iops` (`pulumi.Input[float]`) - The number of I/O operations per second (IOPS) that the volume supports.
-          * `size` (`pulumi.Input[float]`) - The volume size, in gibibytes (GiB). This can be a number from 1 - 1024. If the volume type is EBS-optimized, the minimum value is 10.
-          * `type` (`pulumi.Input[str]`) - The volume type. Valid options are 'gp2', 'io1' and 'standard'.
-          * `volumesPerInstance` (`pulumi.Input[float]`) - The number of EBS Volumes to attach per instance.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -179,3 +163,4 @@ class InstanceGroup(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

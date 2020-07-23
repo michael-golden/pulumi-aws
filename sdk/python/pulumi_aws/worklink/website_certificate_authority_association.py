@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class WebsiteCertificateAuthorityAssociation(pulumi.CustomResource):
-    certificate: pulumi.Output[str]
+    certificate: pulumi.Output[str] = pulumi.output_property("certificate")
     """
     The root certificate of the Certificate Authority.
     """
-    display_name: pulumi.Output[str]
+    display_name: pulumi.Output[Optional[str]] = pulumi.output_property("displayName")
     """
     The certificate name to display.
     """
-    fleet_arn: pulumi.Output[str]
+    fleet_arn: pulumi.Output[str] = pulumi.output_property("fleetArn")
     """
     The ARN of the fleet.
     """
-    website_ca_id: pulumi.Output[str]
+    website_ca_id: pulumi.Output[str] = pulumi.output_property("websiteCaId")
     """
     A unique identifier for the Certificate Authority.
     """
-    def __init__(__self__, resource_name, opts=None, certificate=None, display_name=None, fleet_arn=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, certificate=None, display_name=None, fleet_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         ## Example Usage
 
@@ -106,3 +107,4 @@ class WebsiteCertificateAuthorityAssociation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

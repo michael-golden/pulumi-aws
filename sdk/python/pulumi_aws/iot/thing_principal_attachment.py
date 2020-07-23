@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class ThingPrincipalAttachment(pulumi.CustomResource):
-    principal: pulumi.Output[str]
+    principal: pulumi.Output[str] = pulumi.output_property("principal")
     """
     The AWS IoT Certificate ARN or Amazon Cognito Identity ID.
     """
-    thing: pulumi.Output[str]
+    thing: pulumi.Output[str] = pulumi.output_property("thing")
     """
     The name of the thing.
     """
-    def __init__(__self__, resource_name, opts=None, principal=None, thing=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, principal=None, thing=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Attaches Principal to AWS IoT Thing.
 
@@ -96,3 +97,4 @@ class ThingPrincipalAttachment(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

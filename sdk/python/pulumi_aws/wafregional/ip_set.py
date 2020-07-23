@@ -5,27 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class IpSet(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the WAF IPSet.
     """
-    ip_set_descriptors: pulumi.Output[list]
+    ip_set_descriptors: pulumi.Output[Optional[List['outputs.IpSetIpSetDescriptor']]] = pulumi.output_property("ipSetDescriptors")
     """
     One or more pairs specifying the IP address type (IPV4 or IPV6) and the IP address range (in CIDR notation) from which web requests originate.
-
-      * `type` (`str`) - The string like IPV4 or IPV6.
-      * `value` (`str`) - The CIDR notation.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name or description of the IPSet.
     """
-    def __init__(__self__, resource_name, opts=None, ip_set_descriptors=None, name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, ip_set_descriptors=None, name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a WAF Regional IPSet Resource for use with Application Load Balancer.
 
@@ -49,13 +49,8 @@ class IpSet(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] ip_set_descriptors: One or more pairs specifying the IP address type (IPV4 or IPV6) and the IP address range (in CIDR notation) from which web requests originate.
+        :param pulumi.Input[List[pulumi.Input['IpSetIpSetDescriptorArgs']]] ip_set_descriptors: One or more pairs specifying the IP address type (IPV4 or IPV6) and the IP address range (in CIDR notation) from which web requests originate.
         :param pulumi.Input[str] name: The name or description of the IPSet.
-
-        The **ip_set_descriptors** object supports the following:
-
-          * `type` (`pulumi.Input[str]`) - The string like IPV4 or IPV6.
-          * `value` (`pulumi.Input[str]`) - The CIDR notation.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -93,13 +88,8 @@ class IpSet(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: The ARN of the WAF IPSet.
-        :param pulumi.Input[list] ip_set_descriptors: One or more pairs specifying the IP address type (IPV4 or IPV6) and the IP address range (in CIDR notation) from which web requests originate.
+        :param pulumi.Input[List[pulumi.Input['IpSetIpSetDescriptorArgs']]] ip_set_descriptors: One or more pairs specifying the IP address type (IPV4 or IPV6) and the IP address range (in CIDR notation) from which web requests originate.
         :param pulumi.Input[str] name: The name or description of the IPSet.
-
-        The **ip_set_descriptors** object supports the following:
-
-          * `type` (`pulumi.Input[str]`) - The string like IPV4 or IPV6.
-          * `value` (`pulumi.Input[str]`) - The CIDR notation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -115,3 +105,4 @@ class IpSet(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetGatewayResult:
     """
     A collection of values returned by getGateway.
     """
-    def __init__(__self__, amazon_side_asn=None, id=None, name=None, owner_account_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, amazon_side_asn=None, id=None, name=None, owner_account_id=None) -> None:
         if amazon_side_asn and not isinstance(amazon_side_asn, str):
             raise TypeError("Expected argument 'amazon_side_asn' to be a str")
         __self__.amazon_side_asn = amazon_side_asn

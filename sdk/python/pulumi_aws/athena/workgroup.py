@@ -5,50 +5,43 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Workgroup(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     Amazon Resource Name (ARN) of the workgroup
     """
-    configuration: pulumi.Output[dict]
+    configuration: pulumi.Output[Optional['outputs.WorkgroupConfiguration']] = pulumi.output_property("configuration")
     """
     Configuration block with various settings for the workgroup. Documented below.
-
-      * `bytesScannedCutoffPerQuery` (`float`) - Integer for the upper data usage limit (cutoff) for the amount of bytes a single query in a workgroup is allowed to scan. Must be at least `10485760`.
-      * `enforceWorkgroupConfiguration` (`bool`) - Boolean whether the settings for the workgroup override client-side settings. For more information, see [Workgroup Settings Override Client-Side Settings](https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html). Defaults to `true`.
-      * `publishCloudwatchMetricsEnabled` (`bool`) - Boolean whether Amazon CloudWatch metrics are enabled for the workgroup. Defaults to `true`.
-      * `resultConfiguration` (`dict`) - Configuration block with result settings. Documented below.
-        * `encryption_configuration` (`dict`) - Configuration block with encryption settings. Documented below.
-          * `encryptionOption` (`str`) - Indicates whether Amazon S3 server-side encryption with Amazon S3-managed keys (`SSE_S3`), server-side encryption with KMS-managed keys (`SSE_KMS`), or client-side encryption with KMS-managed keys (`CSE_KMS`) is used. If a query runs in a workgroup and the workgroup overrides client-side settings, then the workgroup's setting for encryption is used. It specifies whether query results must be encrypted, for all queries that run in this workgroup.
-          * `kms_key_arn` (`str`) - For `SSE_KMS` and `CSE_KMS`, this is the KMS key Amazon Resource Name (ARN).
-
-        * `output_location` (`str`) - The location in Amazon S3 where your query results are stored, such as `s3://path/to/query/bucket/`. For more information, see [Queries and Query Result Files](https://docs.aws.amazon.com/athena/latest/ug/querying.html).
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     Description of the workgroup.
     """
-    force_destroy: pulumi.Output[bool]
+    force_destroy: pulumi.Output[Optional[bool]] = pulumi.output_property("forceDestroy")
     """
     The option to delete the workgroup and its contents even if the workgroup contains any named queries.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the workgroup.
     """
-    state: pulumi.Output[str]
+    state: pulumi.Output[Optional[str]] = pulumi.output_property("state")
     """
     State of the workgroup. Valid values are `DISABLED` or `ENABLED`. Defaults to `ENABLED`.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Key-value map of resource tags for the workgroup.
     """
-    def __init__(__self__, resource_name, opts=None, configuration=None, description=None, force_destroy=None, name=None, state=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, configuration=None, description=None, force_destroy=None, name=None, state=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Athena Workgroup.
 
@@ -73,24 +66,12 @@ class Workgroup(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] configuration: Configuration block with various settings for the workgroup. Documented below.
+        :param pulumi.Input['WorkgroupConfigurationArgs'] configuration: Configuration block with various settings for the workgroup. Documented below.
         :param pulumi.Input[str] description: Description of the workgroup.
         :param pulumi.Input[bool] force_destroy: The option to delete the workgroup and its contents even if the workgroup contains any named queries.
         :param pulumi.Input[str] name: Name of the workgroup.
         :param pulumi.Input[str] state: State of the workgroup. Valid values are `DISABLED` or `ENABLED`. Defaults to `ENABLED`.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags for the workgroup.
-
-        The **configuration** object supports the following:
-
-          * `bytesScannedCutoffPerQuery` (`pulumi.Input[float]`) - Integer for the upper data usage limit (cutoff) for the amount of bytes a single query in a workgroup is allowed to scan. Must be at least `10485760`.
-          * `enforceWorkgroupConfiguration` (`pulumi.Input[bool]`) - Boolean whether the settings for the workgroup override client-side settings. For more information, see [Workgroup Settings Override Client-Side Settings](https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html). Defaults to `true`.
-          * `publishCloudwatchMetricsEnabled` (`pulumi.Input[bool]`) - Boolean whether Amazon CloudWatch metrics are enabled for the workgroup. Defaults to `true`.
-          * `resultConfiguration` (`pulumi.Input[dict]`) - Configuration block with result settings. Documented below.
-            * `encryption_configuration` (`pulumi.Input[dict]`) - Configuration block with encryption settings. Documented below.
-              * `encryptionOption` (`pulumi.Input[str]`) - Indicates whether Amazon S3 server-side encryption with Amazon S3-managed keys (`SSE_S3`), server-side encryption with KMS-managed keys (`SSE_KMS`), or client-side encryption with KMS-managed keys (`CSE_KMS`) is used. If a query runs in a workgroup and the workgroup overrides client-side settings, then the workgroup's setting for encryption is used. It specifies whether query results must be encrypted, for all queries that run in this workgroup.
-              * `kms_key_arn` (`pulumi.Input[str]`) - For `SSE_KMS` and `CSE_KMS`, this is the KMS key Amazon Resource Name (ARN).
-
-            * `output_location` (`pulumi.Input[str]`) - The location in Amazon S3 where your query results are stored, such as `s3://path/to/query/bucket/`. For more information, see [Queries and Query Result Files](https://docs.aws.amazon.com/athena/latest/ug/querying.html).
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags for the workgroup.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -132,24 +113,12 @@ class Workgroup(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: Amazon Resource Name (ARN) of the workgroup
-        :param pulumi.Input[dict] configuration: Configuration block with various settings for the workgroup. Documented below.
+        :param pulumi.Input['WorkgroupConfigurationArgs'] configuration: Configuration block with various settings for the workgroup. Documented below.
         :param pulumi.Input[str] description: Description of the workgroup.
         :param pulumi.Input[bool] force_destroy: The option to delete the workgroup and its contents even if the workgroup contains any named queries.
         :param pulumi.Input[str] name: Name of the workgroup.
         :param pulumi.Input[str] state: State of the workgroup. Valid values are `DISABLED` or `ENABLED`. Defaults to `ENABLED`.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags for the workgroup.
-
-        The **configuration** object supports the following:
-
-          * `bytesScannedCutoffPerQuery` (`pulumi.Input[float]`) - Integer for the upper data usage limit (cutoff) for the amount of bytes a single query in a workgroup is allowed to scan. Must be at least `10485760`.
-          * `enforceWorkgroupConfiguration` (`pulumi.Input[bool]`) - Boolean whether the settings for the workgroup override client-side settings. For more information, see [Workgroup Settings Override Client-Side Settings](https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html). Defaults to `true`.
-          * `publishCloudwatchMetricsEnabled` (`pulumi.Input[bool]`) - Boolean whether Amazon CloudWatch metrics are enabled for the workgroup. Defaults to `true`.
-          * `resultConfiguration` (`pulumi.Input[dict]`) - Configuration block with result settings. Documented below.
-            * `encryption_configuration` (`pulumi.Input[dict]`) - Configuration block with encryption settings. Documented below.
-              * `encryptionOption` (`pulumi.Input[str]`) - Indicates whether Amazon S3 server-side encryption with Amazon S3-managed keys (`SSE_S3`), server-side encryption with KMS-managed keys (`SSE_KMS`), or client-side encryption with KMS-managed keys (`CSE_KMS`) is used. If a query runs in a workgroup and the workgroup overrides client-side settings, then the workgroup's setting for encryption is used. It specifies whether query results must be encrypted, for all queries that run in this workgroup.
-              * `kms_key_arn` (`pulumi.Input[str]`) - For `SSE_KMS` and `CSE_KMS`, this is the KMS key Amazon Resource Name (ARN).
-
-            * `output_location` (`pulumi.Input[str]`) - The location in Amazon S3 where your query results are stored, such as `s3://path/to/query/bucket/`. For more information, see [Queries and Query Result Files](https://docs.aws.amazon.com/athena/latest/ug/querying.html).
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags for the workgroup.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -169,3 +138,4 @@ class Workgroup(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

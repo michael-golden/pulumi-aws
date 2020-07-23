@@ -5,31 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class LoadBalancerPolicy(pulumi.CustomResource):
-    load_balancer_name: pulumi.Output[str]
+    load_balancer_name: pulumi.Output[str] = pulumi.output_property("loadBalancerName")
     """
     The load balancer on which the policy is defined.
     """
-    policy_attributes: pulumi.Output[list]
+    policy_attributes: pulumi.Output[Optional[List['outputs.LoadBalancerPolicyPolicyAttribute']]] = pulumi.output_property("policyAttributes")
     """
     Policy attribute to apply to the policy.
-
-      * `name` (`str`)
-      * `value` (`str`)
     """
-    policy_name: pulumi.Output[str]
+    policy_name: pulumi.Output[str] = pulumi.output_property("policyName")
     """
     The name of the load balancer policy.
     """
-    policy_type_name: pulumi.Output[str]
+    policy_type_name: pulumi.Output[str] = pulumi.output_property("policyTypeName")
     """
     The policy type.
     """
-    def __init__(__self__, resource_name, opts=None, load_balancer_name=None, policy_attributes=None, policy_name=None, policy_type_name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, load_balancer_name=None, policy_attributes=None, policy_name=None, policy_type_name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a load balancer policy, which can be attached to an ELB listener or backend server.
 
@@ -110,14 +110,9 @@ class LoadBalancerPolicy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] load_balancer_name: The load balancer on which the policy is defined.
-        :param pulumi.Input[list] policy_attributes: Policy attribute to apply to the policy.
+        :param pulumi.Input[List[pulumi.Input['LoadBalancerPolicyPolicyAttributeArgs']]] policy_attributes: Policy attribute to apply to the policy.
         :param pulumi.Input[str] policy_name: The name of the load balancer policy.
         :param pulumi.Input[str] policy_type_name: The policy type.
-
-        The **policy_attributes** object supports the following:
-
-          * `name` (`pulumi.Input[str]`)
-          * `value` (`pulumi.Input[str]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -164,14 +159,9 @@ class LoadBalancerPolicy(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] load_balancer_name: The load balancer on which the policy is defined.
-        :param pulumi.Input[list] policy_attributes: Policy attribute to apply to the policy.
+        :param pulumi.Input[List[pulumi.Input['LoadBalancerPolicyPolicyAttributeArgs']]] policy_attributes: Policy attribute to apply to the policy.
         :param pulumi.Input[str] policy_name: The name of the load balancer policy.
         :param pulumi.Input[str] policy_type_name: The policy type.
-
-        The **policy_attributes** object supports the following:
-
-          * `name` (`pulumi.Input[str]`)
-          * `value` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -188,3 +178,4 @@ class LoadBalancerPolicy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

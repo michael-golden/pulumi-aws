@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class AvailabilityZoneGroup(pulumi.CustomResource):
-    group_name: pulumi.Output[str]
+    group_name: pulumi.Output[str] = pulumi.output_property("groupName")
     """
     Name of the Availability Zone Group.
     """
-    opt_in_status: pulumi.Output[str]
+    opt_in_status: pulumi.Output[str] = pulumi.output_property("optInStatus")
     """
     Indicates whether to enable or disable Availability Zone Group. Valid values: `opted-in` or `not-opted-in`.
     """
-    def __init__(__self__, resource_name, opts=None, group_name=None, opt_in_status=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, group_name=None, opt_in_status=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an EC2 Availability Zone Group, such as updating its opt-in status.
 
@@ -94,3 +95,4 @@ class AvailabilityZoneGroup(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class IdentityNotificationTopic(pulumi.CustomResource):
-    identity: pulumi.Output[str]
+    identity: pulumi.Output[str] = pulumi.output_property("identity")
     """
     The identity for which the Amazon SNS topic will be set. You can specify an identity by using its name or by using its Amazon Resource Name (ARN).
     """
-    include_original_headers: pulumi.Output[bool]
+    include_original_headers: pulumi.Output[Optional[bool]] = pulumi.output_property("includeOriginalHeaders")
     """
     Whether SES should include original email headers in SNS notifications of this type. *false* by default.
     """
-    notification_type: pulumi.Output[str]
+    notification_type: pulumi.Output[str] = pulumi.output_property("notificationType")
     """
     The type of notifications that will be published to the specified Amazon SNS topic. Valid Values: *Bounce*, *Complaint* or *Delivery*.
     """
-    topic_arn: pulumi.Output[str]
+    topic_arn: pulumi.Output[Optional[str]] = pulumi.output_property("topicArn")
     """
     The Amazon Resource Name (ARN) of the Amazon SNS topic. Can be set to "" (an empty string) to disable publishing.
     """
-    def __init__(__self__, resource_name, opts=None, identity=None, include_original_headers=None, notification_type=None, topic_arn=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, identity=None, include_original_headers=None, notification_type=None, topic_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Resource for managing SES Identity Notification Topics
 
@@ -110,3 +111,4 @@ class IdentityNotificationTopic(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

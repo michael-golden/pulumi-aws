@@ -5,52 +5,53 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class ReplicationTask(pulumi.CustomResource):
-    cdc_start_time: pulumi.Output[str]
+    cdc_start_time: pulumi.Output[Optional[str]] = pulumi.output_property("cdcStartTime")
     """
     The Unix timestamp integer for the start of the Change Data Capture (CDC) operation.
     """
-    migration_type: pulumi.Output[str]
+    migration_type: pulumi.Output[str] = pulumi.output_property("migrationType")
     """
     The migration type. Can be one of `full-load | cdc | full-load-and-cdc`.
     """
-    replication_instance_arn: pulumi.Output[str]
+    replication_instance_arn: pulumi.Output[str] = pulumi.output_property("replicationInstanceArn")
     """
     The Amazon Resource Name (ARN) of the replication instance.
     """
-    replication_task_arn: pulumi.Output[str]
+    replication_task_arn: pulumi.Output[str] = pulumi.output_property("replicationTaskArn")
     """
     The Amazon Resource Name (ARN) for the replication task.
     """
-    replication_task_id: pulumi.Output[str]
+    replication_task_id: pulumi.Output[str] = pulumi.output_property("replicationTaskId")
     """
     The replication task identifier.
     """
-    replication_task_settings: pulumi.Output[str]
+    replication_task_settings: pulumi.Output[Optional[str]] = pulumi.output_property("replicationTaskSettings")
     """
     An escaped JSON string that contains the task settings. For a complete list of task settings, see [Task Settings for AWS Database Migration Service Tasks](http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.html).
     """
-    source_endpoint_arn: pulumi.Output[str]
+    source_endpoint_arn: pulumi.Output[str] = pulumi.output_property("sourceEndpointArn")
     """
     The Amazon Resource Name (ARN) string that uniquely identifies the source endpoint.
     """
-    table_mappings: pulumi.Output[str]
+    table_mappings: pulumi.Output[str] = pulumi.output_property("tableMappings")
     """
     An escaped JSON string that contains the table mappings. For information on table mapping see [Using Table Mapping with an AWS Database Migration Service Task to Select and Filter Data](http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.html)
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    target_endpoint_arn: pulumi.Output[str]
+    target_endpoint_arn: pulumi.Output[str] = pulumi.output_property("targetEndpointArn")
     """
     The Amazon Resource Name (ARN) string that uniquely identifies the target endpoint.
     """
-    def __init__(__self__, resource_name, opts=None, cdc_start_time=None, migration_type=None, replication_instance_arn=None, replication_task_id=None, replication_task_settings=None, source_endpoint_arn=None, table_mappings=None, tags=None, target_endpoint_arn=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cdc_start_time=None, migration_type=None, replication_instance_arn=None, replication_task_id=None, replication_task_settings=None, source_endpoint_arn=None, table_mappings=None, tags=None, target_endpoint_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a DMS (Data Migration Service) replication task resource. DMS replication tasks can be created, updated, deleted, and imported.
 
@@ -84,7 +85,7 @@ class ReplicationTask(pulumi.CustomResource):
         :param pulumi.Input[str] replication_task_settings: An escaped JSON string that contains the task settings. For a complete list of task settings, see [Task Settings for AWS Database Migration Service Tasks](http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.html).
         :param pulumi.Input[str] source_endpoint_arn: The Amazon Resource Name (ARN) string that uniquely identifies the source endpoint.
         :param pulumi.Input[str] table_mappings: An escaped JSON string that contains the table mappings. For information on table mapping see [Using Table Mapping with an AWS Database Migration Service Task to Select and Filter Data](http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.html)
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] target_endpoint_arn: The Amazon Resource Name (ARN) string that uniquely identifies the target endpoint.
         """
         if __name__ is not None:
@@ -149,7 +150,7 @@ class ReplicationTask(pulumi.CustomResource):
         :param pulumi.Input[str] replication_task_settings: An escaped JSON string that contains the task settings. For a complete list of task settings, see [Task Settings for AWS Database Migration Service Tasks](http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.html).
         :param pulumi.Input[str] source_endpoint_arn: The Amazon Resource Name (ARN) string that uniquely identifies the source endpoint.
         :param pulumi.Input[str] table_mappings: An escaped JSON string that contains the table mappings. For information on table mapping see [Using Table Mapping with an AWS Database Migration Service Task to Select and Filter Data](http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.html)
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] target_endpoint_arn: The Amazon Resource Name (ARN) string that uniquely identifies the target endpoint.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -173,3 +174,4 @@ class ReplicationTask(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

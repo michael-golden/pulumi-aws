@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetProductResult:
     """
     A collection of values returned by getProduct.
     """
-    def __init__(__self__, filters=None, id=None, result=None, service_code=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, filters=None, id=None, result=None, service_code=None) -> None:
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
         __self__.filters = filters
@@ -108,13 +111,8 @@ def get_product(filters=None, service_code=None, opts=None):
     ```
 
 
-    :param list filters: A list of filters. Passed directly to the API (see GetProducts API reference). These filters must describe a single product, this resource will fail if more than one product is returned by the API.
+    :param List['GetProductFilterArgs'] filters: A list of filters. Passed directly to the API (see GetProducts API reference). These filters must describe a single product, this resource will fail if more than one product is returned by the API.
     :param str service_code: The code of the service. Available service codes can be fetched using the DescribeServices pricing API call.
-
-    The **filters** object supports the following:
-
-      * `field` (`str`) - The product attribute name that you want to filter on.
-      * `value` (`str`) - The product attribute value that you want to filter on.
     """
     __args__ = dict()
     __args__['filters'] = filters

@@ -5,44 +5,45 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class ClusterEndpoint(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     Amazon Resource Name (ARN) of cluster
     """
-    cluster_endpoint_identifier: pulumi.Output[str]
+    cluster_endpoint_identifier: pulumi.Output[str] = pulumi.output_property("clusterEndpointIdentifier")
     """
     The identifier to use for the new endpoint. This parameter is stored as a lowercase string.
     """
-    cluster_identifier: pulumi.Output[str]
+    cluster_identifier: pulumi.Output[str] = pulumi.output_property("clusterIdentifier")
     """
     The cluster identifier.
     """
-    custom_endpoint_type: pulumi.Output[str]
+    custom_endpoint_type: pulumi.Output[str] = pulumi.output_property("customEndpointType")
     """
     The type of the endpoint. One of: READER , ANY .
     """
-    endpoint: pulumi.Output[str]
+    endpoint: pulumi.Output[str] = pulumi.output_property("endpoint")
     """
     A custom endpoint for the Aurora cluster
     """
-    excluded_members: pulumi.Output[list]
+    excluded_members: pulumi.Output[Optional[List[str]]] = pulumi.output_property("excludedMembers")
     """
     List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty. Conflicts with `static_members`.
     """
-    static_members: pulumi.Output[list]
+    static_members: pulumi.Output[Optional[List[str]]] = pulumi.output_property("staticMembers")
     """
     List of DB instance identifiers that are part of the custom endpoint group. Conflicts with `excluded_members`.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     Key-value map of resource tags
     """
-    def __init__(__self__, resource_name, opts=None, cluster_endpoint_identifier=None, cluster_identifier=None, custom_endpoint_type=None, excluded_members=None, static_members=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cluster_endpoint_identifier=None, cluster_identifier=None, custom_endpoint_type=None, excluded_members=None, static_members=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an RDS Aurora Cluster Endpoint.
         You can refer to the [User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.Endpoints.html#Aurora.Endpoints.Cluster).
@@ -109,9 +110,9 @@ class ClusterEndpoint(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_endpoint_identifier: The identifier to use for the new endpoint. This parameter is stored as a lowercase string.
         :param pulumi.Input[str] cluster_identifier: The cluster identifier.
         :param pulumi.Input[str] custom_endpoint_type: The type of the endpoint. One of: READER , ANY .
-        :param pulumi.Input[list] excluded_members: List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty. Conflicts with `static_members`.
-        :param pulumi.Input[list] static_members: List of DB instance identifiers that are part of the custom endpoint group. Conflicts with `excluded_members`.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[List[pulumi.Input[str]]] excluded_members: List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty. Conflicts with `static_members`.
+        :param pulumi.Input[List[pulumi.Input[str]]] static_members: List of DB instance identifiers that are part of the custom endpoint group. Conflicts with `excluded_members`.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -164,9 +165,9 @@ class ClusterEndpoint(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_identifier: The cluster identifier.
         :param pulumi.Input[str] custom_endpoint_type: The type of the endpoint. One of: READER , ANY .
         :param pulumi.Input[str] endpoint: A custom endpoint for the Aurora cluster
-        :param pulumi.Input[list] excluded_members: List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty. Conflicts with `static_members`.
-        :param pulumi.Input[list] static_members: List of DB instance identifiers that are part of the custom endpoint group. Conflicts with `excluded_members`.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[List[pulumi.Input[str]]] excluded_members: List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty. Conflicts with `static_members`.
+        :param pulumi.Input[List[pulumi.Input[str]]] static_members: List of DB instance identifiers that are part of the custom endpoint group. Conflicts with `excluded_members`.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -187,3 +188,4 @@ class ClusterEndpoint(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

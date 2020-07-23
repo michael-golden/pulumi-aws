@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetSelectionResult:
     """
     A collection of values returned by getSelection.
     """
-    def __init__(__self__, iam_role_arn=None, id=None, name=None, plan_id=None, resources=None, selection_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, iam_role_arn=None, id=None, name=None, plan_id=None, resources=None, selection_id=None) -> None:
         if iam_role_arn and not isinstance(iam_role_arn, str):
             raise TypeError("Expected argument 'iam_role_arn' to be a str")
         __self__.iam_role_arn = iam_role_arn

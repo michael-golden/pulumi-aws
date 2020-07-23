@@ -5,61 +5,48 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Inventory(pulumi.CustomResource):
-    bucket: pulumi.Output[str]
+    bucket: pulumi.Output[str] = pulumi.output_property("bucket")
     """
     The name of the bucket where the inventory configuration will be stored.
     """
-    destination: pulumi.Output[dict]
+    destination: pulumi.Output['outputs.InventoryDestination'] = pulumi.output_property("destination")
     """
     Contains information about where to publish the inventory results (documented below).
-
-      * `bucket` (`dict`) - The S3 bucket configuration where inventory results are published (documented below).
-        * `account_id` (`str`) - The ID of the account that owns the destination bucket. Recommended to be set to prevent problems if the destination bucket ownership changes.
-        * `bucketArn` (`str`) - The Amazon S3 bucket ARN of the destination.
-        * `encryption` (`dict`) - Contains the type of server-side encryption to use to encrypt the inventory (documented below).
-          * `sseKms` (`dict`) - Specifies to use server-side encryption with AWS KMS-managed keys to encrypt the inventory file (documented below).
-            * `key_id` (`str`) - The ARN of the KMS customer master key (CMK) used to encrypt the inventory file.
-
-          * `sseS3` (`dict`) - Specifies to use server-side encryption with Amazon S3-managed keys (SSE-S3) to encrypt the inventory file.
-
-        * `format` (`str`) - Specifies the output format of the inventory results. Can be `CSV`, [`ORC`](https://orc.apache.org/) or [`Parquet`](https://parquet.apache.org/).
-        * `prefix` (`str`) - The prefix that is prepended to all inventory results.
     """
-    enabled: pulumi.Output[bool]
+    enabled: pulumi.Output[Optional[bool]] = pulumi.output_property("enabled")
     """
     Specifies whether the inventory is enabled or disabled.
     """
-    filter: pulumi.Output[dict]
+    filter: pulumi.Output[Optional['outputs.InventoryFilter']] = pulumi.output_property("filter")
     """
     Specifies an inventory filter. The inventory only includes objects that meet the filter's criteria (documented below).
-
-      * `prefix` (`str`) - The prefix that an object must have to be included in the inventory results.
     """
-    included_object_versions: pulumi.Output[str]
+    included_object_versions: pulumi.Output[str] = pulumi.output_property("includedObjectVersions")
     """
     Object versions to include in the inventory list. Valid values: `All`, `Current`.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Unique identifier of the inventory configuration for the bucket.
     """
-    optional_fields: pulumi.Output[list]
+    optional_fields: pulumi.Output[Optional[List[str]]] = pulumi.output_property("optionalFields")
     """
     List of optional fields that are included in the inventory results.
     Valid values: `Size`, `LastModifiedDate`, `StorageClass`, `ETag`, `IsMultipartUploaded`, `ReplicationStatus`, `EncryptionStatus`, `ObjectLockRetainUntilDate`, `ObjectLockMode`, `ObjectLockLegalHoldStatus`, `IntelligentTieringAccessTier`.
     """
-    schedule: pulumi.Output[dict]
+    schedule: pulumi.Output['outputs.InventorySchedule'] = pulumi.output_property("schedule")
     """
     Specifies the schedule for generating inventory results (documented below).
-
-      * `frequency` (`str`) - Specifies how frequently inventory results are produced. Valid values: `Daily`, `Weekly`.
     """
-    def __init__(__self__, resource_name, opts=None, bucket=None, destination=None, enabled=None, filter=None, included_object_versions=None, name=None, optional_fields=None, schedule=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, bucket=None, destination=None, enabled=None, filter=None, included_object_versions=None, name=None, optional_fields=None, schedule=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a S3 bucket [inventory configuration](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-inventory.html) resource.
 
@@ -114,36 +101,14 @@ class Inventory(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket where the inventory configuration will be stored.
-        :param pulumi.Input[dict] destination: Contains information about where to publish the inventory results (documented below).
+        :param pulumi.Input['InventoryDestinationArgs'] destination: Contains information about where to publish the inventory results (documented below).
         :param pulumi.Input[bool] enabled: Specifies whether the inventory is enabled or disabled.
-        :param pulumi.Input[dict] filter: Specifies an inventory filter. The inventory only includes objects that meet the filter's criteria (documented below).
+        :param pulumi.Input['InventoryFilterArgs'] filter: Specifies an inventory filter. The inventory only includes objects that meet the filter's criteria (documented below).
         :param pulumi.Input[str] included_object_versions: Object versions to include in the inventory list. Valid values: `All`, `Current`.
         :param pulumi.Input[str] name: Unique identifier of the inventory configuration for the bucket.
-        :param pulumi.Input[list] optional_fields: List of optional fields that are included in the inventory results.
+        :param pulumi.Input[List[pulumi.Input[str]]] optional_fields: List of optional fields that are included in the inventory results.
                Valid values: `Size`, `LastModifiedDate`, `StorageClass`, `ETag`, `IsMultipartUploaded`, `ReplicationStatus`, `EncryptionStatus`, `ObjectLockRetainUntilDate`, `ObjectLockMode`, `ObjectLockLegalHoldStatus`, `IntelligentTieringAccessTier`.
-        :param pulumi.Input[dict] schedule: Specifies the schedule for generating inventory results (documented below).
-
-        The **destination** object supports the following:
-
-          * `bucket` (`pulumi.Input[dict]`) - The S3 bucket configuration where inventory results are published (documented below).
-            * `account_id` (`pulumi.Input[str]`) - The ID of the account that owns the destination bucket. Recommended to be set to prevent problems if the destination bucket ownership changes.
-            * `bucketArn` (`pulumi.Input[str]`) - The Amazon S3 bucket ARN of the destination.
-            * `encryption` (`pulumi.Input[dict]`) - Contains the type of server-side encryption to use to encrypt the inventory (documented below).
-              * `sseKms` (`pulumi.Input[dict]`) - Specifies to use server-side encryption with AWS KMS-managed keys to encrypt the inventory file (documented below).
-                * `key_id` (`pulumi.Input[str]`) - The ARN of the KMS customer master key (CMK) used to encrypt the inventory file.
-
-              * `sseS3` (`pulumi.Input[dict]`) - Specifies to use server-side encryption with Amazon S3-managed keys (SSE-S3) to encrypt the inventory file.
-
-            * `format` (`pulumi.Input[str]`) - Specifies the output format of the inventory results. Can be `CSV`, [`ORC`](https://orc.apache.org/) or [`Parquet`](https://parquet.apache.org/).
-            * `prefix` (`pulumi.Input[str]`) - The prefix that is prepended to all inventory results.
-
-        The **filter** object supports the following:
-
-          * `prefix` (`pulumi.Input[str]`) - The prefix that an object must have to be included in the inventory results.
-
-        The **schedule** object supports the following:
-
-          * `frequency` (`pulumi.Input[str]`) - Specifies how frequently inventory results are produced. Valid values: `Daily`, `Weekly`.
+        :param pulumi.Input['InventoryScheduleArgs'] schedule: Specifies the schedule for generating inventory results (documented below).
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -194,36 +159,14 @@ class Inventory(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket where the inventory configuration will be stored.
-        :param pulumi.Input[dict] destination: Contains information about where to publish the inventory results (documented below).
+        :param pulumi.Input['InventoryDestinationArgs'] destination: Contains information about where to publish the inventory results (documented below).
         :param pulumi.Input[bool] enabled: Specifies whether the inventory is enabled or disabled.
-        :param pulumi.Input[dict] filter: Specifies an inventory filter. The inventory only includes objects that meet the filter's criteria (documented below).
+        :param pulumi.Input['InventoryFilterArgs'] filter: Specifies an inventory filter. The inventory only includes objects that meet the filter's criteria (documented below).
         :param pulumi.Input[str] included_object_versions: Object versions to include in the inventory list. Valid values: `All`, `Current`.
         :param pulumi.Input[str] name: Unique identifier of the inventory configuration for the bucket.
-        :param pulumi.Input[list] optional_fields: List of optional fields that are included in the inventory results.
+        :param pulumi.Input[List[pulumi.Input[str]]] optional_fields: List of optional fields that are included in the inventory results.
                Valid values: `Size`, `LastModifiedDate`, `StorageClass`, `ETag`, `IsMultipartUploaded`, `ReplicationStatus`, `EncryptionStatus`, `ObjectLockRetainUntilDate`, `ObjectLockMode`, `ObjectLockLegalHoldStatus`, `IntelligentTieringAccessTier`.
-        :param pulumi.Input[dict] schedule: Specifies the schedule for generating inventory results (documented below).
-
-        The **destination** object supports the following:
-
-          * `bucket` (`pulumi.Input[dict]`) - The S3 bucket configuration where inventory results are published (documented below).
-            * `account_id` (`pulumi.Input[str]`) - The ID of the account that owns the destination bucket. Recommended to be set to prevent problems if the destination bucket ownership changes.
-            * `bucketArn` (`pulumi.Input[str]`) - The Amazon S3 bucket ARN of the destination.
-            * `encryption` (`pulumi.Input[dict]`) - Contains the type of server-side encryption to use to encrypt the inventory (documented below).
-              * `sseKms` (`pulumi.Input[dict]`) - Specifies to use server-side encryption with AWS KMS-managed keys to encrypt the inventory file (documented below).
-                * `key_id` (`pulumi.Input[str]`) - The ARN of the KMS customer master key (CMK) used to encrypt the inventory file.
-
-              * `sseS3` (`pulumi.Input[dict]`) - Specifies to use server-side encryption with Amazon S3-managed keys (SSE-S3) to encrypt the inventory file.
-
-            * `format` (`pulumi.Input[str]`) - Specifies the output format of the inventory results. Can be `CSV`, [`ORC`](https://orc.apache.org/) or [`Parquet`](https://parquet.apache.org/).
-            * `prefix` (`pulumi.Input[str]`) - The prefix that is prepended to all inventory results.
-
-        The **filter** object supports the following:
-
-          * `prefix` (`pulumi.Input[str]`) - The prefix that an object must have to be included in the inventory results.
-
-        The **schedule** object supports the following:
-
-          * `frequency` (`pulumi.Input[str]`) - Specifies how frequently inventory results are produced. Valid values: `Daily`, `Weekly`.
+        :param pulumi.Input['InventoryScheduleArgs'] schedule: Specifies the schedule for generating inventory results (documented below).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -244,3 +187,4 @@ class Inventory(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

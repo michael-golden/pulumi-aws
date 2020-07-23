@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class LogDestinationPolicy(pulumi.CustomResource):
-    access_policy: pulumi.Output[str]
+    access_policy: pulumi.Output[str] = pulumi.output_property("accessPolicy")
     """
     The policy document. This is a JSON formatted string.
     """
-    destination_name: pulumi.Output[str]
+    destination_name: pulumi.Output[str] = pulumi.output_property("destinationName")
     """
     A name for the subscription filter
     """
-    def __init__(__self__, resource_name, opts=None, access_policy=None, destination_name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, access_policy=None, destination_name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CloudWatch Logs destination policy resource.
 
@@ -104,3 +105,4 @@ class LogDestinationPolicy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

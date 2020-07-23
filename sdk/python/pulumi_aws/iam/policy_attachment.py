@@ -5,32 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class PolicyAttachment(pulumi.CustomResource):
-    groups: pulumi.Output[list]
+    groups: pulumi.Output[Optional[List[str]]] = pulumi.output_property("groups")
     """
     The group(s) the policy should be applied to
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the attachment. This cannot be an empty string.
     """
-    policy_arn: pulumi.Output[str]
+    policy_arn: pulumi.Output[str] = pulumi.output_property("policyArn")
     """
     The ARN of the policy you want to apply
     """
-    roles: pulumi.Output[list]
+    roles: pulumi.Output[Optional[List[str]]] = pulumi.output_property("roles")
     """
     The role(s) the policy should be applied to
     """
-    users: pulumi.Output[list]
+    users: pulumi.Output[Optional[List[str]]] = pulumi.output_property("users")
     """
     The user(s) the policy should be applied to
     """
-    def __init__(__self__, resource_name, opts=None, groups=None, name=None, policy_arn=None, roles=None, users=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, groups=None, name=None, policy_arn=None, roles=None, users=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Attaches a Managed IAM Policy to user(s), role(s), and/or group(s)
 
@@ -86,11 +87,11 @@ class PolicyAttachment(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] groups: The group(s) the policy should be applied to
+        :param pulumi.Input[List[pulumi.Input[str]]] groups: The group(s) the policy should be applied to
         :param pulumi.Input[str] name: The name of the attachment. This cannot be an empty string.
         :param pulumi.Input[str] policy_arn: The ARN of the policy you want to apply
-        :param pulumi.Input[list] roles: The role(s) the policy should be applied to
-        :param pulumi.Input[list] users: The user(s) the policy should be applied to
+        :param pulumi.Input[List[pulumi.Input[str]]] roles: The role(s) the policy should be applied to
+        :param pulumi.Input[List[pulumi.Input[str]]] users: The user(s) the policy should be applied to
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -131,11 +132,11 @@ class PolicyAttachment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] groups: The group(s) the policy should be applied to
+        :param pulumi.Input[List[pulumi.Input[str]]] groups: The group(s) the policy should be applied to
         :param pulumi.Input[str] name: The name of the attachment. This cannot be an empty string.
         :param pulumi.Input[str] policy_arn: The ARN of the policy you want to apply
-        :param pulumi.Input[list] roles: The role(s) the policy should be applied to
-        :param pulumi.Input[list] users: The user(s) the policy should be applied to
+        :param pulumi.Input[List[pulumi.Input[str]]] roles: The role(s) the policy should be applied to
+        :param pulumi.Input[List[pulumi.Input[str]]] users: The user(s) the policy should be applied to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -153,3 +154,4 @@ class PolicyAttachment(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

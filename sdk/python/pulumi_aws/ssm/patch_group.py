@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class PatchGroup(pulumi.CustomResource):
-    baseline_id: pulumi.Output[str]
+    baseline_id: pulumi.Output[str] = pulumi.output_property("baselineId")
     """
     The ID of the patch baseline to register the patch group with.
     """
-    patch_group: pulumi.Output[str]
+    patch_group: pulumi.Output[str] = pulumi.output_property("patchGroup")
     """
     The name of the patch group that should be registered with the patch baseline.
     """
-    def __init__(__self__, resource_name, opts=None, baseline_id=None, patch_group=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, baseline_id=None, patch_group=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an SSM Patch Group resource
 
@@ -93,3 +94,4 @@ class PatchGroup(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

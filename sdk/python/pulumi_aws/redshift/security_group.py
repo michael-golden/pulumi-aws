@@ -5,29 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class SecurityGroup(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[str] = pulumi.output_property("description")
     """
     The description of the Redshift security group. Defaults to "Managed by Pulumi".
     """
-    ingress: pulumi.Output[list]
+    ingress: pulumi.Output[List['outputs.SecurityGroupIngress']] = pulumi.output_property("ingress")
     """
     A list of ingress rules.
-
-      * `cidr` (`str`) - The CIDR block to accept
-      * `securityGroupName` (`str`) - The name of the security group to authorize
-      * `securityGroupOwnerId` (`str`) - The owner Id of the security group provided
-        by `security_group_name`.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the Redshift security group.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, ingress=None, name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, ingress=None, name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates a new Amazon Redshift security group. You use security groups to control access to non-VPC clusters
 
@@ -45,15 +43,8 @@ class SecurityGroup(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the Redshift security group. Defaults to "Managed by Pulumi".
-        :param pulumi.Input[list] ingress: A list of ingress rules.
+        :param pulumi.Input[List[pulumi.Input['SecurityGroupIngressArgs']]] ingress: A list of ingress rules.
         :param pulumi.Input[str] name: The name of the Redshift security group.
-
-        The **ingress** object supports the following:
-
-          * `cidr` (`pulumi.Input[str]`) - The CIDR block to accept
-          * `securityGroupName` (`pulumi.Input[str]`) - The name of the security group to authorize
-          * `securityGroupOwnerId` (`pulumi.Input[str]`) - The owner Id of the security group provided
-            by `security_group_name`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -95,15 +86,8 @@ class SecurityGroup(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the Redshift security group. Defaults to "Managed by Pulumi".
-        :param pulumi.Input[list] ingress: A list of ingress rules.
+        :param pulumi.Input[List[pulumi.Input['SecurityGroupIngressArgs']]] ingress: A list of ingress rules.
         :param pulumi.Input[str] name: The name of the Redshift security group.
-
-        The **ingress** object supports the following:
-
-          * `cidr` (`pulumi.Input[str]`) - The CIDR block to accept
-          * `securityGroupName` (`pulumi.Input[str]`) - The name of the security group to authorize
-          * `securityGroupOwnerId` (`pulumi.Input[str]`) - The owner Id of the security group provided
-            by `security_group_name`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -119,3 +103,4 @@ class SecurityGroup(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,59 +5,60 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class SnapshotCopy(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     Amazon Resource Name (ARN) of the EBS Snapshot.
     """
-    data_encryption_key_id: pulumi.Output[str]
+    data_encryption_key_id: pulumi.Output[str] = pulumi.output_property("dataEncryptionKeyId")
     """
     The data encryption key identifier for the snapshot.
     * `source_snapshot_id` The ARN of the copied snapshot.
     * `source_region` The region of the source snapshot.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     A description of what the snapshot is.
     """
-    encrypted: pulumi.Output[bool]
+    encrypted: pulumi.Output[Optional[bool]] = pulumi.output_property("encrypted")
     """
     Whether the snapshot is encrypted.
     """
-    kms_key_id: pulumi.Output[str]
+    kms_key_id: pulumi.Output[Optional[str]] = pulumi.output_property("kmsKeyId")
     """
     The ARN for the KMS encryption key.
     """
-    owner_alias: pulumi.Output[str]
+    owner_alias: pulumi.Output[str] = pulumi.output_property("ownerAlias")
     """
     Value from an Amazon-maintained list (`amazon`, `aws-marketplace`, `microsoft`) of snapshot owners.
     """
-    owner_id: pulumi.Output[str]
+    owner_id: pulumi.Output[str] = pulumi.output_property("ownerId")
     """
     The AWS account ID of the snapshot owner.
     """
-    source_region: pulumi.Output[str]
+    source_region: pulumi.Output[str] = pulumi.output_property("sourceRegion")
     """
     The region of the source snapshot.
     """
-    source_snapshot_id: pulumi.Output[str]
+    source_snapshot_id: pulumi.Output[str] = pulumi.output_property("sourceSnapshotId")
     """
     The ARN for the snapshot to be copied.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags for the snapshot.
     """
-    volume_id: pulumi.Output[str]
-    volume_size: pulumi.Output[float]
+    volume_id: pulumi.Output[str] = pulumi.output_property("volumeId")
+    volume_size: pulumi.Output[float] = pulumi.output_property("volumeSize")
     """
     The size of the drive in GiBs.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, encrypted=None, kms_key_id=None, source_region=None, source_snapshot_id=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, encrypted=None, kms_key_id=None, source_region=None, source_snapshot_id=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates a Snapshot of a snapshot.
 
@@ -93,7 +94,7 @@ class SnapshotCopy(pulumi.CustomResource):
         :param pulumi.Input[str] kms_key_id: The ARN for the KMS encryption key.
         :param pulumi.Input[str] source_region: The region of the source snapshot.
         :param pulumi.Input[str] source_snapshot_id: The ARN for the snapshot to be copied.
-        :param pulumi.Input[dict] tags: A map of tags for the snapshot.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags for the snapshot.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -154,7 +155,7 @@ class SnapshotCopy(pulumi.CustomResource):
         :param pulumi.Input[str] owner_id: The AWS account ID of the snapshot owner.
         :param pulumi.Input[str] source_region: The region of the source snapshot.
         :param pulumi.Input[str] source_snapshot_id: The ARN for the snapshot to be copied.
-        :param pulumi.Input[dict] tags: A map of tags for the snapshot.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags for the snapshot.
         :param pulumi.Input[float] volume_size: The size of the drive in GiBs.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -180,3 +181,4 @@ class SnapshotCopy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

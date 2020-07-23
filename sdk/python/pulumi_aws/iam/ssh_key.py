@@ -5,36 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class SshKey(pulumi.CustomResource):
-    encoding: pulumi.Output[str]
+    encoding: pulumi.Output[str] = pulumi.output_property("encoding")
     """
     Specifies the public key encoding format to use in the response. To retrieve the public key in ssh-rsa format, use `SSH`. To retrieve the public key in PEM format, use `PEM`.
     """
-    fingerprint: pulumi.Output[str]
+    fingerprint: pulumi.Output[str] = pulumi.output_property("fingerprint")
     """
     The MD5 message digest of the SSH public key.
     """
-    public_key: pulumi.Output[str]
+    public_key: pulumi.Output[str] = pulumi.output_property("publicKey")
     """
     The SSH public key. The public key must be encoded in ssh-rsa format or PEM format.
     """
-    ssh_public_key_id: pulumi.Output[str]
+    ssh_public_key_id: pulumi.Output[str] = pulumi.output_property("sshPublicKeyId")
     """
     The unique identifier for the SSH public key.
     """
-    status: pulumi.Output[str]
+    status: pulumi.Output[str] = pulumi.output_property("status")
     """
     The status to assign to the SSH public key. Active means the key can be used for authentication with an AWS CodeCommit repository. Inactive means the key cannot be used. Default is `active`.
     """
-    username: pulumi.Output[str]
+    username: pulumi.Output[str] = pulumi.output_property("username")
     """
     The name of the IAM user to associate the SSH public key with.
     """
-    def __init__(__self__, resource_name, opts=None, encoding=None, public_key=None, status=None, username=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, encoding=None, public_key=None, status=None, username=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Uploads an SSH public key and associates it with the specified IAM user.
 
@@ -126,3 +127,4 @@ class SshKey(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

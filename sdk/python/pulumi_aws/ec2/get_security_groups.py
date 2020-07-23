@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetSecurityGroupsResult:
     """
     A collection of values returned by getSecurityGroups.
     """
-    def __init__(__self__, filters=None, id=None, ids=None, tags=None, vpc_ids=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, filters=None, id=None, ids=None, tags=None, vpc_ids=None) -> None:
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
         __self__.filters = filters
@@ -88,16 +91,11 @@ def get_security_groups(filters=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: One or more name/value pairs to use as filters. There are
+    :param List['GetSecurityGroupsFilterArgs'] filters: One or more name/value pairs to use as filters. There are
            several valid keys, for a full reference, check out
            [describe-security-groups in the AWS CLI reference][1].
-    :param dict tags: A map of tags, each pair of which must exactly match for
+    :param Dict[str, str] tags: A map of tags, each pair of which must exactly match for
            desired security groups.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`)
-      * `values` (`list`)
     """
     __args__ = dict()
     __args__['filters'] = filters

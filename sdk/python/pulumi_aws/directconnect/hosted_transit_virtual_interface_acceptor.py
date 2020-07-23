@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class HostedTransitVirtualInterfaceAcceptor(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the virtual interface.
     """
-    dx_gateway_id: pulumi.Output[str]
+    dx_gateway_id: pulumi.Output[str] = pulumi.output_property("dxGatewayId")
     """
     The ID of the Direct Connect gateway to which to connect the virtual interface.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    virtual_interface_id: pulumi.Output[str]
+    virtual_interface_id: pulumi.Output[str] = pulumi.output_property("virtualInterfaceId")
     """
     The ID of the Direct Connect virtual interface to accept.
     """
-    def __init__(__self__, resource_name, opts=None, dx_gateway_id=None, tags=None, virtual_interface_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, dx_gateway_id=None, tags=None, virtual_interface_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage the accepter's side of a Direct Connect hosted transit virtual interface.
         This resource accepts ownership of a transit virtual interface created by another AWS account.
@@ -65,7 +66,7 @@ class HostedTransitVirtualInterfaceAcceptor(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dx_gateway_id: The ID of the Direct Connect gateway to which to connect the virtual interface.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] virtual_interface_id: The ID of the Direct Connect virtual interface to accept.
         """
         if __name__ is not None:
@@ -110,7 +111,7 @@ class HostedTransitVirtualInterfaceAcceptor(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: The ARN of the virtual interface.
         :param pulumi.Input[str] dx_gateway_id: The ID of the Direct Connect gateway to which to connect the virtual interface.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] virtual_interface_id: The ID of the Direct Connect virtual interface to accept.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -128,3 +129,4 @@ class HostedTransitVirtualInterfaceAcceptor(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetSecretResult:
     """
     A collection of values returned by getSecret.
     """
-    def __init__(__self__, id=None, secrets=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, id=None, secrets=None) -> None:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
@@ -38,14 +41,6 @@ class AwaitableGetSecretResult(GetSecretResult):
 def get_secret(secrets=None, opts=None):
     """
     Use this data source to access information about an existing resource.
-
-
-    The **secrets** object supports the following:
-
-      * `context` (`dict`)
-      * `grantTokens` (`list`)
-      * `name` (`str`)
-      * `payload` (`str`)
     """
     __args__ = dict()
     __args__['secrets'] = secrets

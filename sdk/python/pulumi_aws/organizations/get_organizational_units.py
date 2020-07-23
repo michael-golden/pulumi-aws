@@ -5,15 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
 
 
 class GetOrganizationalUnitsResult:
     """
     A collection of values returned by getOrganizationalUnits.
     """
-    def __init__(__self__, childrens=None, id=None, parent_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, childrens=None, id=None, parent_id=None) -> None:
         if childrens and not isinstance(childrens, list):
             raise TypeError("Expected argument 'childrens' to be a list")
         __self__.childrens = childrens

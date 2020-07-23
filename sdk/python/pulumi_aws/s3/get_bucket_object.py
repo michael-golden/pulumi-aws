@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetBucketObjectResult:
     """
     A collection of values returned by getBucketObject.
     """
-    def __init__(__self__, body=None, bucket=None, cache_control=None, content_disposition=None, content_encoding=None, content_language=None, content_length=None, content_type=None, etag=None, expiration=None, expires=None, id=None, key=None, last_modified=None, metadata=None, object_lock_legal_hold_status=None, object_lock_mode=None, object_lock_retain_until_date=None, range=None, server_side_encryption=None, sse_kms_key_id=None, storage_class=None, tags=None, version_id=None, website_redirect_location=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, body=None, bucket=None, cache_control=None, content_disposition=None, content_encoding=None, content_language=None, content_length=None, content_type=None, etag=None, expiration=None, expires=None, id=None, key=None, last_modified=None, metadata=None, object_lock_legal_hold_status=None, object_lock_mode=None, object_lock_retain_until_date=None, range=None, server_side_encryption=None, sse_kms_key_id=None, storage_class=None, tags=None, version_id=None, website_redirect_location=None) -> None:
         if body and not isinstance(body, str):
             raise TypeError("Expected argument 'body' to be a str")
         __self__.body = body
@@ -237,7 +238,7 @@ def get_bucket_object(bucket=None, key=None, range=None, tags=None, version_id=N
 
     :param str bucket: The name of the bucket to read the object from. Alternatively, an [S3 access point](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html) ARN can be specified
     :param str key: The full path to the object inside the bucket
-    :param dict tags: A map of tags assigned to the object.
+    :param Dict[str, str] tags: A map of tags assigned to the object.
     :param str version_id: Specific version ID of the object returned (defaults to latest version)
     """
     __args__ = dict()

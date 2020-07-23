@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetBrokerResult:
     """
     A collection of values returned by getBroker.
     """
-    def __init__(__self__, arn=None, auto_minor_version_upgrade=None, broker_id=None, broker_name=None, configuration=None, deployment_mode=None, encryption_options=None, engine_type=None, engine_version=None, host_instance_type=None, id=None, instances=None, logs=None, maintenance_window_start_time=None, publicly_accessible=None, security_groups=None, subnet_ids=None, tags=None, users=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, auto_minor_version_upgrade=None, broker_id=None, broker_name=None, configuration=None, deployment_mode=None, encryption_options=None, engine_type=None, engine_version=None, host_instance_type=None, id=None, instances=None, logs=None, maintenance_window_start_time=None, publicly_accessible=None, security_groups=None, subnet_ids=None, tags=None, users=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn
@@ -127,11 +130,6 @@ def get_broker(broker_id=None, broker_name=None, logs=None, tags=None, opts=None
 
     :param str broker_id: The unique id of the mq broker.
     :param str broker_name: The unique name of the mq broker.
-
-    The **logs** object supports the following:
-
-      * `audit` (`bool`)
-      * `general` (`bool`)
     """
     __args__ = dict()
     __args__['brokerId'] = broker_id

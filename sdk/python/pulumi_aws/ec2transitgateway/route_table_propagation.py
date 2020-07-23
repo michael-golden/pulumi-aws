@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class RouteTablePropagation(pulumi.CustomResource):
-    resource_id: pulumi.Output[str]
+    resource_id: pulumi.Output[str] = pulumi.output_property("resourceId")
     """
     Identifier of the resource
     """
-    resource_type: pulumi.Output[str]
+    resource_type: pulumi.Output[str] = pulumi.output_property("resourceType")
     """
     Type of the resource
     """
-    transit_gateway_attachment_id: pulumi.Output[str]
+    transit_gateway_attachment_id: pulumi.Output[str] = pulumi.output_property("transitGatewayAttachmentId")
     """
     Identifier of EC2 Transit Gateway Attachment.
     """
-    transit_gateway_route_table_id: pulumi.Output[str]
+    transit_gateway_route_table_id: pulumi.Output[str] = pulumi.output_property("transitGatewayRouteTableId")
     """
     Identifier of EC2 Transit Gateway Route Table.
     """
-    def __init__(__self__, resource_name, opts=None, transit_gateway_attachment_id=None, transit_gateway_route_table_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, transit_gateway_attachment_id=None, transit_gateway_route_table_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an EC2 Transit Gateway Route Table propagation.
 
@@ -106,3 +107,4 @@ class RouteTablePropagation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

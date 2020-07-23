@@ -5,42 +5,43 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class LinkAggregationGroup(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the LAG.
     * `jumbo_frame_capable` -Indicates whether jumbo frames (9001 MTU) are supported.
     """
-    connections_bandwidth: pulumi.Output[str]
+    connections_bandwidth: pulumi.Output[str] = pulumi.output_property("connectionsBandwidth")
     """
     The bandwidth of the individual physical connections bundled by the LAG. Valid values: 50Mbps, 100Mbps, 200Mbps, 300Mbps, 400Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps and 10Gbps. Case sensitive.
     """
-    force_destroy: pulumi.Output[bool]
+    force_destroy: pulumi.Output[Optional[bool]] = pulumi.output_property("forceDestroy")
     """
     A boolean that indicates all connections associated with the LAG should be deleted so that the LAG can be destroyed without error. These objects are *not* recoverable.
     """
-    has_logical_redundancy: pulumi.Output[str]
+    has_logical_redundancy: pulumi.Output[str] = pulumi.output_property("hasLogicalRedundancy")
     """
     Indicates whether the LAG supports a secondary BGP peer in the same address family (IPv4/IPv6).
     """
-    jumbo_frame_capable: pulumi.Output[bool]
-    location: pulumi.Output[str]
+    jumbo_frame_capable: pulumi.Output[bool] = pulumi.output_property("jumboFrameCapable")
+    location: pulumi.Output[str] = pulumi.output_property("location")
     """
     The AWS Direct Connect location in which the LAG should be allocated. See [DescribeLocations](https://docs.aws.amazon.com/directconnect/latest/APIReference/API_DescribeLocations.html) for the list of AWS Direct Connect locations. Use `locationCode`.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the LAG.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    def __init__(__self__, resource_name, opts=None, connections_bandwidth=None, force_destroy=None, location=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, connections_bandwidth=None, force_destroy=None, location=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Direct Connect LAG. Connections can be added to the LAG via the `directconnect.Connection` and `directconnect.ConnectionAssociation` resources.
 
@@ -64,7 +65,7 @@ class LinkAggregationGroup(pulumi.CustomResource):
         :param pulumi.Input[bool] force_destroy: A boolean that indicates all connections associated with the LAG should be deleted so that the LAG can be destroyed without error. These objects are *not* recoverable.
         :param pulumi.Input[str] location: The AWS Direct Connect location in which the LAG should be allocated. See [DescribeLocations](https://docs.aws.amazon.com/directconnect/latest/APIReference/API_DescribeLocations.html) for the list of AWS Direct Connect locations. Use `locationCode`.
         :param pulumi.Input[str] name: The name of the LAG.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -117,7 +118,7 @@ class LinkAggregationGroup(pulumi.CustomResource):
         :param pulumi.Input[str] has_logical_redundancy: Indicates whether the LAG supports a secondary BGP peer in the same address family (IPv4/IPv6).
         :param pulumi.Input[str] location: The AWS Direct Connect location in which the LAG should be allocated. See [DescribeLocations](https://docs.aws.amazon.com/directconnect/latest/APIReference/API_DescribeLocations.html) for the list of AWS Direct Connect locations. Use `locationCode`.
         :param pulumi.Input[str] name: The name of the LAG.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -138,3 +139,4 @@ class LinkAggregationGroup(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

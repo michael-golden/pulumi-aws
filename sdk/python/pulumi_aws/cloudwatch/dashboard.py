@@ -5,24 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Dashboard(pulumi.CustomResource):
-    dashboard_arn: pulumi.Output[str]
+    dashboard_arn: pulumi.Output[str] = pulumi.output_property("dashboardArn")
     """
     The Amazon Resource Name (ARN) of the dashboard.
     """
-    dashboard_body: pulumi.Output[str]
+    dashboard_body: pulumi.Output[str] = pulumi.output_property("dashboardBody")
     """
     The detailed information about the dashboard, including what widgets are included and their location on the dashboard. You can read more about the body structure in the [documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/CloudWatch-Dashboard-Body-Structure.html).
     """
-    dashboard_name: pulumi.Output[str]
+    dashboard_name: pulumi.Output[str] = pulumi.output_property("dashboardName")
     """
     The name of the dashboard.
     """
-    def __init__(__self__, resource_name, opts=None, dashboard_body=None, dashboard_name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, dashboard_body=None, dashboard_name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CloudWatch Dashboard resource.
 
@@ -135,3 +136,4 @@ class Dashboard(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetRouteTableResult:
     """
     A collection of values returned by getRouteTable.
     """
-    def __init__(__self__, default_association_route_table=None, default_propagation_route_table=None, filters=None, id=None, tags=None, transit_gateway_id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, default_association_route_table=None, default_propagation_route_table=None, filters=None, id=None, tags=None, transit_gateway_id=None) -> None:
         if default_association_route_table and not isinstance(default_association_route_table, bool):
             raise TypeError("Expected argument 'default_association_route_table' to be a bool")
         __self__.default_association_route_table = default_association_route_table
@@ -95,14 +98,9 @@ def get_route_table(filters=None, id=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: One or more configuration blocks containing name-values filters. Detailed below.
+    :param List['GetRouteTableFilterArgs'] filters: One or more configuration blocks containing name-values filters. Detailed below.
     :param str id: Identifier of the EC2 Transit Gateway Route Table.
-    :param dict tags: Key-value tags for the EC2 Transit Gateway Route Table
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - Name of the filter.
-      * `values` (`list`) - List of one or more values for the filter.
+    :param Dict[str, str] tags: Key-value tags for the EC2 Transit Gateway Route Table
     """
     __args__ = dict()
     __args__['filters'] = filters

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, arn=None, availability_zones=None, backtrack_window=None, backup_retention_period=None, cluster_identifier=None, cluster_members=None, cluster_resource_id=None, database_name=None, db_cluster_parameter_group_name=None, db_subnet_group_name=None, enabled_cloudwatch_logs_exports=None, endpoint=None, engine=None, engine_version=None, final_snapshot_identifier=None, hosted_zone_id=None, iam_database_authentication_enabled=None, iam_roles=None, id=None, kms_key_id=None, master_username=None, port=None, preferred_backup_window=None, preferred_maintenance_window=None, reader_endpoint=None, replication_source_identifier=None, storage_encrypted=None, tags=None, vpc_security_group_ids=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, availability_zones=None, backtrack_window=None, backup_retention_period=None, cluster_identifier=None, cluster_members=None, cluster_resource_id=None, database_name=None, db_cluster_parameter_group_name=None, db_subnet_group_name=None, enabled_cloudwatch_logs_exports=None, endpoint=None, engine=None, engine_version=None, final_snapshot_identifier=None, hosted_zone_id=None, iam_database_authentication_enabled=None, iam_roles=None, id=None, kms_key_id=None, master_username=None, port=None, preferred_backup_window=None, preferred_maintenance_window=None, reader_endpoint=None, replication_source_identifier=None, storage_encrypted=None, tags=None, vpc_security_group_ids=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn

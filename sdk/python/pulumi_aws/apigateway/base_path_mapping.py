@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class BasePathMapping(pulumi.CustomResource):
-    base_path: pulumi.Output[str]
+    base_path: pulumi.Output[Optional[str]] = pulumi.output_property("basePath")
     """
     Path segment that must be prepended to the path when accessing the API via this mapping. If omitted, the API is exposed at the root of the given domain.
     """
-    domain_name: pulumi.Output[str]
+    domain_name: pulumi.Output[str] = pulumi.output_property("domainName")
     """
     The already-registered domain name to connect the API to.
     """
-    rest_api: pulumi.Output[str]
+    rest_api: pulumi.Output[str] = pulumi.output_property("restApi")
     """
     The id of the API to connect.
     """
-    stage_name: pulumi.Output[str]
+    stage_name: pulumi.Output[Optional[str]] = pulumi.output_property("stageName")
     """
     The name of a specific deployment stage to expose at the given path. If omitted, callers may select any stage by including its name as a path element after the base path.
     """
-    def __init__(__self__, resource_name, opts=None, base_path=None, domain_name=None, rest_api=None, stage_name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, base_path=None, domain_name=None, rest_api=None, stage_name=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Connects a custom domain name registered via `apigateway.DomainName`
         with a deployed API so that its methods can be called via the
@@ -57,7 +58,7 @@ class BasePathMapping(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] base_path: Path segment that must be prepended to the path when accessing the API via this mapping. If omitted, the API is exposed at the root of the given domain.
         :param pulumi.Input[str] domain_name: The already-registered domain name to connect the API to.
-        :param pulumi.Input[dict] rest_api: The id of the API to connect.
+        :param pulumi.Input[str] rest_api: The id of the API to connect.
         :param pulumi.Input[str] stage_name: The name of a specific deployment stage to expose at the given path. If omitted, callers may select any stage by including its name as a path element after the base path.
         """
         if __name__ is not None:
@@ -102,7 +103,7 @@ class BasePathMapping(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] base_path: Path segment that must be prepended to the path when accessing the API via this mapping. If omitted, the API is exposed at the root of the given domain.
         :param pulumi.Input[str] domain_name: The already-registered domain name to connect the API to.
-        :param pulumi.Input[dict] rest_api: The id of the API to connect.
+        :param pulumi.Input[str] rest_api: The id of the API to connect.
         :param pulumi.Input[str] stage_name: The name of a specific deployment stage to expose at the given path. If omitted, callers may select any stage by including its name as a path element after the base path.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -120,3 +121,4 @@ class BasePathMapping(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

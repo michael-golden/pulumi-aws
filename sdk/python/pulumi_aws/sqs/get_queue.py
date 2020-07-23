@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetQueueResult:
     """
     A collection of values returned by getQueue.
     """
-    def __init__(__self__, arn=None, id=None, name=None, tags=None, url=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, id=None, name=None, tags=None, url=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn
@@ -73,7 +74,7 @@ def get_queue(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the queue to match.
-    :param dict tags: A map of tags for the resource.
+    :param Dict[str, str] tags: A map of tags for the resource.
     """
     __args__ = dict()
     __args__['name'] = name

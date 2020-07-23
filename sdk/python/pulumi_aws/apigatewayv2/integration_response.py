@@ -5,36 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class IntegrationResponse(pulumi.CustomResource):
-    api_id: pulumi.Output[str]
+    api_id: pulumi.Output[str] = pulumi.output_property("apiId")
     """
     The API identifier.
     """
-    content_handling_strategy: pulumi.Output[str]
+    content_handling_strategy: pulumi.Output[Optional[str]] = pulumi.output_property("contentHandlingStrategy")
     """
     How to handle response payload content type conversions. Valid values: `CONVERT_TO_BINARY`, `CONVERT_TO_TEXT`.
     """
-    integration_id: pulumi.Output[str]
+    integration_id: pulumi.Output[str] = pulumi.output_property("integrationId")
     """
     The identifier of the `apigatewayv2.Integration`.
     """
-    integration_response_key: pulumi.Output[str]
+    integration_response_key: pulumi.Output[str] = pulumi.output_property("integrationResponseKey")
     """
     The integration response key.
     """
-    response_templates: pulumi.Output[dict]
+    response_templates: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("responseTemplates")
     """
     A map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client.
     """
-    template_selection_expression: pulumi.Output[str]
+    template_selection_expression: pulumi.Output[Optional[str]] = pulumi.output_property("templateSelectionExpression")
     """
     The [template selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-template-selection-expressions) for the integration response.
     """
-    def __init__(__self__, resource_name, opts=None, api_id=None, content_handling_strategy=None, integration_id=None, integration_response_key=None, response_templates=None, template_selection_expression=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id=None, content_handling_strategy=None, integration_id=None, integration_response_key=None, response_templates=None, template_selection_expression=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an Amazon API Gateway Version 2 integration response.
         More information can be found in the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html).
@@ -58,7 +59,7 @@ class IntegrationResponse(pulumi.CustomResource):
         :param pulumi.Input[str] content_handling_strategy: How to handle response payload content type conversions. Valid values: `CONVERT_TO_BINARY`, `CONVERT_TO_TEXT`.
         :param pulumi.Input[str] integration_id: The identifier of the `apigatewayv2.Integration`.
         :param pulumi.Input[str] integration_response_key: The integration response key.
-        :param pulumi.Input[dict] response_templates: A map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] response_templates: A map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client.
         :param pulumi.Input[str] template_selection_expression: The [template selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-template-selection-expressions) for the integration response.
         """
         if __name__ is not None:
@@ -109,7 +110,7 @@ class IntegrationResponse(pulumi.CustomResource):
         :param pulumi.Input[str] content_handling_strategy: How to handle response payload content type conversions. Valid values: `CONVERT_TO_BINARY`, `CONVERT_TO_TEXT`.
         :param pulumi.Input[str] integration_id: The identifier of the `apigatewayv2.Integration`.
         :param pulumi.Input[str] integration_response_key: The integration response key.
-        :param pulumi.Input[dict] response_templates: A map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] response_templates: A map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client.
         :param pulumi.Input[str] template_selection_expression: The [template selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-template-selection-expressions) for the integration response.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -129,3 +130,4 @@ class IntegrationResponse(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

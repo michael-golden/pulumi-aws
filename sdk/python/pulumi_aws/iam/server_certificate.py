@@ -5,48 +5,49 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class ServerCertificate(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The Amazon Resource Name (ARN) specifying the server certificate.
     """
-    certificate_body: pulumi.Output[str]
+    certificate_body: pulumi.Output[str] = pulumi.output_property("certificateBody")
     """
     The contents of the public key certificate in
     PEM-encoded format.
     """
-    certificate_chain: pulumi.Output[str]
+    certificate_chain: pulumi.Output[Optional[str]] = pulumi.output_property("certificateChain")
     """
     The contents of the certificate chain.
     This is typically a concatenation of the PEM-encoded public key certificates
     of the chain.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the Server Certificate. Do not include the
     path in this value. If omitted, this provider will assign a random, unique name.
     """
-    name_prefix: pulumi.Output[str]
+    name_prefix: pulumi.Output[Optional[str]] = pulumi.output_property("namePrefix")
     """
     Creates a unique name beginning with the specified
     prefix. Conflicts with `name`.
     """
-    path: pulumi.Output[str]
+    path: pulumi.Output[Optional[str]] = pulumi.output_property("path")
     """
     The IAM path for the server certificate.  If it is not
     included, it defaults to a slash (/). If this certificate is for use with
     AWS CloudFront, the path must be in format `/cloudfront/your_path_here`.
     See [IAM Identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) for more details on IAM Paths.
     """
-    private_key: pulumi.Output[str]
+    private_key: pulumi.Output[str] = pulumi.output_property("privateKey")
     """
     The contents of the private key in PEM-encoded format.
     """
-    def __init__(__self__, resource_name, opts=None, arn=None, certificate_body=None, certificate_chain=None, name=None, name_prefix=None, path=None, private_key=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, arn=None, certificate_body=None, certificate_chain=None, name=None, name_prefix=None, path=None, private_key=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an IAM Server Certificate resource to upload Server Certificates.
         Certs uploaded to IAM can easily work with other AWS services such as:
@@ -217,3 +218,4 @@ class ServerCertificate(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

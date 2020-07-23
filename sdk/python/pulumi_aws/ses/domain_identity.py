@@ -5,20 +5,20 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class DomainIdentity(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The ARN of the domain identity.
     """
-    domain: pulumi.Output[str]
+    domain: pulumi.Output[str] = pulumi.output_property("domain")
     """
     The domain name to assign to SES
     """
-    verification_token: pulumi.Output[str]
+    verification_token: pulumi.Output[str] = pulumi.output_property("verificationToken")
     """
     A code which when added to the domain as a TXT record
     will signal to SES that the owner of the domain has authorised SES to act on
@@ -28,7 +28,8 @@ class DomainIdentity(pulumi.CustomResource):
     more about verifying domains in Amazon SES in the [AWS SES
     docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domains.html).
     """
-    def __init__(__self__, resource_name, opts=None, domain=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, domain=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an SES domain identity resource
 
@@ -112,3 +113,4 @@ class DomainIdentity(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

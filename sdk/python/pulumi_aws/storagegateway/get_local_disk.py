@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetLocalDiskResult:
     """
     A collection of values returned by getLocalDisk.
     """
-    def __init__(__self__, disk_id=None, disk_node=None, disk_path=None, gateway_arn=None, id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, disk_id=None, disk_node=None, disk_path=None, gateway_arn=None, id=None) -> None:
         if disk_id and not isinstance(disk_id, str):
             raise TypeError("Expected argument 'disk_id' to be a str")
         __self__.disk_id = disk_id

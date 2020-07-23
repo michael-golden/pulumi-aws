@@ -5,49 +5,50 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class VideoStream(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The Amazon Resource Name (ARN) specifying the Stream (same as `id`)
     """
-    creation_time: pulumi.Output[str]
+    creation_time: pulumi.Output[str] = pulumi.output_property("creationTime")
     """
     A time stamp that indicates when the stream was created.
     """
-    data_retention_in_hours: pulumi.Output[float]
+    data_retention_in_hours: pulumi.Output[Optional[float]] = pulumi.output_property("dataRetentionInHours")
     """
     The number of hours that you want to retain the data in the stream. Kinesis Video Streams retains the data in a data store that is associated with the stream. The default value is `0`, indicating that the stream does not persist data.
     """
-    device_name: pulumi.Output[str]
+    device_name: pulumi.Output[Optional[str]] = pulumi.output_property("deviceName")
     """
     The name of the device that is writing to the stream. **In the current implementation, Kinesis Video Streams does not use this name.**
     """
-    kms_key_id: pulumi.Output[str]
+    kms_key_id: pulumi.Output[str] = pulumi.output_property("kmsKeyId")
     """
     The ID of the AWS Key Management Service (AWS KMS) key that you want Kinesis Video Streams to use to encrypt stream data. If no key ID is specified, the default, Kinesis Video-managed key (`aws/kinesisvideo`) is used.
     """
-    media_type: pulumi.Output[str]
+    media_type: pulumi.Output[Optional[str]] = pulumi.output_property("mediaType")
     """
     The media type of the stream. Consumers of the stream can use this information when processing the stream. For more information about media types, see [Media Types](http://www.iana.org/assignments/media-types/media-types.xhtml). If you choose to specify the MediaType, see [Naming Requirements](https://tools.ietf.org/html/rfc6838#section-4.2) for guidelines.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     A name to identify the stream. This is unique to the
     AWS account and region the Stream is created in.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
     """
     A map of tags to assign to the resource.
     """
-    version: pulumi.Output[str]
+    version: pulumi.Output[str] = pulumi.output_property("version")
     """
     The version of the stream.
     """
-    def __init__(__self__, resource_name, opts=None, data_retention_in_hours=None, device_name=None, kms_key_id=None, media_type=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, data_retention_in_hours=None, device_name=None, kms_key_id=None, media_type=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Kinesis Video Stream resource. Amazon Kinesis Video Streams makes it easy to securely stream video from connected devices to AWS for analytics, machine learning (ML), playback, and other processing.
 
@@ -76,7 +77,7 @@ class VideoStream(pulumi.CustomResource):
         :param pulumi.Input[str] media_type: The media type of the stream. Consumers of the stream can use this information when processing the stream. For more information about media types, see [Media Types](http://www.iana.org/assignments/media-types/media-types.xhtml). If you choose to specify the MediaType, see [Naming Requirements](https://tools.ietf.org/html/rfc6838#section-4.2) for guidelines.
         :param pulumi.Input[str] name: A name to identify the stream. This is unique to the
                AWS account and region the Stream is created in.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -127,7 +128,7 @@ class VideoStream(pulumi.CustomResource):
         :param pulumi.Input[str] media_type: The media type of the stream. Consumers of the stream can use this information when processing the stream. For more information about media types, see [Media Types](http://www.iana.org/assignments/media-types/media-types.xhtml). If you choose to specify the MediaType, see [Naming Requirements](https://tools.ietf.org/html/rfc6838#section-4.2) for guidelines.
         :param pulumi.Input[str] name: A name to identify the stream. This is unique to the
                AWS account and region the Stream is created in.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] version: The version of the stream.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -150,3 +151,4 @@ class VideoStream(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

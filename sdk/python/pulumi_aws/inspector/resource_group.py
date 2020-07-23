@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class ResourceGroup(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The resource group ARN.
     """
-    tags: pulumi.Output[dict]
+    tags: pulumi.Output[Dict[str, str]] = pulumi.output_property("tags")
     """
     Key-value map of tags that are used to select the EC2 instances to be included in an `Amazon Inspector assessment target` resource.
     """
-    def __init__(__self__, resource_name, opts=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Amazon Inspector resource group resource.
 
@@ -36,7 +37,7 @@ class ResourceGroup(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] tags: Key-value map of tags that are used to select the EC2 instances to be included in an `Amazon Inspector assessment target` resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of tags that are used to select the EC2 instances to be included in an `Amazon Inspector assessment target` resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -75,7 +76,7 @@ class ResourceGroup(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: The resource group ARN.
-        :param pulumi.Input[dict] tags: Key-value map of tags that are used to select the EC2 instances to be included in an `Amazon Inspector assessment target` resource.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of tags that are used to select the EC2 instances to be included in an `Amazon Inspector assessment target` resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -90,3 +91,4 @@ class ResourceGroup(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

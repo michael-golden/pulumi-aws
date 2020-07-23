@@ -5,15 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GetInternetGatewayResult:
     """
     A collection of values returned by getInternetGateway.
     """
-    def __init__(__self__, arn=None, attachments=None, filters=None, id=None, internet_gateway_id=None, owner_id=None, tags=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, attachments=None, filters=None, id=None, internet_gateway_id=None, owner_id=None, tags=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn
@@ -80,17 +83,10 @@ def get_internet_gateway(filters=None, internet_gateway_id=None, tags=None, opts
     ```
 
 
-    :param list filters: Custom filter block as described below.
+    :param List['GetInternetGatewayFilterArgs'] filters: Custom filter block as described below.
     :param str internet_gateway_id: The id of the specific Internet Gateway to retrieve.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param Dict[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired Internet Gateway.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInternetGateways.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        An Internet Gateway will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters

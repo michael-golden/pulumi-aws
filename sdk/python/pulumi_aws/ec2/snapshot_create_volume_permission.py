@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class SnapshotCreateVolumePermission(pulumi.CustomResource):
-    account_id: pulumi.Output[str]
+    account_id: pulumi.Output[str] = pulumi.output_property("accountId")
     """
     An AWS Account ID to add create volume permissions
     """
-    snapshot_id: pulumi.Output[str]
+    snapshot_id: pulumi.Output[str] = pulumi.output_property("snapshotId")
     """
     A snapshot ID
     """
-    def __init__(__self__, resource_name, opts=None, account_id=None, snapshot_id=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, account_id=None, snapshot_id=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Adds permission to create volumes off of a given EBS Snapshot.
 
@@ -96,3 +97,4 @@ class SnapshotCreateVolumePermission(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,44 +5,45 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class ServiceLinkedRole(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.output_property("arn")
     """
     The Amazon Resource Name (ARN) specifying the role.
     """
-    aws_service_name: pulumi.Output[str]
+    aws_service_name: pulumi.Output[str] = pulumi.output_property("awsServiceName")
     """
     The AWS service to which this role is attached. You use a string similar to a URL but without the `http://` in front. For example: `elasticbeanstalk.amazonaws.com`. To find the full list of services that support service-linked roles, check [the docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html).
     """
-    create_date: pulumi.Output[str]
+    create_date: pulumi.Output[str] = pulumi.output_property("createDate")
     """
     The creation date of the IAM role.
     """
-    custom_suffix: pulumi.Output[str]
+    custom_suffix: pulumi.Output[Optional[str]] = pulumi.output_property("customSuffix")
     """
     Additional string appended to the role name. Not all AWS services support custom suffixes.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     The description of the role.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the role.
     """
-    path: pulumi.Output[str]
+    path: pulumi.Output[str] = pulumi.output_property("path")
     """
     The path of the role.
     """
-    unique_id: pulumi.Output[str]
+    unique_id: pulumi.Output[str] = pulumi.output_property("uniqueId")
     """
     The stable and unique string identifying the role.
     """
-    def __init__(__self__, resource_name, opts=None, aws_service_name=None, custom_suffix=None, description=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, aws_service_name=None, custom_suffix=None, description=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an [IAM service-linked role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html).
 
@@ -131,3 +132,4 @@ class ServiceLinkedRole(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
@@ -13,7 +13,8 @@ class GetConfigurationResult:
     """
     A collection of values returned by getConfiguration.
     """
-    def __init__(__self__, arn=None, description=None, id=None, kafka_versions=None, latest_revision=None, name=None, server_properties=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, arn=None, description=None, id=None, kafka_versions=None, latest_revision=None, name=None, server_properties=None) -> None:
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         __self__.arn = arn

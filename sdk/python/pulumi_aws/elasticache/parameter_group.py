@@ -5,31 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class ParameterGroup(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[str] = pulumi.output_property("description")
     """
     The description of the ElastiCache parameter group. Defaults to "Managed by Pulumi".
     """
-    family: pulumi.Output[str]
+    family: pulumi.Output[str] = pulumi.output_property("family")
     """
     The family of the ElastiCache parameter group.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the ElastiCache parameter.
     """
-    parameters: pulumi.Output[list]
+    parameters: pulumi.Output[Optional[List['outputs.ParameterGroupParameter']]] = pulumi.output_property("parameters")
     """
     A list of ElastiCache parameters to apply.
-
-      * `name` (`str`) - The name of the ElastiCache parameter.
-      * `value` (`str`) - The value of the ElastiCache parameter.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, family=None, name=None, parameters=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, family=None, name=None, parameters=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an ElastiCache parameter group resource.
 
@@ -60,12 +60,7 @@ class ParameterGroup(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the ElastiCache parameter group. Defaults to "Managed by Pulumi".
         :param pulumi.Input[str] family: The family of the ElastiCache parameter group.
         :param pulumi.Input[str] name: The name of the ElastiCache parameter.
-        :param pulumi.Input[list] parameters: A list of ElastiCache parameters to apply.
-
-        The **parameters** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The name of the ElastiCache parameter.
-          * `value` (`pulumi.Input[str]`) - The value of the ElastiCache parameter.
+        :param pulumi.Input[List[pulumi.Input['ParameterGroupParameterArgs']]] parameters: A list of ElastiCache parameters to apply.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -110,12 +105,7 @@ class ParameterGroup(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the ElastiCache parameter group. Defaults to "Managed by Pulumi".
         :param pulumi.Input[str] family: The family of the ElastiCache parameter group.
         :param pulumi.Input[str] name: The name of the ElastiCache parameter.
-        :param pulumi.Input[list] parameters: A list of ElastiCache parameters to apply.
-
-        The **parameters** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The name of the ElastiCache parameter.
-          * `value` (`pulumi.Input[str]`) - The value of the ElastiCache parameter.
+        :param pulumi.Input[List[pulumi.Input['ParameterGroupParameterArgs']]] parameters: A list of ElastiCache parameters to apply.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -132,3 +122,4 @@ class ParameterGroup(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

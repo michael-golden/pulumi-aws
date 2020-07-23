@@ -5,15 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
 
 
 class GetBundleResult:
     """
     A collection of values returned by getBundle.
     """
-    def __init__(__self__, bundle_id=None, compute_types=None, description=None, id=None, name=None, owner=None, root_storages=None, user_storages=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, bundle_id=None, compute_types=None, description=None, id=None, name=None, owner=None, root_storages=None, user_storages=None) -> None:
         if bundle_id and not isinstance(bundle_id, str):
             raise TypeError("Expected argument 'bundle_id' to be a str")
         __self__.bundle_id = bundle_id

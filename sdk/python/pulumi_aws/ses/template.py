@@ -5,28 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 
 class Template(pulumi.CustomResource):
-    html: pulumi.Output[str]
+    html: pulumi.Output[Optional[str]] = pulumi.output_property("html")
     """
     The HTML body of the email. Must be less than 500KB in size, including both the text and HTML parts.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the template. Cannot exceed 64 characters. You will refer to this name when you send email.
     """
-    subject: pulumi.Output[str]
+    subject: pulumi.Output[Optional[str]] = pulumi.output_property("subject")
     """
     The subject line of the email.
     """
-    text: pulumi.Output[str]
+    text: pulumi.Output[Optional[str]] = pulumi.output_property("text")
     """
     The email body that will be visible to recipients whose email clients do not display HTML. Must be less than 500KB in size, including both the text and HTML parts.
     """
-    def __init__(__self__, resource_name, opts=None, html=None, name=None, subject=None, text=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, html=None, name=None, subject=None, text=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to create a SES template.
 
@@ -107,3 +108,4 @@ class Template(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

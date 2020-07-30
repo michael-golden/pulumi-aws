@@ -8,6 +8,11 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'EndpointAuthenticationOption',
+    'EndpointConnectionLogOptions',
+]
+
 @pulumi.output_type
 class EndpointAuthenticationOption(dict):
     active_directory_id: Optional[str] = pulumi.output_property("activeDirectoryId")

@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Webhook']
+
 
 class Webhook(pulumi.CustomResource):
     branch_filter: pulumi.Output[Optional[str]] = pulumi.output_property("branchFilter")
@@ -37,7 +39,7 @@ class Webhook(pulumi.CustomResource):
     The URL to the webhook.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, branch_filter=None, filter_groups=None, project_name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, branch_filter: Optional[pulumi.Input[str]] = None, filter_groups: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['WebhookFilterGroupArgs']]]]] = None, project_name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a CodeBuild webhook, which is an endpoint accepted by the CodeBuild service to trigger builds from source code repositories. Depending on the source type of the CodeBuild project, the CodeBuild service may also automatically create and delete the actual repository webhook as well.
 
@@ -96,7 +98,7 @@ class Webhook(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] branch_filter: A regular expression used to determine which branches get built. Default is all branches are built. It is recommended to use `filter_group` over `branch_filter`.
-        :param pulumi.Input[List[pulumi.Input['WebhookFilterGroupArgs']]] filter_groups: Information about the webhook's trigger. Filter group blocks are documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['WebhookFilterGroupArgs']]]] filter_groups: Information about the webhook's trigger. Filter group blocks are documented below.
         :param pulumi.Input[str] project_name: The name of the build project.
         """
         if __name__ is not None:
@@ -131,7 +133,7 @@ class Webhook(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, branch_filter=None, filter_groups=None, payload_url=None, project_name=None, secret=None, url=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, branch_filter: Optional[pulumi.Input[str]] = None, filter_groups: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['WebhookFilterGroupArgs']]]]] = None, payload_url: Optional[pulumi.Input[str]] = None, project_name: Optional[pulumi.Input[str]] = None, secret: Optional[pulumi.Input[str]] = None, url: Optional[pulumi.Input[str]] = None) -> 'Webhook':
         """
         Get an existing Webhook resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -140,7 +142,7 @@ class Webhook(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] branch_filter: A regular expression used to determine which branches get built. Default is all branches are built. It is recommended to use `filter_group` over `branch_filter`.
-        :param pulumi.Input[List[pulumi.Input['WebhookFilterGroupArgs']]] filter_groups: Information about the webhook's trigger. Filter group blocks are documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['WebhookFilterGroupArgs']]]] filter_groups: Information about the webhook's trigger. Filter group blocks are documented below.
         :param pulumi.Input[str] payload_url: The CodeBuild endpoint where webhook events are sent.
         :param pulumi.Input[str] project_name: The name of the build project.
         :param pulumi.Input[str] secret: The secret token of the associated repository. Not returned by the CodeBuild API for all source types.

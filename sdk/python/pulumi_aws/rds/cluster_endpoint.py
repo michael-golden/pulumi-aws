@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ClusterEndpoint']
+
 
 class ClusterEndpoint(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -43,7 +45,7 @@ class ClusterEndpoint(pulumi.CustomResource):
     Key-value map of resource tags
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cluster_endpoint_identifier=None, cluster_identifier=None, custom_endpoint_type=None, excluded_members=None, static_members=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cluster_endpoint_identifier: Optional[pulumi.Input[str]] = None, cluster_identifier: Optional[pulumi.Input[str]] = None, custom_endpoint_type: Optional[pulumi.Input[str]] = None, excluded_members: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, static_members: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an RDS Aurora Cluster Endpoint.
         You can refer to the [User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.Endpoints.html#Aurora.Endpoints.Cluster).
@@ -152,7 +154,7 @@ class ClusterEndpoint(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, cluster_endpoint_identifier=None, cluster_identifier=None, custom_endpoint_type=None, endpoint=None, excluded_members=None, static_members=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, cluster_endpoint_identifier: Optional[pulumi.Input[str]] = None, cluster_identifier: Optional[pulumi.Input[str]] = None, custom_endpoint_type: Optional[pulumi.Input[str]] = None, endpoint: Optional[pulumi.Input[str]] = None, excluded_members: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, static_members: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'ClusterEndpoint':
         """
         Get an existing ClusterEndpoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

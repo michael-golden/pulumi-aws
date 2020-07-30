@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['IpSet']
+
 
 class IpSet(pulumi.CustomResource):
     addresses: pulumi.Output[Optional[List[str]]] = pulumi.output_property("addresses")
@@ -40,7 +42,7 @@ class IpSet(pulumi.CustomResource):
     An array of key:value pairs to associate with the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, addresses=None, description=None, ip_address_version=None, name=None, scope=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, addresses: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, description: Optional[pulumi.Input[str]] = None, ip_address_version: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, scope: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a WAFv2 IP Set Resource
 
@@ -109,7 +111,7 @@ class IpSet(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, addresses=None, arn=None, description=None, ip_address_version=None, lock_token=None, name=None, scope=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, addresses: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, arn: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, ip_address_version: Optional[pulumi.Input[str]] = None, lock_token: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, scope: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'IpSet':
         """
         Get an existing IpSet resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

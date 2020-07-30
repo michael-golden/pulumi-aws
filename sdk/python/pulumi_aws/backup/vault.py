@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Vault']
+
 
 class Vault(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -31,7 +33,7 @@ class Vault(pulumi.CustomResource):
     Metadata that you can assign to help organize the resources that you create.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, kms_key_arn=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, kms_key_arn: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AWS Backup vault resource.
 
@@ -79,7 +81,7 @@ class Vault(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, kms_key_arn=None, name=None, recovery_points=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, kms_key_arn: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, recovery_points: Optional[pulumi.Input[float]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Vault':
         """
         Get an existing Vault resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

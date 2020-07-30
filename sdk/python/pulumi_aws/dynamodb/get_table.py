@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetTableResult',
+    'AwaitableGetTableResult',
+    'get_table',
+]
+
 
 class GetTableResult:
     """
@@ -110,7 +116,7 @@ class AwaitableGetTableResult(GetTableResult):
             write_capacity=self.write_capacity)
 
 
-def get_table(name=None, server_side_encryption=None, tags=None, opts=None):
+def get_table(name: Optional[str] = None, server_side_encryption: Optional[pulumi.InputType['GetTableServerSideEncryptionArgs']] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTableResult:
     """
     Provides information about a DynamoDB table.
 

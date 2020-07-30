@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['GatewayAssociationProposal']
+
 
 class GatewayAssociationProposal(pulumi.CustomResource):
     allowed_prefixes: pulumi.Output[List[str]] = pulumi.output_property("allowedPrefixes")
@@ -39,7 +41,7 @@ class GatewayAssociationProposal(pulumi.CustomResource):
     *Deprecated:* Use `associated_gateway_id` instead. Virtual Gateway identifier to associate with the Direct Connect Gateway.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allowed_prefixes=None, associated_gateway_id=None, dx_gateway_id=None, dx_gateway_owner_account_id=None, vpn_gateway_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allowed_prefixes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, associated_gateway_id: Optional[pulumi.Input[str]] = None, dx_gateway_id: Optional[pulumi.Input[str]] = None, dx_gateway_owner_account_id: Optional[pulumi.Input[str]] = None, vpn_gateway_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a Direct Connect Gateway Association Proposal, typically for enabling cross-account associations. For single account associations, see the `directconnect.GatewayAssociation` resource.
 
@@ -103,7 +105,7 @@ class GatewayAssociationProposal(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allowed_prefixes=None, associated_gateway_id=None, associated_gateway_owner_account_id=None, associated_gateway_type=None, dx_gateway_id=None, dx_gateway_owner_account_id=None, vpn_gateway_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, allowed_prefixes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, associated_gateway_id: Optional[pulumi.Input[str]] = None, associated_gateway_owner_account_id: Optional[pulumi.Input[str]] = None, associated_gateway_type: Optional[pulumi.Input[str]] = None, dx_gateway_id: Optional[pulumi.Input[str]] = None, dx_gateway_owner_account_id: Optional[pulumi.Input[str]] = None, vpn_gateway_id: Optional[pulumi.Input[str]] = None) -> 'GatewayAssociationProposal':
         """
         Get an existing GatewayAssociationProposal resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

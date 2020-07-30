@@ -9,6 +9,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 from . import outputs
 
+__all__ = [
+    'GetClusterResult',
+    'AwaitableGetClusterResult',
+    'get_cluster',
+]
+
 
 class GetClusterResult:
     """
@@ -75,7 +81,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             vpc_id=self.vpc_id)
 
 
-def get_cluster(cluster_id=None, cluster_state=None, opts=None):
+def get_cluster(cluster_id: Optional[str] = None, cluster_state: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
     Use this data source to get information about a CloudHSM v2 cluster
 

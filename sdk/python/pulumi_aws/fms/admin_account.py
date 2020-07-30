@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['AdminAccount']
+
 
 class AdminAccount(pulumi.CustomResource):
     account_id: pulumi.Output[str] = pulumi.output_property("accountId")
@@ -15,7 +17,7 @@ class AdminAccount(pulumi.CustomResource):
     The AWS account ID to associate with AWS Firewall Manager as the AWS Firewall Manager administrator account. This can be an AWS Organizations master account or a member account. Defaults to the current account. Must be configured to perform drift detection.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, account_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, account_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to associate/disassociate an AWS Firewall Manager administrator account. This operation must be performed in the `us-east-1` region.
 
@@ -57,7 +59,7 @@ class AdminAccount(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, account_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, account_id: Optional[pulumi.Input[str]] = None) -> 'AdminAccount':
         """
         Get an existing AdminAccount resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

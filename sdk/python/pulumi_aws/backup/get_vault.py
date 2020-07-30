@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetVaultResult',
+    'AwaitableGetVaultResult',
+    'get_vault',
+]
+
 
 class GetVaultResult:
     """
@@ -64,7 +70,7 @@ class AwaitableGetVaultResult(GetVaultResult):
             tags=self.tags)
 
 
-def get_vault(name=None, tags=None, opts=None):
+def get_vault(name: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVaultResult:
     """
     Use this data source to get information on an existing backup vault.
 

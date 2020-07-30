@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['VolumeAttachment']
+
 
 class VolumeAttachment(pulumi.CustomResource):
     device_name: pulumi.Output[str] = pulumi.output_property("deviceName")
@@ -39,7 +41,7 @@ class VolumeAttachment(pulumi.CustomResource):
     ID of the Volume to be attached
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, device_name=None, force_detach=None, instance_id=None, skip_destroy=None, volume_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, device_name: Optional[pulumi.Input[str]] = None, force_detach: Optional[pulumi.Input[bool]] = None, instance_id: Optional[pulumi.Input[str]] = None, skip_destroy: Optional[pulumi.Input[bool]] = None, volume_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AWS EBS Volume Attachment as a top level resource, to attach and
         detach volumes from AWS Instances.
@@ -119,7 +121,7 @@ class VolumeAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, device_name=None, force_detach=None, instance_id=None, skip_destroy=None, volume_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, device_name: Optional[pulumi.Input[str]] = None, force_detach: Optional[pulumi.Input[bool]] = None, instance_id: Optional[pulumi.Input[str]] = None, skip_destroy: Optional[pulumi.Input[bool]] = None, volume_id: Optional[pulumi.Input[str]] = None) -> 'VolumeAttachment':
         """
         Get an existing VolumeAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

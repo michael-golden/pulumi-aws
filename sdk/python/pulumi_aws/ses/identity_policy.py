@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['IdentityPolicy']
+
 
 class IdentityPolicy(pulumi.CustomResource):
     identity: pulumi.Output[str] = pulumi.output_property("identity")
@@ -23,7 +25,7 @@ class IdentityPolicy(pulumi.CustomResource):
     JSON string of the policy.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, identity=None, name=None, policy=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, identity: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a SES Identity Policy. More information about SES Sending Authorization Policies can be found in the [SES Developer Guide](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html).
 
@@ -87,7 +89,7 @@ class IdentityPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, identity=None, name=None, policy=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, identity: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None) -> 'IdentityPolicy':
         """
         Get an existing IdentityPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

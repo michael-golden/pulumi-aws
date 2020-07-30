@@ -9,6 +9,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 from . import outputs
 
+__all__ = [
+    'GetListenerResult',
+    'AwaitableGetListenerResult',
+    'get_listener',
+]
+
 warnings.warn("aws.applicationloadbalancing.getListener has been deprecated in favor of aws.alb.getListener", DeprecationWarning)
 
 class GetListenerResult:
@@ -62,7 +68,7 @@ class AwaitableGetListenerResult(GetListenerResult):
             ssl_policy=self.ssl_policy)
 
 
-def get_listener(arn=None, load_balancer_arn=None, port=None, opts=None):
+def get_listener(arn: Optional[str] = None, load_balancer_arn: Optional[str] = None, port: Optional[float] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetListenerResult:
     """
     > **Note:** `alb.Listener` is known as `lb.Listener`. The functionality is identical.
 

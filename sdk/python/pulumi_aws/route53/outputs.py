@@ -8,6 +8,17 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'RecordAlias',
+    'RecordFailoverRoutingPolicy',
+    'RecordGeolocationRoutingPolicy',
+    'RecordLatencyRoutingPolicy',
+    'RecordWeightedRoutingPolicy',
+    'ResolverEndpointIpAddress',
+    'ResolverRuleTargetIp',
+    'ZoneVpc',
+]
+
 @pulumi.output_type
 class RecordAlias(dict):
     evaluate_target_health: bool = pulumi.output_property("evaluateTargetHealth")

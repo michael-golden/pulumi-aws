@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetInstanceTypeOfferingsResult',
+    'AwaitableGetInstanceTypeOfferingsResult',
+    'get_instance_type_offerings',
+]
+
 
 class GetInstanceTypeOfferingsResult:
     """
@@ -49,7 +55,7 @@ class AwaitableGetInstanceTypeOfferingsResult(GetInstanceTypeOfferingsResult):
             location_type=self.location_type)
 
 
-def get_instance_type_offerings(filters=None, location_type=None, opts=None):
+def get_instance_type_offerings(filters: Optional[List[pulumi.InputType['GetInstanceTypeOfferingsFilterArgs']]] = None, location_type: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceTypeOfferingsResult:
     """
     Information about EC2 Instance Type Offerings.
 
@@ -76,7 +82,7 @@ def get_instance_type_offerings(filters=None, location_type=None, opts=None):
     ```
 
 
-    :param List['GetInstanceTypeOfferingsFilterArgs'] filters: One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstanceTypeOfferings.html) for supported filters. Detailed below.
+    :param List[pulumi.InputType['GetInstanceTypeOfferingsFilterArgs']] filters: One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstanceTypeOfferings.html) for supported filters. Detailed below.
     :param str location_type: Location type. Defaults to `region`. Valid values: `availability-zone`, `availability-zone-id`, and `region`.
     """
     __args__ = dict()

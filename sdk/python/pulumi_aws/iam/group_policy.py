@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['GroupPolicy']
+
 
 class GroupPolicy(pulumi.CustomResource):
     group: pulumi.Output[str] = pulumi.output_property("group")
@@ -29,7 +31,7 @@ class GroupPolicy(pulumi.CustomResource):
     The policy document. This is a JSON formatted string.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, group=None, name=None, name_prefix=None, policy=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, group: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an IAM policy attached to a group.
 
@@ -99,7 +101,7 @@ class GroupPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, group=None, name=None, name_prefix=None, policy=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, group: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None) -> 'GroupPolicy':
         """
         Get an existing GroupPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,13 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetPolicyDocumentStatementArgs',
+    'GetPolicyDocumentStatementConditionArgs',
+    'GetPolicyDocumentStatementNotPrincipalArgs',
+    'GetPolicyDocumentStatementPrincipalArgs',
+]
+
 @pulumi.input_type
 class GetPolicyDocumentStatementArgs:
     actions: Optional[List[str]] = pulumi.input_property("actions")

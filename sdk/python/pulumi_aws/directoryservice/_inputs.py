@@ -8,6 +8,11 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'DirectoryConnectSettingsArgs',
+    'DirectoryVpcSettingsArgs',
+]
+
 @pulumi.input_type
 class DirectoryConnectSettingsArgs:
     customer_dns_ips: pulumi.Input[List[pulumi.Input[str]]] = pulumi.input_property("customerDnsIps")

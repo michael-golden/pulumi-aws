@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['RouteTable']
+
 
 class RouteTable(pulumi.CustomResource):
     owner_id: pulumi.Output[str] = pulumi.output_property("ownerId")
@@ -33,7 +35,7 @@ class RouteTable(pulumi.CustomResource):
     The VPC ID.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, propagating_vgws=None, routes=None, tags=None, vpc_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, propagating_vgws: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, routes: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RouteTableRouteArgs']]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to create a VPC routing table.
 
@@ -82,7 +84,7 @@ class RouteTable(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[List[pulumi.Input[str]]] propagating_vgws: A list of virtual gateways for propagation.
-        :param pulumi.Input[List[pulumi.Input['RouteTableRouteArgs']]] routes: A list of route objects. Their keys are documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['RouteTableRouteArgs']]]] routes: A list of route objects. Their keys are documented below.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A mapping of tags to assign to the resource.
         :param pulumi.Input[str] vpc_id: The VPC ID.
         """
@@ -117,7 +119,7 @@ class RouteTable(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, owner_id=None, propagating_vgws=None, routes=None, tags=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, owner_id: Optional[pulumi.Input[str]] = None, propagating_vgws: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, routes: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RouteTableRouteArgs']]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'RouteTable':
         """
         Get an existing RouteTable resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -127,7 +129,7 @@ class RouteTable(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] owner_id: The ID of the AWS account that owns the route table.
         :param pulumi.Input[List[pulumi.Input[str]]] propagating_vgws: A list of virtual gateways for propagation.
-        :param pulumi.Input[List[pulumi.Input['RouteTableRouteArgs']]] routes: A list of route objects. Their keys are documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['RouteTableRouteArgs']]]] routes: A list of route objects. Their keys are documented below.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A mapping of tags to assign to the resource.
         :param pulumi.Input[str] vpc_id: The VPC ID.
         """

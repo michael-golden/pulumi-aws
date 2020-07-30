@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Workflow']
+
 
 class Workflow(pulumi.CustomResource):
     default_run_properties: pulumi.Output[Optional[Dict[str, Any]]] = pulumi.output_property("defaultRunProperties")
@@ -23,7 +25,7 @@ class Workflow(pulumi.CustomResource):
     The name you assign to this workflow.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, default_run_properties=None, description=None, name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, default_run_properties: Optional[pulumi.Input[Dict[str, Any]]] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Glue Workflow resource.
         The workflow graph (DAG) can be build using the `glue.Trigger` resource.
@@ -89,7 +91,7 @@ class Workflow(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, default_run_properties=None, description=None, name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, default_run_properties: Optional[pulumi.Input[Dict[str, Any]]] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None) -> 'Workflow':
         """
         Get an existing Workflow resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Route']
+
 
 class Route(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -45,7 +47,7 @@ class Route(pulumi.CustomResource):
     The name of the virtual router in which to create the route.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, mesh_name=None, name=None, spec=None, tags=None, virtual_router_name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, mesh_name: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, spec: Optional[pulumi.Input[pulumi.InputType['RouteSpecArgs']]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, virtual_router_name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AWS App Mesh route resource.
 
@@ -135,7 +137,7 @@ class Route(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] mesh_name: The name of the service mesh in which to create the route.
         :param pulumi.Input[str] name: The name to use for the route.
-        :param pulumi.Input['RouteSpecArgs'] spec: The route specification to apply.
+        :param pulumi.Input[pulumi.InputType['RouteSpecArgs']] spec: The route specification to apply.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] virtual_router_name: The name of the virtual router in which to create the route.
         """
@@ -177,7 +179,7 @@ class Route(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, created_date=None, last_updated_date=None, mesh_name=None, name=None, spec=None, tags=None, virtual_router_name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, created_date: Optional[pulumi.Input[str]] = None, last_updated_date: Optional[pulumi.Input[str]] = None, mesh_name: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, spec: Optional[pulumi.Input[pulumi.InputType['RouteSpecArgs']]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, virtual_router_name: Optional[pulumi.Input[str]] = None) -> 'Route':
         """
         Get an existing Route resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -190,7 +192,7 @@ class Route(pulumi.CustomResource):
         :param pulumi.Input[str] last_updated_date: The last update date of the route.
         :param pulumi.Input[str] mesh_name: The name of the service mesh in which to create the route.
         :param pulumi.Input[str] name: The name to use for the route.
-        :param pulumi.Input['RouteSpecArgs'] spec: The route specification to apply.
+        :param pulumi.Input[pulumi.InputType['RouteSpecArgs']] spec: The route specification to apply.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] virtual_router_name: The name of the virtual router in which to create the route.
         """

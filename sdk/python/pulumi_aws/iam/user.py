@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['User']
+
 
 class User(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -41,7 +43,7 @@ class User(pulumi.CustomResource):
     The [unique ID][1] assigned by AWS.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, force_destroy=None, name=None, path=None, permissions_boundary=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, force_destroy: Optional[pulumi.Input[bool]] = None, name: Optional[pulumi.Input[str]] = None, path: Optional[pulumi.Input[str]] = None, permissions_boundary: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an IAM user.
 
@@ -118,7 +120,7 @@ class User(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, force_destroy=None, name=None, path=None, permissions_boundary=None, tags=None, unique_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, force_destroy: Optional[pulumi.Input[bool]] = None, name: Optional[pulumi.Input[str]] = None, path: Optional[pulumi.Input[str]] = None, permissions_boundary: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, unique_id: Optional[pulumi.Input[str]] = None) -> 'User':
         """
         Get an existing User resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Deployment']
+
 
 class Deployment(pulumi.CustomResource):
     created_date: pulumi.Output[str] = pulumi.output_property("createdDate")
@@ -50,7 +52,7 @@ class Deployment(pulumi.CustomResource):
     A map that defines variables for the stage
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, rest_api=None, stage_description=None, stage_name=None, triggers=None, variables=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, stage_description: Optional[pulumi.Input[str]] = None, stage_name: Optional[pulumi.Input[str]] = None, triggers: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, variables: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an API Gateway REST Deployment.
 
@@ -133,7 +135,7 @@ class Deployment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, created_date=None, description=None, execution_arn=None, invoke_url=None, rest_api=None, stage_description=None, stage_name=None, triggers=None, variables=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, created_date: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, execution_arn: Optional[pulumi.Input[str]] = None, invoke_url: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, stage_description: Optional[pulumi.Input[str]] = None, stage_name: Optional[pulumi.Input[str]] = None, triggers: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, variables: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Deployment':
         """
         Get an existing Deployment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

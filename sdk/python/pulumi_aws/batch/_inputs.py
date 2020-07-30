@@ -8,6 +8,13 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ComputeEnvironmentComputeResourcesArgs',
+    'ComputeEnvironmentComputeResourcesLaunchTemplateArgs',
+    'JobDefinitionRetryStrategyArgs',
+    'JobDefinitionTimeoutArgs',
+]
+
 @pulumi.input_type
 class ComputeEnvironmentComputeResourcesArgs:
     instance_role: pulumi.Input[str] = pulumi.input_property("instanceRole")

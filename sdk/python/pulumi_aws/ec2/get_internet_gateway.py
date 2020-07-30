@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetInternetGatewayResult',
+    'AwaitableGetInternetGatewayResult',
+    'get_internet_gateway',
+]
+
 
 class GetInternetGatewayResult:
     """
@@ -64,7 +70,7 @@ class AwaitableGetInternetGatewayResult(GetInternetGatewayResult):
             tags=self.tags)
 
 
-def get_internet_gateway(filters=None, internet_gateway_id=None, tags=None, opts=None):
+def get_internet_gateway(filters: Optional[List[pulumi.InputType['GetInternetGatewayFilterArgs']]] = None, internet_gateway_id: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInternetGatewayResult:
     """
     `ec2.InternetGateway` provides details about a specific Internet Gateway.
 
@@ -83,7 +89,7 @@ def get_internet_gateway(filters=None, internet_gateway_id=None, tags=None, opts
     ```
 
 
-    :param List['GetInternetGatewayFilterArgs'] filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetInternetGatewayFilterArgs']] filters: Custom filter block as described below.
     :param str internet_gateway_id: The id of the specific Internet Gateway to retrieve.
     :param Dict[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired Internet Gateway.

@@ -8,6 +8,21 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'DomainAdvancedSecurityOptionsArgs',
+    'DomainAdvancedSecurityOptionsMasterUserOptionsArgs',
+    'DomainClusterConfigArgs',
+    'DomainClusterConfigZoneAwarenessConfigArgs',
+    'DomainCognitoOptionsArgs',
+    'DomainDomainEndpointOptionsArgs',
+    'DomainEbsOptionsArgs',
+    'DomainEncryptAtRestArgs',
+    'DomainLogPublishingOptionArgs',
+    'DomainNodeToNodeEncryptionArgs',
+    'DomainSnapshotOptionsArgs',
+    'DomainVpcOptionsArgs',
+]
+
 @pulumi.input_type
 class DomainAdvancedSecurityOptionsArgs:
     enabled: pulumi.Input[bool] = pulumi.input_property("enabled")

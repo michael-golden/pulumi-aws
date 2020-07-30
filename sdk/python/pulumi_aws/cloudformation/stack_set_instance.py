@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['StackSetInstance']
+
 
 class StackSetInstance(pulumi.CustomResource):
     account_id: pulumi.Output[str] = pulumi.output_property("accountId")
@@ -35,7 +37,7 @@ class StackSetInstance(pulumi.CustomResource):
     Name of the StackSet.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, account_id=None, parameter_overrides=None, region=None, retain_stack=None, stack_set_name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, account_id: Optional[pulumi.Input[str]] = None, parameter_overrides: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, region: Optional[pulumi.Input[str]] = None, retain_stack: Optional[pulumi.Input[bool]] = None, stack_set_name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a CloudFormation StackSet Instance. Instances are managed in the account and region of the StackSet after the target account permissions have been configured. Additional information about StackSets can be found in the [AWS CloudFormation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/what-is-cfnstacksets.html).
 
@@ -123,7 +125,7 @@ class StackSetInstance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, account_id=None, parameter_overrides=None, region=None, retain_stack=None, stack_id=None, stack_set_name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, account_id: Optional[pulumi.Input[str]] = None, parameter_overrides: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, region: Optional[pulumi.Input[str]] = None, retain_stack: Optional[pulumi.Input[bool]] = None, stack_id: Optional[pulumi.Input[str]] = None, stack_set_name: Optional[pulumi.Input[str]] = None) -> 'StackSetInstance':
         """
         Get an existing StackSetInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

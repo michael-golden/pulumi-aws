@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Activation']
+
 
 class Activation(pulumi.CustomResource):
     activation_code: pulumi.Output[str] = pulumi.output_property("activationCode")
@@ -47,7 +49,7 @@ class Activation(pulumi.CustomResource):
     A map of tags to assign to the object.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, expiration_date=None, iam_role=None, name=None, registration_limit=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, expiration_date: Optional[pulumi.Input[str]] = None, iam_role: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, registration_limit: Optional[pulumi.Input[float]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Registers an on-premises server or virtual machine with Amazon EC2 so that it can be managed using Run Command.
 
@@ -121,7 +123,7 @@ class Activation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, activation_code=None, description=None, expiration_date=None, expired=None, iam_role=None, name=None, registration_count=None, registration_limit=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, activation_code: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, expiration_date: Optional[pulumi.Input[str]] = None, expired: Optional[pulumi.Input[bool]] = None, iam_role: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, registration_count: Optional[pulumi.Input[float]] = None, registration_limit: Optional[pulumi.Input[float]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Activation':
         """
         Get an existing Activation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

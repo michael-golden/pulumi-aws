@@ -8,6 +8,32 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ByteMatchSetByteMatchTuple',
+    'ByteMatchSetByteMatchTupleFieldToMatch',
+    'GeoMatchSetGeoMatchConstraint',
+    'IpSetIpSetDescriptor',
+    'RateBasedRulePredicate',
+    'RegexMatchSetRegexMatchTuple',
+    'RegexMatchSetRegexMatchTupleFieldToMatch',
+    'RuleGroupActivatedRule',
+    'RuleGroupActivatedRuleAction',
+    'RulePredicate',
+    'SizeConstraintSetSizeConstraint',
+    'SizeConstraintSetSizeConstraintFieldToMatch',
+    'SqlInjectionMatchSetSqlInjectionMatchTuple',
+    'SqlInjectionMatchSetSqlInjectionMatchTupleFieldToMatch',
+    'WebAclDefaultAction',
+    'WebAclLoggingConfiguration',
+    'WebAclLoggingConfigurationRedactedFields',
+    'WebAclLoggingConfigurationRedactedFieldsFieldToMatch',
+    'WebAclRule',
+    'WebAclRuleAction',
+    'WebAclRuleOverrideAction',
+    'XssMatchSetXssMatchTuple',
+    'XssMatchSetXssMatchTupleFieldToMatch',
+]
+
 @pulumi.output_type
 class ByteMatchSetByteMatchTuple(dict):
     field_to_match: 'outputs.ByteMatchSetByteMatchTupleFieldToMatch' = pulumi.output_property("fieldToMatch")

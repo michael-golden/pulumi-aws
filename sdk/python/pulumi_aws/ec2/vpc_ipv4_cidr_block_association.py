@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['VpcIpv4CidrBlockAssociation']
+
 
 class VpcIpv4CidrBlockAssociation(pulumi.CustomResource):
     cidr_block: pulumi.Output[str] = pulumi.output_property("cidrBlock")
@@ -19,7 +21,7 @@ class VpcIpv4CidrBlockAssociation(pulumi.CustomResource):
     The ID of the VPC to make the association with.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cidr_block=None, vpc_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cidr_block: Optional[pulumi.Input[str]] = None, vpc_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to associate additional IPv4 CIDR blocks with a VPC.
 
@@ -73,7 +75,7 @@ class VpcIpv4CidrBlockAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, cidr_block=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, cidr_block: Optional[pulumi.Input[str]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'VpcIpv4CidrBlockAssociation':
         """
         Get an existing VpcIpv4CidrBlockAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

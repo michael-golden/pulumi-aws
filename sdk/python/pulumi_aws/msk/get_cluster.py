@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetClusterResult',
+    'AwaitableGetClusterResult',
+    'get_cluster',
+]
+
 
 class GetClusterResult:
     """
@@ -85,7 +91,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             zookeeper_connect_string=self.zookeeper_connect_string)
 
 
-def get_cluster(cluster_name=None, tags=None, opts=None):
+def get_cluster(cluster_name: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
     Get information on an Amazon MSK Cluster.
 

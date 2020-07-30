@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['WebAclAssociation']
+
 
 class WebAclAssociation(pulumi.CustomResource):
     resource_arn: pulumi.Output[str] = pulumi.output_property("resourceArn")
@@ -19,7 +21,7 @@ class WebAclAssociation(pulumi.CustomResource):
     The Amazon Resource Name (ARN) of the Web ACL that you want to associate with the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, resource_arn=None, web_acl_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, resource_arn: Optional[pulumi.Input[str]] = None, web_acl_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates a WAFv2 Web ACL Association.
 
@@ -58,7 +60,7 @@ class WebAclAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, resource_arn=None, web_acl_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, resource_arn: Optional[pulumi.Input[str]] = None, web_acl_arn: Optional[pulumi.Input[str]] = None) -> 'WebAclAssociation':
         """
         Get an existing WebAclAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

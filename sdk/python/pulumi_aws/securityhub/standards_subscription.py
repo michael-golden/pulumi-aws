@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['StandardsSubscription']
+
 
 class StandardsSubscription(pulumi.CustomResource):
     standards_arn: pulumi.Output[str] = pulumi.output_property("standardsArn")
@@ -15,7 +17,7 @@ class StandardsSubscription(pulumi.CustomResource):
     The ARN of a standard - see below.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, standards_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, standards_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Subscribes to a Security Hub standard.
 
@@ -63,7 +65,7 @@ class StandardsSubscription(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, standards_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, standards_arn: Optional[pulumi.Input[str]] = None) -> 'StandardsSubscription':
         """
         Get an existing StandardsSubscription resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

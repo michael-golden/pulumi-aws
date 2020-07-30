@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['ResolverRule']
+
 
 class ResolverRule(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -52,7 +54,7 @@ class ResolverRule(pulumi.CustomResource):
     This argument should only be specified for `FORWARD` type rules.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, domain_name=None, name=None, resolver_endpoint_id=None, rule_type=None, tags=None, target_ips=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, domain_name: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, resolver_endpoint_id: Optional[pulumi.Input[str]] = None, rule_type: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, target_ips: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ResolverRuleTargetIpArgs']]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Route53 Resolver rule.
 
@@ -93,7 +95,7 @@ class ResolverRule(pulumi.CustomResource):
                This argument should only be specified for `FORWARD` type rules.
         :param pulumi.Input[str] rule_type: The rule type. Valid values are `FORWARD`, `SYSTEM` and `RECURSIVE`.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
-        :param pulumi.Input[List[pulumi.Input['ResolverRuleTargetIpArgs']]] target_ips: Configuration block(s) indicating the IPs that you want Resolver to forward DNS queries to (documented below).
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ResolverRuleTargetIpArgs']]]] target_ips: Configuration block(s) indicating the IPs that you want Resolver to forward DNS queries to (documented below).
                This argument should only be specified for `FORWARD` type rules.
         """
         if __name__ is not None:
@@ -133,7 +135,7 @@ class ResolverRule(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, domain_name=None, name=None, owner_id=None, resolver_endpoint_id=None, rule_type=None, share_status=None, tags=None, target_ips=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, domain_name: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, owner_id: Optional[pulumi.Input[str]] = None, resolver_endpoint_id: Optional[pulumi.Input[str]] = None, rule_type: Optional[pulumi.Input[str]] = None, share_status: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, target_ips: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ResolverRuleTargetIpArgs']]]]] = None) -> 'ResolverRule':
         """
         Get an existing ResolverRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -151,7 +153,7 @@ class ResolverRule(pulumi.CustomResource):
         :param pulumi.Input[str] share_status: Whether the rules is shared and, if so, whether the current account is sharing the rule with another account, or another account is sharing the rule with the current account.
                Values are `NOT_SHARED`, `SHARED_BY_ME` or `SHARED_WITH_ME`
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
-        :param pulumi.Input[List[pulumi.Input['ResolverRuleTargetIpArgs']]] target_ips: Configuration block(s) indicating the IPs that you want Resolver to forward DNS queries to (documented below).
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ResolverRuleTargetIpArgs']]]] target_ips: Configuration block(s) indicating the IPs that you want Resolver to forward DNS queries to (documented below).
                This argument should only be specified for `FORWARD` type rules.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

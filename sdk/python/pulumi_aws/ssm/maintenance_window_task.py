@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['MaintenanceWindowTask']
+
 
 class MaintenanceWindowTask(pulumi.CustomResource):
     description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
@@ -65,7 +67,7 @@ class MaintenanceWindowTask(pulumi.CustomResource):
     The Id of the maintenance window to register the task with.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, logging_info=None, max_concurrency=None, max_errors=None, name=None, priority=None, service_role_arn=None, targets=None, task_arn=None, task_invocation_parameters=None, task_parameters=None, task_type=None, window_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, logging_info: Optional[pulumi.Input[pulumi.InputType['MaintenanceWindowTaskLoggingInfoArgs']]] = None, max_concurrency: Optional[pulumi.Input[str]] = None, max_errors: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, priority: Optional[pulumi.Input[float]] = None, service_role_arn: Optional[pulumi.Input[str]] = None, targets: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['MaintenanceWindowTaskTargetArgs']]]]] = None, task_arn: Optional[pulumi.Input[str]] = None, task_invocation_parameters: Optional[pulumi.Input[pulumi.InputType['MaintenanceWindowTaskTaskInvocationParametersArgs']]] = None, task_parameters: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['MaintenanceWindowTaskTaskParameterArgs']]]]] = None, task_type: Optional[pulumi.Input[str]] = None, window_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an SSM Maintenance Window Task resource
 
@@ -163,16 +165,16 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the maintenance window task.
-        :param pulumi.Input['MaintenanceWindowTaskLoggingInfoArgs'] logging_info: A structure containing information about an Amazon S3 bucket to write instance-level logs to. Use `task_invocation_parameters` configuration block `run_command_parameters` configuration block `output_s3_*` arguments instead. Conflicts with `task_invocation_parameters`. Documented below.
+        :param pulumi.Input[pulumi.InputType['MaintenanceWindowTaskLoggingInfoArgs']] logging_info: A structure containing information about an Amazon S3 bucket to write instance-level logs to. Use `task_invocation_parameters` configuration block `run_command_parameters` configuration block `output_s3_*` arguments instead. Conflicts with `task_invocation_parameters`. Documented below.
         :param pulumi.Input[str] max_concurrency: The maximum number of targets this task can be run for in parallel.
         :param pulumi.Input[str] max_errors: The maximum number of errors allowed before this task stops being scheduled.
         :param pulumi.Input[str] name: The name of the maintenance window task.
         :param pulumi.Input[float] priority: The priority of the task in the Maintenance Window, the lower the number the higher the priority. Tasks in a Maintenance Window are scheduled in priority order with tasks that have the same priority scheduled in parallel.
         :param pulumi.Input[str] service_role_arn: The role that should be assumed when executing the task.
-        :param pulumi.Input[List[pulumi.Input['MaintenanceWindowTaskTargetArgs']]] targets: The targets (either instances or window target ids). Instances are specified using Key=InstanceIds,Values=instanceid1,instanceid2. Window target ids are specified using Key=WindowTargetIds,Values=window target id1, window target id2.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['MaintenanceWindowTaskTargetArgs']]]] targets: The targets (either instances or window target ids). Instances are specified using Key=InstanceIds,Values=instanceid1,instanceid2. Window target ids are specified using Key=WindowTargetIds,Values=window target id1, window target id2.
         :param pulumi.Input[str] task_arn: The ARN of the task to execute.
-        :param pulumi.Input['MaintenanceWindowTaskTaskInvocationParametersArgs'] task_invocation_parameters: The parameters for task execution. This argument is conflict with `task_parameters` and `logging_info`.
-        :param pulumi.Input[List[pulumi.Input['MaintenanceWindowTaskTaskParameterArgs']]] task_parameters: A structure containing information about parameters required by the particular `task_arn`. Use `parameter` configuration blocks under the `task_invocation_parameters` configuration block instead. Conflicts with `task_invocation_parameters`. Documented below.
+        :param pulumi.Input[pulumi.InputType['MaintenanceWindowTaskTaskInvocationParametersArgs']] task_invocation_parameters: The parameters for task execution. This argument is conflict with `task_parameters` and `logging_info`.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['MaintenanceWindowTaskTaskParameterArgs']]]] task_parameters: A structure containing information about parameters required by the particular `task_arn`. Use `parameter` configuration blocks under the `task_invocation_parameters` configuration block instead. Conflicts with `task_invocation_parameters`. Documented below.
         :param pulumi.Input[str] task_type: The type of task being registered. The only allowed value is `RUN_COMMAND`.
         :param pulumi.Input[str] window_id: The Id of the maintenance window to register the task with.
         """
@@ -233,7 +235,7 @@ class MaintenanceWindowTask(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, description=None, logging_info=None, max_concurrency=None, max_errors=None, name=None, priority=None, service_role_arn=None, targets=None, task_arn=None, task_invocation_parameters=None, task_parameters=None, task_type=None, window_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, logging_info: Optional[pulumi.Input[pulumi.InputType['MaintenanceWindowTaskLoggingInfoArgs']]] = None, max_concurrency: Optional[pulumi.Input[str]] = None, max_errors: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, priority: Optional[pulumi.Input[float]] = None, service_role_arn: Optional[pulumi.Input[str]] = None, targets: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['MaintenanceWindowTaskTargetArgs']]]]] = None, task_arn: Optional[pulumi.Input[str]] = None, task_invocation_parameters: Optional[pulumi.Input[pulumi.InputType['MaintenanceWindowTaskTaskInvocationParametersArgs']]] = None, task_parameters: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['MaintenanceWindowTaskTaskParameterArgs']]]]] = None, task_type: Optional[pulumi.Input[str]] = None, window_id: Optional[pulumi.Input[str]] = None) -> 'MaintenanceWindowTask':
         """
         Get an existing MaintenanceWindowTask resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -242,16 +244,16 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the maintenance window task.
-        :param pulumi.Input['MaintenanceWindowTaskLoggingInfoArgs'] logging_info: A structure containing information about an Amazon S3 bucket to write instance-level logs to. Use `task_invocation_parameters` configuration block `run_command_parameters` configuration block `output_s3_*` arguments instead. Conflicts with `task_invocation_parameters`. Documented below.
+        :param pulumi.Input[pulumi.InputType['MaintenanceWindowTaskLoggingInfoArgs']] logging_info: A structure containing information about an Amazon S3 bucket to write instance-level logs to. Use `task_invocation_parameters` configuration block `run_command_parameters` configuration block `output_s3_*` arguments instead. Conflicts with `task_invocation_parameters`. Documented below.
         :param pulumi.Input[str] max_concurrency: The maximum number of targets this task can be run for in parallel.
         :param pulumi.Input[str] max_errors: The maximum number of errors allowed before this task stops being scheduled.
         :param pulumi.Input[str] name: The name of the maintenance window task.
         :param pulumi.Input[float] priority: The priority of the task in the Maintenance Window, the lower the number the higher the priority. Tasks in a Maintenance Window are scheduled in priority order with tasks that have the same priority scheduled in parallel.
         :param pulumi.Input[str] service_role_arn: The role that should be assumed when executing the task.
-        :param pulumi.Input[List[pulumi.Input['MaintenanceWindowTaskTargetArgs']]] targets: The targets (either instances or window target ids). Instances are specified using Key=InstanceIds,Values=instanceid1,instanceid2. Window target ids are specified using Key=WindowTargetIds,Values=window target id1, window target id2.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['MaintenanceWindowTaskTargetArgs']]]] targets: The targets (either instances or window target ids). Instances are specified using Key=InstanceIds,Values=instanceid1,instanceid2. Window target ids are specified using Key=WindowTargetIds,Values=window target id1, window target id2.
         :param pulumi.Input[str] task_arn: The ARN of the task to execute.
-        :param pulumi.Input['MaintenanceWindowTaskTaskInvocationParametersArgs'] task_invocation_parameters: The parameters for task execution. This argument is conflict with `task_parameters` and `logging_info`.
-        :param pulumi.Input[List[pulumi.Input['MaintenanceWindowTaskTaskParameterArgs']]] task_parameters: A structure containing information about parameters required by the particular `task_arn`. Use `parameter` configuration blocks under the `task_invocation_parameters` configuration block instead. Conflicts with `task_invocation_parameters`. Documented below.
+        :param pulumi.Input[pulumi.InputType['MaintenanceWindowTaskTaskInvocationParametersArgs']] task_invocation_parameters: The parameters for task execution. This argument is conflict with `task_parameters` and `logging_info`.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['MaintenanceWindowTaskTaskParameterArgs']]]] task_parameters: A structure containing information about parameters required by the particular `task_arn`. Use `parameter` configuration blocks under the `task_invocation_parameters` configuration block instead. Conflicts with `task_invocation_parameters`. Documented below.
         :param pulumi.Input[str] task_type: The type of task being registered. The only allowed value is `RUN_COMMAND`.
         :param pulumi.Input[str] window_id: The Id of the maintenance window to register the task with.
         """

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['SecurityGroup']
+
 
 class SecurityGroup(pulumi.CustomResource):
     description: pulumi.Output[str] = pulumi.output_property("description")
@@ -24,7 +26,7 @@ class SecurityGroup(pulumi.CustomResource):
     authorized for ingress to the cache security group
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, name=None, security_group_names=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, security_group_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an ElastiCache Security Group to control access to one or more cache
         clusters.
@@ -81,7 +83,7 @@ class SecurityGroup(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, description=None, name=None, security_group_names=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, security_group_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'SecurityGroup':
         """
         Get an existing SecurityGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

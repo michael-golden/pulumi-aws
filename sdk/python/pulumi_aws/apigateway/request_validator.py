@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['RequestValidator']
+
 
 class RequestValidator(pulumi.CustomResource):
     name: pulumi.Output[str] = pulumi.output_property("name")
@@ -27,7 +29,7 @@ class RequestValidator(pulumi.CustomResource):
     Boolean whether to validate request parameters. Defaults to `false`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, rest_api=None, validate_request_body=None, validate_request_parameters=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, validate_request_body: Optional[pulumi.Input[bool]] = None, validate_request_parameters: Optional[pulumi.Input[bool]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an API Gateway Request Validator.
 
@@ -80,7 +82,7 @@ class RequestValidator(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, name=None, rest_api=None, validate_request_body=None, validate_request_parameters=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, name: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, validate_request_body: Optional[pulumi.Input[bool]] = None, validate_request_parameters: Optional[pulumi.Input[bool]] = None) -> 'RequestValidator':
         """
         Get an existing RequestValidator resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

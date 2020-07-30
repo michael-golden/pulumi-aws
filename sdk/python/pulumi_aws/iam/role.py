@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Role']
+
 
 class Role(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -60,7 +62,7 @@ class Role(pulumi.CustomResource):
     The stable and unique string identifying the role.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, assume_role_policy=None, description=None, force_detach_policies=None, max_session_duration=None, name=None, name_prefix=None, path=None, permissions_boundary=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, assume_role_policy: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, force_detach_policies: Optional[pulumi.Input[bool]] = None, max_session_duration: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, path: Optional[pulumi.Input[str]] = None, permissions_boundary: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an IAM role.
 
@@ -161,7 +163,7 @@ class Role(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, assume_role_policy=None, create_date=None, description=None, force_detach_policies=None, max_session_duration=None, name=None, name_prefix=None, path=None, permissions_boundary=None, tags=None, unique_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, assume_role_policy: Optional[pulumi.Input[str]] = None, create_date: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, force_detach_policies: Optional[pulumi.Input[bool]] = None, max_session_duration: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, path: Optional[pulumi.Input[str]] = None, permissions_boundary: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, unique_id: Optional[pulumi.Input[str]] = None) -> 'Role':
         """
         Get an existing Role resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

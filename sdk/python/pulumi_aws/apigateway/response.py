@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Response']
+
 
 class Response(pulumi.CustomResource):
     response_parameters: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("responseParameters")
@@ -31,7 +33,7 @@ class Response(pulumi.CustomResource):
     The HTTP status code of the Gateway Response.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, response_parameters=None, response_templates=None, response_type=None, rest_api_id=None, status_code=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, response_parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, response_templates: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, response_type: Optional[pulumi.Input[str]] = None, rest_api_id: Optional[pulumi.Input[str]] = None, status_code: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an API Gateway Gateway Response for a REST API Gateway.
 
@@ -95,7 +97,7 @@ class Response(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, response_parameters=None, response_templates=None, response_type=None, rest_api_id=None, status_code=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, response_parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, response_templates: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, response_type: Optional[pulumi.Input[str]] = None, rest_api_id: Optional[pulumi.Input[str]] = None, status_code: Optional[pulumi.Input[str]] = None) -> 'Response':
         """
         Get an existing Response resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

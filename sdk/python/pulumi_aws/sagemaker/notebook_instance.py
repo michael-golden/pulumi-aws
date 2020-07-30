@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['NotebookInstance']
+
 
 class NotebookInstance(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -51,7 +53,7 @@ class NotebookInstance(pulumi.CustomResource):
     A map of tags to assign to the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, direct_internet_access=None, instance_type=None, kms_key_id=None, lifecycle_config_name=None, name=None, role_arn=None, security_groups=None, subnet_id=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, direct_internet_access: Optional[pulumi.Input[str]] = None, instance_type: Optional[pulumi.Input[str]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, lifecycle_config_name: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None, security_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, subnet_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Sagemaker Notebook Instance resource.
 
@@ -121,7 +123,7 @@ class NotebookInstance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, direct_internet_access=None, instance_type=None, kms_key_id=None, lifecycle_config_name=None, name=None, role_arn=None, security_groups=None, subnet_id=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, direct_internet_access: Optional[pulumi.Input[str]] = None, instance_type: Optional[pulumi.Input[str]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, lifecycle_config_name: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None, security_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, subnet_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'NotebookInstance':
         """
         Get an existing NotebookInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

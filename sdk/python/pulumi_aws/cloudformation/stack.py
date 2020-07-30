@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Stack']
+
 
 class Stack(pulumi.CustomResource):
     capabilities: pulumi.Output[Optional[List[str]]] = pulumi.output_property("capabilities")
@@ -72,7 +74,7 @@ class Stack(pulumi.CustomResource):
     The amount of time that can pass before the stack status becomes `CREATE_FAILED`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, capabilities=None, disable_rollback=None, iam_role_arn=None, name=None, notification_arns=None, on_failure=None, parameters=None, policy_body=None, policy_url=None, tags=None, template_body=None, template_url=None, timeout_in_minutes=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, capabilities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, disable_rollback: Optional[pulumi.Input[bool]] = None, iam_role_arn: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, notification_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, on_failure: Optional[pulumi.Input[str]] = None, parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, policy_body: Optional[pulumi.Input[str]] = None, policy_url: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, template_body: Optional[pulumi.Input[str]] = None, template_url: Optional[pulumi.Input[str]] = None, timeout_in_minutes: Optional[pulumi.Input[float]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CloudFormation Stack resource.
 
@@ -169,7 +171,7 @@ class Stack(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, capabilities=None, disable_rollback=None, iam_role_arn=None, name=None, notification_arns=None, on_failure=None, outputs=None, parameters=None, policy_body=None, policy_url=None, tags=None, template_body=None, template_url=None, timeout_in_minutes=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, capabilities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, disable_rollback: Optional[pulumi.Input[bool]] = None, iam_role_arn: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, notification_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, on_failure: Optional[pulumi.Input[str]] = None, outputs: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, policy_body: Optional[pulumi.Input[str]] = None, policy_url: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, template_body: Optional[pulumi.Input[str]] = None, template_url: Optional[pulumi.Input[str]] = None, timeout_in_minutes: Optional[pulumi.Input[float]] = None) -> 'Stack':
         """
         Get an existing Stack resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

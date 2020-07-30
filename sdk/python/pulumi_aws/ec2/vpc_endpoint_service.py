@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['VpcEndpointService']
+
 
 class VpcEndpointService(pulumi.CustomResource):
     acceptance_required: pulumi.Output[bool] = pulumi.output_property("acceptanceRequired")
@@ -59,7 +61,7 @@ class VpcEndpointService(pulumi.CustomResource):
     A map of tags to assign to the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, acceptance_required=None, allowed_principals=None, network_load_balancer_arns=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, acceptance_required: Optional[pulumi.Input[bool]] = None, allowed_principals: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, network_load_balancer_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a VPC Endpoint Service resource.
         Service consumers can create an _Interface_ VPC Endpoint to connect to the service.
@@ -142,7 +144,7 @@ class VpcEndpointService(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, acceptance_required=None, allowed_principals=None, arn=None, availability_zones=None, base_endpoint_dns_names=None, manages_vpc_endpoints=None, network_load_balancer_arns=None, private_dns_name=None, service_name=None, service_type=None, state=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, acceptance_required: Optional[pulumi.Input[bool]] = None, allowed_principals: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, arn: Optional[pulumi.Input[str]] = None, availability_zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, base_endpoint_dns_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, manages_vpc_endpoints: Optional[pulumi.Input[bool]] = None, network_load_balancer_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, private_dns_name: Optional[pulumi.Input[str]] = None, service_name: Optional[pulumi.Input[str]] = None, service_type: Optional[pulumi.Input[str]] = None, state: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'VpcEndpointService':
         """
         Get an existing VpcEndpointService resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

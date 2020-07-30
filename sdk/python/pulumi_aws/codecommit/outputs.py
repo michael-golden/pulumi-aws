@@ -8,6 +8,10 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'TriggerTrigger',
+]
+
 @pulumi.output_type
 class TriggerTrigger(dict):
     branches: Optional[List[str]] = pulumi.output_property("branches")

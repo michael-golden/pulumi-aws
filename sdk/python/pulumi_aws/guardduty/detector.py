@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Detector']
+
 
 class Detector(pulumi.CustomResource):
     account_id: pulumi.Output[str] = pulumi.output_property("accountId")
@@ -31,7 +33,7 @@ class Detector(pulumi.CustomResource):
     Key-value map of resource tags.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, enable=None, finding_publishing_frequency=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, enable: Optional[pulumi.Input[bool]] = None, finding_publishing_frequency: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage a GuardDuty detector.
 
@@ -81,7 +83,7 @@ class Detector(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, account_id=None, arn=None, enable=None, finding_publishing_frequency=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, account_id: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, enable: Optional[pulumi.Input[bool]] = None, finding_publishing_frequency: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Detector':
         """
         Get an existing Detector resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

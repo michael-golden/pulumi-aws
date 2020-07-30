@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Route']
+
 
 class Route(pulumi.CustomResource):
     api_id: pulumi.Output[str] = pulumi.output_property("apiId")
@@ -58,7 +60,7 @@ class Route(pulumi.CustomResource):
     The target for the route.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id=None, api_key_required=None, authorization_scopes=None, authorization_type=None, authorizer_id=None, model_selection_expression=None, operation_name=None, request_models=None, route_key=None, route_response_selection_expression=None, target=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, api_key_required: Optional[pulumi.Input[bool]] = None, authorization_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, authorization_type: Optional[pulumi.Input[str]] = None, authorizer_id: Optional[pulumi.Input[str]] = None, model_selection_expression: Optional[pulumi.Input[str]] = None, operation_name: Optional[pulumi.Input[str]] = None, request_models: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, route_key: Optional[pulumi.Input[str]] = None, route_response_selection_expression: Optional[pulumi.Input[str]] = None, target: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an Amazon API Gateway Version 2 route.
         More information can be found in the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html).
@@ -131,7 +133,7 @@ class Route(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, api_id=None, api_key_required=None, authorization_scopes=None, authorization_type=None, authorizer_id=None, model_selection_expression=None, operation_name=None, request_models=None, route_key=None, route_response_selection_expression=None, target=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, api_key_required: Optional[pulumi.Input[bool]] = None, authorization_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, authorization_type: Optional[pulumi.Input[str]] = None, authorizer_id: Optional[pulumi.Input[str]] = None, model_selection_expression: Optional[pulumi.Input[str]] = None, operation_name: Optional[pulumi.Input[str]] = None, request_models: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, route_key: Optional[pulumi.Input[str]] = None, route_response_selection_expression: Optional[pulumi.Input[str]] = None, target: Optional[pulumi.Input[str]] = None) -> 'Route':
         """
         Get an existing Route resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

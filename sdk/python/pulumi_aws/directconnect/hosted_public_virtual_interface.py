@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['HostedPublicVirtualInterface']
+
 
 class HostedPublicVirtualInterface(pulumi.CustomResource):
     address_family: pulumi.Output[str] = pulumi.output_property("addressFamily")
@@ -60,7 +62,7 @@ class HostedPublicVirtualInterface(pulumi.CustomResource):
     The VLAN ID.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, address_family=None, amazon_address=None, bgp_asn=None, bgp_auth_key=None, connection_id=None, customer_address=None, name=None, owner_account_id=None, route_filter_prefixes=None, vlan=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, address_family: Optional[pulumi.Input[str]] = None, amazon_address: Optional[pulumi.Input[str]] = None, bgp_asn: Optional[pulumi.Input[float]] = None, bgp_auth_key: Optional[pulumi.Input[str]] = None, connection_id: Optional[pulumi.Input[str]] = None, customer_address: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, owner_account_id: Optional[pulumi.Input[str]] = None, route_filter_prefixes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, vlan: Optional[pulumi.Input[float]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Direct Connect hosted public virtual interface resource. This resource represents the allocator's side of the hosted virtual interface.
         A hosted virtual interface is a virtual interface that is owned by another AWS account.
@@ -146,7 +148,7 @@ class HostedPublicVirtualInterface(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, address_family=None, amazon_address=None, amazon_side_asn=None, arn=None, aws_device=None, bgp_asn=None, bgp_auth_key=None, connection_id=None, customer_address=None, name=None, owner_account_id=None, route_filter_prefixes=None, vlan=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, address_family: Optional[pulumi.Input[str]] = None, amazon_address: Optional[pulumi.Input[str]] = None, amazon_side_asn: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, aws_device: Optional[pulumi.Input[str]] = None, bgp_asn: Optional[pulumi.Input[float]] = None, bgp_auth_key: Optional[pulumi.Input[str]] = None, connection_id: Optional[pulumi.Input[str]] = None, customer_address: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, owner_account_id: Optional[pulumi.Input[str]] = None, route_filter_prefixes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, vlan: Optional[pulumi.Input[float]] = None) -> 'HostedPublicVirtualInterface':
         """
         Get an existing HostedPublicVirtualInterface resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

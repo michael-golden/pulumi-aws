@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetRoleResult',
+    'AwaitableGetRoleResult',
+    'get_role',
+]
+
 
 class GetRoleResult:
     """
@@ -99,7 +105,7 @@ class AwaitableGetRoleResult(GetRoleResult):
             unique_id=self.unique_id)
 
 
-def get_role(name=None, tags=None, opts=None):
+def get_role(name: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRoleResult:
     """
     This data source can be used to fetch information about a specific
     IAM role. By using this data source, you can reference IAM role

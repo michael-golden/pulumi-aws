@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['TargetGroupAttachment']
+
 
 class TargetGroupAttachment(pulumi.CustomResource):
     availability_zone: pulumi.Output[Optional[str]] = pulumi.output_property("availabilityZone")
@@ -27,7 +29,7 @@ class TargetGroupAttachment(pulumi.CustomResource):
     The ID of the target. This is the Instance ID for an instance, or the container ID for an ECS container. If the target type is ip, specify an IP address. If the target type is lambda, specify the arn of lambda.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zone=None, port=None, target_group_arn=None, target_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zone: Optional[pulumi.Input[str]] = None, port: Optional[pulumi.Input[float]] = None, target_group_arn: Optional[pulumi.Input[str]] = None, target_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides the ability to register instances and containers with an Application Load Balancer (ALB) or Network Load Balancer (NLB) target group. For attaching resources with Elastic Load Balancer (ELB), see the `elb.Attachment` resource.
 
@@ -106,7 +108,7 @@ class TargetGroupAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, availability_zone=None, port=None, target_group_arn=None, target_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, availability_zone: Optional[pulumi.Input[str]] = None, port: Optional[pulumi.Input[float]] = None, target_group_arn: Optional[pulumi.Input[str]] = None, target_id: Optional[pulumi.Input[str]] = None) -> 'TargetGroupAttachment':
         """
         Get an existing TargetGroupAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

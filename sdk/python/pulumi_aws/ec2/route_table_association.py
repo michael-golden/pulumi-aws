@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['RouteTableAssociation']
+
 
 class RouteTableAssociation(pulumi.CustomResource):
     gateway_id: pulumi.Output[Optional[str]] = pulumi.output_property("gatewayId")
@@ -23,7 +25,7 @@ class RouteTableAssociation(pulumi.CustomResource):
     The subnet ID to create an association. Conflicts with `gateway_id`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, gateway_id=None, route_table_id=None, subnet_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, gateway_id: Optional[pulumi.Input[str]] = None, route_table_id: Optional[pulumi.Input[str]] = None, subnet_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to create an association between a route table and a subnet or a route table and an
         internet gateway or virtual private gateway.
@@ -83,7 +85,7 @@ class RouteTableAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, gateway_id=None, route_table_id=None, subnet_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, gateway_id: Optional[pulumi.Input[str]] = None, route_table_id: Optional[pulumi.Input[str]] = None, subnet_id: Optional[pulumi.Input[str]] = None) -> 'RouteTableAssociation':
         """
         Get an existing RouteTableAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

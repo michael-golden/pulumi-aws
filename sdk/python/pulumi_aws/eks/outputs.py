@@ -8,6 +8,24 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ClusterCertificateAuthority',
+    'ClusterEncryptionConfig',
+    'ClusterEncryptionConfigProvider',
+    'ClusterIdentity',
+    'ClusterIdentityOidc',
+    'ClusterVpcConfig',
+    'FargateProfileSelector',
+    'NodeGroupRemoteAccess',
+    'NodeGroupResource',
+    'NodeGroupResourceAutoscalingGroup',
+    'NodeGroupScalingConfig',
+    'GetClusterCertificateAuthority',
+    'GetClusterIdentity',
+    'GetClusterIdentityOidc',
+    'GetClusterVpcConfig',
+]
+
 @pulumi.output_type
 class ClusterCertificateAuthority(dict):
     data: Optional[str] = pulumi.output_property("data")

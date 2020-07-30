@@ -8,6 +8,13 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ServiceDnsConfig',
+    'ServiceDnsConfigDnsRecord',
+    'ServiceHealthCheckConfig',
+    'ServiceHealthCheckCustomConfig',
+]
+
 @pulumi.output_type
 class ServiceDnsConfig(dict):
     dns_records: List['outputs.ServiceDnsConfigDnsRecord'] = pulumi.output_property("dnsRecords")

@@ -8,6 +8,21 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'BrokerConfiguration',
+    'BrokerEncryptionOptions',
+    'BrokerInstance',
+    'BrokerLogs',
+    'BrokerMaintenanceWindowStartTime',
+    'BrokerUser',
+    'GetBrokerConfiguration',
+    'GetBrokerEncryptionOption',
+    'GetBrokerInstance',
+    'GetBrokerLogs',
+    'GetBrokerMaintenanceWindowStartTime',
+    'GetBrokerUser',
+]
+
 @pulumi.output_type
 class BrokerConfiguration(dict):
     id: Optional[str] = pulumi.output_property("id")

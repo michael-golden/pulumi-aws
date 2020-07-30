@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetTransitGatewayResult',
+    'AwaitableGetTransitGatewayResult',
+    'get_transit_gateway',
+]
+
 
 class GetTransitGatewayResult:
     """
@@ -122,7 +128,7 @@ class AwaitableGetTransitGatewayResult(GetTransitGatewayResult):
             vpn_ecmp_support=self.vpn_ecmp_support)
 
 
-def get_transit_gateway(filters=None, id=None, tags=None, opts=None):
+def get_transit_gateway(filters: Optional[List[pulumi.InputType['GetTransitGatewayFilterArgs']]] = None, id: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTransitGatewayResult:
     """
     Get information on an EC2 Transit Gateway.
 
@@ -148,7 +154,7 @@ def get_transit_gateway(filters=None, id=None, tags=None, opts=None):
     ```
 
 
-    :param List['GetTransitGatewayFilterArgs'] filters: One or more configuration blocks containing name-values filters. Detailed below.
+    :param List[pulumi.InputType['GetTransitGatewayFilterArgs']] filters: One or more configuration blocks containing name-values filters. Detailed below.
     :param str id: Identifier of the EC2 Transit Gateway.
     :param Dict[str, str] tags: Key-value tags for the EC2 Transit Gateway
     """

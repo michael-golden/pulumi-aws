@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['EgressOnlyInternetGateway']
+
 
 class EgressOnlyInternetGateway(pulumi.CustomResource):
     tags: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("tags")
@@ -19,7 +21,7 @@ class EgressOnlyInternetGateway(pulumi.CustomResource):
     The VPC ID to create in.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, tags=None, vpc_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         [IPv6 only] Creates an egress-only Internet gateway for your VPC.
         An egress-only Internet gateway is used to enable outbound communication
@@ -75,7 +77,7 @@ class EgressOnlyInternetGateway(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, tags=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'EgressOnlyInternetGateway':
         """
         Get an existing EgressOnlyInternetGateway resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

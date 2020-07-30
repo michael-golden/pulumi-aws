@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetVpnAttachmentResult',
+    'AwaitableGetVpnAttachmentResult',
+    'get_vpn_attachment',
+]
+
 
 class GetVpnAttachmentResult:
     """
@@ -53,7 +59,7 @@ class AwaitableGetVpnAttachmentResult(GetVpnAttachmentResult):
             vpn_connection_id=self.vpn_connection_id)
 
 
-def get_vpn_attachment(filters=None, tags=None, transit_gateway_id=None, vpn_connection_id=None, opts=None):
+def get_vpn_attachment(filters: Optional[List[pulumi.InputType['GetVpnAttachmentFilterArgs']]] = None, tags: Optional[Dict[str, str]] = None, transit_gateway_id: Optional[str] = None, vpn_connection_id: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpnAttachmentResult:
     """
     Get information on an EC2 Transit Gateway VPN Attachment.
 
@@ -80,7 +86,7 @@ def get_vpn_attachment(filters=None, tags=None, transit_gateway_id=None, vpn_con
     ```
 
 
-    :param List['GetVpnAttachmentFilterArgs'] filters: Configuration block(s) for filtering. Detailed below.
+    :param List[pulumi.InputType['GetVpnAttachmentFilterArgs']] filters: Configuration block(s) for filtering. Detailed below.
     :param Dict[str, str] tags: A map of tags, each pair of which must exactly match a pair on the desired Transit Gateway VPN Attachment.
     :param str transit_gateway_id: Identifier of the EC2 Transit Gateway.
     :param str vpn_connection_id: Identifier of the EC2 VPN Connection.

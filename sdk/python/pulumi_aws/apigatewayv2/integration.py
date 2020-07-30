@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Integration']
+
 
 class Integration(pulumi.CustomResource):
     api_id: pulumi.Output[str] = pulumi.output_property("apiId")
@@ -74,7 +76,7 @@ class Integration(pulumi.CustomResource):
     Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000 milliseconds or 29 seconds.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id=None, connection_id=None, connection_type=None, content_handling_strategy=None, credentials_arn=None, description=None, integration_method=None, integration_type=None, integration_uri=None, passthrough_behavior=None, payload_format_version=None, request_templates=None, template_selection_expression=None, timeout_milliseconds=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, connection_id: Optional[pulumi.Input[str]] = None, connection_type: Optional[pulumi.Input[str]] = None, content_handling_strategy: Optional[pulumi.Input[str]] = None, credentials_arn: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, integration_method: Optional[pulumi.Input[str]] = None, integration_type: Optional[pulumi.Input[str]] = None, integration_uri: Optional[pulumi.Input[str]] = None, passthrough_behavior: Optional[pulumi.Input[str]] = None, payload_format_version: Optional[pulumi.Input[str]] = None, request_templates: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, template_selection_expression: Optional[pulumi.Input[str]] = None, timeout_milliseconds: Optional[pulumi.Input[float]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an Amazon API Gateway Version 2 integration.
         More information can be found in the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html).
@@ -175,7 +177,7 @@ class Integration(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, api_id=None, connection_id=None, connection_type=None, content_handling_strategy=None, credentials_arn=None, description=None, integration_method=None, integration_response_selection_expression=None, integration_type=None, integration_uri=None, passthrough_behavior=None, payload_format_version=None, request_templates=None, template_selection_expression=None, timeout_milliseconds=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, connection_id: Optional[pulumi.Input[str]] = None, connection_type: Optional[pulumi.Input[str]] = None, content_handling_strategy: Optional[pulumi.Input[str]] = None, credentials_arn: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, integration_method: Optional[pulumi.Input[str]] = None, integration_response_selection_expression: Optional[pulumi.Input[str]] = None, integration_type: Optional[pulumi.Input[str]] = None, integration_uri: Optional[pulumi.Input[str]] = None, passthrough_behavior: Optional[pulumi.Input[str]] = None, payload_format_version: Optional[pulumi.Input[str]] = None, request_templates: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, template_selection_expression: Optional[pulumi.Input[str]] = None, timeout_milliseconds: Optional[pulumi.Input[float]] = None) -> 'Integration':
         """
         Get an existing Integration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

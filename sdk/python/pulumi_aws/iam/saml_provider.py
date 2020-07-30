@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['SamlProvider']
+
 
 class SamlProvider(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -27,7 +29,7 @@ class SamlProvider(pulumi.CustomResource):
     The expiration date and time for the SAML provider in RFC1123 format, e.g. `Mon, 02 Jan 2006 15:04:05 MST`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, saml_metadata_document=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name: Optional[pulumi.Input[str]] = None, saml_metadata_document: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an IAM SAML provider.
 
@@ -75,7 +77,7 @@ class SamlProvider(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, name=None, saml_metadata_document=None, valid_until=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, saml_metadata_document: Optional[pulumi.Input[str]] = None, valid_until: Optional[pulumi.Input[str]] = None) -> 'SamlProvider':
         """
         Get an existing SamlProvider resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

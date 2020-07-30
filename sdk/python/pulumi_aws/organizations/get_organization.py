@@ -9,6 +9,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 from . import outputs
 
+__all__ = [
+    'GetOrganizationResult',
+    'AwaitableGetOrganizationResult',
+    'get_organization',
+]
+
 
 class GetOrganizationResult:
     """
@@ -103,7 +109,7 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
             roots=self.roots)
 
 
-def get_organization(opts=None):
+def get_organization(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationResult:
     """
     Get information about the organization that the user's account belongs to
 

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['VpnGatewayRoutePropagation']
+
 
 class VpnGatewayRoutePropagation(pulumi.CustomResource):
     route_table_id: pulumi.Output[str] = pulumi.output_property("routeTableId")
@@ -19,7 +21,7 @@ class VpnGatewayRoutePropagation(pulumi.CustomResource):
     The id of the `ec2.VpnGateway` to propagate routes from.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, route_table_id=None, vpn_gateway_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, route_table_id: Optional[pulumi.Input[str]] = None, vpn_gateway_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Requests automatic route propagation between a VPN gateway and a route table.
 
@@ -73,7 +75,7 @@ class VpnGatewayRoutePropagation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, route_table_id=None, vpn_gateway_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, route_table_id: Optional[pulumi.Input[str]] = None, vpn_gateway_id: Optional[pulumi.Input[str]] = None) -> 'VpnGatewayRoutePropagation':
         """
         Get an existing VpnGatewayRoutePropagation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

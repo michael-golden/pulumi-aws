@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ClusterNode',
+    'ClusterServerSideEncryption',
+    'ParameterGroupParameter',
+]
+
 @pulumi.output_type
 class ClusterNode(dict):
     address: Optional[str] = pulumi.output_property("address")

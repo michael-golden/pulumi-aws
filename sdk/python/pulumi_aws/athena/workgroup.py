@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Workgroup']
+
 
 class Workgroup(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -41,7 +43,7 @@ class Workgroup(pulumi.CustomResource):
     Key-value map of resource tags for the workgroup.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, configuration=None, description=None, force_destroy=None, name=None, state=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, configuration: Optional[pulumi.Input[pulumi.InputType['WorkgroupConfigurationArgs']]] = None, description: Optional[pulumi.Input[str]] = None, force_destroy: Optional[pulumi.Input[bool]] = None, name: Optional[pulumi.Input[str]] = None, state: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Athena Workgroup.
 
@@ -66,7 +68,7 @@ class Workgroup(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['WorkgroupConfigurationArgs'] configuration: Configuration block with various settings for the workgroup. Documented below.
+        :param pulumi.Input[pulumi.InputType['WorkgroupConfigurationArgs']] configuration: Configuration block with various settings for the workgroup. Documented below.
         :param pulumi.Input[str] description: Description of the workgroup.
         :param pulumi.Input[bool] force_destroy: The option to delete the workgroup and its contents even if the workgroup contains any named queries.
         :param pulumi.Input[str] name: Name of the workgroup.
@@ -104,7 +106,7 @@ class Workgroup(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, configuration=None, description=None, force_destroy=None, name=None, state=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, configuration: Optional[pulumi.Input[pulumi.InputType['WorkgroupConfigurationArgs']]] = None, description: Optional[pulumi.Input[str]] = None, force_destroy: Optional[pulumi.Input[bool]] = None, name: Optional[pulumi.Input[str]] = None, state: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Workgroup':
         """
         Get an existing Workgroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -113,7 +115,7 @@ class Workgroup(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: Amazon Resource Name (ARN) of the workgroup
-        :param pulumi.Input['WorkgroupConfigurationArgs'] configuration: Configuration block with various settings for the workgroup. Documented below.
+        :param pulumi.Input[pulumi.InputType['WorkgroupConfigurationArgs']] configuration: Configuration block with various settings for the workgroup. Documented below.
         :param pulumi.Input[str] description: Description of the workgroup.
         :param pulumi.Input[bool] force_destroy: The option to delete the workgroup and its contents even if the workgroup contains any named queries.
         :param pulumi.Input[str] name: Name of the workgroup.

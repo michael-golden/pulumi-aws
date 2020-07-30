@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetBucketObjectResult',
+    'AwaitableGetBucketObjectResult',
+    'get_bucket_object',
+]
+
 
 class GetBucketObjectResult:
     """
@@ -191,7 +197,7 @@ class AwaitableGetBucketObjectResult(GetBucketObjectResult):
             website_redirect_location=self.website_redirect_location)
 
 
-def get_bucket_object(bucket=None, key=None, range=None, tags=None, version_id=None, opts=None):
+def get_bucket_object(bucket: Optional[str] = None, key: Optional[str] = None, range: Optional[str] = None, tags: Optional[Dict[str, str]] = None, version_id: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBucketObjectResult:
     """
     The S3 object data source allows access to the metadata and
     _optionally_ (see below) content of an object stored inside S3 bucket.

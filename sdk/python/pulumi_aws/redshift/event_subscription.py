@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['EventSubscription']
+
 
 class EventSubscription(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -46,7 +48,7 @@ class EventSubscription(pulumi.CustomResource):
     A map of tags to assign to the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, enabled=None, event_categories=None, name=None, severity=None, sns_topic_arn=None, source_ids=None, source_type=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, enabled: Optional[pulumi.Input[bool]] = None, event_categories: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, severity: Optional[pulumi.Input[str]] = None, sns_topic_arn: Optional[pulumi.Input[str]] = None, source_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, source_type: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Redshift event subscription resource.
 
@@ -131,7 +133,7 @@ class EventSubscription(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, customer_aws_id=None, enabled=None, event_categories=None, name=None, severity=None, sns_topic_arn=None, source_ids=None, source_type=None, status=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, customer_aws_id: Optional[pulumi.Input[str]] = None, enabled: Optional[pulumi.Input[bool]] = None, event_categories: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, severity: Optional[pulumi.Input[str]] = None, sns_topic_arn: Optional[pulumi.Input[str]] = None, source_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, source_type: Optional[pulumi.Input[str]] = None, status: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'EventSubscription':
         """
         Get an existing EventSubscription resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

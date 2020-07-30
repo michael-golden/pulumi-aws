@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['BgpPeer']
+
 
 class BgpPeer(pulumi.CustomResource):
     address_family: pulumi.Output[str] = pulumi.output_property("addressFamily")
@@ -49,7 +51,7 @@ class BgpPeer(pulumi.CustomResource):
     The ID of the Direct Connect virtual interface on which to create the BGP peer.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, address_family=None, amazon_address=None, bgp_asn=None, bgp_auth_key=None, customer_address=None, virtual_interface_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, address_family: Optional[pulumi.Input[str]] = None, amazon_address: Optional[pulumi.Input[str]] = None, bgp_asn: Optional[pulumi.Input[float]] = None, bgp_auth_key: Optional[pulumi.Input[str]] = None, customer_address: Optional[pulumi.Input[str]] = None, virtual_interface_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Direct Connect BGP peer resource.
 
@@ -115,7 +117,7 @@ class BgpPeer(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, address_family=None, amazon_address=None, aws_device=None, bgp_asn=None, bgp_auth_key=None, bgp_peer_id=None, bgp_status=None, customer_address=None, virtual_interface_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, address_family: Optional[pulumi.Input[str]] = None, amazon_address: Optional[pulumi.Input[str]] = None, aws_device: Optional[pulumi.Input[str]] = None, bgp_asn: Optional[pulumi.Input[float]] = None, bgp_auth_key: Optional[pulumi.Input[str]] = None, bgp_peer_id: Optional[pulumi.Input[str]] = None, bgp_status: Optional[pulumi.Input[str]] = None, customer_address: Optional[pulumi.Input[str]] = None, virtual_interface_id: Optional[pulumi.Input[str]] = None) -> 'BgpPeer':
         """
         Get an existing BgpPeer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

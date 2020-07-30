@@ -8,6 +8,31 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'DomainAdvancedSecurityOptions',
+    'DomainAdvancedSecurityOptionsMasterUserOptions',
+    'DomainClusterConfig',
+    'DomainClusterConfigZoneAwarenessConfig',
+    'DomainCognitoOptions',
+    'DomainDomainEndpointOptions',
+    'DomainEbsOptions',
+    'DomainEncryptAtRest',
+    'DomainLogPublishingOption',
+    'DomainNodeToNodeEncryption',
+    'DomainSnapshotOptions',
+    'DomainVpcOptions',
+    'GetDomainAdvancedSecurityOption',
+    'GetDomainClusterConfig',
+    'GetDomainClusterConfigZoneAwarenessConfig',
+    'GetDomainCognitoOption',
+    'GetDomainEbsOption',
+    'GetDomainEncryptionAtRest',
+    'GetDomainLogPublishingOption',
+    'GetDomainNodeToNodeEncryption',
+    'GetDomainSnapshotOption',
+    'GetDomainVpcOption',
+]
+
 @pulumi.output_type
 class DomainAdvancedSecurityOptions(dict):
     enabled: bool = pulumi.output_property("enabled")

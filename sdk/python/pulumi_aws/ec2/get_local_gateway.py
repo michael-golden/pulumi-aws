@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetLocalGatewayResult',
+    'AwaitableGetLocalGatewayResult',
+    'get_local_gateway',
+]
+
 
 class GetLocalGatewayResult:
     """
@@ -60,7 +66,7 @@ class AwaitableGetLocalGatewayResult(GetLocalGatewayResult):
             tags=self.tags)
 
 
-def get_local_gateway(filters=None, id=None, state=None, tags=None, opts=None):
+def get_local_gateway(filters: Optional[List[pulumi.InputType['GetLocalGatewayFilterArgs']]] = None, id: Optional[str] = None, state: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLocalGatewayResult:
     """
     Provides details about an EC2 Local Gateway.
 
@@ -78,7 +84,7 @@ def get_local_gateway(filters=None, id=None, state=None, tags=None, opts=None):
     ```
 
 
-    :param List['GetLocalGatewayFilterArgs'] filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetLocalGatewayFilterArgs']] filters: Custom filter block as described below.
     :param str id: The id of the specific Local Gateway to retrieve.
     :param str state: The current state of the desired Local Gateway.
            Can be either `"pending"` or `"available"`.

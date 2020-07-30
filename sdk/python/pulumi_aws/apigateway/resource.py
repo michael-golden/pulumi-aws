@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Resource']
+
 
 class Resource(pulumi.CustomResource):
     parent_id: pulumi.Output[str] = pulumi.output_property("parentId")
@@ -27,7 +29,7 @@ class Resource(pulumi.CustomResource):
     The ID of the associated REST API
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, parent_id=None, path_part=None, rest_api=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, parent_id: Optional[pulumi.Input[str]] = None, path_part: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an API Gateway Resource.
 
@@ -84,7 +86,7 @@ class Resource(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, parent_id=None, path=None, path_part=None, rest_api=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, parent_id: Optional[pulumi.Input[str]] = None, path: Optional[pulumi.Input[str]] = None, path_part: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None) -> 'Resource':
         """
         Get an existing Resource resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

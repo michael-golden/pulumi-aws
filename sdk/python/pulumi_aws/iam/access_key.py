@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['AccessKey']
+
 
 class AccessKey(pulumi.CustomResource):
     encrypted_secret: pulumi.Output[str] = pulumi.output_property("encryptedSecret")
@@ -56,7 +58,7 @@ class AccessKey(pulumi.CustomResource):
     The IAM user to associate with this access key.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, pgp_key=None, status=None, user=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, pgp_key: Optional[pulumi.Input[str]] = None, status: Optional[pulumi.Input[str]] = None, user: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an IAM access key. This is a set of credentials that allow API requests to be made as an IAM user.
 
@@ -141,7 +143,7 @@ class AccessKey(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, encrypted_secret=None, key_fingerprint=None, pgp_key=None, secret=None, ses_smtp_password=None, ses_smtp_password_v4=None, status=None, user=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, encrypted_secret: Optional[pulumi.Input[str]] = None, key_fingerprint: Optional[pulumi.Input[str]] = None, pgp_key: Optional[pulumi.Input[str]] = None, secret: Optional[pulumi.Input[str]] = None, ses_smtp_password: Optional[pulumi.Input[str]] = None, ses_smtp_password_v4: Optional[pulumi.Input[str]] = None, status: Optional[pulumi.Input[str]] = None, user: Optional[pulumi.Input[str]] = None) -> 'AccessKey':
         """
         Get an existing AccessKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

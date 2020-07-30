@@ -9,6 +9,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 from . import outputs
 
+__all__ = [
+    'GetLaunchConfigurationResult',
+    'AwaitableGetLaunchConfigurationResult',
+    'get_launch_configuration',
+]
+
 
 class GetLaunchConfigurationResult:
     """
@@ -159,7 +165,7 @@ class AwaitableGetLaunchConfigurationResult(GetLaunchConfigurationResult):
             vpc_classic_link_security_groups=self.vpc_classic_link_security_groups)
 
 
-def get_launch_configuration(name=None, opts=None):
+def get_launch_configuration(name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLaunchConfigurationResult:
     """
     Provides information about a Launch Configuration.
 

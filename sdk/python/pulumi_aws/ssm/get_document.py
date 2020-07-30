@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetDocumentResult',
+    'AwaitableGetDocumentResult',
+    'get_document',
+]
+
 
 class GetDocumentResult:
     """
@@ -65,7 +71,7 @@ class AwaitableGetDocumentResult(GetDocumentResult):
             name=self.name)
 
 
-def get_document(document_format=None, document_version=None, name=None, opts=None):
+def get_document(document_format: Optional[str] = None, document_version: Optional[str] = None, name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDocumentResult:
     """
     Gets the contents of the specified Systems Manager document.
 

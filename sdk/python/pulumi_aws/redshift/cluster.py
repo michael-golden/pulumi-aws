@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Cluster']
+
 
 class Cluster(pulumi.CustomResource):
     allow_version_upgrade: pulumi.Output[Optional[bool]] = pulumi.output_property("allowVersionUpgrade")
@@ -164,7 +166,7 @@ class Cluster(pulumi.CustomResource):
     A list of Virtual Private Cloud (VPC) security groups to be associated with the cluster.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allow_version_upgrade=None, automated_snapshot_retention_period=None, availability_zone=None, cluster_identifier=None, cluster_parameter_group_name=None, cluster_public_key=None, cluster_revision_number=None, cluster_security_groups=None, cluster_subnet_group_name=None, cluster_type=None, cluster_version=None, database_name=None, elastic_ip=None, encrypted=None, endpoint=None, enhanced_vpc_routing=None, final_snapshot_identifier=None, iam_roles=None, kms_key_id=None, logging=None, master_password=None, master_username=None, node_type=None, number_of_nodes=None, owner_account=None, port=None, preferred_maintenance_window=None, publicly_accessible=None, skip_final_snapshot=None, snapshot_cluster_identifier=None, snapshot_copy=None, snapshot_identifier=None, tags=None, vpc_security_group_ids=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allow_version_upgrade: Optional[pulumi.Input[bool]] = None, automated_snapshot_retention_period: Optional[pulumi.Input[float]] = None, availability_zone: Optional[pulumi.Input[str]] = None, cluster_identifier: Optional[pulumi.Input[str]] = None, cluster_parameter_group_name: Optional[pulumi.Input[str]] = None, cluster_public_key: Optional[pulumi.Input[str]] = None, cluster_revision_number: Optional[pulumi.Input[str]] = None, cluster_security_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, cluster_subnet_group_name: Optional[pulumi.Input[str]] = None, cluster_type: Optional[pulumi.Input[str]] = None, cluster_version: Optional[pulumi.Input[str]] = None, database_name: Optional[pulumi.Input[str]] = None, elastic_ip: Optional[pulumi.Input[str]] = None, encrypted: Optional[pulumi.Input[bool]] = None, endpoint: Optional[pulumi.Input[str]] = None, enhanced_vpc_routing: Optional[pulumi.Input[bool]] = None, final_snapshot_identifier: Optional[pulumi.Input[str]] = None, iam_roles: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, logging: Optional[pulumi.Input[pulumi.InputType['ClusterLoggingArgs']]] = None, master_password: Optional[pulumi.Input[str]] = None, master_username: Optional[pulumi.Input[str]] = None, node_type: Optional[pulumi.Input[str]] = None, number_of_nodes: Optional[pulumi.Input[float]] = None, owner_account: Optional[pulumi.Input[str]] = None, port: Optional[pulumi.Input[float]] = None, preferred_maintenance_window: Optional[pulumi.Input[str]] = None, publicly_accessible: Optional[pulumi.Input[bool]] = None, skip_final_snapshot: Optional[pulumi.Input[bool]] = None, snapshot_cluster_identifier: Optional[pulumi.Input[str]] = None, snapshot_copy: Optional[pulumi.Input[pulumi.InputType['ClusterSnapshotCopyArgs']]] = None, snapshot_identifier: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Redshift Cluster Resource.
 
@@ -209,7 +211,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] final_snapshot_identifier: The identifier of the final snapshot that is to be created immediately before deleting the cluster. If this parameter is provided, `skip_final_snapshot` must be false.
         :param pulumi.Input[List[pulumi.Input[str]]] iam_roles: A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can be associated to the cluster at any time.
         :param pulumi.Input[str] kms_key_id: The ARN for the KMS encryption key. When specifying `kms_key_id`, `encrypted` needs to be set to true.
-        :param pulumi.Input['ClusterLoggingArgs'] logging: Logging, documented below.
+        :param pulumi.Input[pulumi.InputType['ClusterLoggingArgs']] logging: Logging, documented below.
         :param pulumi.Input[str] master_password: Password for the master DB user.
                Note that this may show up in logs, and it will be stored in the state file. Password must contain at least 8 chars and
                contain at least one uppercase letter, one lowercase letter, and one number.
@@ -224,7 +226,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[bool] publicly_accessible: If true, the cluster can be accessed from a public network. Default is `true`.
         :param pulumi.Input[bool] skip_final_snapshot: Determines whether a final snapshot of the cluster is created before Amazon Redshift deletes the cluster. If true , a final cluster snapshot is not created. If false , a final cluster snapshot is created before the cluster is deleted. Default is false.
         :param pulumi.Input[str] snapshot_cluster_identifier: The name of the cluster the source snapshot was created from.
-        :param pulumi.Input['ClusterSnapshotCopyArgs'] snapshot_copy: Configuration of automatic copy of snapshots from one region to another. Documented below.
+        :param pulumi.Input[pulumi.InputType['ClusterSnapshotCopyArgs']] snapshot_copy: Configuration of automatic copy of snapshots from one region to another. Documented below.
         :param pulumi.Input[str] snapshot_identifier: The name of the snapshot from which to create the new cluster.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[List[pulumi.Input[str]]] vpc_security_group_ids: A list of Virtual Private Cloud (VPC) security groups to be associated with the cluster.
@@ -293,7 +295,7 @@ class Cluster(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allow_version_upgrade=None, arn=None, automated_snapshot_retention_period=None, availability_zone=None, cluster_identifier=None, cluster_parameter_group_name=None, cluster_public_key=None, cluster_revision_number=None, cluster_security_groups=None, cluster_subnet_group_name=None, cluster_type=None, cluster_version=None, database_name=None, dns_name=None, elastic_ip=None, encrypted=None, endpoint=None, enhanced_vpc_routing=None, final_snapshot_identifier=None, iam_roles=None, kms_key_id=None, logging=None, master_password=None, master_username=None, node_type=None, number_of_nodes=None, owner_account=None, port=None, preferred_maintenance_window=None, publicly_accessible=None, skip_final_snapshot=None, snapshot_cluster_identifier=None, snapshot_copy=None, snapshot_identifier=None, tags=None, vpc_security_group_ids=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, allow_version_upgrade: Optional[pulumi.Input[bool]] = None, arn: Optional[pulumi.Input[str]] = None, automated_snapshot_retention_period: Optional[pulumi.Input[float]] = None, availability_zone: Optional[pulumi.Input[str]] = None, cluster_identifier: Optional[pulumi.Input[str]] = None, cluster_parameter_group_name: Optional[pulumi.Input[str]] = None, cluster_public_key: Optional[pulumi.Input[str]] = None, cluster_revision_number: Optional[pulumi.Input[str]] = None, cluster_security_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, cluster_subnet_group_name: Optional[pulumi.Input[str]] = None, cluster_type: Optional[pulumi.Input[str]] = None, cluster_version: Optional[pulumi.Input[str]] = None, database_name: Optional[pulumi.Input[str]] = None, dns_name: Optional[pulumi.Input[str]] = None, elastic_ip: Optional[pulumi.Input[str]] = None, encrypted: Optional[pulumi.Input[bool]] = None, endpoint: Optional[pulumi.Input[str]] = None, enhanced_vpc_routing: Optional[pulumi.Input[bool]] = None, final_snapshot_identifier: Optional[pulumi.Input[str]] = None, iam_roles: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, logging: Optional[pulumi.Input[pulumi.InputType['ClusterLoggingArgs']]] = None, master_password: Optional[pulumi.Input[str]] = None, master_username: Optional[pulumi.Input[str]] = None, node_type: Optional[pulumi.Input[str]] = None, number_of_nodes: Optional[pulumi.Input[float]] = None, owner_account: Optional[pulumi.Input[str]] = None, port: Optional[pulumi.Input[float]] = None, preferred_maintenance_window: Optional[pulumi.Input[str]] = None, publicly_accessible: Optional[pulumi.Input[bool]] = None, skip_final_snapshot: Optional[pulumi.Input[bool]] = None, snapshot_cluster_identifier: Optional[pulumi.Input[str]] = None, snapshot_copy: Optional[pulumi.Input[pulumi.InputType['ClusterSnapshotCopyArgs']]] = None, snapshot_identifier: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -325,7 +327,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] final_snapshot_identifier: The identifier of the final snapshot that is to be created immediately before deleting the cluster. If this parameter is provided, `skip_final_snapshot` must be false.
         :param pulumi.Input[List[pulumi.Input[str]]] iam_roles: A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can be associated to the cluster at any time.
         :param pulumi.Input[str] kms_key_id: The ARN for the KMS encryption key. When specifying `kms_key_id`, `encrypted` needs to be set to true.
-        :param pulumi.Input['ClusterLoggingArgs'] logging: Logging, documented below.
+        :param pulumi.Input[pulumi.InputType['ClusterLoggingArgs']] logging: Logging, documented below.
         :param pulumi.Input[str] master_password: Password for the master DB user.
                Note that this may show up in logs, and it will be stored in the state file. Password must contain at least 8 chars and
                contain at least one uppercase letter, one lowercase letter, and one number.
@@ -340,7 +342,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[bool] publicly_accessible: If true, the cluster can be accessed from a public network. Default is `true`.
         :param pulumi.Input[bool] skip_final_snapshot: Determines whether a final snapshot of the cluster is created before Amazon Redshift deletes the cluster. If true , a final cluster snapshot is not created. If false , a final cluster snapshot is created before the cluster is deleted. Default is false.
         :param pulumi.Input[str] snapshot_cluster_identifier: The name of the cluster the source snapshot was created from.
-        :param pulumi.Input['ClusterSnapshotCopyArgs'] snapshot_copy: Configuration of automatic copy of snapshots from one region to another. Documented below.
+        :param pulumi.Input[pulumi.InputType['ClusterSnapshotCopyArgs']] snapshot_copy: Configuration of automatic copy of snapshots from one region to another. Documented below.
         :param pulumi.Input[str] snapshot_identifier: The name of the snapshot from which to create the new cluster.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[List[pulumi.Input[str]]] vpc_security_group_ids: A list of Virtual Private Cloud (VPC) security groups to be associated with the cluster.

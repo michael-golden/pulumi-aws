@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'AssumeRole',
+    'Endpoints',
+    'IgnoreTags',
+]
+
 @pulumi.output_type
 class AssumeRole(dict):
     external_id: Optional[str] = pulumi.output_property("externalId")

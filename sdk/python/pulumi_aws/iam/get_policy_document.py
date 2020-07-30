@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetPolicyDocumentResult',
+    'AwaitableGetPolicyDocumentResult',
+    'get_policy_document',
+]
+
 
 class GetPolicyDocumentResult:
     """
@@ -61,7 +67,7 @@ class AwaitableGetPolicyDocumentResult(GetPolicyDocumentResult):
             version=self.version)
 
 
-def get_policy_document(override_json=None, policy_id=None, source_json=None, statements=None, version=None, opts=None):
+def get_policy_document(override_json: Optional[str] = None, policy_id: Optional[str] = None, source_json: Optional[str] = None, statements: Optional[List[pulumi.InputType['GetPolicyDocumentStatementArgs']]] = None, version: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPolicyDocumentResult:
     """
     Generates an IAM policy document in JSON format.
 
@@ -262,7 +268,7 @@ def get_policy_document(override_json=None, policy_id=None, source_json=None, st
            current policy document.  Statements with non-blank `sid`s in the current
            policy document will overwrite statements with the same `sid` in the source
            json.  Statements without an `sid` cannot be overwritten.
-    :param List['GetPolicyDocumentStatementArgs'] statements: A nested configuration block (described below)
+    :param List[pulumi.InputType['GetPolicyDocumentStatementArgs']] statements: A nested configuration block (described below)
            configuring one *statement* to be included in the policy document.
     :param str version: IAM policy document version. Valid values: `2008-10-17`, `2012-10-17`. Defaults to `2012-10-17`. For more information, see the [AWS IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_version.html).
     """

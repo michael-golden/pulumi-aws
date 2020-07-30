@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Route']
+
 
 class Route(pulumi.CustomResource):
     destination_cidr_block: pulumi.Output[Optional[str]] = pulumi.output_property("destinationCidrBlock")
@@ -55,7 +57,7 @@ class Route(pulumi.CustomResource):
     Identifier of a VPC peering connection.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, destination_cidr_block=None, destination_ipv6_cidr_block=None, egress_only_gateway_id=None, gateway_id=None, instance_id=None, nat_gateway_id=None, network_interface_id=None, route_table_id=None, transit_gateway_id=None, vpc_peering_connection_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, destination_cidr_block: Optional[pulumi.Input[str]] = None, destination_ipv6_cidr_block: Optional[pulumi.Input[str]] = None, egress_only_gateway_id: Optional[pulumi.Input[str]] = None, gateway_id: Optional[pulumi.Input[str]] = None, instance_id: Optional[pulumi.Input[str]] = None, nat_gateway_id: Optional[pulumi.Input[str]] = None, network_interface_id: Optional[pulumi.Input[str]] = None, route_table_id: Optional[pulumi.Input[str]] = None, transit_gateway_id: Optional[pulumi.Input[str]] = None, vpc_peering_connection_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to create a routing table entry (a route) in a VPC routing table.
 
@@ -146,7 +148,7 @@ class Route(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, destination_cidr_block=None, destination_ipv6_cidr_block=None, destination_prefix_list_id=None, egress_only_gateway_id=None, gateway_id=None, instance_id=None, instance_owner_id=None, nat_gateway_id=None, network_interface_id=None, origin=None, route_table_id=None, state=None, transit_gateway_id=None, vpc_peering_connection_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, destination_cidr_block: Optional[pulumi.Input[str]] = None, destination_ipv6_cidr_block: Optional[pulumi.Input[str]] = None, destination_prefix_list_id: Optional[pulumi.Input[str]] = None, egress_only_gateway_id: Optional[pulumi.Input[str]] = None, gateway_id: Optional[pulumi.Input[str]] = None, instance_id: Optional[pulumi.Input[str]] = None, instance_owner_id: Optional[pulumi.Input[str]] = None, nat_gateway_id: Optional[pulumi.Input[str]] = None, network_interface_id: Optional[pulumi.Input[str]] = None, origin: Optional[pulumi.Input[str]] = None, route_table_id: Optional[pulumi.Input[str]] = None, state: Optional[pulumi.Input[str]] = None, transit_gateway_id: Optional[pulumi.Input[str]] = None, vpc_peering_connection_id: Optional[pulumi.Input[str]] = None) -> 'Route':
         """
         Get an existing Route resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

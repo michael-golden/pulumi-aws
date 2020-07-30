@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['KeyPair']
+
 
 class KeyPair(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -51,7 +53,7 @@ class KeyPair(pulumi.CustomResource):
     imported into Lightsail
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, name_prefix=None, pgp_key=None, public_key=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, pgp_key: Optional[pulumi.Input[str]] = None, public_key: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Lightsail Key Pair, for use with Lightsail Instances. These key pairs
         are separate from EC2 Key Pairs, and must be created or imported for use with
@@ -129,7 +131,7 @@ class KeyPair(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, encrypted_fingerprint=None, encrypted_private_key=None, fingerprint=None, name=None, name_prefix=None, pgp_key=None, private_key=None, public_key=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, encrypted_fingerprint: Optional[pulumi.Input[str]] = None, encrypted_private_key: Optional[pulumi.Input[str]] = None, fingerprint: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, pgp_key: Optional[pulumi.Input[str]] = None, private_key: Optional[pulumi.Input[str]] = None, public_key: Optional[pulumi.Input[str]] = None) -> 'KeyPair':
         """
         Get an existing KeyPair resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

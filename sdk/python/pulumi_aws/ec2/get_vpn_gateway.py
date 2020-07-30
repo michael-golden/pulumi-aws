@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetVpnGatewayResult',
+    'AwaitableGetVpnGatewayResult',
+    'get_vpn_gateway',
+]
+
 
 class GetVpnGatewayResult:
     """
@@ -59,7 +65,7 @@ class AwaitableGetVpnGatewayResult(GetVpnGatewayResult):
             tags=self.tags)
 
 
-def get_vpn_gateway(amazon_side_asn=None, attached_vpc_id=None, availability_zone=None, filters=None, id=None, state=None, tags=None, opts=None):
+def get_vpn_gateway(amazon_side_asn: Optional[str] = None, attached_vpc_id: Optional[str] = None, availability_zone: Optional[str] = None, filters: Optional[List[pulumi.InputType['GetVpnGatewayFilterArgs']]] = None, id: Optional[str] = None, state: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpnGatewayResult:
     """
     The VPN Gateway data source provides details about
     a specific VPN gateway.
@@ -81,7 +87,7 @@ def get_vpn_gateway(amazon_side_asn=None, attached_vpc_id=None, availability_zon
     :param str amazon_side_asn: The Autonomous System Number (ASN) for the Amazon side of the specific VPN Gateway to retrieve.
     :param str attached_vpc_id: The ID of a VPC attached to the specific VPN Gateway to retrieve.
     :param str availability_zone: The Availability Zone of the specific VPN Gateway to retrieve.
-    :param List['GetVpnGatewayFilterArgs'] filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetVpnGatewayFilterArgs']] filters: Custom filter block as described below.
     :param str id: The ID of the specific VPN Gateway to retrieve.
     :param str state: The state of the specific VPN Gateway to retrieve.
     :param Dict[str, str] tags: A map of tags, each pair of which must exactly match

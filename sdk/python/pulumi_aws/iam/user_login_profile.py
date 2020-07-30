@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['UserLoginProfile']
+
 
 class UserLoginProfile(pulumi.CustomResource):
     encrypted_password: pulumi.Output[str] = pulumi.output_property("encryptedPassword")
@@ -35,7 +37,7 @@ class UserLoginProfile(pulumi.CustomResource):
     The IAM user's name.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, password_length=None, password_reset_required=None, pgp_key=None, user=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, password_length: Optional[pulumi.Input[float]] = None, password_reset_required: Optional[pulumi.Input[bool]] = None, pgp_key: Optional[pulumi.Input[str]] = None, user: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an IAM User Login Profile with limited support for password creation during this provider resource creation. Uses PGP to encrypt the password for safe transport to the user. PGP keys can be obtained from Keybase.
 
@@ -97,7 +99,7 @@ class UserLoginProfile(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, encrypted_password=None, key_fingerprint=None, password_length=None, password_reset_required=None, pgp_key=None, user=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, encrypted_password: Optional[pulumi.Input[str]] = None, key_fingerprint: Optional[pulumi.Input[str]] = None, password_length: Optional[pulumi.Input[float]] = None, password_reset_required: Optional[pulumi.Input[bool]] = None, pgp_key: Optional[pulumi.Input[str]] = None, user: Optional[pulumi.Input[str]] = None) -> 'UserLoginProfile':
         """
         Get an existing UserLoginProfile resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

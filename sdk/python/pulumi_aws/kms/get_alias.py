@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetAliasResult',
+    'AwaitableGetAliasResult',
+    'get_alias',
+]
+
 
 class GetAliasResult:
     """
@@ -57,7 +63,7 @@ class AwaitableGetAliasResult(GetAliasResult):
             target_key_id=self.target_key_id)
 
 
-def get_alias(name=None, opts=None):
+def get_alias(name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAliasResult:
     """
     Use this data source to get the ARN of a KMS key alias.
     By using this data source, you can reference key alias

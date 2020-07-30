@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ApplicationVersion']
+
 
 class ApplicationVersion(pulumi.CustomResource):
     application: pulumi.Output[str] = pulumi.output_property("application")
@@ -44,7 +46,7 @@ class ApplicationVersion(pulumi.CustomResource):
     Key-value map of tags for the Elastic Beanstalk Application Version.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application=None, bucket=None, description=None, force_delete=None, key=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application: Optional[pulumi.Input[str]] = None, bucket: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, force_delete: Optional[pulumi.Input[bool]] = None, key: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Elastic Beanstalk Application Version Resource. Elastic Beanstalk allows
         you to deploy and manage applications in the AWS cloud without worrying about
@@ -126,7 +128,7 @@ class ApplicationVersion(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, application=None, arn=None, bucket=None, description=None, force_delete=None, key=None, name=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, application: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, bucket: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, force_delete: Optional[pulumi.Input[bool]] = None, key: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'ApplicationVersion':
         """
         Get an existing ApplicationVersion resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

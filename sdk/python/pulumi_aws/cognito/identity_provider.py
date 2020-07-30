@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['IdentityProvider']
+
 
 class IdentityProvider(pulumi.CustomResource):
     attribute_mapping: pulumi.Output[Dict[str, str]] = pulumi.output_property("attributeMapping")
@@ -35,7 +37,7 @@ class IdentityProvider(pulumi.CustomResource):
     The user pool id
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, attribute_mapping=None, idp_identifiers=None, provider_details=None, provider_name=None, provider_type=None, user_pool_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, attribute_mapping: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, idp_identifiers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, provider_details: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, provider_name: Optional[pulumi.Input[str]] = None, provider_type: Optional[pulumi.Input[str]] = None, user_pool_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Cognito User Identity Provider resource.
 
@@ -108,7 +110,7 @@ class IdentityProvider(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, attribute_mapping=None, idp_identifiers=None, provider_details=None, provider_name=None, provider_type=None, user_pool_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, attribute_mapping: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, idp_identifiers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, provider_details: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, provider_name: Optional[pulumi.Input[str]] = None, provider_type: Optional[pulumi.Input[str]] = None, user_pool_id: Optional[pulumi.Input[str]] = None) -> 'IdentityProvider':
         """
         Get an existing IdentityProvider resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

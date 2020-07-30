@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['StateMachine']
+
 
 class StateMachine(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -39,7 +41,7 @@ class StateMachine(pulumi.CustomResource):
     Key-value map of resource tags
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, definition=None, name=None, role_arn=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, definition: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Step Function State Machine resource
 
@@ -108,7 +110,7 @@ class StateMachine(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, creation_date=None, definition=None, name=None, role_arn=None, status=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, creation_date: Optional[pulumi.Input[str]] = None, definition: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None, status: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'StateMachine':
         """
         Get an existing StateMachine resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

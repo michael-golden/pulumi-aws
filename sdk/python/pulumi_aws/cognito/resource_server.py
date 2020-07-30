@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['ResourceServer']
+
 
 class ResourceServer(pulumi.CustomResource):
     identifier: pulumi.Output[str] = pulumi.output_property("identifier")
@@ -30,7 +32,7 @@ class ResourceServer(pulumi.CustomResource):
     """
     user_pool_id: pulumi.Output[str] = pulumi.output_property("userPoolId")
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, identifier=None, name=None, scopes=None, user_pool_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, identifier: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, scopes: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ResourceServerScopeArgs']]]]] = None, user_pool_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Cognito Resource Server.
 
@@ -66,7 +68,7 @@ class ResourceServer(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] identifier: An identifier for the resource server.
         :param pulumi.Input[str] name: A name for the resource server.
-        :param pulumi.Input[List[pulumi.Input['ResourceServerScopeArgs']]] scopes: A list of Authorization Scope.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ResourceServerScopeArgs']]]] scopes: A list of Authorization Scope.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -101,7 +103,7 @@ class ResourceServer(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, identifier=None, name=None, scope_identifiers=None, scopes=None, user_pool_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, identifier: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, scope_identifiers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, scopes: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ResourceServerScopeArgs']]]]] = None, user_pool_id: Optional[pulumi.Input[str]] = None) -> 'ResourceServer':
         """
         Get an existing ResourceServer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -112,7 +114,7 @@ class ResourceServer(pulumi.CustomResource):
         :param pulumi.Input[str] identifier: An identifier for the resource server.
         :param pulumi.Input[str] name: A name for the resource server.
         :param pulumi.Input[List[pulumi.Input[str]]] scope_identifiers: A list of all scopes configured for this resource server in the format identifier/scope_name.
-        :param pulumi.Input[List[pulumi.Input['ResourceServerScopeArgs']]] scopes: A list of Authorization Scope.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ResourceServerScopeArgs']]]] scopes: A list of Authorization Scope.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

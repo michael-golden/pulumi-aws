@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['TopicSubscription']
+
 
 class TopicSubscription(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -47,7 +49,7 @@ class TopicSubscription(pulumi.CustomResource):
     The ARN of the SNS topic to subscribe to
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, confirmation_timeout_in_minutes=None, delivery_policy=None, endpoint=None, endpoint_auto_confirms=None, filter_policy=None, protocol=None, raw_message_delivery=None, topic=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, confirmation_timeout_in_minutes: Optional[pulumi.Input[float]] = None, delivery_policy: Optional[pulumi.Input[str]] = None, endpoint: Optional[pulumi.Input[str]] = None, endpoint_auto_confirms: Optional[pulumi.Input[bool]] = None, filter_policy: Optional[pulumi.Input[str]] = None, protocol: Optional[pulumi.Input[str]] = None, raw_message_delivery: Optional[pulumi.Input[bool]] = None, topic: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource for subscribing to SNS topics. Requires that an SNS topic exist for the subscription to attach to.
         This resource allows you to automatically place messages sent to SNS topics in SQS queues, send them as HTTP(S) POST requests
@@ -261,7 +263,7 @@ class TopicSubscription(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, confirmation_timeout_in_minutes=None, delivery_policy=None, endpoint=None, endpoint_auto_confirms=None, filter_policy=None, protocol=None, raw_message_delivery=None, topic=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, confirmation_timeout_in_minutes: Optional[pulumi.Input[float]] = None, delivery_policy: Optional[pulumi.Input[str]] = None, endpoint: Optional[pulumi.Input[str]] = None, endpoint_auto_confirms: Optional[pulumi.Input[bool]] = None, filter_policy: Optional[pulumi.Input[str]] = None, protocol: Optional[pulumi.Input[str]] = None, raw_message_delivery: Optional[pulumi.Input[bool]] = None, topic: Optional[pulumi.Input[str]] = None) -> 'TopicSubscription':
         """
         Get an existing TopicSubscription resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

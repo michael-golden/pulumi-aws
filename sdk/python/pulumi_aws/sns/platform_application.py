@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['PlatformApplication']
+
 
 class PlatformApplication(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -59,7 +61,7 @@ class PlatformApplication(pulumi.CustomResource):
     The percentage of success to sample (0-100)
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, event_delivery_failure_topic_arn=None, event_endpoint_created_topic_arn=None, event_endpoint_deleted_topic_arn=None, event_endpoint_updated_topic_arn=None, failure_feedback_role_arn=None, name=None, platform=None, platform_credential=None, platform_principal=None, success_feedback_role_arn=None, success_feedback_sample_rate=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, event_delivery_failure_topic_arn: Optional[pulumi.Input[str]] = None, event_endpoint_created_topic_arn: Optional[pulumi.Input[str]] = None, event_endpoint_deleted_topic_arn: Optional[pulumi.Input[str]] = None, event_endpoint_updated_topic_arn: Optional[pulumi.Input[str]] = None, failure_feedback_role_arn: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, platform: Optional[pulumi.Input[str]] = None, platform_credential: Optional[pulumi.Input[str]] = None, platform_principal: Optional[pulumi.Input[str]] = None, success_feedback_role_arn: Optional[pulumi.Input[str]] = None, success_feedback_sample_rate: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an SNS platform application resource
 
@@ -140,7 +142,7 @@ class PlatformApplication(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, event_delivery_failure_topic_arn=None, event_endpoint_created_topic_arn=None, event_endpoint_deleted_topic_arn=None, event_endpoint_updated_topic_arn=None, failure_feedback_role_arn=None, name=None, platform=None, platform_credential=None, platform_principal=None, success_feedback_role_arn=None, success_feedback_sample_rate=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, event_delivery_failure_topic_arn: Optional[pulumi.Input[str]] = None, event_endpoint_created_topic_arn: Optional[pulumi.Input[str]] = None, event_endpoint_deleted_topic_arn: Optional[pulumi.Input[str]] = None, event_endpoint_updated_topic_arn: Optional[pulumi.Input[str]] = None, failure_feedback_role_arn: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, platform: Optional[pulumi.Input[str]] = None, platform_credential: Optional[pulumi.Input[str]] = None, platform_principal: Optional[pulumi.Input[str]] = None, success_feedback_role_arn: Optional[pulumi.Input[str]] = None, success_feedback_sample_rate: Optional[pulumi.Input[str]] = None) -> 'PlatformApplication':
         """
         Get an existing PlatformApplication resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

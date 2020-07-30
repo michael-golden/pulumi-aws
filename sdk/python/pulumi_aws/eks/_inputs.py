@@ -8,6 +8,20 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ClusterCertificateAuthorityArgs',
+    'ClusterEncryptionConfigArgs',
+    'ClusterEncryptionConfigProviderArgs',
+    'ClusterIdentityArgs',
+    'ClusterIdentityOidcArgs',
+    'ClusterVpcConfigArgs',
+    'FargateProfileSelectorArgs',
+    'NodeGroupRemoteAccessArgs',
+    'NodeGroupResourceArgs',
+    'NodeGroupResourceAutoscalingGroupArgs',
+    'NodeGroupScalingConfigArgs',
+]
+
 @pulumi.input_type
 class ClusterCertificateAuthorityArgs:
     data: Optional[pulumi.Input[str]] = pulumi.input_property("data")

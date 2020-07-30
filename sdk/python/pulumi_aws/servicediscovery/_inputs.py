@@ -8,6 +8,13 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ServiceDnsConfigArgs',
+    'ServiceDnsConfigDnsRecordArgs',
+    'ServiceHealthCheckConfigArgs',
+    'ServiceHealthCheckCustomConfigArgs',
+]
+
 @pulumi.input_type
 class ServiceDnsConfigArgs:
     dns_records: pulumi.Input[List[pulumi.Input['ServiceDnsConfigDnsRecordArgs']]] = pulumi.input_property("dnsRecords")

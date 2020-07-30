@@ -8,6 +8,13 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'DatabaseEncryptionConfiguration',
+    'WorkgroupConfiguration',
+    'WorkgroupConfigurationResultConfiguration',
+    'WorkgroupConfigurationResultConfigurationEncryptionConfiguration',
+]
+
 @pulumi.output_type
 class DatabaseEncryptionConfiguration(dict):
     encryption_option: str = pulumi.output_property("encryptionOption")

@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Account']
+
 
 class Account(pulumi.CustomResource):
     cloudwatch_role_arn: pulumi.Output[Optional[str]] = pulumi.output_property("cloudwatchRoleArn")
@@ -23,7 +25,7 @@ class Account(pulumi.CustomResource):
     Account-Level throttle settings. See exported fields below.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cloudwatch_role_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cloudwatch_role_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a settings of an API Gateway Account. Settings is applied region-wide per `provider` block.
 
@@ -107,7 +109,7 @@ class Account(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, cloudwatch_role_arn=None, throttle_settings=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, cloudwatch_role_arn: Optional[pulumi.Input[str]] = None, throttle_settings: Optional[pulumi.Input[pulumi.InputType['AccountThrottleSettingsArgs']]] = None) -> 'Account':
         """
         Get an existing Account resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -118,7 +120,7 @@ class Account(pulumi.CustomResource):
         :param pulumi.Input[str] cloudwatch_role_arn: The ARN of an IAM role for CloudWatch (to allow logging & monitoring).
                See more [in AWS Docs](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-stage-settings.html#how-to-stage-settings-console).
                Logging & monitoring can be enabled/disabled and otherwise tuned on the API Gateway Stage level.
-        :param pulumi.Input['AccountThrottleSettingsArgs'] throttle_settings: Account-Level throttle settings. See exported fields below.
+        :param pulumi.Input[pulumi.InputType['AccountThrottleSettingsArgs']] throttle_settings: Account-Level throttle settings. See exported fields below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

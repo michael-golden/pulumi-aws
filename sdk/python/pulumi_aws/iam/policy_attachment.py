@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['PolicyAttachment']
+
 
 class PolicyAttachment(pulumi.CustomResource):
     groups: pulumi.Output[Optional[List[str]]] = pulumi.output_property("groups")
@@ -31,7 +33,7 @@ class PolicyAttachment(pulumi.CustomResource):
     The user(s) the policy should be applied to
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, groups=None, name=None, policy_arn=None, roles=None, users=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, policy_arn: Optional[pulumi.Input[str]] = None, roles: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, users: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Attaches a Managed IAM Policy to user(s), role(s), and/or group(s)
 
@@ -124,7 +126,7 @@ class PolicyAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, groups=None, name=None, policy_arn=None, roles=None, users=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, policy_arn: Optional[pulumi.Input[str]] = None, roles: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, users: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'PolicyAttachment':
         """
         Get an existing PolicyAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

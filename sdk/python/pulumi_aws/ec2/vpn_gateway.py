@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['VpnGateway']
+
 
 class VpnGateway(pulumi.CustomResource):
     amazon_side_asn: pulumi.Output[str] = pulumi.output_property("amazonSideAsn")
@@ -31,7 +33,7 @@ class VpnGateway(pulumi.CustomResource):
     The VPC ID to create in.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, amazon_side_asn=None, availability_zone=None, tags=None, vpc_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, amazon_side_asn: Optional[pulumi.Input[str]] = None, availability_zone: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to create a VPC VPN Gateway.
 
@@ -84,7 +86,7 @@ class VpnGateway(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, amazon_side_asn=None, arn=None, availability_zone=None, tags=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, amazon_side_asn: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, availability_zone: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'VpnGateway':
         """
         Get an existing VpnGateway resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

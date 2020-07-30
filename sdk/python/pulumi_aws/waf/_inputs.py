@@ -8,6 +8,32 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ByteMatchSetByteMatchTupleArgs',
+    'ByteMatchSetByteMatchTupleFieldToMatchArgs',
+    'GeoMatchSetGeoMatchConstraintArgs',
+    'IpSetIpSetDescriptorArgs',
+    'RateBasedRulePredicateArgs',
+    'RegexMatchSetRegexMatchTupleArgs',
+    'RegexMatchSetRegexMatchTupleFieldToMatchArgs',
+    'RuleGroupActivatedRuleArgs',
+    'RuleGroupActivatedRuleActionArgs',
+    'RulePredicateArgs',
+    'SizeConstraintSetSizeConstraintArgs',
+    'SizeConstraintSetSizeConstraintFieldToMatchArgs',
+    'SqlInjectionMatchSetSqlInjectionMatchTupleArgs',
+    'SqlInjectionMatchSetSqlInjectionMatchTupleFieldToMatchArgs',
+    'WebAclDefaultActionArgs',
+    'WebAclLoggingConfigurationArgs',
+    'WebAclLoggingConfigurationRedactedFieldsArgs',
+    'WebAclLoggingConfigurationRedactedFieldsFieldToMatchArgs',
+    'WebAclRuleArgs',
+    'WebAclRuleActionArgs',
+    'WebAclRuleOverrideActionArgs',
+    'XssMatchSetXssMatchTupleArgs',
+    'XssMatchSetXssMatchTupleFieldToMatchArgs',
+]
+
 @pulumi.input_type
 class ByteMatchSetByteMatchTupleArgs:
     field_to_match: pulumi.Input['ByteMatchSetByteMatchTupleFieldToMatchArgs'] = pulumi.input_property("fieldToMatch")

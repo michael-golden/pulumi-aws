@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetPolicyResult',
+    'AwaitableGetPolicyResult',
+    'get_policy',
+]
+
 
 class GetPolicyResult:
     """
@@ -67,7 +73,7 @@ class AwaitableGetPolicyResult(GetPolicyResult):
             policy=self.policy)
 
 
-def get_policy(arn=None, opts=None):
+def get_policy(arn: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPolicyResult:
     """
     This data source can be used to fetch information about a specific
     IAM policy.

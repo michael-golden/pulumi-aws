@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['VaultLock']
+
 
 class VaultLock(pulumi.CustomResource):
     complete_lock: pulumi.Output[bool] = pulumi.output_property("completeLock")
@@ -27,7 +29,7 @@ class VaultLock(pulumi.CustomResource):
     The name of the Glacier Vault.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, complete_lock=None, ignore_deletion_error=None, policy=None, vault_name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, complete_lock: Optional[pulumi.Input[bool]] = None, ignore_deletion_error: Optional[pulumi.Input[bool]] = None, policy: Optional[pulumi.Input[str]] = None, vault_name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a Glacier Vault Lock. You can refer to the [Glacier Developer Guide](https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock.html) for a full explanation of the Glacier Vault Lock functionality.
 
@@ -111,7 +113,7 @@ class VaultLock(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, complete_lock=None, ignore_deletion_error=None, policy=None, vault_name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, complete_lock: Optional[pulumi.Input[bool]] = None, ignore_deletion_error: Optional[pulumi.Input[bool]] = None, policy: Optional[pulumi.Input[str]] = None, vault_name: Optional[pulumi.Input[str]] = None) -> 'VaultLock':
         """
         Get an existing VaultLock resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

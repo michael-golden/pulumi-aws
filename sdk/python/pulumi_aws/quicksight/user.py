@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['User']
+
 
 class User(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -47,7 +49,7 @@ class User(pulumi.CustomResource):
     The Amazon QuickSight role of the user. The user role can be one of the following: `READER`, `AUTHOR`, or `ADMIN`
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, aws_account_id=None, email=None, iam_arn=None, identity_type=None, namespace=None, session_name=None, user_name=None, user_role=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, aws_account_id: Optional[pulumi.Input[str]] = None, email: Optional[pulumi.Input[str]] = None, iam_arn: Optional[pulumi.Input[str]] = None, identity_type: Optional[pulumi.Input[str]] = None, namespace: Optional[pulumi.Input[str]] = None, session_name: Optional[pulumi.Input[str]] = None, user_name: Optional[pulumi.Input[str]] = None, user_role: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Resource for managing QuickSight User
 
@@ -114,7 +116,7 @@ class User(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, aws_account_id=None, email=None, iam_arn=None, identity_type=None, namespace=None, session_name=None, user_name=None, user_role=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, aws_account_id: Optional[pulumi.Input[str]] = None, email: Optional[pulumi.Input[str]] = None, iam_arn: Optional[pulumi.Input[str]] = None, identity_type: Optional[pulumi.Input[str]] = None, namespace: Optional[pulumi.Input[str]] = None, session_name: Optional[pulumi.Input[str]] = None, user_name: Optional[pulumi.Input[str]] = None, user_role: Optional[pulumi.Input[str]] = None) -> 'User':
         """
         Get an existing User resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetOutpostsResult',
+    'AwaitableGetOutpostsResult',
+    'get_outposts',
+]
+
 
 class GetOutpostsResult:
     """
@@ -58,7 +64,7 @@ class AwaitableGetOutpostsResult(GetOutpostsResult):
             site_id=self.site_id)
 
 
-def get_outposts(availability_zone=None, availability_zone_id=None, site_id=None, opts=None):
+def get_outposts(availability_zone: Optional[str] = None, availability_zone_id: Optional[str] = None, site_id: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOutpostsResult:
     """
     Provides details about multiple Outposts.
 

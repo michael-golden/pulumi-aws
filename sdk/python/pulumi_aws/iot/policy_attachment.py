@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['PolicyAttachment']
+
 
 class PolicyAttachment(pulumi.CustomResource):
     policy: pulumi.Output[str] = pulumi.output_property("policy")
@@ -19,7 +21,7 @@ class PolicyAttachment(pulumi.CustomResource):
     The identity to which the policy is attached.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, policy=None, target=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, policy: Optional[pulumi.Input[str]] = None, target: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an IoT policy attachment.
 
@@ -86,7 +88,7 @@ class PolicyAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, policy=None, target=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, policy: Optional[pulumi.Input[str]] = None, target: Optional[pulumi.Input[str]] = None) -> 'PolicyAttachment':
         """
         Get an existing PolicyAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

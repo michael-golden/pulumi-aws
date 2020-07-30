@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetIpsetResult',
+    'AwaitableGetIpsetResult',
+    'get_ipset',
+]
+
 
 class GetIpsetResult:
     """
@@ -36,7 +42,7 @@ class AwaitableGetIpsetResult(GetIpsetResult):
             name=self.name)
 
 
-def get_ipset(name=None, opts=None):
+def get_ipset(name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpsetResult:
     """
     `wafregional.IpSet` Retrieves a WAF Regional IP Set Resource Id.
 

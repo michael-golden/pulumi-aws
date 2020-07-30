@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['LogDestination']
+
 
 class LogDestination(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -27,7 +29,7 @@ class LogDestination(pulumi.CustomResource):
     The ARN of the target Amazon Kinesis stream resource for the destination
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, role_arn=None, target_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None, target_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CloudWatch Logs destination resource.
 
@@ -80,7 +82,7 @@ class LogDestination(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, name=None, role_arn=None, target_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None, target_arn: Optional[pulumi.Input[str]] = None) -> 'LogDestination':
         """
         Get an existing LogDestination resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

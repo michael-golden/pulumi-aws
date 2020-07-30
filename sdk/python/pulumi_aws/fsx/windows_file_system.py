@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['WindowsFileSystem']
+
 
 class WindowsFileSystem(pulumi.CustomResource):
     active_directory_id: pulumi.Output[Optional[str]] = pulumi.output_property("activeDirectoryId")
@@ -85,7 +87,7 @@ class WindowsFileSystem(pulumi.CustomResource):
     The preferred start time (in `d:HH:MM` format) to perform weekly maintenance, in the UTC time zone.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, active_directory_id=None, automatic_backup_retention_days=None, copy_tags_to_backups=None, daily_automatic_backup_start_time=None, kms_key_id=None, security_group_ids=None, self_managed_active_directory=None, skip_final_backup=None, storage_capacity=None, subnet_ids=None, tags=None, throughput_capacity=None, weekly_maintenance_start_time=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, active_directory_id: Optional[pulumi.Input[str]] = None, automatic_backup_retention_days: Optional[pulumi.Input[float]] = None, copy_tags_to_backups: Optional[pulumi.Input[bool]] = None, daily_automatic_backup_start_time: Optional[pulumi.Input[str]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, self_managed_active_directory: Optional[pulumi.Input[pulumi.InputType['WindowsFileSystemSelfManagedActiveDirectoryArgs']]] = None, skip_final_backup: Optional[pulumi.Input[bool]] = None, storage_capacity: Optional[pulumi.Input[float]] = None, subnet_ids: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, throughput_capacity: Optional[pulumi.Input[float]] = None, weekly_maintenance_start_time: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a FSx Windows File System. See the [FSx Windows Guide](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html) for more information.
 
@@ -139,7 +141,7 @@ class WindowsFileSystem(pulumi.CustomResource):
         :param pulumi.Input[str] daily_automatic_backup_start_time: The preferred time (in `HH:MM` format) to take daily automatic backups, in the UTC time zone.
         :param pulumi.Input[str] kms_key_id: ARN for the KMS Key to encrypt the file system at rest. Defaults to an AWS managed KMS Key.
         :param pulumi.Input[List[pulumi.Input[str]]] security_group_ids: A list of IDs for the security groups that apply to the specified network interfaces created for file system access. These security groups will apply to all network interfaces.
-        :param pulumi.Input['WindowsFileSystemSelfManagedActiveDirectoryArgs'] self_managed_active_directory: Configuration block that Amazon FSx uses to join the Windows File Server instance to your self-managed (including on-premises) Microsoft Active Directory (AD) directory. Cannot be specified with `active_directory_id`. Detailed below.
+        :param pulumi.Input[pulumi.InputType['WindowsFileSystemSelfManagedActiveDirectoryArgs']] self_managed_active_directory: Configuration block that Amazon FSx uses to join the Windows File Server instance to your self-managed (including on-premises) Microsoft Active Directory (AD) directory. Cannot be specified with `active_directory_id`. Detailed below.
         :param pulumi.Input[bool] skip_final_backup: When enabled, will skip the default final backup taken when the file system is deleted. This configuration must be applied separately before attempting to delete the resource to have the desired behavior. Defaults to `false`.
         :param pulumi.Input[float] storage_capacity: Storage capacity (GiB) of the file system. Minimum of 32 and maximum of 65536.
         :param pulumi.Input[str] subnet_ids: A list of IDs for the subnets that the file system will be accessible from. File systems support only one subnet. The file server is also launched in that subnet's Availability Zone.
@@ -195,7 +197,7 @@ class WindowsFileSystem(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, active_directory_id=None, arn=None, automatic_backup_retention_days=None, copy_tags_to_backups=None, daily_automatic_backup_start_time=None, dns_name=None, kms_key_id=None, network_interface_ids=None, owner_id=None, security_group_ids=None, self_managed_active_directory=None, skip_final_backup=None, storage_capacity=None, subnet_ids=None, tags=None, throughput_capacity=None, vpc_id=None, weekly_maintenance_start_time=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, active_directory_id: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, automatic_backup_retention_days: Optional[pulumi.Input[float]] = None, copy_tags_to_backups: Optional[pulumi.Input[bool]] = None, daily_automatic_backup_start_time: Optional[pulumi.Input[str]] = None, dns_name: Optional[pulumi.Input[str]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, network_interface_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, owner_id: Optional[pulumi.Input[str]] = None, security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, self_managed_active_directory: Optional[pulumi.Input[pulumi.InputType['WindowsFileSystemSelfManagedActiveDirectoryArgs']]] = None, skip_final_backup: Optional[pulumi.Input[bool]] = None, storage_capacity: Optional[pulumi.Input[float]] = None, subnet_ids: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, throughput_capacity: Optional[pulumi.Input[float]] = None, vpc_id: Optional[pulumi.Input[str]] = None, weekly_maintenance_start_time: Optional[pulumi.Input[str]] = None) -> 'WindowsFileSystem':
         """
         Get an existing WindowsFileSystem resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -213,7 +215,7 @@ class WindowsFileSystem(pulumi.CustomResource):
         :param pulumi.Input[List[pulumi.Input[str]]] network_interface_ids: Set of Elastic Network Interface identifiers from which the file system is accessible.
         :param pulumi.Input[str] owner_id: AWS account identifier that created the file system.
         :param pulumi.Input[List[pulumi.Input[str]]] security_group_ids: A list of IDs for the security groups that apply to the specified network interfaces created for file system access. These security groups will apply to all network interfaces.
-        :param pulumi.Input['WindowsFileSystemSelfManagedActiveDirectoryArgs'] self_managed_active_directory: Configuration block that Amazon FSx uses to join the Windows File Server instance to your self-managed (including on-premises) Microsoft Active Directory (AD) directory. Cannot be specified with `active_directory_id`. Detailed below.
+        :param pulumi.Input[pulumi.InputType['WindowsFileSystemSelfManagedActiveDirectoryArgs']] self_managed_active_directory: Configuration block that Amazon FSx uses to join the Windows File Server instance to your self-managed (including on-premises) Microsoft Active Directory (AD) directory. Cannot be specified with `active_directory_id`. Detailed below.
         :param pulumi.Input[bool] skip_final_backup: When enabled, will skip the default final backup taken when the file system is deleted. This configuration must be applied separately before attempting to delete the resource to have the desired behavior. Defaults to `false`.
         :param pulumi.Input[float] storage_capacity: Storage capacity (GiB) of the file system. Minimum of 32 and maximum of 65536.
         :param pulumi.Input[str] subnet_ids: A list of IDs for the subnets that the file system will be accessible from. File systems support only one subnet. The file server is also launched in that subnet's Availability Zone.

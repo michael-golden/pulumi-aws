@@ -8,6 +8,17 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'RecordAliasArgs',
+    'RecordFailoverRoutingPolicyArgs',
+    'RecordGeolocationRoutingPolicyArgs',
+    'RecordLatencyRoutingPolicyArgs',
+    'RecordWeightedRoutingPolicyArgs',
+    'ResolverEndpointIpAddressArgs',
+    'ResolverRuleTargetIpArgs',
+    'ZoneVpcArgs',
+]
+
 @pulumi.input_type
 class RecordAliasArgs:
     evaluate_target_health: pulumi.Input[bool] = pulumi.input_property("evaluateTargetHealth")

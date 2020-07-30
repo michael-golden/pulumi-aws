@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetRepositoryResult',
+    'AwaitableGetRepositoryResult',
+    'get_repository',
+]
+
 
 class GetRepositoryResult:
     """
@@ -64,7 +70,7 @@ class AwaitableGetRepositoryResult(GetRepositoryResult):
             tags=self.tags)
 
 
-def get_repository(name=None, tags=None, opts=None):
+def get_repository(name: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRepositoryResult:
     """
     The ECR Repository data source allows the ARN, Repository URI and Registry ID to be retrieved for an ECR repository.
 

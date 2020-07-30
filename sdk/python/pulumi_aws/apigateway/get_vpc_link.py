@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetVpcLinkResult',
+    'AwaitableGetVpcLinkResult',
+    'get_vpc_link',
+]
+
 
 class GetVpcLinkResult:
     """
@@ -71,7 +77,7 @@ class AwaitableGetVpcLinkResult(GetVpcLinkResult):
             target_arns=self.target_arns)
 
 
-def get_vpc_link(name=None, tags=None, opts=None):
+def get_vpc_link(name: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcLinkResult:
     """
     Use this data source to get the id of a VPC Link in
     API Gateway. To fetch the VPC Link you must provide a name to match against.

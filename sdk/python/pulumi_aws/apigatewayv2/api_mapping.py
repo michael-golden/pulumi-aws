@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ApiMapping']
+
 
 class ApiMapping(pulumi.CustomResource):
     api_id: pulumi.Output[str] = pulumi.output_property("apiId")
@@ -27,7 +29,7 @@ class ApiMapping(pulumi.CustomResource):
     The API stage. Use the `apigatewayv2.Stage` resource to configure an API stage.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id=None, api_mapping_key=None, domain_name=None, stage=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, api_mapping_key: Optional[pulumi.Input[str]] = None, domain_name: Optional[pulumi.Input[str]] = None, stage: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an Amazon API Gateway Version 2 API mapping.
         More information can be found in the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html).
@@ -86,7 +88,7 @@ class ApiMapping(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, api_id=None, api_mapping_key=None, domain_name=None, stage=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, api_mapping_key: Optional[pulumi.Input[str]] = None, domain_name: Optional[pulumi.Input[str]] = None, stage: Optional[pulumi.Input[str]] = None) -> 'ApiMapping':
         """
         Get an existing ApiMapping resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

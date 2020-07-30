@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetLocalGatewayRouteTablesResult',
+    'AwaitableGetLocalGatewayRouteTablesResult',
+    'get_local_gateway_route_tables',
+]
+
 
 class GetLocalGatewayRouteTablesResult:
     """
@@ -49,12 +55,12 @@ class AwaitableGetLocalGatewayRouteTablesResult(GetLocalGatewayRouteTablesResult
             tags=self.tags)
 
 
-def get_local_gateway_route_tables(filters=None, tags=None, opts=None):
+def get_local_gateway_route_tables(filters: Optional[List[pulumi.InputType['GetLocalGatewayRouteTablesFilterArgs']]] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLocalGatewayRouteTablesResult:
     """
     Provides information for multiple EC2 Local Gateway Route Tables, such as their identifiers.
 
 
-    :param List['GetLocalGatewayRouteTablesFilterArgs'] filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetLocalGatewayRouteTablesFilterArgs']] filters: Custom filter block as described below.
     :param Dict[str, str] tags: A mapping of tags, each pair of which must exactly match
            a pair on the desired local gateway route table.
     """

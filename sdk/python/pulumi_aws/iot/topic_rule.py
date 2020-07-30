@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['TopicRule']
+
 
 class TopicRule(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -60,7 +62,7 @@ class TopicRule(pulumi.CustomResource):
     Key-value map of resource tags
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cloudwatch_alarm=None, cloudwatch_metric=None, description=None, dynamodb=None, dynamodbv2s=None, elasticsearch=None, enabled=None, error_action=None, firehose=None, iot_analytics=None, iot_events=None, kinesis=None, lambda_=None, name=None, republish=None, s3=None, sns=None, sql=None, sql_version=None, sqs=None, step_functions=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cloudwatch_alarm: Optional[pulumi.Input[pulumi.InputType['TopicRuleCloudwatchAlarmArgs']]] = None, cloudwatch_metric: Optional[pulumi.Input[pulumi.InputType['TopicRuleCloudwatchMetricArgs']]] = None, description: Optional[pulumi.Input[str]] = None, dynamodb: Optional[pulumi.Input[pulumi.InputType['TopicRuleDynamodbArgs']]] = None, dynamodbv2s: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TopicRuleDynamodbv2Args']]]]] = None, elasticsearch: Optional[pulumi.Input[pulumi.InputType['TopicRuleElasticsearchArgs']]] = None, enabled: Optional[pulumi.Input[bool]] = None, error_action: Optional[pulumi.Input[pulumi.InputType['TopicRuleErrorActionArgs']]] = None, firehose: Optional[pulumi.Input[pulumi.InputType['TopicRuleFirehoseArgs']]] = None, iot_analytics: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TopicRuleIotAnalyticArgs']]]]] = None, iot_events: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TopicRuleIotEventArgs']]]]] = None, kinesis: Optional[pulumi.Input[pulumi.InputType['TopicRuleKinesisArgs']]] = None, lambda_: Optional[pulumi.Input[pulumi.InputType['TopicRuleLambdaArgs']]] = None, name: Optional[pulumi.Input[str]] = None, republish: Optional[pulumi.Input[pulumi.InputType['TopicRuleRepublishArgs']]] = None, s3: Optional[pulumi.Input[pulumi.InputType['TopicRuleS3Args']]] = None, sns: Optional[pulumi.Input[pulumi.InputType['TopicRuleSnsArgs']]] = None, sql: Optional[pulumi.Input[str]] = None, sql_version: Optional[pulumi.Input[str]] = None, sqs: Optional[pulumi.Input[pulumi.InputType['TopicRuleSqsArgs']]] = None, step_functions: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TopicRuleStepFunctionArgs']]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         ## Example Usage
 
@@ -123,7 +125,7 @@ class TopicRule(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the rule.
         :param pulumi.Input[bool] enabled: Specifies whether the rule is enabled.
-        :param pulumi.Input['TopicRuleErrorActionArgs'] error_action: Configuration block with error action to be associated with the rule. See the documentation for `cloudwatch_alarm`, `cloudwatch_metric`, `dynamodb`, `dynamodbv2`, `elasticsearch`, `firehose`, `iot_analytics`, `iot_events`, `kinesis`, `lambda`, `republish`, `s3`, `step_functions`, `sns`, `sqs` configuration blocks for further configuration details.
+        :param pulumi.Input[pulumi.InputType['TopicRuleErrorActionArgs']] error_action: Configuration block with error action to be associated with the rule. See the documentation for `cloudwatch_alarm`, `cloudwatch_metric`, `dynamodb`, `dynamodbv2`, `elasticsearch`, `firehose`, `iot_analytics`, `iot_events`, `kinesis`, `lambda`, `republish`, `s3`, `step_functions`, `sns`, `sqs` configuration blocks for further configuration details.
         :param pulumi.Input[str] name: The name of the rule.
         :param pulumi.Input[str] sql: The SQL statement used to query the topic. For more information, see AWS IoT SQL Reference (http://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html#aws-iot-sql-reference) in the AWS IoT Developer Guide.
         :param pulumi.Input[str] sql_version: The version of the SQL rules engine to use when evaluating the rule.
@@ -182,7 +184,7 @@ class TopicRule(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, cloudwatch_alarm=None, cloudwatch_metric=None, description=None, dynamodb=None, dynamodbv2s=None, elasticsearch=None, enabled=None, error_action=None, firehose=None, iot_analytics=None, iot_events=None, kinesis=None, lambda_=None, name=None, republish=None, s3=None, sns=None, sql=None, sql_version=None, sqs=None, step_functions=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, cloudwatch_alarm: Optional[pulumi.Input[pulumi.InputType['TopicRuleCloudwatchAlarmArgs']]] = None, cloudwatch_metric: Optional[pulumi.Input[pulumi.InputType['TopicRuleCloudwatchMetricArgs']]] = None, description: Optional[pulumi.Input[str]] = None, dynamodb: Optional[pulumi.Input[pulumi.InputType['TopicRuleDynamodbArgs']]] = None, dynamodbv2s: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TopicRuleDynamodbv2Args']]]]] = None, elasticsearch: Optional[pulumi.Input[pulumi.InputType['TopicRuleElasticsearchArgs']]] = None, enabled: Optional[pulumi.Input[bool]] = None, error_action: Optional[pulumi.Input[pulumi.InputType['TopicRuleErrorActionArgs']]] = None, firehose: Optional[pulumi.Input[pulumi.InputType['TopicRuleFirehoseArgs']]] = None, iot_analytics: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TopicRuleIotAnalyticArgs']]]]] = None, iot_events: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TopicRuleIotEventArgs']]]]] = None, kinesis: Optional[pulumi.Input[pulumi.InputType['TopicRuleKinesisArgs']]] = None, lambda_: Optional[pulumi.Input[pulumi.InputType['TopicRuleLambdaArgs']]] = None, name: Optional[pulumi.Input[str]] = None, republish: Optional[pulumi.Input[pulumi.InputType['TopicRuleRepublishArgs']]] = None, s3: Optional[pulumi.Input[pulumi.InputType['TopicRuleS3Args']]] = None, sns: Optional[pulumi.Input[pulumi.InputType['TopicRuleSnsArgs']]] = None, sql: Optional[pulumi.Input[str]] = None, sql_version: Optional[pulumi.Input[str]] = None, sqs: Optional[pulumi.Input[pulumi.InputType['TopicRuleSqsArgs']]] = None, step_functions: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TopicRuleStepFunctionArgs']]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'TopicRule':
         """
         Get an existing TopicRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -193,7 +195,7 @@ class TopicRule(pulumi.CustomResource):
         :param pulumi.Input[str] arn: The ARN of the topic rule
         :param pulumi.Input[str] description: The description of the rule.
         :param pulumi.Input[bool] enabled: Specifies whether the rule is enabled.
-        :param pulumi.Input['TopicRuleErrorActionArgs'] error_action: Configuration block with error action to be associated with the rule. See the documentation for `cloudwatch_alarm`, `cloudwatch_metric`, `dynamodb`, `dynamodbv2`, `elasticsearch`, `firehose`, `iot_analytics`, `iot_events`, `kinesis`, `lambda`, `republish`, `s3`, `step_functions`, `sns`, `sqs` configuration blocks for further configuration details.
+        :param pulumi.Input[pulumi.InputType['TopicRuleErrorActionArgs']] error_action: Configuration block with error action to be associated with the rule. See the documentation for `cloudwatch_alarm`, `cloudwatch_metric`, `dynamodb`, `dynamodbv2`, `elasticsearch`, `firehose`, `iot_analytics`, `iot_events`, `kinesis`, `lambda`, `republish`, `s3`, `step_functions`, `sns`, `sqs` configuration blocks for further configuration details.
         :param pulumi.Input[str] name: The name of the rule.
         :param pulumi.Input[str] sql: The SQL statement used to query the topic. For more information, see AWS IoT SQL Reference (http://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html#aws-iot-sql-reference) in the AWS IoT Developer Guide.
         :param pulumi.Input[str] sql_version: The version of the SQL rules engine to use when evaluating the rule.

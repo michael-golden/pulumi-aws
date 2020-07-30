@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['IdentityPool']
+
 
 class IdentityPool(pulumi.CustomResource):
     allow_unauthenticated_identities: pulumi.Output[Optional[bool]] = pulumi.output_property("allowUnauthenticatedIdentities")
@@ -50,7 +52,7 @@ class IdentityPool(pulumi.CustomResource):
     A map of tags to assign to the Identity Pool.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allow_unauthenticated_identities=None, cognito_identity_providers=None, developer_provider_name=None, identity_pool_name=None, openid_connect_provider_arns=None, saml_provider_arns=None, supported_login_providers=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allow_unauthenticated_identities: Optional[pulumi.Input[bool]] = None, cognito_identity_providers: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['IdentityPoolCognitoIdentityProviderArgs']]]]] = None, developer_provider_name: Optional[pulumi.Input[str]] = None, identity_pool_name: Optional[pulumi.Input[str]] = None, openid_connect_provider_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, saml_provider_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, supported_login_providers: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AWS Cognito Identity Pool.
 
@@ -87,7 +89,7 @@ class IdentityPool(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_unauthenticated_identities: Whether the identity pool supports unauthenticated logins or not.
-        :param pulumi.Input[List[pulumi.Input['IdentityPoolCognitoIdentityProviderArgs']]] cognito_identity_providers: An array of Amazon Cognito Identity user pools and their client IDs.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['IdentityPoolCognitoIdentityProviderArgs']]]] cognito_identity_providers: An array of Amazon Cognito Identity user pools and their client IDs.
         :param pulumi.Input[str] developer_provider_name: The "domain" by which Cognito will refer to your users. This name acts as a placeholder that allows your
                backend and the Cognito service to communicate about the developer provider.
         :param pulumi.Input[str] identity_pool_name: The Cognito Identity Pool name.
@@ -131,7 +133,7 @@ class IdentityPool(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allow_unauthenticated_identities=None, arn=None, cognito_identity_providers=None, developer_provider_name=None, identity_pool_name=None, openid_connect_provider_arns=None, saml_provider_arns=None, supported_login_providers=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, allow_unauthenticated_identities: Optional[pulumi.Input[bool]] = None, arn: Optional[pulumi.Input[str]] = None, cognito_identity_providers: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['IdentityPoolCognitoIdentityProviderArgs']]]]] = None, developer_provider_name: Optional[pulumi.Input[str]] = None, identity_pool_name: Optional[pulumi.Input[str]] = None, openid_connect_provider_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, saml_provider_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, supported_login_providers: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'IdentityPool':
         """
         Get an existing IdentityPool resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -141,7 +143,7 @@ class IdentityPool(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_unauthenticated_identities: Whether the identity pool supports unauthenticated logins or not.
         :param pulumi.Input[str] arn: The ARN of the identity pool.
-        :param pulumi.Input[List[pulumi.Input['IdentityPoolCognitoIdentityProviderArgs']]] cognito_identity_providers: An array of Amazon Cognito Identity user pools and their client IDs.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['IdentityPoolCognitoIdentityProviderArgs']]]] cognito_identity_providers: An array of Amazon Cognito Identity user pools and their client IDs.
         :param pulumi.Input[str] developer_provider_name: The "domain" by which Cognito will refer to your users. This name acts as a placeholder that allows your
                backend and the Cognito service to communicate about the developer provider.
         :param pulumi.Input[str] identity_pool_name: The Cognito Identity Pool name.

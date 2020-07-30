@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['RolePolicyAttachment']
+
 
 class RolePolicyAttachment(pulumi.CustomResource):
     policy_arn: pulumi.Output[str] = pulumi.output_property("policyArn")
@@ -19,7 +21,7 @@ class RolePolicyAttachment(pulumi.CustomResource):
     The role the policy should be applied to
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, policy_arn=None, role=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, policy_arn: Optional[pulumi.Input[str]] = None, role: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Attaches a Managed IAM Policy to an IAM role
 
@@ -102,7 +104,7 @@ class RolePolicyAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, policy_arn=None, role=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, policy_arn: Optional[pulumi.Input[str]] = None, role: Optional[pulumi.Input[str]] = None) -> 'RolePolicyAttachment':
         """
         Get an existing RolePolicyAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

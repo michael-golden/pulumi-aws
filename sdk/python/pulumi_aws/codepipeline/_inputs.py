@@ -8,6 +8,15 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'PipelineArtifactStoreArgs',
+    'PipelineArtifactStoreEncryptionKeyArgs',
+    'PipelineStageArgs',
+    'PipelineStageActionArgs',
+    'WebhookAuthenticationConfigurationArgs',
+    'WebhookFilterArgs',
+]
+
 @pulumi.input_type
 class PipelineArtifactStoreArgs:
     location: pulumi.Input[str] = pulumi.input_property("location")

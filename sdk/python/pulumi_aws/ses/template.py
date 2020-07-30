@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Template']
+
 
 class Template(pulumi.CustomResource):
     html: pulumi.Output[Optional[str]] = pulumi.output_property("html")
@@ -27,7 +29,7 @@ class Template(pulumi.CustomResource):
     The email body that will be visible to recipients whose email clients do not display HTML. Must be less than 500KB in size, including both the text and HTML parts.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, html=None, name=None, subject=None, text=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, html: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, subject: Optional[pulumi.Input[str]] = None, text: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to create a SES template.
 
@@ -80,7 +82,7 @@ class Template(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, html=None, name=None, subject=None, text=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, html: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, subject: Optional[pulumi.Input[str]] = None, text: Optional[pulumi.Input[str]] = None) -> 'Template':
         """
         Get an existing Template resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

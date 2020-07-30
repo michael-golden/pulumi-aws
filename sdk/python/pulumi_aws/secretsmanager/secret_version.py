@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['SecretVersion']
+
 
 class SecretVersion(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -35,7 +37,7 @@ class SecretVersion(pulumi.CustomResource):
     Specifies a list of staging labels that are attached to this version of the secret. A staging label must be unique to a single version of the secret. If you specify a staging label that's already associated with a different version of the same secret then that staging label is automatically removed from the other version and attached to this version. If you do not specify a value, then AWS Secrets Manager automatically moves the staging label `AWSCURRENT` to this new version on creation.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, secret_binary=None, secret_id=None, secret_string=None, version_stages=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, secret_binary: Optional[pulumi.Input[str]] = None, secret_id: Optional[pulumi.Input[str]] = None, secret_string: Optional[pulumi.Input[str]] = None, version_stages: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage AWS Secrets Manager secret version including its secret value. To manage secret metadata, see the `secretsmanager.Secret` resource.
 
@@ -92,7 +94,7 @@ class SecretVersion(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, secret_binary=None, secret_id=None, secret_string=None, version_id=None, version_stages=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, secret_binary: Optional[pulumi.Input[str]] = None, secret_id: Optional[pulumi.Input[str]] = None, secret_string: Optional[pulumi.Input[str]] = None, version_id: Optional[pulumi.Input[str]] = None, version_stages: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'SecretVersion':
         """
         Get an existing SecretVersion resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

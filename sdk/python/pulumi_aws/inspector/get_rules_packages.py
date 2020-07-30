@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetRulesPackagesResult',
+    'AwaitableGetRulesPackagesResult',
+    'get_rules_packages',
+]
+
 
 class GetRulesPackagesResult:
     """
@@ -39,7 +45,7 @@ class AwaitableGetRulesPackagesResult(GetRulesPackagesResult):
             id=self.id)
 
 
-def get_rules_packages(opts=None):
+def get_rules_packages(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRulesPackagesResult:
     """
     The AWS Inspector Rules Packages data source allows access to the list of AWS
     Inspector Rules Packages which can be used by AWS Inspector within the region

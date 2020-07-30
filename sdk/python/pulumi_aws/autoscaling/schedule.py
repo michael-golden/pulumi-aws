@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Schedule']
+
 
 class Schedule(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -51,7 +53,7 @@ class Schedule(pulumi.CustomResource):
     If you try to schedule your action in the past, Auto Scaling returns an error message.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, autoscaling_group_name=None, desired_capacity=None, end_time=None, max_size=None, min_size=None, recurrence=None, scheduled_action_name=None, start_time=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, autoscaling_group_name: Optional[pulumi.Input[str]] = None, desired_capacity: Optional[pulumi.Input[float]] = None, end_time: Optional[pulumi.Input[str]] = None, max_size: Optional[pulumi.Input[float]] = None, min_size: Optional[pulumi.Input[float]] = None, recurrence: Optional[pulumi.Input[str]] = None, scheduled_action_name: Optional[pulumi.Input[str]] = None, start_time: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AutoScaling Schedule resource.
 
@@ -131,7 +133,7 @@ class Schedule(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, autoscaling_group_name=None, desired_capacity=None, end_time=None, max_size=None, min_size=None, recurrence=None, scheduled_action_name=None, start_time=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, autoscaling_group_name: Optional[pulumi.Input[str]] = None, desired_capacity: Optional[pulumi.Input[float]] = None, end_time: Optional[pulumi.Input[str]] = None, max_size: Optional[pulumi.Input[float]] = None, min_size: Optional[pulumi.Input[float]] = None, recurrence: Optional[pulumi.Input[str]] = None, scheduled_action_name: Optional[pulumi.Input[str]] = None, start_time: Optional[pulumi.Input[str]] = None) -> 'Schedule':
         """
         Get an existing Schedule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

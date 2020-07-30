@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetHostedZoneIdResult',
+    'AwaitableGetHostedZoneIdResult',
+    'get_hosted_zone_id',
+]
+
 warnings.warn("aws.elasticloadbalancing.getHostedZoneId has been deprecated in favor of aws.elb.getHostedZoneId", DeprecationWarning)
 
 class GetHostedZoneIdResult:
@@ -37,7 +43,7 @@ class AwaitableGetHostedZoneIdResult(GetHostedZoneIdResult):
             region=self.region)
 
 
-def get_hosted_zone_id(region=None, opts=None):
+def get_hosted_zone_id(region: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHostedZoneIdResult:
     """
     Use this data source to get the HostedZoneId of the AWS Elastic Load Balancing HostedZoneId
     in a given region for the purpose of using in an AWS Route53 Alias.

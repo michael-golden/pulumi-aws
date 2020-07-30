@@ -8,6 +8,13 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ApplicationAppversionLifecycleArgs',
+    'ConfigurationTemplateSettingArgs',
+    'EnvironmentAllSettingArgs',
+    'EnvironmentSettingArgs',
+]
+
 @pulumi.input_type
 class ApplicationAppversionLifecycleArgs:
     service_role: pulumi.Input[str] = pulumi.input_property("serviceRole")

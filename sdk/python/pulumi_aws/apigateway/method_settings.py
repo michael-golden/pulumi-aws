@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['MethodSettings']
+
 
 class MethodSettings(pulumi.CustomResource):
     method_path: pulumi.Output[str] = pulumi.output_property("methodPath")
@@ -29,7 +31,7 @@ class MethodSettings(pulumi.CustomResource):
     The name of the stage
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, method_path=None, rest_api=None, settings=None, stage_name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, method_path: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, settings: Optional[pulumi.Input[pulumi.InputType['MethodSettingsSettingsArgs']]] = None, stage_name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an API Gateway Method Settings, e.g. logging or monitoring.
 
@@ -83,7 +85,7 @@ class MethodSettings(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] method_path: Method path defined as `{resource_path}/{http_method}` for an individual method override, or `*/*` for overriding all methods in the stage.
         :param pulumi.Input[str] rest_api: The ID of the REST API
-        :param pulumi.Input['MethodSettingsSettingsArgs'] settings: The settings block, see below.
+        :param pulumi.Input[pulumi.InputType['MethodSettingsSettingsArgs']] settings: The settings block, see below.
         :param pulumi.Input[str] stage_name: The name of the stage
         """
         if __name__ is not None:
@@ -122,7 +124,7 @@ class MethodSettings(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, method_path=None, rest_api=None, settings=None, stage_name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, method_path: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, settings: Optional[pulumi.Input[pulumi.InputType['MethodSettingsSettingsArgs']]] = None, stage_name: Optional[pulumi.Input[str]] = None) -> 'MethodSettings':
         """
         Get an existing MethodSettings resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -132,7 +134,7 @@ class MethodSettings(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] method_path: Method path defined as `{resource_path}/{http_method}` for an individual method override, or `*/*` for overriding all methods in the stage.
         :param pulumi.Input[str] rest_api: The ID of the REST API
-        :param pulumi.Input['MethodSettingsSettingsArgs'] settings: The settings block, see below.
+        :param pulumi.Input[pulumi.InputType['MethodSettingsSettingsArgs']] settings: The settings block, see below.
         :param pulumi.Input[str] stage_name: The name of the stage
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

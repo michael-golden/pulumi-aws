@@ -10,6 +10,12 @@ from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetElasticIpResult',
+    'AwaitableGetElasticIpResult',
+    'get_elastic_ip',
+]
+
 
 class GetElasticIpResult:
     """
@@ -129,7 +135,7 @@ class AwaitableGetElasticIpResult(GetElasticIpResult):
             tags=self.tags)
 
 
-def get_elastic_ip(filters=None, id=None, public_ip=None, tags=None, opts=None):
+def get_elastic_ip(filters: Optional[List[pulumi.InputType['GetElasticIpFilterArgs']]] = None, id: Optional[str] = None, public_ip: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetElasticIpResult:
     """
     `ec2.Eip` provides details about a specific Elastic IP.
 
@@ -173,7 +179,7 @@ def get_elastic_ip(filters=None, id=None, public_ip=None, tags=None, opts=None):
     ```
 
 
-    :param List['GetElasticIpFilterArgs'] filters: One or more name/value pairs to use as filters. There are several valid keys, for a full reference, check out the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAddresses.html).
+    :param List[pulumi.InputType['GetElasticIpFilterArgs']] filters: One or more name/value pairs to use as filters. There are several valid keys, for a full reference, check out the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAddresses.html).
     :param str id: The allocation id of the specific VPC EIP to retrieve. If a classic EIP is required, do NOT set `id`, only set `public_ip`
     :param str public_ip: The public IP of the specific EIP to retrieve.
     :param Dict[str, str] tags: A map of tags, each pair of which must exactly match a pair on the desired Elastic IP

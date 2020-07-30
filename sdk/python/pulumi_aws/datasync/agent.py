@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Agent']
+
 
 class Agent(pulumi.CustomResource):
     activation_key: pulumi.Output[str] = pulumi.output_property("activationKey")
@@ -31,7 +33,7 @@ class Agent(pulumi.CustomResource):
     Key-value pairs of resource tags to assign to the DataSync Agent.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, activation_key=None, ip_address=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, activation_key: Optional[pulumi.Input[str]] = None, ip_address: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an AWS DataSync Agent deployed on premises.
 
@@ -82,7 +84,7 @@ class Agent(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, activation_key=None, arn=None, ip_address=None, name=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, activation_key: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, ip_address: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Agent':
         """
         Get an existing Agent resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

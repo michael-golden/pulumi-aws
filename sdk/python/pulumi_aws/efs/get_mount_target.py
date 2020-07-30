@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetMountTargetResult',
+    'AwaitableGetMountTargetResult',
+    'get_mount_target',
+]
+
 
 class GetMountTargetResult:
     """
@@ -113,7 +119,7 @@ class AwaitableGetMountTargetResult(GetMountTargetResult):
             subnet_id=self.subnet_id)
 
 
-def get_mount_target(mount_target_id=None, opts=None):
+def get_mount_target(mount_target_id: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMountTargetResult:
     """
     Provides information about an Elastic File System Mount Target (EFS).
 

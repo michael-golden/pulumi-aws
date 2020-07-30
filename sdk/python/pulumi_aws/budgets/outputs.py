@@ -8,6 +8,11 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'BudgetCostTypes',
+    'BudgetNotification',
+]
+
 @pulumi.output_type
 class BudgetCostTypes(dict):
     include_credit: Optional[bool] = pulumi.output_property("includeCredit")

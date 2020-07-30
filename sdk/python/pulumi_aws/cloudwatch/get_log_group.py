@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetLogGroupResult',
+    'AwaitableGetLogGroupResult',
+    'get_log_group',
+]
+
 
 class GetLogGroupResult:
     """
@@ -71,7 +77,7 @@ class AwaitableGetLogGroupResult(GetLogGroupResult):
             tags=self.tags)
 
 
-def get_log_group(name=None, tags=None, opts=None):
+def get_log_group(name: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLogGroupResult:
     """
     Use this data source to get information about an AWS Cloudwatch Log Group
 

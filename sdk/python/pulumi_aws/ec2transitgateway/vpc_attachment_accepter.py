@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['VpcAttachmentAccepter']
+
 
 class VpcAttachmentAccepter(pulumi.CustomResource):
     dns_support: pulumi.Output[str] = pulumi.output_property("dnsSupport")
@@ -51,7 +53,7 @@ class VpcAttachmentAccepter(pulumi.CustomResource):
     Identifier of the AWS account that owns the EC2 VPC.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, tags=None, transit_gateway_attachment_id=None, transit_gateway_default_route_table_association=None, transit_gateway_default_route_table_propagation=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, transit_gateway_attachment_id: Optional[pulumi.Input[str]] = None, transit_gateway_default_route_table_association: Optional[pulumi.Input[bool]] = None, transit_gateway_default_route_table_propagation: Optional[pulumi.Input[bool]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages the accepter's side of an EC2 Transit Gateway VPC Attachment.
 
@@ -119,7 +121,7 @@ class VpcAttachmentAccepter(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, dns_support=None, ipv6_support=None, subnet_ids=None, tags=None, transit_gateway_attachment_id=None, transit_gateway_default_route_table_association=None, transit_gateway_default_route_table_propagation=None, transit_gateway_id=None, vpc_id=None, vpc_owner_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, dns_support: Optional[pulumi.Input[str]] = None, ipv6_support: Optional[pulumi.Input[str]] = None, subnet_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, transit_gateway_attachment_id: Optional[pulumi.Input[str]] = None, transit_gateway_default_route_table_association: Optional[pulumi.Input[bool]] = None, transit_gateway_default_route_table_propagation: Optional[pulumi.Input[bool]] = None, transit_gateway_id: Optional[pulumi.Input[str]] = None, vpc_id: Optional[pulumi.Input[str]] = None, vpc_owner_id: Optional[pulumi.Input[str]] = None) -> 'VpcAttachmentAccepter':
         """
         Get an existing VpcAttachmentAccepter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

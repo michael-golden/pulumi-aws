@@ -8,6 +8,21 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ClusterBootstrapAction',
+    'ClusterCoreInstanceGroup',
+    'ClusterCoreInstanceGroupEbsConfig',
+    'ClusterEc2Attributes',
+    'ClusterInstanceGroup',
+    'ClusterInstanceGroupEbsConfig',
+    'ClusterKerberosAttributes',
+    'ClusterMasterInstanceGroup',
+    'ClusterMasterInstanceGroupEbsConfig',
+    'ClusterStep',
+    'ClusterStepHadoopJarStep',
+    'InstanceGroupEbsConfig',
+]
+
 @pulumi.output_type
 class ClusterBootstrapAction(dict):
     args: Optional[List[str]] = pulumi.output_property("args")

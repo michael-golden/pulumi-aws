@@ -8,6 +8,19 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'PipelineContentConfigArgs',
+    'PipelineContentConfigPermissionArgs',
+    'PipelineNotificationsArgs',
+    'PipelineThumbnailConfigArgs',
+    'PipelineThumbnailConfigPermissionArgs',
+    'PresetAudioArgs',
+    'PresetAudioCodecOptionsArgs',
+    'PresetThumbnailsArgs',
+    'PresetVideoArgs',
+    'PresetVideoWatermarkArgs',
+]
+
 @pulumi.input_type
 class PipelineContentConfigArgs:
     bucket: Optional[pulumi.Input[str]] = pulumi.input_property("bucket")

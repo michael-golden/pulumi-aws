@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
 
+__all__ = [
+    'GetPartitionResult',
+    'AwaitableGetPartitionResult',
+    'get_partition',
+]
+
 
 class GetPartitionResult:
     """
@@ -40,7 +46,7 @@ class AwaitableGetPartitionResult(GetPartitionResult):
             partition=self.partition)
 
 
-def get_partition(opts=None):
+def get_partition(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPartitionResult:
     """
     Use this data source to lookup current AWS partition in which this provider is working
 

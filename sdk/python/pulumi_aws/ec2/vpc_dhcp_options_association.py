@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['VpcDhcpOptionsAssociation']
+
 
 class VpcDhcpOptionsAssociation(pulumi.CustomResource):
     dhcp_options_id: pulumi.Output[str] = pulumi.output_property("dhcpOptionsId")
@@ -19,7 +21,7 @@ class VpcDhcpOptionsAssociation(pulumi.CustomResource):
     The ID of the VPC to which we would like to associate a DHCP Options Set.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, dhcp_options_id=None, vpc_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, dhcp_options_id: Optional[pulumi.Input[str]] = None, vpc_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a VPC DHCP Options Association resource.
 
@@ -73,7 +75,7 @@ class VpcDhcpOptionsAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, dhcp_options_id=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, dhcp_options_id: Optional[pulumi.Input[str]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'VpcDhcpOptionsAssociation':
         """
         Get an existing VpcDhcpOptionsAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

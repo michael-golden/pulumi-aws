@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetCipherTextResult',
+    'AwaitableGetCipherTextResult',
+    'get_cipher_text',
+]
+
 
 class GetCipherTextResult:
     """
@@ -51,7 +57,7 @@ class AwaitableGetCipherTextResult(GetCipherTextResult):
             plaintext=self.plaintext)
 
 
-def get_cipher_text(context=None, key_id=None, plaintext=None, opts=None):
+def get_cipher_text(context: Optional[Dict[str, str]] = None, key_id: Optional[str] = None, plaintext: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCipherTextResult:
     """
     The KMS ciphertext data source allows you to encrypt plaintext into ciphertext
     by using an AWS KMS customer master key. The value returned by this data source

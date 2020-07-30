@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetWebAclResult',
+    'AwaitableGetWebAclResult',
+    'get_web_acl',
+]
+
 
 class GetWebAclResult:
     """
@@ -54,7 +60,7 @@ class AwaitableGetWebAclResult(GetWebAclResult):
             scope=self.scope)
 
 
-def get_web_acl(name=None, scope=None, opts=None):
+def get_web_acl(name: Optional[str] = None, scope: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebAclResult:
     """
     Retrieves the summary of a WAFv2 Web ACL.
 

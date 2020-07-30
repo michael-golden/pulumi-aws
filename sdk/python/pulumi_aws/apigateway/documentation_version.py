@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['DocumentationVersion']
+
 
 class DocumentationVersion(pulumi.CustomResource):
     description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
@@ -23,7 +25,7 @@ class DocumentationVersion(pulumi.CustomResource):
     The version identifier of the API documentation snapshot.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, rest_api_id=None, version=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, rest_api_id: Optional[pulumi.Input[str]] = None, version: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage an API Gateway Documentation Version.
 
@@ -84,7 +86,7 @@ class DocumentationVersion(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, description=None, rest_api_id=None, version=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, rest_api_id: Optional[pulumi.Input[str]] = None, version: Optional[pulumi.Input[str]] = None) -> 'DocumentationVersion':
         """
         Get an existing DocumentationVersion resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

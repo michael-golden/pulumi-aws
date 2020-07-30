@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['DomainIdentity']
+
 
 class DomainIdentity(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -29,7 +31,7 @@ class DomainIdentity(pulumi.CustomResource):
     docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domains.html).
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, domain=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, domain: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an SES domain identity resource
 
@@ -81,7 +83,7 @@ class DomainIdentity(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, domain=None, verification_token=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, domain: Optional[pulumi.Input[str]] = None, verification_token: Optional[pulumi.Input[str]] = None) -> 'DomainIdentity':
         """
         Get an existing DomainIdentity resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

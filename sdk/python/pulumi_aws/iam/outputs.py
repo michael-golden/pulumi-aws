@@ -8,6 +8,14 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetGroupUser',
+    'GetPolicyDocumentStatement',
+    'GetPolicyDocumentStatementCondition',
+    'GetPolicyDocumentStatementNotPrincipal',
+    'GetPolicyDocumentStatementPrincipal',
+]
+
 @pulumi.output_type
 class GetGroupUser(dict):
     arn: str = pulumi.output_property("arn")

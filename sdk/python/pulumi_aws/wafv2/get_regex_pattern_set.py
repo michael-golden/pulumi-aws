@@ -9,6 +9,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 from . import outputs
 
+__all__ = [
+    'GetRegexPatternSetResult',
+    'AwaitableGetRegexPatternSetResult',
+    'get_regex_pattern_set',
+]
+
 
 class GetRegexPatternSetResult:
     """
@@ -62,7 +68,7 @@ class AwaitableGetRegexPatternSetResult(GetRegexPatternSetResult):
             scope=self.scope)
 
 
-def get_regex_pattern_set(name=None, scope=None, opts=None):
+def get_regex_pattern_set(name: Optional[str] = None, scope: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegexPatternSetResult:
     """
     Retrieves the summary of a WAFv2 Regex Pattern Set.
 

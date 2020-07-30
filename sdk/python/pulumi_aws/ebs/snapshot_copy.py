@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['SnapshotCopy']
+
 
 class SnapshotCopy(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -58,7 +60,7 @@ class SnapshotCopy(pulumi.CustomResource):
     The size of the drive in GiBs.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, encrypted=None, kms_key_id=None, source_region=None, source_snapshot_id=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, encrypted: Optional[pulumi.Input[bool]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, source_region: Optional[pulumi.Input[str]] = None, source_snapshot_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates a Snapshot of a snapshot.
 
@@ -136,7 +138,7 @@ class SnapshotCopy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, data_encryption_key_id=None, description=None, encrypted=None, kms_key_id=None, owner_alias=None, owner_id=None, source_region=None, source_snapshot_id=None, tags=None, volume_id=None, volume_size=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, data_encryption_key_id: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, encrypted: Optional[pulumi.Input[bool]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, owner_alias: Optional[pulumi.Input[str]] = None, owner_id: Optional[pulumi.Input[str]] = None, source_region: Optional[pulumi.Input[str]] = None, source_snapshot_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, volume_id: Optional[pulumi.Input[str]] = None, volume_size: Optional[pulumi.Input[float]] = None) -> 'SnapshotCopy':
         """
         Get an existing SnapshotCopy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

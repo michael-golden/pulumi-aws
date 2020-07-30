@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['EventSourceMapping']
+
 
 class EventSourceMapping(pulumi.CustomResource):
     batch_size: pulumi.Output[Optional[float]] = pulumi.output_property("batchSize")
@@ -75,7 +77,7 @@ class EventSourceMapping(pulumi.CustomResource):
     The UUID of the created event source mapping.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, batch_size=None, bisect_batch_on_function_error=None, destination_config=None, enabled=None, event_source_arn=None, function_name=None, maximum_batching_window_in_seconds=None, maximum_record_age_in_seconds=None, maximum_retry_attempts=None, parallelization_factor=None, starting_position=None, starting_position_timestamp=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, batch_size: Optional[pulumi.Input[float]] = None, bisect_batch_on_function_error: Optional[pulumi.Input[bool]] = None, destination_config: Optional[pulumi.Input[pulumi.InputType['EventSourceMappingDestinationConfigArgs']]] = None, enabled: Optional[pulumi.Input[bool]] = None, event_source_arn: Optional[pulumi.Input[str]] = None, function_name: Optional[pulumi.Input[str]] = None, maximum_batching_window_in_seconds: Optional[pulumi.Input[float]] = None, maximum_record_age_in_seconds: Optional[pulumi.Input[float]] = None, maximum_retry_attempts: Optional[pulumi.Input[float]] = None, parallelization_factor: Optional[pulumi.Input[float]] = None, starting_position: Optional[pulumi.Input[str]] = None, starting_position_timestamp: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Lambda event source mapping. This allows Lambda functions to get events from Kinesis, DynamoDB and SQS.
 
@@ -177,7 +179,7 @@ class EventSourceMapping(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, batch_size=None, bisect_batch_on_function_error=None, destination_config=None, enabled=None, event_source_arn=None, function_arn=None, function_name=None, last_modified=None, last_processing_result=None, maximum_batching_window_in_seconds=None, maximum_record_age_in_seconds=None, maximum_retry_attempts=None, parallelization_factor=None, starting_position=None, starting_position_timestamp=None, state=None, state_transition_reason=None, uuid=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, batch_size: Optional[pulumi.Input[float]] = None, bisect_batch_on_function_error: Optional[pulumi.Input[bool]] = None, destination_config: Optional[pulumi.Input[pulumi.InputType['EventSourceMappingDestinationConfigArgs']]] = None, enabled: Optional[pulumi.Input[bool]] = None, event_source_arn: Optional[pulumi.Input[str]] = None, function_arn: Optional[pulumi.Input[str]] = None, function_name: Optional[pulumi.Input[str]] = None, last_modified: Optional[pulumi.Input[str]] = None, last_processing_result: Optional[pulumi.Input[str]] = None, maximum_batching_window_in_seconds: Optional[pulumi.Input[float]] = None, maximum_record_age_in_seconds: Optional[pulumi.Input[float]] = None, maximum_retry_attempts: Optional[pulumi.Input[float]] = None, parallelization_factor: Optional[pulumi.Input[float]] = None, starting_position: Optional[pulumi.Input[str]] = None, starting_position_timestamp: Optional[pulumi.Input[str]] = None, state: Optional[pulumi.Input[str]] = None, state_transition_reason: Optional[pulumi.Input[str]] = None, uuid: Optional[pulumi.Input[str]] = None) -> 'EventSourceMapping':
         """
         Get an existing EventSourceMapping resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

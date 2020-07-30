@@ -8,6 +8,27 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ProjectArtifactsArgs',
+    'ProjectCacheArgs',
+    'ProjectEnvironmentArgs',
+    'ProjectEnvironmentEnvironmentVariableArgs',
+    'ProjectEnvironmentRegistryCredentialArgs',
+    'ProjectLogsConfigArgs',
+    'ProjectLogsConfigCloudwatchLogsArgs',
+    'ProjectLogsConfigS3LogsArgs',
+    'ProjectSecondaryArtifactArgs',
+    'ProjectSecondarySourceArgs',
+    'ProjectSecondarySourceAuthArgs',
+    'ProjectSecondarySourceGitSubmodulesConfigArgs',
+    'ProjectSourceArgs',
+    'ProjectSourceAuthArgs',
+    'ProjectSourceGitSubmodulesConfigArgs',
+    'ProjectVpcConfigArgs',
+    'WebhookFilterGroupArgs',
+    'WebhookFilterGroupFilterArgs',
+]
+
 @pulumi.input_type
 class ProjectArtifactsArgs:
     type: pulumi.Input[str] = pulumi.input_property("type")

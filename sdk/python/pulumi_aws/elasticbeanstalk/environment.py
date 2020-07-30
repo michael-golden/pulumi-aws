@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Environment']
+
 
 class Environment(pulumi.CustomResource):
     all_settings: pulumi.Output[List['outputs.EnvironmentAllSetting']] = pulumi.output_property("allSettings")
@@ -120,7 +122,7 @@ class Environment(pulumi.CustomResource):
     out.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application=None, cname_prefix=None, description=None, name=None, platform_arn=None, poll_interval=None, settings=None, solution_stack_name=None, tags=None, template_name=None, tier=None, version=None, wait_for_ready_timeout=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application: Optional[pulumi.Input[str]] = None, cname_prefix: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, platform_arn: Optional[pulumi.Input[str]] = None, poll_interval: Optional[pulumi.Input[str]] = None, settings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['EnvironmentSettingArgs']]]]] = None, solution_stack_name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, template_name: Optional[pulumi.Input[str]] = None, tier: Optional[pulumi.Input[str]] = None, version: Optional[pulumi.Input[str]] = None, wait_for_ready_timeout: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Elastic Beanstalk Environment Resource. Elastic Beanstalk allows
         you to deploy and manage applications in the AWS cloud without worrying about
@@ -191,7 +193,7 @@ class Environment(pulumi.CustomResource):
                check if changes have been applied. Use this to adjust the rate of API calls
                for any `create` or `update` action. Minimum `10s`, maximum `180s`. Omit this to
                use the default behavior, which is an exponential backoff
-        :param pulumi.Input[List[pulumi.Input['EnvironmentSettingArgs']]] settings: Option settings to configure the new Environment. These
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['EnvironmentSettingArgs']]]] settings: Option settings to configure the new Environment. These
                override specific values that are set as defaults. The format is detailed
                below in Option Settings
         :param pulumi.Input[str] solution_stack_name: A solution stack to base your environment
@@ -257,7 +259,7 @@ class Environment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, all_settings=None, application=None, arn=None, autoscaling_groups=None, cname=None, cname_prefix=None, description=None, endpoint_url=None, instances=None, launch_configurations=None, load_balancers=None, name=None, platform_arn=None, poll_interval=None, queues=None, settings=None, solution_stack_name=None, tags=None, template_name=None, tier=None, triggers=None, version=None, wait_for_ready_timeout=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, all_settings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['EnvironmentAllSettingArgs']]]]] = None, application: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, autoscaling_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, cname: Optional[pulumi.Input[str]] = None, cname_prefix: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, endpoint_url: Optional[pulumi.Input[str]] = None, instances: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, launch_configurations: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, load_balancers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, platform_arn: Optional[pulumi.Input[str]] = None, poll_interval: Optional[pulumi.Input[str]] = None, queues: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, settings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['EnvironmentSettingArgs']]]]] = None, solution_stack_name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, template_name: Optional[pulumi.Input[str]] = None, tier: Optional[pulumi.Input[str]] = None, triggers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, version: Optional[pulumi.Input[str]] = None, wait_for_ready_timeout: Optional[pulumi.Input[str]] = None) -> 'Environment':
         """
         Get an existing Environment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -265,7 +267,7 @@ class Environment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input['EnvironmentAllSettingArgs']]] all_settings: List of all option settings configured in this Environment. These
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['EnvironmentAllSettingArgs']]]] all_settings: List of all option settings configured in this Environment. These
                are a combination of default settings and their overrides from `setting` in
                the configuration.
         :param pulumi.Input[str] application: Name of the application that contains the version
@@ -288,7 +290,7 @@ class Environment(pulumi.CustomResource):
                for any `create` or `update` action. Minimum `10s`, maximum `180s`. Omit this to
                use the default behavior, which is an exponential backoff
         :param pulumi.Input[List[pulumi.Input[str]]] queues: SQS queues in use by this Environment.
-        :param pulumi.Input[List[pulumi.Input['EnvironmentSettingArgs']]] settings: Option settings to configure the new Environment. These
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['EnvironmentSettingArgs']]]] settings: Option settings to configure the new Environment. These
                override specific values that are set as defaults. The format is detailed
                below in Option Settings
         :param pulumi.Input[str] solution_stack_name: A solution stack to base your environment

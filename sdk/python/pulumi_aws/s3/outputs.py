@@ -8,6 +8,50 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'AccessPointPublicAccessBlockConfiguration',
+    'AccessPointVpcConfiguration',
+    'AnalyticsConfigurationFilter',
+    'AnalyticsConfigurationStorageClassAnalysis',
+    'AnalyticsConfigurationStorageClassAnalysisDataExport',
+    'AnalyticsConfigurationStorageClassAnalysisDataExportDestination',
+    'AnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDestination',
+    'BucketCorsRule',
+    'BucketGrant',
+    'BucketLifecycleRule',
+    'BucketLifecycleRuleExpiration',
+    'BucketLifecycleRuleNoncurrentVersionExpiration',
+    'BucketLifecycleRuleNoncurrentVersionTransition',
+    'BucketLifecycleRuleTransition',
+    'BucketLogging',
+    'BucketMetricFilter',
+    'BucketNotificationLambdaFunction',
+    'BucketNotificationQueue',
+    'BucketNotificationTopic',
+    'BucketObjectLockConfiguration',
+    'BucketObjectLockConfigurationRule',
+    'BucketObjectLockConfigurationRuleDefaultRetention',
+    'BucketReplicationConfiguration',
+    'BucketReplicationConfigurationRule',
+    'BucketReplicationConfigurationRuleDestination',
+    'BucketReplicationConfigurationRuleDestinationAccessControlTranslation',
+    'BucketReplicationConfigurationRuleFilter',
+    'BucketReplicationConfigurationRuleSourceSelectionCriteria',
+    'BucketReplicationConfigurationRuleSourceSelectionCriteriaSseKmsEncryptedObjects',
+    'BucketServerSideEncryptionConfiguration',
+    'BucketServerSideEncryptionConfigurationRule',
+    'BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault',
+    'BucketVersioning',
+    'BucketWebsite',
+    'InventoryDestination',
+    'InventoryDestinationBucket',
+    'InventoryDestinationBucketEncryption',
+    'InventoryDestinationBucketEncryptionSseKms',
+    'InventoryDestinationBucketEncryptionSseS3',
+    'InventoryFilter',
+    'InventorySchedule',
+]
+
 @pulumi.output_type
 class AccessPointPublicAccessBlockConfiguration(dict):
     block_public_acls: Optional[bool] = pulumi.output_property("blockPublicAcls")

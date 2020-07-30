@@ -8,6 +8,10 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'QueueReservationPlanSettings',
+]
+
 @pulumi.output_type
 class QueueReservationPlanSettings(dict):
     commitment: str = pulumi.output_property("commitment")

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ClusterInstance']
+
 
 class ClusterInstance(pulumi.CustomResource):
     apply_immediately: pulumi.Output[bool] = pulumi.output_property("applyImmediately")
@@ -109,7 +111,7 @@ class ClusterInstance(pulumi.CustomResource):
     Boolean indicating if this instance is writable. `False` indicates this instance is a read replica.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, apply_immediately=None, auto_minor_version_upgrade=None, availability_zone=None, ca_cert_identifier=None, cluster_identifier=None, engine=None, identifier=None, identifier_prefix=None, instance_class=None, preferred_maintenance_window=None, promotion_tier=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, apply_immediately: Optional[pulumi.Input[bool]] = None, auto_minor_version_upgrade: Optional[pulumi.Input[bool]] = None, availability_zone: Optional[pulumi.Input[str]] = None, ca_cert_identifier: Optional[pulumi.Input[str]] = None, cluster_identifier: Optional[pulumi.Input[str]] = None, engine: Optional[pulumi.Input[str]] = None, identifier: Optional[pulumi.Input[str]] = None, identifier_prefix: Optional[pulumi.Input[str]] = None, instance_class: Optional[pulumi.Input[str]] = None, preferred_maintenance_window: Optional[pulumi.Input[str]] = None, promotion_tier: Optional[pulumi.Input[float]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an DocDB Cluster Resource Instance. A Cluster Instance Resource defines
         attributes that are specific to a single instance in a [DocDB Cluster](https://www.terraform.io/docs/providers/aws/r/docdb_cluster.html).
@@ -218,7 +220,7 @@ class ClusterInstance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, apply_immediately=None, arn=None, auto_minor_version_upgrade=None, availability_zone=None, ca_cert_identifier=None, cluster_identifier=None, db_subnet_group_name=None, dbi_resource_id=None, endpoint=None, engine=None, engine_version=None, identifier=None, identifier_prefix=None, instance_class=None, kms_key_id=None, port=None, preferred_backup_window=None, preferred_maintenance_window=None, promotion_tier=None, publicly_accessible=None, storage_encrypted=None, tags=None, writer=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, apply_immediately: Optional[pulumi.Input[bool]] = None, arn: Optional[pulumi.Input[str]] = None, auto_minor_version_upgrade: Optional[pulumi.Input[bool]] = None, availability_zone: Optional[pulumi.Input[str]] = None, ca_cert_identifier: Optional[pulumi.Input[str]] = None, cluster_identifier: Optional[pulumi.Input[str]] = None, db_subnet_group_name: Optional[pulumi.Input[str]] = None, dbi_resource_id: Optional[pulumi.Input[str]] = None, endpoint: Optional[pulumi.Input[str]] = None, engine: Optional[pulumi.Input[str]] = None, engine_version: Optional[pulumi.Input[str]] = None, identifier: Optional[pulumi.Input[str]] = None, identifier_prefix: Optional[pulumi.Input[str]] = None, instance_class: Optional[pulumi.Input[str]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, port: Optional[pulumi.Input[float]] = None, preferred_backup_window: Optional[pulumi.Input[str]] = None, preferred_maintenance_window: Optional[pulumi.Input[str]] = None, promotion_tier: Optional[pulumi.Input[float]] = None, publicly_accessible: Optional[pulumi.Input[bool]] = None, storage_encrypted: Optional[pulumi.Input[bool]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, writer: Optional[pulumi.Input[bool]] = None) -> 'ClusterInstance':
         """
         Get an existing ClusterInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

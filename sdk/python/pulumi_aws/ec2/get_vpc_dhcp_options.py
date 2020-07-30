@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetVpcDhcpOptionsResult',
+    'AwaitableGetVpcDhcpOptionsResult',
+    'get_vpc_dhcp_options',
+]
+
 
 class GetVpcDhcpOptionsResult:
     """
@@ -101,7 +107,7 @@ class AwaitableGetVpcDhcpOptionsResult(GetVpcDhcpOptionsResult):
             tags=self.tags)
 
 
-def get_vpc_dhcp_options(dhcp_options_id=None, filters=None, tags=None, opts=None):
+def get_vpc_dhcp_options(dhcp_options_id: Optional[str] = None, filters: Optional[List[pulumi.InputType['GetVpcDhcpOptionsFilterArgs']]] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcDhcpOptionsResult:
     """
     Retrieve information about an EC2 DHCP Options configuration.
 
@@ -134,7 +140,7 @@ def get_vpc_dhcp_options(dhcp_options_id=None, filters=None, tags=None, opts=Non
 
 
     :param str dhcp_options_id: The EC2 DHCP Options ID.
-    :param List['GetVpcDhcpOptionsFilterArgs'] filters: List of custom filters as described below.
+    :param List[pulumi.InputType['GetVpcDhcpOptionsFilterArgs']] filters: List of custom filters as described below.
     :param Dict[str, str] tags: A map of tags assigned to the resource.
     """
     __args__ = dict()

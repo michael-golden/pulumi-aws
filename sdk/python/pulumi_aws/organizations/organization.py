@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Organization']
+
 
 class Organization(pulumi.CustomResource):
     accounts: pulumi.Output[List['outputs.OrganizationAccount']] = pulumi.output_property("accounts")
@@ -53,7 +55,7 @@ class Organization(pulumi.CustomResource):
     List of organization roots. All elements have these attributes:
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, aws_service_access_principals=None, enabled_policy_types=None, feature_set=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, aws_service_access_principals: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, enabled_policy_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, feature_set: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to create an organization.
 
@@ -111,7 +113,7 @@ class Organization(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, accounts=None, arn=None, aws_service_access_principals=None, enabled_policy_types=None, feature_set=None, master_account_arn=None, master_account_email=None, master_account_id=None, non_master_accounts=None, roots=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, accounts: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['OrganizationAccountArgs']]]]] = None, arn: Optional[pulumi.Input[str]] = None, aws_service_access_principals: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, enabled_policy_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, feature_set: Optional[pulumi.Input[str]] = None, master_account_arn: Optional[pulumi.Input[str]] = None, master_account_email: Optional[pulumi.Input[str]] = None, master_account_id: Optional[pulumi.Input[str]] = None, non_master_accounts: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['OrganizationNonMasterAccountArgs']]]]] = None, roots: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['OrganizationRootArgs']]]]] = None) -> 'Organization':
         """
         Get an existing Organization resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -119,7 +121,7 @@ class Organization(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input['OrganizationAccountArgs']]] accounts: List of organization accounts including the master account. For a list excluding the master account, see the `non_master_accounts` attribute. All elements have these attributes:
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['OrganizationAccountArgs']]]] accounts: List of organization accounts including the master account. For a list excluding the master account, see the `non_master_accounts` attribute. All elements have these attributes:
         :param pulumi.Input[str] arn: ARN of the root
         :param pulumi.Input[List[pulumi.Input[str]]] aws_service_access_principals: List of AWS service principal names for which you want to enable integration with your organization. This is typically in the form of a URL, such as service-abbreviation.amazonaws.com. Organization must have `feature_set` set to `ALL`. For additional information, see the [AWS Organizations User Guide](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html).
         :param pulumi.Input[List[pulumi.Input[str]]] enabled_policy_types: List of Organizations policy types to enable in the Organization Root. Organization must have `feature_set` set to `ALL`. For additional information about valid policy types (e.g. `BACKUP_POLICY`, `SERVICE_CONTROL_POLICY`, and `TAG_POLICY`), see the [AWS Organizations API Reference](https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyType.html).
@@ -127,8 +129,8 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[str] master_account_arn: ARN of the master account
         :param pulumi.Input[str] master_account_email: Email address of the master account
         :param pulumi.Input[str] master_account_id: Identifier of the master account
-        :param pulumi.Input[List[pulumi.Input['OrganizationNonMasterAccountArgs']]] non_master_accounts: List of organization accounts excluding the master account. For a list including the master account, see the `accounts` attribute. All elements have these attributes:
-        :param pulumi.Input[List[pulumi.Input['OrganizationRootArgs']]] roots: List of organization roots. All elements have these attributes:
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['OrganizationNonMasterAccountArgs']]]] non_master_accounts: List of organization accounts excluding the master account. For a list including the master account, see the `accounts` attribute. All elements have these attributes:
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['OrganizationRootArgs']]]] roots: List of organization roots. All elements have these attributes:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['TableItem']
+
 
 class TableItem(pulumi.CustomResource):
     hash_key: pulumi.Output[str] = pulumi.output_property("hashKey")
@@ -28,7 +30,7 @@ class TableItem(pulumi.CustomResource):
     The name of the table to contain the item.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, hash_key=None, item=None, range_key=None, table_name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, hash_key: Optional[pulumi.Input[str]] = None, item: Optional[pulumi.Input[str]] = None, range_key: Optional[pulumi.Input[str]] = None, table_name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a DynamoDB table item resource
 
@@ -105,7 +107,7 @@ class TableItem(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, hash_key=None, item=None, range_key=None, table_name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, hash_key: Optional[pulumi.Input[str]] = None, item: Optional[pulumi.Input[str]] = None, range_key: Optional[pulumi.Input[str]] = None, table_name: Optional[pulumi.Input[str]] = None) -> 'TableItem':
         """
         Get an existing TableItem resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

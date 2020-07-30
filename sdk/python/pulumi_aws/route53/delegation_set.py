@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['DelegationSet']
+
 
 class DelegationSet(pulumi.CustomResource):
     name_servers: pulumi.Output[List[str]] = pulumi.output_property("nameServers")
@@ -21,7 +23,7 @@ class DelegationSet(pulumi.CustomResource):
     (helpful for identifying single delegation set amongst others)
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, reference_name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, reference_name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a [Route53 Delegation Set](https://docs.aws.amazon.com/Route53/latest/APIReference/API-actions-by-function.html#actions-by-function-reusable-delegation-sets) resource.
 
@@ -67,7 +69,7 @@ class DelegationSet(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, name_servers=None, reference_name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, name_servers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, reference_name: Optional[pulumi.Input[str]] = None) -> 'DelegationSet':
         """
         Get an existing DelegationSet resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

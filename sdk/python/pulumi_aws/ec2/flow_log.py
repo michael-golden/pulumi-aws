@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['FlowLog']
+
 
 class FlowLog(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -62,7 +64,7 @@ class FlowLog(pulumi.CustomResource):
     VPC ID to attach to
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, eni_id=None, iam_role_arn=None, log_destination=None, log_destination_type=None, log_format=None, log_group_name=None, max_aggregation_interval=None, subnet_id=None, tags=None, traffic_type=None, vpc_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, eni_id: Optional[pulumi.Input[str]] = None, iam_role_arn: Optional[pulumi.Input[str]] = None, log_destination: Optional[pulumi.Input[str]] = None, log_destination_type: Optional[pulumi.Input[str]] = None, log_format: Optional[pulumi.Input[str]] = None, log_group_name: Optional[pulumi.Input[str]] = None, max_aggregation_interval: Optional[pulumi.Input[float]] = None, subnet_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, traffic_type: Optional[pulumi.Input[str]] = None, vpc_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a VPC/Subnet/ENI Flow Log to capture IP traffic for a specific network
         interface, subnet, or VPC. Logs are sent to a CloudWatch Log Group or a S3 Bucket.
@@ -188,7 +190,7 @@ class FlowLog(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, eni_id=None, iam_role_arn=None, log_destination=None, log_destination_type=None, log_format=None, log_group_name=None, max_aggregation_interval=None, subnet_id=None, tags=None, traffic_type=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, eni_id: Optional[pulumi.Input[str]] = None, iam_role_arn: Optional[pulumi.Input[str]] = None, log_destination: Optional[pulumi.Input[str]] = None, log_destination_type: Optional[pulumi.Input[str]] = None, log_format: Optional[pulumi.Input[str]] = None, log_group_name: Optional[pulumi.Input[str]] = None, max_aggregation_interval: Optional[pulumi.Input[float]] = None, subnet_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, traffic_type: Optional[pulumi.Input[str]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'FlowLog':
         """
         Get an existing FlowLog resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

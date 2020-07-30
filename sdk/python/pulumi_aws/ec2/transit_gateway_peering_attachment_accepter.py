@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['TransitGatewayPeeringAttachmentAccepter']
+
 
 class TransitGatewayPeeringAttachmentAccepter(pulumi.CustomResource):
     peer_account_id: pulumi.Output[str] = pulumi.output_property("peerAccountId")
@@ -32,7 +34,7 @@ class TransitGatewayPeeringAttachmentAccepter(pulumi.CustomResource):
     Identifier of EC2 Transit Gateway.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, tags=None, transit_gateway_attachment_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, transit_gateway_attachment_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages the accepter's side of an EC2 Transit Gateway Peering Attachment.
 
@@ -86,7 +88,7 @@ class TransitGatewayPeeringAttachmentAccepter(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, peer_account_id=None, peer_region=None, peer_transit_gateway_id=None, tags=None, transit_gateway_attachment_id=None, transit_gateway_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, peer_account_id: Optional[pulumi.Input[str]] = None, peer_region: Optional[pulumi.Input[str]] = None, peer_transit_gateway_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, transit_gateway_attachment_id: Optional[pulumi.Input[str]] = None, transit_gateway_id: Optional[pulumi.Input[str]] = None) -> 'TransitGatewayPeeringAttachmentAccepter':
         """
         Get an existing TransitGatewayPeeringAttachmentAccepter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

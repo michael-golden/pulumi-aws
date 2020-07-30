@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Route']
+
 
 class Route(pulumi.CustomResource):
     client_vpn_endpoint_id: pulumi.Output[str] = pulumi.output_property("clientVpnEndpointId")
@@ -29,7 +31,7 @@ class Route(pulumi.CustomResource):
     """
     type: pulumi.Output[str] = pulumi.output_property("type")
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, client_vpn_endpoint_id=None, description=None, destination_cidr_block=None, target_vpc_subnet_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, client_vpn_endpoint_id: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, destination_cidr_block: Optional[pulumi.Input[str]] = None, target_vpc_subnet_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides additional routes for AWS Client VPN endpoints. For more information on usage, please see the
         [AWS Client VPN Administrator's Guide](https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html).
@@ -110,7 +112,7 @@ class Route(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, client_vpn_endpoint_id=None, description=None, destination_cidr_block=None, origin=None, target_vpc_subnet_id=None, type=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, client_vpn_endpoint_id: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, destination_cidr_block: Optional[pulumi.Input[str]] = None, origin: Optional[pulumi.Input[str]] = None, target_vpc_subnet_id: Optional[pulumi.Input[str]] = None, type: Optional[pulumi.Input[str]] = None) -> 'Route':
         """
         Get an existing Route resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,24 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GlobalTableReplica',
+    'TableAttribute',
+    'TableGlobalSecondaryIndex',
+    'TableLocalSecondaryIndex',
+    'TablePointInTimeRecovery',
+    'TableReplica',
+    'TableServerSideEncryption',
+    'TableTtl',
+    'GetTableAttribute',
+    'GetTableGlobalSecondaryIndex',
+    'GetTableLocalSecondaryIndex',
+    'GetTablePointInTimeRecovery',
+    'GetTableReplica',
+    'GetTableServerSideEncryption',
+    'GetTableTtl',
+]
+
 @pulumi.output_type
 class GlobalTableReplica(dict):
     region_name: str = pulumi.output_property("regionName")

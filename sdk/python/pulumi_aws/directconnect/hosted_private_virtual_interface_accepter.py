@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['HostedPrivateVirtualInterfaceAccepter']
+
 
 class HostedPrivateVirtualInterfaceAccepter(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -31,7 +33,7 @@ class HostedPrivateVirtualInterfaceAccepter(pulumi.CustomResource):
     The ID of the virtual private gateway to which to connect the virtual interface.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, dx_gateway_id=None, tags=None, virtual_interface_id=None, vpn_gateway_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, dx_gateway_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, virtual_interface_id: Optional[pulumi.Input[str]] = None, vpn_gateway_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage the accepter's side of a Direct Connect hosted private virtual interface.
         This resource accepts ownership of a private virtual interface created by another AWS account.
@@ -102,7 +104,7 @@ class HostedPrivateVirtualInterfaceAccepter(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, dx_gateway_id=None, tags=None, virtual_interface_id=None, vpn_gateway_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, dx_gateway_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, virtual_interface_id: Optional[pulumi.Input[str]] = None, vpn_gateway_id: Optional[pulumi.Input[str]] = None) -> 'HostedPrivateVirtualInterfaceAccepter':
         """
         Get an existing HostedPrivateVirtualInterfaceAccepter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

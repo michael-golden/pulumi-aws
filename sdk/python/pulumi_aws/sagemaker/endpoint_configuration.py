@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['EndpointConfiguration']
+
 
 class EndpointConfiguration(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -33,7 +35,7 @@ class EndpointConfiguration(pulumi.CustomResource):
     A mapping of tags to assign to the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, kms_key_arn=None, name=None, production_variants=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, kms_key_arn: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, production_variants: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointConfigurationProductionVariantArgs']]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a SageMaker endpoint configuration resource.
 
@@ -61,7 +63,7 @@ class EndpointConfiguration(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] kms_key_arn: Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint.
         :param pulumi.Input[str] name: The name of the endpoint configuration. If omitted, this provider will assign a random, unique name.
-        :param pulumi.Input[List[pulumi.Input['EndpointConfigurationProductionVariantArgs']]] production_variants: Fields are documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointConfigurationProductionVariantArgs']]]] production_variants: Fields are documented below.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A mapping of tags to assign to the resource.
         """
         if __name__ is not None:
@@ -95,7 +97,7 @@ class EndpointConfiguration(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, kms_key_arn=None, name=None, production_variants=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, kms_key_arn: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, production_variants: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointConfigurationProductionVariantArgs']]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'EndpointConfiguration':
         """
         Get an existing EndpointConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -106,7 +108,7 @@ class EndpointConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] arn: The Amazon Resource Name (ARN) assigned by AWS to this endpoint configuration.
         :param pulumi.Input[str] kms_key_arn: Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint.
         :param pulumi.Input[str] name: The name of the endpoint configuration. If omitted, this provider will assign a random, unique name.
-        :param pulumi.Input[List[pulumi.Input['EndpointConfigurationProductionVariantArgs']]] production_variants: Fields are documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointConfigurationProductionVariantArgs']]]] production_variants: Fields are documented below.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A mapping of tags to assign to the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

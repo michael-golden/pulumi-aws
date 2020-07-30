@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['EnvironmentEC2']
+
 
 class EnvironmentEC2(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -47,7 +49,7 @@ class EnvironmentEC2(pulumi.CustomResource):
     The type of the environment (e.g. `ssh` or `ec2`)
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, automatic_stop_time_minutes=None, description=None, instance_type=None, name=None, owner_arn=None, subnet_id=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, automatic_stop_time_minutes: Optional[pulumi.Input[float]] = None, description: Optional[pulumi.Input[str]] = None, instance_type: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, owner_arn: Optional[pulumi.Input[str]] = None, subnet_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Cloud9 EC2 Development Environment.
 
@@ -105,7 +107,7 @@ class EnvironmentEC2(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, automatic_stop_time_minutes=None, description=None, instance_type=None, name=None, owner_arn=None, subnet_id=None, tags=None, type=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, automatic_stop_time_minutes: Optional[pulumi.Input[float]] = None, description: Optional[pulumi.Input[str]] = None, instance_type: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, owner_arn: Optional[pulumi.Input[str]] = None, subnet_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, type: Optional[pulumi.Input[str]] = None) -> 'EnvironmentEC2':
         """
         Get an existing EnvironmentEC2 resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

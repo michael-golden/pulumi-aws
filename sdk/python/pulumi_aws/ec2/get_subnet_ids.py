@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetSubnetIdsResult',
+    'AwaitableGetSubnetIdsResult',
+    'get_subnet_ids',
+]
+
 
 class GetSubnetIdsResult:
     """
@@ -53,7 +59,7 @@ class AwaitableGetSubnetIdsResult(GetSubnetIdsResult):
             vpc_id=self.vpc_id)
 
 
-def get_subnet_ids(filters=None, tags=None, vpc_id=None, opts=None):
+def get_subnet_ids(filters: Optional[List[pulumi.InputType['GetSubnetIdsFilterArgs']]] = None, tags: Optional[Dict[str, str]] = None, vpc_id: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSubnetIdsResult:
     """
     `ec2.getSubnetIds` provides a set of ids for a vpc_id
 
@@ -93,7 +99,7 @@ def get_subnet_ids(filters=None, tags=None, vpc_id=None, opts=None):
     ```
 
 
-    :param List['GetSubnetIdsFilterArgs'] filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetSubnetIdsFilterArgs']] filters: Custom filter block as described below.
     :param Dict[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired subnets.
     :param str vpc_id: The VPC ID that you want to filter from.

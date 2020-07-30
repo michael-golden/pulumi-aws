@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ReplicationSubnetGroup']
+
 
 class ReplicationSubnetGroup(pulumi.CustomResource):
     replication_subnet_group_arn: pulumi.Output[str] = pulumi.output_property("replicationSubnetGroupArn")
@@ -32,7 +34,7 @@ class ReplicationSubnetGroup(pulumi.CustomResource):
     The ID of the VPC the subnet group is in.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, replication_subnet_group_description=None, replication_subnet_group_id=None, subnet_ids=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, replication_subnet_group_description: Optional[pulumi.Input[str]] = None, replication_subnet_group_id: Optional[pulumi.Input[str]] = None, subnet_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a DMS (Data Migration Service) replication subnet group resource. DMS replication subnet groups can be created, updated, deleted, and imported.
 
@@ -95,7 +97,7 @@ class ReplicationSubnetGroup(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, replication_subnet_group_arn=None, replication_subnet_group_description=None, replication_subnet_group_id=None, subnet_ids=None, tags=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, replication_subnet_group_arn: Optional[pulumi.Input[str]] = None, replication_subnet_group_description: Optional[pulumi.Input[str]] = None, replication_subnet_group_id: Optional[pulumi.Input[str]] = None, subnet_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'ReplicationSubnetGroup':
         """
         Get an existing ReplicationSubnetGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

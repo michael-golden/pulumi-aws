@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['PrincipalAssociation']
+
 
 class PrincipalAssociation(pulumi.CustomResource):
     principal: pulumi.Output[str] = pulumi.output_property("principal")
@@ -19,7 +21,7 @@ class PrincipalAssociation(pulumi.CustomResource):
     The Amazon Resource Name (ARN) of the resource share.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, principal=None, resource_share_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, principal: Optional[pulumi.Input[str]] = None, resource_share_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Resource Access Manager (RAM) principal association. Depending if [RAM Sharing with AWS Organizations is enabled](https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html#getting-started-sharing-orgs), the RAM behavior with different principal types changes.
 
@@ -91,7 +93,7 @@ class PrincipalAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, principal=None, resource_share_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, principal: Optional[pulumi.Input[str]] = None, resource_share_arn: Optional[pulumi.Input[str]] = None) -> 'PrincipalAssociation':
         """
         Get an existing PrincipalAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

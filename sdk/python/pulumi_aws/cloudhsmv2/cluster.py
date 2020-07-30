@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Cluster']
+
 
 class Cluster(pulumi.CustomResource):
     cluster_certificates: pulumi.Output[List['outputs.ClusterClusterCertificate']] = pulumi.output_property("clusterCertificates")
@@ -54,7 +56,7 @@ class Cluster(pulumi.CustomResource):
     The id of the VPC that the CloudHSM cluster resides in.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, hsm_type=None, source_backup_identifier=None, subnet_ids=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, hsm_type: Optional[pulumi.Input[str]] = None, source_backup_identifier: Optional[pulumi.Input[str]] = None, subnet_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates an Amazon CloudHSM v2 cluster.
 
@@ -111,7 +113,7 @@ class Cluster(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, cluster_certificates=None, cluster_id=None, cluster_state=None, hsm_type=None, security_group_id=None, source_backup_identifier=None, subnet_ids=None, tags=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, cluster_certificates: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ClusterClusterCertificateArgs']]]]] = None, cluster_id: Optional[pulumi.Input[str]] = None, cluster_state: Optional[pulumi.Input[str]] = None, hsm_type: Optional[pulumi.Input[str]] = None, security_group_id: Optional[pulumi.Input[str]] = None, source_backup_identifier: Optional[pulumi.Input[str]] = None, subnet_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -119,7 +121,7 @@ class Cluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input['ClusterClusterCertificateArgs']]] cluster_certificates: The list of cluster certificates.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ClusterClusterCertificateArgs']]]] cluster_certificates: The list of cluster certificates.
                * `cluster_certificates.0.cluster_certificate` - The cluster certificate issued (signed) by the issuing certificate authority (CA) of the cluster's owner.
                * `cluster_certificates.0.cluster_csr` - The certificate signing request (CSR). Available only in UNINITIALIZED state after an hsm instance is added to the cluster.
                * `cluster_certificates.0.aws_hardware_certificate` - The HSM hardware certificate issued (signed) by AWS CloudHSM.

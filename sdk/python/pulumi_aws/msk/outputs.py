@@ -8,6 +8,24 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ClusterBrokerNodeGroupInfo',
+    'ClusterClientAuthentication',
+    'ClusterClientAuthenticationTls',
+    'ClusterConfigurationInfo',
+    'ClusterEncryptionInfo',
+    'ClusterEncryptionInfoEncryptionInTransit',
+    'ClusterLoggingInfo',
+    'ClusterLoggingInfoBrokerLogs',
+    'ClusterLoggingInfoBrokerLogsCloudwatchLogs',
+    'ClusterLoggingInfoBrokerLogsFirehose',
+    'ClusterLoggingInfoBrokerLogsS3',
+    'ClusterOpenMonitoring',
+    'ClusterOpenMonitoringPrometheus',
+    'ClusterOpenMonitoringPrometheusJmxExporter',
+    'ClusterOpenMonitoringPrometheusNodeExporter',
+]
+
 @pulumi.output_type
 class ClusterBrokerNodeGroupInfo(dict):
     az_distribution: Optional[str] = pulumi.output_property("azDistribution")

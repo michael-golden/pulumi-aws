@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetVpcEndpointServiceResult',
+    'AwaitableGetVpcEndpointServiceResult',
+    'get_vpc_endpoint_service',
+]
+
 
 class GetVpcEndpointServiceResult:
     """
@@ -123,7 +129,7 @@ class AwaitableGetVpcEndpointServiceResult(GetVpcEndpointServiceResult):
             vpc_endpoint_policy_supported=self.vpc_endpoint_policy_supported)
 
 
-def get_vpc_endpoint_service(filters=None, service=None, service_name=None, tags=None, opts=None):
+def get_vpc_endpoint_service(filters: Optional[List[pulumi.InputType['GetVpcEndpointServiceFilterArgs']]] = None, service: Optional[str] = None, service_name: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcEndpointServiceResult:
     """
     The VPC Endpoint Service data source details about a specific service that
     can be specified when creating a VPC endpoint within the region configured in the provider.
@@ -164,7 +170,7 @@ def get_vpc_endpoint_service(filters=None, service=None, service_name=None, tags
     ```
 
 
-    :param List['GetVpcEndpointServiceFilterArgs'] filters: Configuration block(s) for filtering. Detailed below.
+    :param List[pulumi.InputType['GetVpcEndpointServiceFilterArgs']] filters: Configuration block(s) for filtering. Detailed below.
     :param str service: The common name of an AWS service (e.g. `s3`).
     :param str service_name: The service name that is specified when creating a VPC endpoint. For AWS services the service name is usually in the form `com.amazonaws.<region>.<service>` (the SageMaker Notebook service is an exception to this rule, the service name is in the form `aws.sagemaker.<region>.notebook`).
     :param Dict[str, str] tags: A map of tags, each pair of which must exactly match a pair on the desired VPC Endpoint Service.

@@ -10,6 +10,12 @@ from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetPrefixListResult',
+    'AwaitableGetPrefixListResult',
+    'get_prefix_list',
+]
+
 
 class GetPrefixListResult:
     """
@@ -56,7 +62,7 @@ class AwaitableGetPrefixListResult(GetPrefixListResult):
             prefix_list_id=self.prefix_list_id)
 
 
-def get_prefix_list(filters=None, name=None, prefix_list_id=None, opts=None):
+def get_prefix_list(filters: Optional[List[pulumi.InputType['GetPrefixListFilterArgs']]] = None, name: Optional[str] = None, prefix_list_id: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrefixListResult:
     """
     `getPrefixList` provides details about a specific prefix list (PL)
     in the current region.
@@ -100,7 +106,7 @@ def get_prefix_list(filters=None, name=None, prefix_list_id=None, opts=None):
     ```
 
 
-    :param List['GetPrefixListFilterArgs'] filters: Configuration block(s) for filtering. Detailed below.
+    :param List[pulumi.InputType['GetPrefixListFilterArgs']] filters: Configuration block(s) for filtering. Detailed below.
     :param str name: The name of the filter field. Valid values can be found in the [EC2 DescribePrefixLists API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribePrefixLists.html).
     :param str prefix_list_id: The ID of the prefix list to select.
     """

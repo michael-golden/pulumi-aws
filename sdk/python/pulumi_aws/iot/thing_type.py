@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['ThingType']
+
 
 class ThingType(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -29,7 +31,7 @@ class ThingType(pulumi.CustomResource):
     , Configuration block that can contain the following properties of the thing type:
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, deprecated=None, name=None, properties=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, deprecated: Optional[pulumi.Input[bool]] = None, name: Optional[pulumi.Input[str]] = None, properties: Optional[pulumi.Input[pulumi.InputType['ThingTypePropertiesArgs']]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates and manages an AWS IoT Thing Type.
 
@@ -46,7 +48,7 @@ class ThingType(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] deprecated: Whether the thing type is deprecated. If true, no new things could be associated with this type.
         :param pulumi.Input[str] name: The name of the thing type.
-        :param pulumi.Input['ThingTypePropertiesArgs'] properties: , Configuration block that can contain the following properties of the thing type:
+        :param pulumi.Input[pulumi.InputType['ThingTypePropertiesArgs']] properties: , Configuration block that can contain the following properties of the thing type:
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -76,7 +78,7 @@ class ThingType(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, deprecated=None, name=None, properties=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, deprecated: Optional[pulumi.Input[bool]] = None, name: Optional[pulumi.Input[str]] = None, properties: Optional[pulumi.Input[pulumi.InputType['ThingTypePropertiesArgs']]] = None) -> 'ThingType':
         """
         Get an existing ThingType resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -87,7 +89,7 @@ class ThingType(pulumi.CustomResource):
         :param pulumi.Input[str] arn: The ARN of the created AWS IoT Thing Type.
         :param pulumi.Input[bool] deprecated: Whether the thing type is deprecated. If true, no new things could be associated with this type.
         :param pulumi.Input[str] name: The name of the thing type.
-        :param pulumi.Input['ThingTypePropertiesArgs'] properties: , Configuration block that can contain the following properties of the thing type:
+        :param pulumi.Input[pulumi.InputType['ThingTypePropertiesArgs']] properties: , Configuration block that can contain the following properties of the thing type:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

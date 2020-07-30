@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ReplicationTask']
+
 
 class ReplicationTask(pulumi.CustomResource):
     cdc_start_time: pulumi.Output[Optional[str]] = pulumi.output_property("cdcStartTime")
@@ -51,7 +53,7 @@ class ReplicationTask(pulumi.CustomResource):
     The Amazon Resource Name (ARN) string that uniquely identifies the target endpoint.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cdc_start_time=None, migration_type=None, replication_instance_arn=None, replication_task_id=None, replication_task_settings=None, source_endpoint_arn=None, table_mappings=None, tags=None, target_endpoint_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cdc_start_time: Optional[pulumi.Input[str]] = None, migration_type: Optional[pulumi.Input[str]] = None, replication_instance_arn: Optional[pulumi.Input[str]] = None, replication_task_id: Optional[pulumi.Input[str]] = None, replication_task_settings: Optional[pulumi.Input[str]] = None, source_endpoint_arn: Optional[pulumi.Input[str]] = None, table_mappings: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, target_endpoint_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a DMS (Data Migration Service) replication task resource. DMS replication tasks can be created, updated, deleted, and imported.
 
@@ -134,7 +136,7 @@ class ReplicationTask(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, cdc_start_time=None, migration_type=None, replication_instance_arn=None, replication_task_arn=None, replication_task_id=None, replication_task_settings=None, source_endpoint_arn=None, table_mappings=None, tags=None, target_endpoint_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, cdc_start_time: Optional[pulumi.Input[str]] = None, migration_type: Optional[pulumi.Input[str]] = None, replication_instance_arn: Optional[pulumi.Input[str]] = None, replication_task_arn: Optional[pulumi.Input[str]] = None, replication_task_id: Optional[pulumi.Input[str]] = None, replication_task_settings: Optional[pulumi.Input[str]] = None, source_endpoint_arn: Optional[pulumi.Input[str]] = None, table_mappings: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, target_endpoint_arn: Optional[pulumi.Input[str]] = None) -> 'ReplicationTask':
         """
         Get an existing ReplicationTask resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

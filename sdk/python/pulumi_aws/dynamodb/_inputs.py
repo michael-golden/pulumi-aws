@@ -8,6 +8,18 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GlobalTableReplicaArgs',
+    'TableAttributeArgs',
+    'TableGlobalSecondaryIndexArgs',
+    'TableLocalSecondaryIndexArgs',
+    'TablePointInTimeRecoveryArgs',
+    'TableReplicaArgs',
+    'TableServerSideEncryptionArgs',
+    'TableTtlArgs',
+    'GetTableServerSideEncryptionArgs',
+]
+
 @pulumi.input_type
 class GlobalTableReplicaArgs:
     region_name: pulumi.Input[str] = pulumi.input_property("regionName")

@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetLocalGatewayRouteTableResult',
+    'AwaitableGetLocalGatewayRouteTableResult',
+    'get_local_gateway_route_table',
+]
+
 
 class GetLocalGatewayRouteTableResult:
     """
@@ -58,7 +64,7 @@ class AwaitableGetLocalGatewayRouteTableResult(GetLocalGatewayRouteTableResult):
             tags=self.tags)
 
 
-def get_local_gateway_route_table(filters=None, local_gateway_id=None, local_gateway_route_table_id=None, outpost_arn=None, state=None, tags=None, opts=None):
+def get_local_gateway_route_table(filters: Optional[List[pulumi.InputType['GetLocalGatewayRouteTableFilterArgs']]] = None, local_gateway_id: Optional[str] = None, local_gateway_route_table_id: Optional[str] = None, outpost_arn: Optional[str] = None, state: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLocalGatewayRouteTableResult:
     """
     Provides details about an EC2 Local Gateway Route Table.
 

@@ -8,6 +8,13 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetEbsVolumesFilter',
+    'GetSnapshotFilter',
+    'GetSnapshotIdsFilter',
+    'GetVolumeFilter',
+]
+
 @pulumi.output_type
 class GetEbsVolumesFilter(dict):
     name: str = pulumi.output_property("name")

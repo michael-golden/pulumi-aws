@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetBucketObjectsResult',
+    'AwaitableGetBucketObjectsResult',
+    'get_bucket_objects',
+]
+
 
 class GetBucketObjectsResult:
     """
@@ -81,7 +87,7 @@ class AwaitableGetBucketObjectsResult(GetBucketObjectsResult):
             start_after=self.start_after)
 
 
-def get_bucket_objects(bucket=None, delimiter=None, encoding_type=None, fetch_owner=None, max_keys=None, prefix=None, start_after=None, opts=None):
+def get_bucket_objects(bucket: Optional[str] = None, delimiter: Optional[str] = None, encoding_type: Optional[str] = None, fetch_owner: Optional[bool] = None, max_keys: Optional[float] = None, prefix: Optional[str] = None, start_after: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBucketObjectsResult:
     """
     > **NOTE on `max_keys`:** Retrieving very large numbers of keys can adversely affect this provider's performance.
 

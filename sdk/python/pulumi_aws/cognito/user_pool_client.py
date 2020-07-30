@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['UserPoolClient']
+
 
 class UserPoolClient(pulumi.CustomResource):
     allowed_oauth_flows: pulumi.Output[Optional[List[str]]] = pulumi.output_property("allowedOauthFlows")
@@ -81,7 +83,7 @@ class UserPoolClient(pulumi.CustomResource):
     List of user pool attributes the application client can write to.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allowed_oauth_flows=None, allowed_oauth_flows_user_pool_client=None, allowed_oauth_scopes=None, analytics_configuration=None, callback_urls=None, default_redirect_uri=None, explicit_auth_flows=None, generate_secret=None, logout_urls=None, name=None, prevent_user_existence_errors=None, read_attributes=None, refresh_token_validity=None, supported_identity_providers=None, user_pool_id=None, write_attributes=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allowed_oauth_flows: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, allowed_oauth_flows_user_pool_client: Optional[pulumi.Input[bool]] = None, allowed_oauth_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, analytics_configuration: Optional[pulumi.Input[pulumi.InputType['UserPoolClientAnalyticsConfigurationArgs']]] = None, callback_urls: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, default_redirect_uri: Optional[pulumi.Input[str]] = None, explicit_auth_flows: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, generate_secret: Optional[pulumi.Input[bool]] = None, logout_urls: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, prevent_user_existence_errors: Optional[pulumi.Input[str]] = None, read_attributes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, refresh_token_validity: Optional[pulumi.Input[float]] = None, supported_identity_providers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, user_pool_id: Optional[pulumi.Input[str]] = None, write_attributes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Cognito User Pool Client resource.
 
@@ -163,7 +165,7 @@ class UserPoolClient(pulumi.CustomResource):
         :param pulumi.Input[List[pulumi.Input[str]]] allowed_oauth_flows: List of allowed OAuth flows (code, implicit, client_credentials).
         :param pulumi.Input[bool] allowed_oauth_flows_user_pool_client: Whether the client is allowed to follow the OAuth protocol when interacting with Cognito user pools.
         :param pulumi.Input[List[pulumi.Input[str]]] allowed_oauth_scopes: List of allowed OAuth scopes (phone, email, openid, profile, and aws.cognito.signin.user.admin).
-        :param pulumi.Input['UserPoolClientAnalyticsConfigurationArgs'] analytics_configuration: The Amazon Pinpoint analytics configuration for collecting metrics for this user pool.
+        :param pulumi.Input[pulumi.InputType['UserPoolClientAnalyticsConfigurationArgs']] analytics_configuration: The Amazon Pinpoint analytics configuration for collecting metrics for this user pool.
         :param pulumi.Input[List[pulumi.Input[str]]] callback_urls: List of allowed callback URLs for the identity providers.
         :param pulumi.Input[str] default_redirect_uri: The default redirect URI. Must be in the list of callback URLs.
         :param pulumi.Input[List[pulumi.Input[str]]] explicit_auth_flows: List of authentication flows (ADMIN_NO_SRP_AUTH, CUSTOM_AUTH_FLOW_ONLY,  USER_PASSWORD_AUTH, ALLOW_ADMIN_USER_PASSWORD_AUTH, ALLOW_CUSTOM_AUTH, ALLOW_USER_PASSWORD_AUTH, ALLOW_USER_SRP_AUTH, ALLOW_REFRESH_TOKEN_AUTH).
@@ -220,7 +222,7 @@ class UserPoolClient(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allowed_oauth_flows=None, allowed_oauth_flows_user_pool_client=None, allowed_oauth_scopes=None, analytics_configuration=None, callback_urls=None, client_secret=None, default_redirect_uri=None, explicit_auth_flows=None, generate_secret=None, logout_urls=None, name=None, prevent_user_existence_errors=None, read_attributes=None, refresh_token_validity=None, supported_identity_providers=None, user_pool_id=None, write_attributes=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, allowed_oauth_flows: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, allowed_oauth_flows_user_pool_client: Optional[pulumi.Input[bool]] = None, allowed_oauth_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, analytics_configuration: Optional[pulumi.Input[pulumi.InputType['UserPoolClientAnalyticsConfigurationArgs']]] = None, callback_urls: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, client_secret: Optional[pulumi.Input[str]] = None, default_redirect_uri: Optional[pulumi.Input[str]] = None, explicit_auth_flows: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, generate_secret: Optional[pulumi.Input[bool]] = None, logout_urls: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, prevent_user_existence_errors: Optional[pulumi.Input[str]] = None, read_attributes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, refresh_token_validity: Optional[pulumi.Input[float]] = None, supported_identity_providers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, user_pool_id: Optional[pulumi.Input[str]] = None, write_attributes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'UserPoolClient':
         """
         Get an existing UserPoolClient resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -231,7 +233,7 @@ class UserPoolClient(pulumi.CustomResource):
         :param pulumi.Input[List[pulumi.Input[str]]] allowed_oauth_flows: List of allowed OAuth flows (code, implicit, client_credentials).
         :param pulumi.Input[bool] allowed_oauth_flows_user_pool_client: Whether the client is allowed to follow the OAuth protocol when interacting with Cognito user pools.
         :param pulumi.Input[List[pulumi.Input[str]]] allowed_oauth_scopes: List of allowed OAuth scopes (phone, email, openid, profile, and aws.cognito.signin.user.admin).
-        :param pulumi.Input['UserPoolClientAnalyticsConfigurationArgs'] analytics_configuration: The Amazon Pinpoint analytics configuration for collecting metrics for this user pool.
+        :param pulumi.Input[pulumi.InputType['UserPoolClientAnalyticsConfigurationArgs']] analytics_configuration: The Amazon Pinpoint analytics configuration for collecting metrics for this user pool.
         :param pulumi.Input[List[pulumi.Input[str]]] callback_urls: List of allowed callback URLs for the identity providers.
         :param pulumi.Input[str] client_secret: The client secret of the user pool client.
         :param pulumi.Input[str] default_redirect_uri: The default redirect URI. Must be in the list of callback URLs.

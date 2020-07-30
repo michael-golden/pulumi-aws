@@ -8,6 +8,22 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GroupInitialLifecycleHook',
+    'GroupLaunchTemplate',
+    'GroupMixedInstancesPolicy',
+    'GroupMixedInstancesPolicyInstancesDistribution',
+    'GroupMixedInstancesPolicyLaunchTemplate',
+    'GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification',
+    'GroupMixedInstancesPolicyLaunchTemplateOverride',
+    'GroupTag',
+    'PolicyStepAdjustment',
+    'PolicyTargetTrackingConfiguration',
+    'PolicyTargetTrackingConfigurationCustomizedMetricSpecification',
+    'PolicyTargetTrackingConfigurationCustomizedMetricSpecificationMetricDimension',
+    'PolicyTargetTrackingConfigurationPredefinedMetricSpecification',
+]
+
 @pulumi.output_type
 class GroupInitialLifecycleHook(dict):
     default_result: Optional[str] = pulumi.output_property("defaultResult")

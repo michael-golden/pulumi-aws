@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ProvisionedConcurrencyConfig']
+
 
 class ProvisionedConcurrencyConfig(pulumi.CustomResource):
     function_name: pulumi.Output[str] = pulumi.output_property("functionName")
@@ -23,7 +25,7 @@ class ProvisionedConcurrencyConfig(pulumi.CustomResource):
     Lambda Function version or Lambda Alias name.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, function_name=None, provisioned_concurrent_executions=None, qualifier=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, function_name: Optional[pulumi.Input[str]] = None, provisioned_concurrent_executions: Optional[pulumi.Input[float]] = None, qualifier: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a Lambda Provisioned Concurrency Configuration.
 
@@ -90,7 +92,7 @@ class ProvisionedConcurrencyConfig(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, function_name=None, provisioned_concurrent_executions=None, qualifier=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, function_name: Optional[pulumi.Input[str]] = None, provisioned_concurrent_executions: Optional[pulumi.Input[float]] = None, qualifier: Optional[pulumi.Input[str]] = None) -> 'ProvisionedConcurrencyConfig':
         """
         Get an existing ProvisionedConcurrencyConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

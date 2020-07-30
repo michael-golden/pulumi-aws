@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Trail']
+
 
 class Trail(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -85,7 +87,7 @@ class Trail(pulumi.CustomResource):
     A map of tags to assign to the trail
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cloud_watch_logs_group_arn=None, cloud_watch_logs_role_arn=None, enable_log_file_validation=None, enable_logging=None, event_selectors=None, include_global_service_events=None, is_multi_region_trail=None, is_organization_trail=None, kms_key_id=None, name=None, s3_bucket_name=None, s3_key_prefix=None, sns_topic_name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cloud_watch_logs_group_arn: Optional[pulumi.Input[str]] = None, cloud_watch_logs_role_arn: Optional[pulumi.Input[str]] = None, enable_log_file_validation: Optional[pulumi.Input[bool]] = None, enable_logging: Optional[pulumi.Input[bool]] = None, event_selectors: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TrailEventSelectorArgs']]]]] = None, include_global_service_events: Optional[pulumi.Input[bool]] = None, is_multi_region_trail: Optional[pulumi.Input[bool]] = None, is_organization_trail: Optional[pulumi.Input[bool]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, s3_bucket_name: Optional[pulumi.Input[str]] = None, s3_key_prefix: Optional[pulumi.Input[str]] = None, sns_topic_name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CloudTrail resource.
 
@@ -201,7 +203,7 @@ class Trail(pulumi.CustomResource):
                Defaults to `false`.
         :param pulumi.Input[bool] enable_logging: Enables logging for the trail. Defaults to `true`.
                Setting this to `false` will pause logging.
-        :param pulumi.Input[List[pulumi.Input['TrailEventSelectorArgs']]] event_selectors: Specifies an event selector for enabling data event logging. Fields documented below. Please note the [CloudTrail limits](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/WhatIsCloudTrail-Limits.html) when configuring these.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['TrailEventSelectorArgs']]]] event_selectors: Specifies an event selector for enabling data event logging. Fields documented below. Please note the [CloudTrail limits](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/WhatIsCloudTrail-Limits.html) when configuring these.
         :param pulumi.Input[bool] include_global_service_events: Specifies whether the trail is publishing events
                from global services such as IAM to the log files. Defaults to `true`.
         :param pulumi.Input[bool] is_multi_region_trail: Specifies whether the trail is created in the current
@@ -258,7 +260,7 @@ class Trail(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, cloud_watch_logs_group_arn=None, cloud_watch_logs_role_arn=None, enable_log_file_validation=None, enable_logging=None, event_selectors=None, home_region=None, include_global_service_events=None, is_multi_region_trail=None, is_organization_trail=None, kms_key_id=None, name=None, s3_bucket_name=None, s3_key_prefix=None, sns_topic_name=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, cloud_watch_logs_group_arn: Optional[pulumi.Input[str]] = None, cloud_watch_logs_role_arn: Optional[pulumi.Input[str]] = None, enable_log_file_validation: Optional[pulumi.Input[bool]] = None, enable_logging: Optional[pulumi.Input[bool]] = None, event_selectors: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TrailEventSelectorArgs']]]]] = None, home_region: Optional[pulumi.Input[str]] = None, include_global_service_events: Optional[pulumi.Input[bool]] = None, is_multi_region_trail: Optional[pulumi.Input[bool]] = None, is_organization_trail: Optional[pulumi.Input[bool]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, s3_bucket_name: Optional[pulumi.Input[str]] = None, s3_key_prefix: Optional[pulumi.Input[str]] = None, sns_topic_name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Trail':
         """
         Get an existing Trail resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -275,7 +277,7 @@ class Trail(pulumi.CustomResource):
                Defaults to `false`.
         :param pulumi.Input[bool] enable_logging: Enables logging for the trail. Defaults to `true`.
                Setting this to `false` will pause logging.
-        :param pulumi.Input[List[pulumi.Input['TrailEventSelectorArgs']]] event_selectors: Specifies an event selector for enabling data event logging. Fields documented below. Please note the [CloudTrail limits](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/WhatIsCloudTrail-Limits.html) when configuring these.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['TrailEventSelectorArgs']]]] event_selectors: Specifies an event selector for enabling data event logging. Fields documented below. Please note the [CloudTrail limits](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/WhatIsCloudTrail-Limits.html) when configuring these.
         :param pulumi.Input[str] home_region: The region in which the trail was created.
         :param pulumi.Input[bool] include_global_service_events: Specifies whether the trail is publishing events
                from global services such as IAM to the log files. Defaults to `true`.

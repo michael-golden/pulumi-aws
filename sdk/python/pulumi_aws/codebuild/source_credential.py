@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['SourceCredential']
+
 
 class SourceCredential(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -31,7 +33,7 @@ class SourceCredential(pulumi.CustomResource):
     The Bitbucket username when the authType is `BASIC_AUTH`. This parameter is not valid for other types of source providers or connections.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, auth_type=None, server_type=None, token=None, user_name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, auth_type: Optional[pulumi.Input[str]] = None, server_type: Optional[pulumi.Input[str]] = None, token: Optional[pulumi.Input[str]] = None, user_name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CodeBuild Source Credentials Resource.
 
@@ -101,7 +103,7 @@ class SourceCredential(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, auth_type=None, server_type=None, token=None, user_name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, auth_type: Optional[pulumi.Input[str]] = None, server_type: Optional[pulumi.Input[str]] = None, token: Optional[pulumi.Input[str]] = None, user_name: Optional[pulumi.Input[str]] = None) -> 'SourceCredential':
         """
         Get an existing SourceCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

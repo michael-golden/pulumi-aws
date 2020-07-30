@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['VpcEndpointConnectionNotification']
+
 
 class VpcEndpointConnectionNotification(pulumi.CustomResource):
     connection_events: pulumi.Output[List[str]] = pulumi.output_property("connectionEvents")
@@ -35,7 +37,7 @@ class VpcEndpointConnectionNotification(pulumi.CustomResource):
     The ID of the VPC Endpoint Service to receive notifications for.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, connection_events=None, connection_notification_arn=None, vpc_endpoint_id=None, vpc_endpoint_service_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, connection_events: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, connection_notification_arn: Optional[pulumi.Input[str]] = None, vpc_endpoint_id: Optional[pulumi.Input[str]] = None, vpc_endpoint_service_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a VPC Endpoint connection notification resource.
         Connection notifications notify subscribers of VPC Endpoint events.
@@ -112,7 +114,7 @@ class VpcEndpointConnectionNotification(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, connection_events=None, connection_notification_arn=None, notification_type=None, state=None, vpc_endpoint_id=None, vpc_endpoint_service_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, connection_events: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, connection_notification_arn: Optional[pulumi.Input[str]] = None, notification_type: Optional[pulumi.Input[str]] = None, state: Optional[pulumi.Input[str]] = None, vpc_endpoint_id: Optional[pulumi.Input[str]] = None, vpc_endpoint_service_id: Optional[pulumi.Input[str]] = None) -> 'VpcEndpointConnectionNotification':
         """
         Get an existing VpcEndpointConnectionNotification resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GrantConstraint',
+    'GetSecretSecret',
+    'GetSecretsSecret',
+]
+
 @pulumi.output_type
 class GrantConstraint(dict):
     encryption_context_equals: Optional[Dict[str, str]] = pulumi.output_property("encryptionContextEquals")

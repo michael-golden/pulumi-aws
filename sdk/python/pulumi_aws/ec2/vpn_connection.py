@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['VpnConnection']
+
 
 class VpnConnection(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -107,7 +109,7 @@ class VpnConnection(pulumi.CustomResource):
     The ID of the Virtual Private Gateway.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, customer_gateway_id=None, static_routes_only=None, tags=None, transit_gateway_id=None, tunnel1_inside_cidr=None, tunnel1_preshared_key=None, tunnel2_inside_cidr=None, tunnel2_preshared_key=None, type=None, vpn_gateway_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, customer_gateway_id: Optional[pulumi.Input[str]] = None, static_routes_only: Optional[pulumi.Input[bool]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, transit_gateway_id: Optional[pulumi.Input[str]] = None, tunnel1_inside_cidr: Optional[pulumi.Input[str]] = None, tunnel1_preshared_key: Optional[pulumi.Input[str]] = None, tunnel2_inside_cidr: Optional[pulumi.Input[str]] = None, tunnel2_preshared_key: Optional[pulumi.Input[str]] = None, type: Optional[pulumi.Input[str]] = None, vpn_gateway_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an EC2 VPN connection. These objects can be connected to customer gateways, and allow you to establish tunnels between your network and Amazon.
 
@@ -218,7 +220,7 @@ class VpnConnection(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, customer_gateway_configuration=None, customer_gateway_id=None, routes=None, static_routes_only=None, tags=None, transit_gateway_attachment_id=None, transit_gateway_id=None, tunnel1_address=None, tunnel1_bgp_asn=None, tunnel1_bgp_holdtime=None, tunnel1_cgw_inside_address=None, tunnel1_inside_cidr=None, tunnel1_preshared_key=None, tunnel1_vgw_inside_address=None, tunnel2_address=None, tunnel2_bgp_asn=None, tunnel2_bgp_holdtime=None, tunnel2_cgw_inside_address=None, tunnel2_inside_cidr=None, tunnel2_preshared_key=None, tunnel2_vgw_inside_address=None, type=None, vgw_telemetries=None, vpn_gateway_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, customer_gateway_configuration: Optional[pulumi.Input[str]] = None, customer_gateway_id: Optional[pulumi.Input[str]] = None, routes: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['VpnConnectionRouteArgs']]]]] = None, static_routes_only: Optional[pulumi.Input[bool]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, transit_gateway_attachment_id: Optional[pulumi.Input[str]] = None, transit_gateway_id: Optional[pulumi.Input[str]] = None, tunnel1_address: Optional[pulumi.Input[str]] = None, tunnel1_bgp_asn: Optional[pulumi.Input[str]] = None, tunnel1_bgp_holdtime: Optional[pulumi.Input[float]] = None, tunnel1_cgw_inside_address: Optional[pulumi.Input[str]] = None, tunnel1_inside_cidr: Optional[pulumi.Input[str]] = None, tunnel1_preshared_key: Optional[pulumi.Input[str]] = None, tunnel1_vgw_inside_address: Optional[pulumi.Input[str]] = None, tunnel2_address: Optional[pulumi.Input[str]] = None, tunnel2_bgp_asn: Optional[pulumi.Input[str]] = None, tunnel2_bgp_holdtime: Optional[pulumi.Input[float]] = None, tunnel2_cgw_inside_address: Optional[pulumi.Input[str]] = None, tunnel2_inside_cidr: Optional[pulumi.Input[str]] = None, tunnel2_preshared_key: Optional[pulumi.Input[str]] = None, tunnel2_vgw_inside_address: Optional[pulumi.Input[str]] = None, type: Optional[pulumi.Input[str]] = None, vgw_telemetries: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['VpnConnectionVgwTelemetryArgs']]]]] = None, vpn_gateway_id: Optional[pulumi.Input[str]] = None) -> 'VpnConnection':
         """
         Get an existing VpnConnection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

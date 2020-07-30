@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['SmsPreferences']
+
 
 class SmsPreferences(pulumi.CustomResource):
     default_sender_id: pulumi.Output[Optional[str]] = pulumi.output_property("defaultSenderId")
@@ -35,7 +37,7 @@ class SmsPreferences(pulumi.CustomResource):
     The name of the Amazon S3 bucket to receive daily SMS usage reports from Amazon SNS.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, default_sender_id=None, default_sms_type=None, delivery_status_iam_role_arn=None, delivery_status_success_sampling_rate=None, monthly_spend_limit=None, usage_report_s3_bucket=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, default_sender_id: Optional[pulumi.Input[str]] = None, default_sms_type: Optional[pulumi.Input[str]] = None, delivery_status_iam_role_arn: Optional[pulumi.Input[str]] = None, delivery_status_success_sampling_rate: Optional[pulumi.Input[str]] = None, monthly_spend_limit: Optional[pulumi.Input[str]] = None, usage_report_s3_bucket: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a way to set SNS SMS preferences.
 
@@ -87,7 +89,7 @@ class SmsPreferences(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, default_sender_id=None, default_sms_type=None, delivery_status_iam_role_arn=None, delivery_status_success_sampling_rate=None, monthly_spend_limit=None, usage_report_s3_bucket=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, default_sender_id: Optional[pulumi.Input[str]] = None, default_sms_type: Optional[pulumi.Input[str]] = None, delivery_status_iam_role_arn: Optional[pulumi.Input[str]] = None, delivery_status_success_sampling_rate: Optional[pulumi.Input[str]] = None, monthly_spend_limit: Optional[pulumi.Input[str]] = None, usage_report_s3_bucket: Optional[pulumi.Input[str]] = None) -> 'SmsPreferences':
         """
         Get an existing SmsPreferences resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

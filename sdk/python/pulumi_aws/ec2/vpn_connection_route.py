@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['VpnConnectionRoute']
+
 
 class VpnConnectionRoute(pulumi.CustomResource):
     destination_cidr_block: pulumi.Output[str] = pulumi.output_property("destinationCidrBlock")
@@ -19,7 +21,7 @@ class VpnConnectionRoute(pulumi.CustomResource):
     The ID of the VPN connection.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, destination_cidr_block=None, vpn_connection_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, destination_cidr_block: Optional[pulumi.Input[str]] = None, vpn_connection_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a static route between a VPN connection and a customer gateway.
 
@@ -80,7 +82,7 @@ class VpnConnectionRoute(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, destination_cidr_block=None, vpn_connection_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, destination_cidr_block: Optional[pulumi.Input[str]] = None, vpn_connection_id: Optional[pulumi.Input[str]] = None) -> 'VpnConnectionRoute':
         """
         Get an existing VpnConnectionRoute resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

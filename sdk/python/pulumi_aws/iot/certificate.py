@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Certificate']
+
 
 class Certificate(pulumi.CustomResource):
     active: pulumi.Output[bool] = pulumi.output_property("active")
@@ -39,7 +41,7 @@ class Certificate(pulumi.CustomResource):
     When no CSR is provided, the public key.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, active=None, csr=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, active: Optional[pulumi.Input[bool]] = None, csr: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates and manages an AWS IoT certificate.
 
@@ -104,7 +106,7 @@ class Certificate(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, active=None, arn=None, certificate_pem=None, csr=None, private_key=None, public_key=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, active: Optional[pulumi.Input[bool]] = None, arn: Optional[pulumi.Input[str]] = None, certificate_pem: Optional[pulumi.Input[str]] = None, csr: Optional[pulumi.Input[str]] = None, private_key: Optional[pulumi.Input[str]] = None, public_key: Optional[pulumi.Input[str]] = None) -> 'Certificate':
         """
         Get an existing Certificate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

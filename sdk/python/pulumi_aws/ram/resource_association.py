@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ResourceAssociation']
+
 
 class ResourceAssociation(pulumi.CustomResource):
     resource_arn: pulumi.Output[str] = pulumi.output_property("resourceArn")
@@ -19,7 +21,7 @@ class ResourceAssociation(pulumi.CustomResource):
     Amazon Resource Name (ARN) of the RAM Resource Share.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, resource_arn=None, resource_share_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, resource_arn: Optional[pulumi.Input[str]] = None, resource_share_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a Resource Access Manager (RAM) Resource Association.
 
@@ -71,7 +73,7 @@ class ResourceAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, resource_arn=None, resource_share_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, resource_arn: Optional[pulumi.Input[str]] = None, resource_share_arn: Optional[pulumi.Input[str]] = None) -> 'ResourceAssociation':
         """
         Get an existing ResourceAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

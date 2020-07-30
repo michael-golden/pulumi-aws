@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['RoleAssociation']
+
 
 class RoleAssociation(pulumi.CustomResource):
     db_instance_identifier: pulumi.Output[str] = pulumi.output_property("dbInstanceIdentifier")
@@ -23,7 +25,7 @@ class RoleAssociation(pulumi.CustomResource):
     Amazon Resource Name (ARN) of the IAM Role to associate with the DB Instance.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, db_instance_identifier=None, feature_name=None, role_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, db_instance_identifier: Optional[pulumi.Input[str]] = None, feature_name: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an RDS DB Instance association with an IAM Role. Example use cases:
 
@@ -83,7 +85,7 @@ class RoleAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, db_instance_identifier=None, feature_name=None, role_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, db_instance_identifier: Optional[pulumi.Input[str]] = None, feature_name: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None) -> 'RoleAssociation':
         """
         Get an existing RoleAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

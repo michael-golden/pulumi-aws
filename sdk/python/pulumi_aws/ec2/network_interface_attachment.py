@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['NetworkInterfaceAttachment']
+
 
 class NetworkInterfaceAttachment(pulumi.CustomResource):
     attachment_id: pulumi.Output[str] = pulumi.output_property("attachmentId")
@@ -31,7 +33,7 @@ class NetworkInterfaceAttachment(pulumi.CustomResource):
     The status of the Network Interface Attachment.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, device_index=None, instance_id=None, network_interface_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, device_index: Optional[pulumi.Input[float]] = None, instance_id: Optional[pulumi.Input[str]] = None, network_interface_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Attach an Elastic network interface (ENI) resource with EC2 instance.
 
@@ -88,7 +90,7 @@ class NetworkInterfaceAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, attachment_id=None, device_index=None, instance_id=None, network_interface_id=None, status=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, attachment_id: Optional[pulumi.Input[str]] = None, device_index: Optional[pulumi.Input[float]] = None, instance_id: Optional[pulumi.Input[str]] = None, network_interface_id: Optional[pulumi.Input[str]] = None, status: Optional[pulumi.Input[str]] = None) -> 'NetworkInterfaceAttachment':
         """
         Get an existing NetworkInterfaceAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

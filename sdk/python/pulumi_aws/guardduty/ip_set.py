@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['IPSet']
+
 
 class IPSet(pulumi.CustomResource):
     activate: pulumi.Output[bool] = pulumi.output_property("activate")
@@ -39,7 +41,7 @@ class IPSet(pulumi.CustomResource):
     Key-value map of resource tags.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, activate=None, detector_id=None, format=None, location=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, activate: Optional[pulumi.Input[bool]] = None, detector_id: Optional[pulumi.Input[str]] = None, format: Optional[pulumi.Input[str]] = None, location: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage a GuardDuty IPSet.
 
@@ -115,7 +117,7 @@ class IPSet(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, activate=None, arn=None, detector_id=None, format=None, location=None, name=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, activate: Optional[pulumi.Input[bool]] = None, arn: Optional[pulumi.Input[str]] = None, detector_id: Optional[pulumi.Input[str]] = None, format: Optional[pulumi.Input[str]] = None, location: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'IPSet':
         """
         Get an existing IPSet resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

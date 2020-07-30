@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetParameterResult',
+    'AwaitableGetParameterResult',
+    'get_parameter',
+]
+
 
 class GetParameterResult:
     """
@@ -56,7 +62,7 @@ class AwaitableGetParameterResult(GetParameterResult):
             with_decryption=self.with_decryption)
 
 
-def get_parameter(name=None, with_decryption=None, opts=None):
+def get_parameter(name: Optional[str] = None, with_decryption: Optional[bool] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetParameterResult:
     """
     Provides an SSM Parameter data source.
 

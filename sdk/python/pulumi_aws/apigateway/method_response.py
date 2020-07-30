@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['MethodResponse']
+
 
 class MethodResponse(pulumi.CustomResource):
     http_method: pulumi.Output[str] = pulumi.output_property("httpMethod")
@@ -37,7 +39,7 @@ class MethodResponse(pulumi.CustomResource):
     The HTTP status code
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, http_method=None, resource_id=None, response_models=None, response_parameters=None, rest_api=None, status_code=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, http_method: Optional[pulumi.Input[str]] = None, resource_id: Optional[pulumi.Input[str]] = None, response_models: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, response_parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[bool]]]] = None, rest_api: Optional[pulumi.Input[str]] = None, status_code: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an HTTP Method Response for an API Gateway Resource.
 
@@ -118,7 +120,7 @@ class MethodResponse(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, http_method=None, resource_id=None, response_models=None, response_parameters=None, rest_api=None, status_code=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, http_method: Optional[pulumi.Input[str]] = None, resource_id: Optional[pulumi.Input[str]] = None, response_models: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, response_parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[bool]]]] = None, rest_api: Optional[pulumi.Input[str]] = None, status_code: Optional[pulumi.Input[str]] = None) -> 'MethodResponse':
         """
         Get an existing MethodResponse resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

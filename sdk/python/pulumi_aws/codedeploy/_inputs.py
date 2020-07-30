@@ -8,6 +8,33 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'DeploymentConfigMinimumHealthyHostsArgs',
+    'DeploymentConfigTrafficRoutingConfigArgs',
+    'DeploymentConfigTrafficRoutingConfigTimeBasedCanaryArgs',
+    'DeploymentConfigTrafficRoutingConfigTimeBasedLinearArgs',
+    'DeploymentGroupAlarmConfigurationArgs',
+    'DeploymentGroupAutoRollbackConfigurationArgs',
+    'DeploymentGroupBlueGreenDeploymentConfigArgs',
+    'DeploymentGroupBlueGreenDeploymentConfigDeploymentReadyOptionArgs',
+    'DeploymentGroupBlueGreenDeploymentConfigGreenFleetProvisioningOptionArgs',
+    'DeploymentGroupBlueGreenDeploymentConfigTerminateBlueInstancesOnDeploymentSuccessArgs',
+    'DeploymentGroupDeploymentStyleArgs',
+    'DeploymentGroupEc2TagFilterArgs',
+    'DeploymentGroupEc2TagSetArgs',
+    'DeploymentGroupEc2TagSetEc2TagFilterArgs',
+    'DeploymentGroupEcsServiceArgs',
+    'DeploymentGroupLoadBalancerInfoArgs',
+    'DeploymentGroupLoadBalancerInfoElbInfoArgs',
+    'DeploymentGroupLoadBalancerInfoTargetGroupInfoArgs',
+    'DeploymentGroupLoadBalancerInfoTargetGroupPairInfoArgs',
+    'DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteArgs',
+    'DeploymentGroupLoadBalancerInfoTargetGroupPairInfoTargetGroupArgs',
+    'DeploymentGroupLoadBalancerInfoTargetGroupPairInfoTestTrafficRouteArgs',
+    'DeploymentGroupOnPremisesInstanceTagFilterArgs',
+    'DeploymentGroupTriggerConfigurationArgs',
+]
+
 @pulumi.input_type
 class DeploymentConfigMinimumHealthyHostsArgs:
     type: Optional[pulumi.Input[str]] = pulumi.input_property("type")

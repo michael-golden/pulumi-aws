@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetStateMachineResult',
+    'AwaitableGetStateMachineResult',
+    'get_state_machine',
+]
+
 
 class GetStateMachineResult:
     """
@@ -71,7 +77,7 @@ class AwaitableGetStateMachineResult(GetStateMachineResult):
             status=self.status)
 
 
-def get_state_machine(name=None, opts=None):
+def get_state_machine(name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStateMachineResult:
     """
     Use this data source to get the ARN of a State Machine in AWS Step
     Function (SFN). By using this data source, you can reference a

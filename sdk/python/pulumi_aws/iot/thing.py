@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Thing']
+
 
 class Thing(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -35,7 +37,7 @@ class Thing(pulumi.CustomResource):
     The current version of the thing record in the registry.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, attributes=None, name=None, thing_type_name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, attributes: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, thing_type_name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates and manages an AWS IoT Thing.
 
@@ -86,7 +88,7 @@ class Thing(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, attributes=None, default_client_id=None, name=None, thing_type_name=None, version=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, attributes: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, default_client_id: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, thing_type_name: Optional[pulumi.Input[str]] = None, version: Optional[pulumi.Input[float]] = None) -> 'Thing':
         """
         Get an existing Thing resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

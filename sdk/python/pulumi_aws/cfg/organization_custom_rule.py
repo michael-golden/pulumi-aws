@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['OrganizationCustomRule']
+
 
 class OrganizationCustomRule(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -59,7 +61,7 @@ class OrganizationCustomRule(pulumi.CustomResource):
     List of notification types that trigger AWS Config to run an evaluation for the rule. Valid values: `ConfigurationItemChangeNotification`, `OversizedConfigurationItemChangeNotification`, and `ScheduledNotification`
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, excluded_accounts=None, input_parameters=None, lambda_function_arn=None, maximum_execution_frequency=None, name=None, resource_id_scope=None, resource_types_scopes=None, tag_key_scope=None, tag_value_scope=None, trigger_types=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, excluded_accounts: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, input_parameters: Optional[pulumi.Input[str]] = None, lambda_function_arn: Optional[pulumi.Input[str]] = None, maximum_execution_frequency: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, resource_id_scope: Optional[pulumi.Input[str]] = None, resource_types_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tag_key_scope: Optional[pulumi.Input[str]] = None, tag_value_scope: Optional[pulumi.Input[str]] = None, trigger_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a Config Organization Custom Rule. More information about these rules can be found in the [Enabling AWS Config Rules Across all Accounts in Your Organization](https://docs.aws.amazon.com/config/latest/developerguide/config-rule-multi-account-deployment.html) and [AWS Config Managed Rules](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html) documentation. For working with Organization Managed Rules (those invoking an AWS managed rule), see the `aws_config_organization_managed__rule` resource.
 
@@ -143,7 +145,7 @@ class OrganizationCustomRule(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, description=None, excluded_accounts=None, input_parameters=None, lambda_function_arn=None, maximum_execution_frequency=None, name=None, resource_id_scope=None, resource_types_scopes=None, tag_key_scope=None, tag_value_scope=None, trigger_types=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, excluded_accounts: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, input_parameters: Optional[pulumi.Input[str]] = None, lambda_function_arn: Optional[pulumi.Input[str]] = None, maximum_execution_frequency: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, resource_id_scope: Optional[pulumi.Input[str]] = None, resource_types_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tag_key_scope: Optional[pulumi.Input[str]] = None, tag_value_scope: Optional[pulumi.Input[str]] = None, trigger_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'OrganizationCustomRule':
         """
         Get an existing OrganizationCustomRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

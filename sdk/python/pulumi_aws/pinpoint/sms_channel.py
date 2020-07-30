@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['SmsChannel']
+
 
 class SmsChannel(pulumi.CustomResource):
     application_id: pulumi.Output[str] = pulumi.output_property("applicationId")
@@ -35,7 +37,7 @@ class SmsChannel(pulumi.CustomResource):
     Transactional messages per second that can be sent.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application_id=None, enabled=None, sender_id=None, short_code=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application_id: Optional[pulumi.Input[str]] = None, enabled: Optional[pulumi.Input[bool]] = None, sender_id: Optional[pulumi.Input[str]] = None, short_code: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Pinpoint SMS Channel resource.
 
@@ -88,7 +90,7 @@ class SmsChannel(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, application_id=None, enabled=None, promotional_messages_per_second=None, sender_id=None, short_code=None, transactional_messages_per_second=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, application_id: Optional[pulumi.Input[str]] = None, enabled: Optional[pulumi.Input[bool]] = None, promotional_messages_per_second: Optional[pulumi.Input[float]] = None, sender_id: Optional[pulumi.Input[str]] = None, short_code: Optional[pulumi.Input[str]] = None, transactional_messages_per_second: Optional[pulumi.Input[float]] = None) -> 'SmsChannel':
         """
         Get an existing SmsChannel resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

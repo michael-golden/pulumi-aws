@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Instance']
+
 
 class Instance(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -62,7 +64,7 @@ class Instance(pulumi.CustomResource):
     """
     username: pulumi.Output[str] = pulumi.output_property("username")
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zone=None, blueprint_id=None, bundle_id=None, key_pair_name=None, name=None, tags=None, user_data=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zone: Optional[pulumi.Input[str]] = None, blueprint_id: Optional[pulumi.Input[str]] = None, bundle_id: Optional[pulumi.Input[str]] = None, key_pair_name: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, user_data: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Lightsail Instance. Amazon Lightsail is a service to provide easy virtual private servers
         with custom software already setup. See [What is Amazon Lightsail?](https://lightsail.aws.amazon.com/ls/docs/getting-started/article/what-is-amazon-lightsail)
@@ -228,7 +230,7 @@ class Instance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, availability_zone=None, blueprint_id=None, bundle_id=None, cpu_count=None, created_at=None, ipv6_address=None, is_static_ip=None, key_pair_name=None, name=None, private_ip_address=None, public_ip_address=None, ram_size=None, tags=None, user_data=None, username=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, availability_zone: Optional[pulumi.Input[str]] = None, blueprint_id: Optional[pulumi.Input[str]] = None, bundle_id: Optional[pulumi.Input[str]] = None, cpu_count: Optional[pulumi.Input[float]] = None, created_at: Optional[pulumi.Input[str]] = None, ipv6_address: Optional[pulumi.Input[str]] = None, is_static_ip: Optional[pulumi.Input[bool]] = None, key_pair_name: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, private_ip_address: Optional[pulumi.Input[str]] = None, public_ip_address: Optional[pulumi.Input[str]] = None, ram_size: Optional[pulumi.Input[float]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, user_data: Optional[pulumi.Input[str]] = None, username: Optional[pulumi.Input[str]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

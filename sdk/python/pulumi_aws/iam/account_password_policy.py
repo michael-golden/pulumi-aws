@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['AccountPasswordPolicy']
+
 
 class AccountPasswordPolicy(pulumi.CustomResource):
     allow_users_to_change_password: pulumi.Output[Optional[bool]] = pulumi.output_property("allowUsersToChangePassword")
@@ -54,7 +56,7 @@ class AccountPasswordPolicy(pulumi.CustomResource):
     Whether to require uppercase characters for user passwords.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allow_users_to_change_password=None, hard_expiry=None, max_password_age=None, minimum_password_length=None, password_reuse_prevention=None, require_lowercase_characters=None, require_numbers=None, require_symbols=None, require_uppercase_characters=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allow_users_to_change_password: Optional[pulumi.Input[bool]] = None, hard_expiry: Optional[pulumi.Input[bool]] = None, max_password_age: Optional[pulumi.Input[float]] = None, minimum_password_length: Optional[pulumi.Input[float]] = None, password_reuse_prevention: Optional[pulumi.Input[float]] = None, require_lowercase_characters: Optional[pulumi.Input[bool]] = None, require_numbers: Optional[pulumi.Input[bool]] = None, require_symbols: Optional[pulumi.Input[bool]] = None, require_uppercase_characters: Optional[pulumi.Input[bool]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         > **Note:** There is only a single policy allowed per AWS account. An existing policy will be lost when using this resource as an effect of this limitation.
 
@@ -124,7 +126,7 @@ class AccountPasswordPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allow_users_to_change_password=None, expire_passwords=None, hard_expiry=None, max_password_age=None, minimum_password_length=None, password_reuse_prevention=None, require_lowercase_characters=None, require_numbers=None, require_symbols=None, require_uppercase_characters=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, allow_users_to_change_password: Optional[pulumi.Input[bool]] = None, expire_passwords: Optional[pulumi.Input[bool]] = None, hard_expiry: Optional[pulumi.Input[bool]] = None, max_password_age: Optional[pulumi.Input[float]] = None, minimum_password_length: Optional[pulumi.Input[float]] = None, password_reuse_prevention: Optional[pulumi.Input[float]] = None, require_lowercase_characters: Optional[pulumi.Input[bool]] = None, require_numbers: Optional[pulumi.Input[bool]] = None, require_symbols: Optional[pulumi.Input[bool]] = None, require_uppercase_characters: Optional[pulumi.Input[bool]] = None) -> 'AccountPasswordPolicy':
         """
         Get an existing AccountPasswordPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

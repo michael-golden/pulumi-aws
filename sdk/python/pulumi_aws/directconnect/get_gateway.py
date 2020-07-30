@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetGatewayResult',
+    'AwaitableGetGatewayResult',
+    'get_gateway',
+]
+
 
 class GetGatewayResult:
     """
@@ -50,7 +56,7 @@ class AwaitableGetGatewayResult(GetGatewayResult):
             owner_account_id=self.owner_account_id)
 
 
-def get_gateway(name=None, opts=None):
+def get_gateway(name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGatewayResult:
     """
     Retrieve information about a Direct Connect Gateway.
 

@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetSiteResult',
+    'AwaitableGetSiteResult',
+    'get_site',
+]
+
 
 class GetSiteResult:
     """
@@ -47,7 +53,7 @@ class AwaitableGetSiteResult(GetSiteResult):
             name=self.name)
 
 
-def get_site(id=None, name=None, opts=None):
+def get_site(id: Optional[str] = None, name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSiteResult:
     """
     Provides details about an Outposts Site.
 

@@ -8,6 +8,14 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ComputeEnvironmentComputeResources',
+    'ComputeEnvironmentComputeResourcesLaunchTemplate',
+    'JobDefinitionRetryStrategy',
+    'JobDefinitionTimeout',
+    'GetJobQueueComputeEnvironmentOrder',
+]
+
 @pulumi.output_type
 class ComputeEnvironmentComputeResources(dict):
     allocation_strategy: Optional[str] = pulumi.output_property("allocationStrategy")

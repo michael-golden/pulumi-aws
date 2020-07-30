@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['AggregateAuthorization']
+
 
 class AggregateAuthorization(pulumi.CustomResource):
     account_id: pulumi.Output[str] = pulumi.output_property("accountId")
@@ -27,7 +29,7 @@ class AggregateAuthorization(pulumi.CustomResource):
     A map of tags to assign to the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, account_id=None, region=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, account_id: Optional[pulumi.Input[str]] = None, region: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an AWS Config Aggregate Authorization
 
@@ -80,7 +82,7 @@ class AggregateAuthorization(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, account_id=None, arn=None, region=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, account_id: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, region: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'AggregateAuthorization':
         """
         Get an existing AggregateAuthorization resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

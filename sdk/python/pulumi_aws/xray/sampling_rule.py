@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['SamplingRule']
+
 
 class SamplingRule(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -63,7 +65,7 @@ class SamplingRule(pulumi.CustomResource):
     The version of the sampling rule format (`1` )
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, attributes=None, fixed_rate=None, host=None, http_method=None, priority=None, reservoir_size=None, resource_arn=None, rule_name=None, service_name=None, service_type=None, url_path=None, version=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, attributes: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, fixed_rate: Optional[pulumi.Input[float]] = None, host: Optional[pulumi.Input[str]] = None, http_method: Optional[pulumi.Input[str]] = None, priority: Optional[pulumi.Input[float]] = None, reservoir_size: Optional[pulumi.Input[float]] = None, resource_arn: Optional[pulumi.Input[str]] = None, rule_name: Optional[pulumi.Input[str]] = None, service_name: Optional[pulumi.Input[str]] = None, service_type: Optional[pulumi.Input[str]] = None, url_path: Optional[pulumi.Input[str]] = None, version: Optional[pulumi.Input[float]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates and manages an AWS XRay Sampling Rule.
 
@@ -162,7 +164,7 @@ class SamplingRule(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, attributes=None, fixed_rate=None, host=None, http_method=None, priority=None, reservoir_size=None, resource_arn=None, rule_name=None, service_name=None, service_type=None, url_path=None, version=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, attributes: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, fixed_rate: Optional[pulumi.Input[float]] = None, host: Optional[pulumi.Input[str]] = None, http_method: Optional[pulumi.Input[str]] = None, priority: Optional[pulumi.Input[float]] = None, reservoir_size: Optional[pulumi.Input[float]] = None, resource_arn: Optional[pulumi.Input[str]] = None, rule_name: Optional[pulumi.Input[str]] = None, service_name: Optional[pulumi.Input[str]] = None, service_type: Optional[pulumi.Input[str]] = None, url_path: Optional[pulumi.Input[str]] = None, version: Optional[pulumi.Input[float]] = None) -> 'SamplingRule':
         """
         Get an existing SamplingRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

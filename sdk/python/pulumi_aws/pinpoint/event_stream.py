@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['EventStream']
+
 
 class EventStream(pulumi.CustomResource):
     application_id: pulumi.Output[str] = pulumi.output_property("applicationId")
@@ -23,7 +25,7 @@ class EventStream(pulumi.CustomResource):
     The IAM role that authorizes Amazon Pinpoint to publish events to the stream in your account.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application_id=None, destination_stream_arn=None, role_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application_id: Optional[pulumi.Input[str]] = None, destination_stream_arn: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Pinpoint Event Stream resource.
 
@@ -112,7 +114,7 @@ class EventStream(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, application_id=None, destination_stream_arn=None, role_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, application_id: Optional[pulumi.Input[str]] = None, destination_stream_arn: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None) -> 'EventStream':
         """
         Get an existing EventStream resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

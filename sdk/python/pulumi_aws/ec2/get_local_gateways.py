@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetLocalGatewaysResult',
+    'AwaitableGetLocalGatewaysResult',
+    'get_local_gateways',
+]
+
 
 class GetLocalGatewaysResult:
     """
@@ -49,7 +55,7 @@ class AwaitableGetLocalGatewaysResult(GetLocalGatewaysResult):
             tags=self.tags)
 
 
-def get_local_gateways(filters=None, tags=None, opts=None):
+def get_local_gateways(filters: Optional[List[pulumi.InputType['GetLocalGatewaysFilterArgs']]] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLocalGatewaysResult:
     """
     Provides information for multiple EC2 Local Gateways, such as their identifiers.
 
@@ -68,7 +74,7 @@ def get_local_gateways(filters=None, tags=None, opts=None):
     ```
 
 
-    :param List['GetLocalGatewaysFilterArgs'] filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetLocalGatewaysFilterArgs']] filters: Custom filter block as described below.
     :param Dict[str, str] tags: A mapping of tags, each pair of which must exactly match
            a pair on the desired local_gateways.
     """

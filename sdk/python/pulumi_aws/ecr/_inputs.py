@@ -8,6 +8,10 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'RepositoryImageScanningConfigurationArgs',
+]
+
 @pulumi.input_type
 class RepositoryImageScanningConfigurationArgs:
     scan_on_push: pulumi.Input[bool] = pulumi.input_property("scanOnPush")

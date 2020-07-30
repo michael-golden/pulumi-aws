@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['EipAssociation']
+
 
 class EipAssociation(pulumi.CustomResource):
     allocation_id: pulumi.Output[str] = pulumi.output_property("allocationId")
@@ -44,7 +46,7 @@ class EipAssociation(pulumi.CustomResource):
     The Elastic IP address. This is required for EC2-Classic.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allocation_id=None, allow_reassociation=None, instance_id=None, network_interface_id=None, private_ip_address=None, public_ip=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allocation_id: Optional[pulumi.Input[str]] = None, allow_reassociation: Optional[pulumi.Input[bool]] = None, instance_id: Optional[pulumi.Input[str]] = None, network_interface_id: Optional[pulumi.Input[str]] = None, private_ip_address: Optional[pulumi.Input[str]] = None, public_ip: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AWS EIP Association as a top level resource, to associate and
         disassociate Elastic IPs from AWS Instances and Network Interfaces.
@@ -121,7 +123,7 @@ class EipAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allocation_id=None, allow_reassociation=None, instance_id=None, network_interface_id=None, private_ip_address=None, public_ip=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, allocation_id: Optional[pulumi.Input[str]] = None, allow_reassociation: Optional[pulumi.Input[bool]] = None, instance_id: Optional[pulumi.Input[str]] = None, network_interface_id: Optional[pulumi.Input[str]] = None, private_ip_address: Optional[pulumi.Input[str]] = None, public_ip: Optional[pulumi.Input[str]] = None) -> 'EipAssociation':
         """
         Get an existing EipAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

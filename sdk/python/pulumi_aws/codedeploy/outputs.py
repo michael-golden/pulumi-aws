@@ -8,6 +8,33 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'DeploymentConfigMinimumHealthyHosts',
+    'DeploymentConfigTrafficRoutingConfig',
+    'DeploymentConfigTrafficRoutingConfigTimeBasedCanary',
+    'DeploymentConfigTrafficRoutingConfigTimeBasedLinear',
+    'DeploymentGroupAlarmConfiguration',
+    'DeploymentGroupAutoRollbackConfiguration',
+    'DeploymentGroupBlueGreenDeploymentConfig',
+    'DeploymentGroupBlueGreenDeploymentConfigDeploymentReadyOption',
+    'DeploymentGroupBlueGreenDeploymentConfigGreenFleetProvisioningOption',
+    'DeploymentGroupBlueGreenDeploymentConfigTerminateBlueInstancesOnDeploymentSuccess',
+    'DeploymentGroupDeploymentStyle',
+    'DeploymentGroupEc2TagFilter',
+    'DeploymentGroupEc2TagSet',
+    'DeploymentGroupEc2TagSetEc2TagFilter',
+    'DeploymentGroupEcsService',
+    'DeploymentGroupLoadBalancerInfo',
+    'DeploymentGroupLoadBalancerInfoElbInfo',
+    'DeploymentGroupLoadBalancerInfoTargetGroupInfo',
+    'DeploymentGroupLoadBalancerInfoTargetGroupPairInfo',
+    'DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoute',
+    'DeploymentGroupLoadBalancerInfoTargetGroupPairInfoTargetGroup',
+    'DeploymentGroupLoadBalancerInfoTargetGroupPairInfoTestTrafficRoute',
+    'DeploymentGroupOnPremisesInstanceTagFilter',
+    'DeploymentGroupTriggerConfiguration',
+]
+
 @pulumi.output_type
 class DeploymentConfigMinimumHealthyHosts(dict):
     type: Optional[str] = pulumi.output_property("type")

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Integration']
+
 
 class Integration(pulumi.CustomResource):
     cache_key_parameters: pulumi.Output[Optional[List[str]]] = pulumi.output_property("cacheKeyParameters")
@@ -83,7 +85,7 @@ class Integration(pulumi.CustomResource):
     e.g. `arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-1:012345678901:function:my-func/invocations`. For private integrations, the URI parameter is not used for routing requests to your endpoint, but is used for setting the Host header and for certificate validation.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cache_key_parameters=None, cache_namespace=None, connection_id=None, connection_type=None, content_handling=None, credentials=None, http_method=None, integration_http_method=None, passthrough_behavior=None, request_parameters=None, request_templates=None, resource_id=None, rest_api=None, timeout_milliseconds=None, type=None, uri=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cache_key_parameters: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, cache_namespace: Optional[pulumi.Input[str]] = None, connection_id: Optional[pulumi.Input[str]] = None, connection_type: Optional[pulumi.Input[str]] = None, content_handling: Optional[pulumi.Input[str]] = None, credentials: Optional[pulumi.Input[str]] = None, http_method: Optional[pulumi.Input[str]] = None, integration_http_method: Optional[pulumi.Input[str]] = None, passthrough_behavior: Optional[pulumi.Input[str]] = None, request_parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, request_templates: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, resource_id: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, timeout_milliseconds: Optional[pulumi.Input[float]] = None, type: Optional[pulumi.Input[str]] = None, uri: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an HTTP Method Integration for an API Gateway Integration.
 
@@ -247,7 +249,7 @@ class Integration(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, cache_key_parameters=None, cache_namespace=None, connection_id=None, connection_type=None, content_handling=None, credentials=None, http_method=None, integration_http_method=None, passthrough_behavior=None, request_parameters=None, request_templates=None, resource_id=None, rest_api=None, timeout_milliseconds=None, type=None, uri=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, cache_key_parameters: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, cache_namespace: Optional[pulumi.Input[str]] = None, connection_id: Optional[pulumi.Input[str]] = None, connection_type: Optional[pulumi.Input[str]] = None, content_handling: Optional[pulumi.Input[str]] = None, credentials: Optional[pulumi.Input[str]] = None, http_method: Optional[pulumi.Input[str]] = None, integration_http_method: Optional[pulumi.Input[str]] = None, passthrough_behavior: Optional[pulumi.Input[str]] = None, request_parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, request_templates: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, resource_id: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, timeout_milliseconds: Optional[pulumi.Input[float]] = None, type: Optional[pulumi.Input[str]] = None, uri: Optional[pulumi.Input[str]] = None) -> 'Integration':
         """
         Get an existing Integration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

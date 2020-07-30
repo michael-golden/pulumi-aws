@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['HostedTransitVirtualInterface']
+
 
 class HostedTransitVirtualInterface(pulumi.CustomResource):
     address_family: pulumi.Output[str] = pulumi.output_property("addressFamily")
@@ -64,7 +66,7 @@ class HostedTransitVirtualInterface(pulumi.CustomResource):
     The VLAN ID.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, address_family=None, amazon_address=None, bgp_asn=None, bgp_auth_key=None, connection_id=None, customer_address=None, mtu=None, name=None, owner_account_id=None, vlan=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, address_family: Optional[pulumi.Input[str]] = None, amazon_address: Optional[pulumi.Input[str]] = None, bgp_asn: Optional[pulumi.Input[float]] = None, bgp_auth_key: Optional[pulumi.Input[str]] = None, connection_id: Optional[pulumi.Input[str]] = None, customer_address: Optional[pulumi.Input[str]] = None, mtu: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, owner_account_id: Optional[pulumi.Input[str]] = None, vlan: Optional[pulumi.Input[float]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Direct Connect hosted transit virtual interface resource.
         This resource represents the allocator's side of the hosted virtual interface.
@@ -144,7 +146,7 @@ class HostedTransitVirtualInterface(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, address_family=None, amazon_address=None, amazon_side_asn=None, arn=None, aws_device=None, bgp_asn=None, bgp_auth_key=None, connection_id=None, customer_address=None, jumbo_frame_capable=None, mtu=None, name=None, owner_account_id=None, vlan=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, address_family: Optional[pulumi.Input[str]] = None, amazon_address: Optional[pulumi.Input[str]] = None, amazon_side_asn: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, aws_device: Optional[pulumi.Input[str]] = None, bgp_asn: Optional[pulumi.Input[float]] = None, bgp_auth_key: Optional[pulumi.Input[str]] = None, connection_id: Optional[pulumi.Input[str]] = None, customer_address: Optional[pulumi.Input[str]] = None, jumbo_frame_capable: Optional[pulumi.Input[bool]] = None, mtu: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, owner_account_id: Optional[pulumi.Input[str]] = None, vlan: Optional[pulumi.Input[float]] = None) -> 'HostedTransitVirtualInterface':
         """
         Get an existing HostedTransitVirtualInterface resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['MainRouteTableAssociation']
+
 
 class MainRouteTableAssociation(pulumi.CustomResource):
     original_route_table_id: pulumi.Output[str] = pulumi.output_property("originalRouteTableId")
@@ -24,7 +26,7 @@ class MainRouteTableAssociation(pulumi.CustomResource):
     The ID of the VPC whose main route table should be set
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, route_table_id=None, vpc_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, route_table_id: Optional[pulumi.Input[str]] = None, vpc_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource for managing the main routing table of a VPC.
 
@@ -84,7 +86,7 @@ class MainRouteTableAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, original_route_table_id=None, route_table_id=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, original_route_table_id: Optional[pulumi.Input[str]] = None, route_table_id: Optional[pulumi.Input[str]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'MainRouteTableAssociation':
         """
         Get an existing MainRouteTableAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

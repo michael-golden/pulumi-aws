@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ReceiptFilter']
+
 
 class ReceiptFilter(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -27,7 +29,7 @@ class ReceiptFilter(pulumi.CustomResource):
     Block or Allow
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cidr=None, name=None, policy=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cidr: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an SES receipt filter resource
 
@@ -80,7 +82,7 @@ class ReceiptFilter(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, cidr=None, name=None, policy=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, cidr: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None) -> 'ReceiptFilter':
         """
         Get an existing ReceiptFilter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

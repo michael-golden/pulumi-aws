@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetCoipPoolResult',
+    'AwaitableGetCoipPoolResult',
+    'get_coip_pool',
+]
+
 
 class GetCoipPoolResult:
     """
@@ -57,7 +63,7 @@ class AwaitableGetCoipPoolResult(GetCoipPoolResult):
             tags=self.tags)
 
 
-def get_coip_pool(filters=None, local_gateway_route_table_id=None, pool_id=None, tags=None, opts=None):
+def get_coip_pool(filters: Optional[List[pulumi.InputType['GetCoipPoolFilterArgs']]] = None, local_gateway_route_table_id: Optional[str] = None, pool_id: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCoipPoolResult:
     """
     Provides details about a specific EC2 Customer-Owned IP Pool.
 

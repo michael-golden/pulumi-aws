@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ProxyProtocolPolicy']
+
 
 class ProxyProtocolPolicy(pulumi.CustomResource):
     instance_ports: pulumi.Output[List[str]] = pulumi.output_property("instancePorts")
@@ -21,7 +23,7 @@ class ProxyProtocolPolicy(pulumi.CustomResource):
     should be attached.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, instance_ports=None, load_balancer=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, instance_ports: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, load_balancer: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a proxy protocol policy, which allows an ELB to carry a client connection information to a backend.
 
@@ -92,7 +94,7 @@ class ProxyProtocolPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, instance_ports=None, load_balancer=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, instance_ports: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, load_balancer: Optional[pulumi.Input[str]] = None) -> 'ProxyProtocolPolicy':
         """
         Get an existing ProxyProtocolPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

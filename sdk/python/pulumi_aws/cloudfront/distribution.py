@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Distribution']
+
 
 class Distribution(pulumi.CustomResource):
     active_trusted_signers: pulumi.Output[Dict[str, str]] = pulumi.output_property("activeTrustedSigners")
@@ -160,7 +162,7 @@ class Distribution(pulumi.CustomResource):
     `waf:GetWebACL` permissions assigned. If using WAFv2, provide the ARN of the web ACL.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, aliases=None, comment=None, custom_error_responses=None, default_cache_behavior=None, default_root_object=None, enabled=None, http_version=None, is_ipv6_enabled=None, logging_config=None, ordered_cache_behaviors=None, origin_groups=None, origins=None, price_class=None, restrictions=None, retain_on_delete=None, tags=None, viewer_certificate=None, wait_for_deployment=None, web_acl_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, aliases: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, comment: Optional[pulumi.Input[str]] = None, custom_error_responses: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionCustomErrorResponseArgs']]]]] = None, default_cache_behavior: Optional[pulumi.Input[pulumi.InputType['DistributionDefaultCacheBehaviorArgs']]] = None, default_root_object: Optional[pulumi.Input[str]] = None, enabled: Optional[pulumi.Input[bool]] = None, http_version: Optional[pulumi.Input[str]] = None, is_ipv6_enabled: Optional[pulumi.Input[bool]] = None, logging_config: Optional[pulumi.Input[pulumi.InputType['DistributionLoggingConfigArgs']]] = None, ordered_cache_behaviors: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionOrderedCacheBehaviorArgs']]]]] = None, origin_groups: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionOriginGroupArgs']]]]] = None, origins: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionOriginArgs']]]]] = None, price_class: Optional[pulumi.Input[str]] = None, restrictions: Optional[pulumi.Input[pulumi.InputType['DistributionRestrictionsArgs']]] = None, retain_on_delete: Optional[pulumi.Input[bool]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, viewer_certificate: Optional[pulumi.Input[pulumi.InputType['DistributionViewerCertificateArgs']]] = None, wait_for_deployment: Optional[pulumi.Input[bool]] = None, web_acl_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates an Amazon CloudFront web distribution.
 
@@ -360,8 +362,8 @@ class Distribution(pulumi.CustomResource):
                this distribution.
         :param pulumi.Input[str] comment: Any comments you want to include about the
                distribution.
-        :param pulumi.Input[List[pulumi.Input['DistributionCustomErrorResponseArgs']]] custom_error_responses: One or more custom error response elements (multiples allowed).
-        :param pulumi.Input['DistributionDefaultCacheBehaviorArgs'] default_cache_behavior: The default cache behavior for this distribution (maximum
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionCustomErrorResponseArgs']]]] custom_error_responses: One or more custom error response elements (multiples allowed).
+        :param pulumi.Input[pulumi.InputType['DistributionDefaultCacheBehaviorArgs']] default_cache_behavior: The default cache behavior for this distribution (maximum
                one).
         :param pulumi.Input[str] default_root_object: The object that you want CloudFront to
                return (for example, index.html) when an end user requests the root URL.
@@ -371,25 +373,25 @@ class Distribution(pulumi.CustomResource):
                distribution. Allowed values are `http1.1` and `http2`. The default is
                `http2`.
         :param pulumi.Input[bool] is_ipv6_enabled: Whether the IPv6 is enabled for the distribution.
-        :param pulumi.Input['DistributionLoggingConfigArgs'] logging_config: The logging
+        :param pulumi.Input[pulumi.InputType['DistributionLoggingConfigArgs']] logging_config: The logging
                configuration that controls how logs are written
                to your distribution (maximum one).
-        :param pulumi.Input[List[pulumi.Input['DistributionOrderedCacheBehaviorArgs']]] ordered_cache_behaviors: An ordered list of cache behaviors
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionOrderedCacheBehaviorArgs']]]] ordered_cache_behaviors: An ordered list of cache behaviors
                resource for this distribution. List from top to bottom
                in order of precedence. The topmost cache behavior will have precedence 0.
-        :param pulumi.Input[List[pulumi.Input['DistributionOriginGroupArgs']]] origin_groups: One or more origin_group for this
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionOriginGroupArgs']]]] origin_groups: One or more origin_group for this
                distribution (multiples allowed).
-        :param pulumi.Input[List[pulumi.Input['DistributionOriginArgs']]] origins: One or more origins for this
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionOriginArgs']]]] origins: One or more origins for this
                distribution (multiples allowed).
         :param pulumi.Input[str] price_class: The price class for this distribution. One of
                `PriceClass_All`, `PriceClass_200`, `PriceClass_100`
-        :param pulumi.Input['DistributionRestrictionsArgs'] restrictions: The restriction
+        :param pulumi.Input[pulumi.InputType['DistributionRestrictionsArgs']] restrictions: The restriction
                configuration for this distribution (maximum one).
         :param pulumi.Input[bool] retain_on_delete: Disables the distribution instead of
                deleting it when destroying the resource. If this is set,
                the distribution needs to be deleted manually afterwards. Default: `false`.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
-        :param pulumi.Input['DistributionViewerCertificateArgs'] viewer_certificate: The SSL
+        :param pulumi.Input[pulumi.InputType['DistributionViewerCertificateArgs']] viewer_certificate: The SSL
                configuration for this distribution (maximum
                one).
         :param pulumi.Input[bool] wait_for_deployment: If enabled, the resource will wait for
@@ -463,7 +465,7 @@ class Distribution(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, active_trusted_signers=None, aliases=None, arn=None, caller_reference=None, comment=None, custom_error_responses=None, default_cache_behavior=None, default_root_object=None, domain_name=None, enabled=None, etag=None, hosted_zone_id=None, http_version=None, in_progress_validation_batches=None, is_ipv6_enabled=None, last_modified_time=None, logging_config=None, ordered_cache_behaviors=None, origin_groups=None, origins=None, price_class=None, restrictions=None, retain_on_delete=None, status=None, tags=None, viewer_certificate=None, wait_for_deployment=None, web_acl_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, active_trusted_signers: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, aliases: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, arn: Optional[pulumi.Input[str]] = None, caller_reference: Optional[pulumi.Input[str]] = None, comment: Optional[pulumi.Input[str]] = None, custom_error_responses: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionCustomErrorResponseArgs']]]]] = None, default_cache_behavior: Optional[pulumi.Input[pulumi.InputType['DistributionDefaultCacheBehaviorArgs']]] = None, default_root_object: Optional[pulumi.Input[str]] = None, domain_name: Optional[pulumi.Input[str]] = None, enabled: Optional[pulumi.Input[bool]] = None, etag: Optional[pulumi.Input[str]] = None, hosted_zone_id: Optional[pulumi.Input[str]] = None, http_version: Optional[pulumi.Input[str]] = None, in_progress_validation_batches: Optional[pulumi.Input[float]] = None, is_ipv6_enabled: Optional[pulumi.Input[bool]] = None, last_modified_time: Optional[pulumi.Input[str]] = None, logging_config: Optional[pulumi.Input[pulumi.InputType['DistributionLoggingConfigArgs']]] = None, ordered_cache_behaviors: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionOrderedCacheBehaviorArgs']]]]] = None, origin_groups: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionOriginGroupArgs']]]]] = None, origins: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionOriginArgs']]]]] = None, price_class: Optional[pulumi.Input[str]] = None, restrictions: Optional[pulumi.Input[pulumi.InputType['DistributionRestrictionsArgs']]] = None, retain_on_delete: Optional[pulumi.Input[bool]] = None, status: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, viewer_certificate: Optional[pulumi.Input[pulumi.InputType['DistributionViewerCertificateArgs']]] = None, wait_for_deployment: Optional[pulumi.Input[bool]] = None, web_acl_id: Optional[pulumi.Input[str]] = None) -> 'Distribution':
         """
         Get an existing Distribution resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -481,8 +483,8 @@ class Distribution(pulumi.CustomResource):
                updates to the distribution configuration.
         :param pulumi.Input[str] comment: Any comments you want to include about the
                distribution.
-        :param pulumi.Input[List[pulumi.Input['DistributionCustomErrorResponseArgs']]] custom_error_responses: One or more custom error response elements (multiples allowed).
-        :param pulumi.Input['DistributionDefaultCacheBehaviorArgs'] default_cache_behavior: The default cache behavior for this distribution (maximum
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionCustomErrorResponseArgs']]]] custom_error_responses: One or more custom error response elements (multiples allowed).
+        :param pulumi.Input[pulumi.InputType['DistributionDefaultCacheBehaviorArgs']] default_cache_behavior: The default cache behavior for this distribution (maximum
                one).
         :param pulumi.Input[str] default_root_object: The object that you want CloudFront to
                return (for example, index.html) when an end user requests the root URL.
@@ -502,19 +504,19 @@ class Distribution(pulumi.CustomResource):
                currently in progress.
         :param pulumi.Input[bool] is_ipv6_enabled: Whether the IPv6 is enabled for the distribution.
         :param pulumi.Input[str] last_modified_time: The date and time the distribution was last modified.
-        :param pulumi.Input['DistributionLoggingConfigArgs'] logging_config: The logging
+        :param pulumi.Input[pulumi.InputType['DistributionLoggingConfigArgs']] logging_config: The logging
                configuration that controls how logs are written
                to your distribution (maximum one).
-        :param pulumi.Input[List[pulumi.Input['DistributionOrderedCacheBehaviorArgs']]] ordered_cache_behaviors: An ordered list of cache behaviors
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionOrderedCacheBehaviorArgs']]]] ordered_cache_behaviors: An ordered list of cache behaviors
                resource for this distribution. List from top to bottom
                in order of precedence. The topmost cache behavior will have precedence 0.
-        :param pulumi.Input[List[pulumi.Input['DistributionOriginGroupArgs']]] origin_groups: One or more origin_group for this
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionOriginGroupArgs']]]] origin_groups: One or more origin_group for this
                distribution (multiples allowed).
-        :param pulumi.Input[List[pulumi.Input['DistributionOriginArgs']]] origins: One or more origins for this
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DistributionOriginArgs']]]] origins: One or more origins for this
                distribution (multiples allowed).
         :param pulumi.Input[str] price_class: The price class for this distribution. One of
                `PriceClass_All`, `PriceClass_200`, `PriceClass_100`
-        :param pulumi.Input['DistributionRestrictionsArgs'] restrictions: The restriction
+        :param pulumi.Input[pulumi.InputType['DistributionRestrictionsArgs']] restrictions: The restriction
                configuration for this distribution (maximum one).
         :param pulumi.Input[bool] retain_on_delete: Disables the distribution instead of
                deleting it when destroying the resource. If this is set,
@@ -523,7 +525,7 @@ class Distribution(pulumi.CustomResource):
                distribution's information is fully propagated throughout the Amazon
                CloudFront system.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
-        :param pulumi.Input['DistributionViewerCertificateArgs'] viewer_certificate: The SSL
+        :param pulumi.Input[pulumi.InputType['DistributionViewerCertificateArgs']] viewer_certificate: The SSL
                configuration for this distribution (maximum
                one).
         :param pulumi.Input[bool] wait_for_deployment: If enabled, the resource will wait for

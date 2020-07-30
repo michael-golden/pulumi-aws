@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Topic']
+
 
 class Topic(pulumi.CustomResource):
     application_failure_feedback_role_arn: pulumi.Output[Optional[str]] = pulumi.output_property("applicationFailureFeedbackRoleArn")
@@ -91,7 +93,7 @@ class Topic(pulumi.CustomResource):
     Key-value map of resource tags
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application_failure_feedback_role_arn=None, application_success_feedback_role_arn=None, application_success_feedback_sample_rate=None, delivery_policy=None, display_name=None, http_failure_feedback_role_arn=None, http_success_feedback_role_arn=None, http_success_feedback_sample_rate=None, kms_master_key_id=None, lambda_failure_feedback_role_arn=None, lambda_success_feedback_role_arn=None, lambda_success_feedback_sample_rate=None, name=None, name_prefix=None, policy=None, sqs_failure_feedback_role_arn=None, sqs_success_feedback_role_arn=None, sqs_success_feedback_sample_rate=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application_failure_feedback_role_arn: Optional[pulumi.Input[str]] = None, application_success_feedback_role_arn: Optional[pulumi.Input[str]] = None, application_success_feedback_sample_rate: Optional[pulumi.Input[float]] = None, delivery_policy: Optional[pulumi.Input[str]] = None, display_name: Optional[pulumi.Input[str]] = None, http_failure_feedback_role_arn: Optional[pulumi.Input[str]] = None, http_success_feedback_role_arn: Optional[pulumi.Input[str]] = None, http_success_feedback_sample_rate: Optional[pulumi.Input[float]] = None, kms_master_key_id: Optional[pulumi.Input[str]] = None, lambda_failure_feedback_role_arn: Optional[pulumi.Input[str]] = None, lambda_success_feedback_role_arn: Optional[pulumi.Input[str]] = None, lambda_success_feedback_sample_rate: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, sqs_failure_feedback_role_arn: Optional[pulumi.Input[str]] = None, sqs_success_feedback_role_arn: Optional[pulumi.Input[str]] = None, sqs_success_feedback_sample_rate: Optional[pulumi.Input[float]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an SNS topic resource
 
@@ -209,7 +211,7 @@ class Topic(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, application_failure_feedback_role_arn=None, application_success_feedback_role_arn=None, application_success_feedback_sample_rate=None, arn=None, delivery_policy=None, display_name=None, http_failure_feedback_role_arn=None, http_success_feedback_role_arn=None, http_success_feedback_sample_rate=None, kms_master_key_id=None, lambda_failure_feedback_role_arn=None, lambda_success_feedback_role_arn=None, lambda_success_feedback_sample_rate=None, name=None, name_prefix=None, policy=None, sqs_failure_feedback_role_arn=None, sqs_success_feedback_role_arn=None, sqs_success_feedback_sample_rate=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, application_failure_feedback_role_arn: Optional[pulumi.Input[str]] = None, application_success_feedback_role_arn: Optional[pulumi.Input[str]] = None, application_success_feedback_sample_rate: Optional[pulumi.Input[float]] = None, arn: Optional[pulumi.Input[str]] = None, delivery_policy: Optional[pulumi.Input[str]] = None, display_name: Optional[pulumi.Input[str]] = None, http_failure_feedback_role_arn: Optional[pulumi.Input[str]] = None, http_success_feedback_role_arn: Optional[pulumi.Input[str]] = None, http_success_feedback_sample_rate: Optional[pulumi.Input[float]] = None, kms_master_key_id: Optional[pulumi.Input[str]] = None, lambda_failure_feedback_role_arn: Optional[pulumi.Input[str]] = None, lambda_success_feedback_role_arn: Optional[pulumi.Input[str]] = None, lambda_success_feedback_sample_rate: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, sqs_failure_feedback_role_arn: Optional[pulumi.Input[str]] = None, sqs_success_feedback_role_arn: Optional[pulumi.Input[str]] = None, sqs_success_feedback_sample_rate: Optional[pulumi.Input[float]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Topic':
         """
         Get an existing Topic resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

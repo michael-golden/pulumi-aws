@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Project']
+
 
 class Project(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -89,7 +91,7 @@ class Project(pulumi.CustomResource):
     Configuration for the builds to run inside a VPC. VPC config blocks are documented below.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, artifacts=None, badge_enabled=None, build_timeout=None, cache=None, description=None, encryption_key=None, environment=None, logs_config=None, name=None, queued_timeout=None, secondary_artifacts=None, secondary_sources=None, service_role=None, source=None, source_version=None, tags=None, vpc_config=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, artifacts: Optional[pulumi.Input[pulumi.InputType['ProjectArtifactsArgs']]] = None, badge_enabled: Optional[pulumi.Input[bool]] = None, build_timeout: Optional[pulumi.Input[float]] = None, cache: Optional[pulumi.Input[pulumi.InputType['ProjectCacheArgs']]] = None, description: Optional[pulumi.Input[str]] = None, encryption_key: Optional[pulumi.Input[str]] = None, environment: Optional[pulumi.Input[pulumi.InputType['ProjectEnvironmentArgs']]] = None, logs_config: Optional[pulumi.Input[pulumi.InputType['ProjectLogsConfigArgs']]] = None, name: Optional[pulumi.Input[str]] = None, queued_timeout: Optional[pulumi.Input[float]] = None, secondary_artifacts: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ProjectSecondaryArtifactArgs']]]]] = None, secondary_sources: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ProjectSecondarySourceArgs']]]]] = None, service_role: Optional[pulumi.Input[str]] = None, source: Optional[pulumi.Input[pulumi.InputType['ProjectSourceArgs']]] = None, source_version: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_config: Optional[pulumi.Input[pulumi.InputType['ProjectVpcConfigArgs']]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CodeBuild Project resource. See also the `codebuild.Webhook` resource, which manages the webhook to the source (e.g. the "rebuild every time a code change is pushed" option in the CodeBuild web console).
 
@@ -273,23 +275,23 @@ class Project(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['ProjectArtifactsArgs'] artifacts: Information about the project's build output artifacts. Artifact blocks are documented below.
+        :param pulumi.Input[pulumi.InputType['ProjectArtifactsArgs']] artifacts: Information about the project's build output artifacts. Artifact blocks are documented below.
         :param pulumi.Input[bool] badge_enabled: Generates a publicly-accessible URL for the projects build badge. Available as `badge_url` attribute when enabled.
         :param pulumi.Input[float] build_timeout: How long in minutes, from 5 to 480 (8 hours), for AWS CodeBuild to wait until timing out any related build that does not get marked as completed. The default is 60 minutes.
-        :param pulumi.Input['ProjectCacheArgs'] cache: Information about the cache storage for the project. Cache blocks are documented below.
+        :param pulumi.Input[pulumi.InputType['ProjectCacheArgs']] cache: Information about the cache storage for the project. Cache blocks are documented below.
         :param pulumi.Input[str] description: A short description of the project.
         :param pulumi.Input[str] encryption_key: The AWS Key Management Service (AWS KMS) customer master key (CMK) to be used for encrypting the build project's build output artifacts.
-        :param pulumi.Input['ProjectEnvironmentArgs'] environment: Information about the project's build environment. Environment blocks are documented below.
-        :param pulumi.Input['ProjectLogsConfigArgs'] logs_config: Configuration for the builds to store log data to CloudWatch or S3.
+        :param pulumi.Input[pulumi.InputType['ProjectEnvironmentArgs']] environment: Information about the project's build environment. Environment blocks are documented below.
+        :param pulumi.Input[pulumi.InputType['ProjectLogsConfigArgs']] logs_config: Configuration for the builds to store log data to CloudWatch or S3.
         :param pulumi.Input[str] name: The projects name.
         :param pulumi.Input[float] queued_timeout: How long in minutes, from 5 to 480 (8 hours), a build is allowed to be queued before it times out. The default is 8 hours.
-        :param pulumi.Input[List[pulumi.Input['ProjectSecondaryArtifactArgs']]] secondary_artifacts: A set of secondary artifacts to be used inside the build. Secondary artifacts blocks are documented below.
-        :param pulumi.Input[List[pulumi.Input['ProjectSecondarySourceArgs']]] secondary_sources: A set of secondary sources to be used inside the build. Secondary sources blocks are documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ProjectSecondaryArtifactArgs']]]] secondary_artifacts: A set of secondary artifacts to be used inside the build. Secondary artifacts blocks are documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ProjectSecondarySourceArgs']]]] secondary_sources: A set of secondary sources to be used inside the build. Secondary sources blocks are documented below.
         :param pulumi.Input[str] service_role: The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that enables AWS CodeBuild to interact with dependent AWS services on behalf of the AWS account.
-        :param pulumi.Input['ProjectSourceArgs'] source: Information about the project's input source code. Source blocks are documented below.
+        :param pulumi.Input[pulumi.InputType['ProjectSourceArgs']] source: Information about the project's input source code. Source blocks are documented below.
         :param pulumi.Input[str] source_version: A version of the build input to be built for this project. If not specified, the latest version is used.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
-        :param pulumi.Input['ProjectVpcConfigArgs'] vpc_config: Configuration for the builds to run inside a VPC. VPC config blocks are documented below.
+        :param pulumi.Input[pulumi.InputType['ProjectVpcConfigArgs']] vpc_config: Configuration for the builds to run inside a VPC. VPC config blocks are documented below.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -342,7 +344,7 @@ class Project(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, artifacts=None, badge_enabled=None, badge_url=None, build_timeout=None, cache=None, description=None, encryption_key=None, environment=None, logs_config=None, name=None, queued_timeout=None, secondary_artifacts=None, secondary_sources=None, service_role=None, source=None, source_version=None, tags=None, vpc_config=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, artifacts: Optional[pulumi.Input[pulumi.InputType['ProjectArtifactsArgs']]] = None, badge_enabled: Optional[pulumi.Input[bool]] = None, badge_url: Optional[pulumi.Input[str]] = None, build_timeout: Optional[pulumi.Input[float]] = None, cache: Optional[pulumi.Input[pulumi.InputType['ProjectCacheArgs']]] = None, description: Optional[pulumi.Input[str]] = None, encryption_key: Optional[pulumi.Input[str]] = None, environment: Optional[pulumi.Input[pulumi.InputType['ProjectEnvironmentArgs']]] = None, logs_config: Optional[pulumi.Input[pulumi.InputType['ProjectLogsConfigArgs']]] = None, name: Optional[pulumi.Input[str]] = None, queued_timeout: Optional[pulumi.Input[float]] = None, secondary_artifacts: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ProjectSecondaryArtifactArgs']]]]] = None, secondary_sources: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ProjectSecondarySourceArgs']]]]] = None, service_role: Optional[pulumi.Input[str]] = None, source: Optional[pulumi.Input[pulumi.InputType['ProjectSourceArgs']]] = None, source_version: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_config: Optional[pulumi.Input[pulumi.InputType['ProjectVpcConfigArgs']]] = None) -> 'Project':
         """
         Get an existing Project resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -351,24 +353,24 @@ class Project(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: The ARN of the CodeBuild project.
-        :param pulumi.Input['ProjectArtifactsArgs'] artifacts: Information about the project's build output artifacts. Artifact blocks are documented below.
+        :param pulumi.Input[pulumi.InputType['ProjectArtifactsArgs']] artifacts: Information about the project's build output artifacts. Artifact blocks are documented below.
         :param pulumi.Input[bool] badge_enabled: Generates a publicly-accessible URL for the projects build badge. Available as `badge_url` attribute when enabled.
         :param pulumi.Input[str] badge_url: The URL of the build badge when `badge_enabled` is enabled.
         :param pulumi.Input[float] build_timeout: How long in minutes, from 5 to 480 (8 hours), for AWS CodeBuild to wait until timing out any related build that does not get marked as completed. The default is 60 minutes.
-        :param pulumi.Input['ProjectCacheArgs'] cache: Information about the cache storage for the project. Cache blocks are documented below.
+        :param pulumi.Input[pulumi.InputType['ProjectCacheArgs']] cache: Information about the cache storage for the project. Cache blocks are documented below.
         :param pulumi.Input[str] description: A short description of the project.
         :param pulumi.Input[str] encryption_key: The AWS Key Management Service (AWS KMS) customer master key (CMK) to be used for encrypting the build project's build output artifacts.
-        :param pulumi.Input['ProjectEnvironmentArgs'] environment: Information about the project's build environment. Environment blocks are documented below.
-        :param pulumi.Input['ProjectLogsConfigArgs'] logs_config: Configuration for the builds to store log data to CloudWatch or S3.
+        :param pulumi.Input[pulumi.InputType['ProjectEnvironmentArgs']] environment: Information about the project's build environment. Environment blocks are documented below.
+        :param pulumi.Input[pulumi.InputType['ProjectLogsConfigArgs']] logs_config: Configuration for the builds to store log data to CloudWatch or S3.
         :param pulumi.Input[str] name: The projects name.
         :param pulumi.Input[float] queued_timeout: How long in minutes, from 5 to 480 (8 hours), a build is allowed to be queued before it times out. The default is 8 hours.
-        :param pulumi.Input[List[pulumi.Input['ProjectSecondaryArtifactArgs']]] secondary_artifacts: A set of secondary artifacts to be used inside the build. Secondary artifacts blocks are documented below.
-        :param pulumi.Input[List[pulumi.Input['ProjectSecondarySourceArgs']]] secondary_sources: A set of secondary sources to be used inside the build. Secondary sources blocks are documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ProjectSecondaryArtifactArgs']]]] secondary_artifacts: A set of secondary artifacts to be used inside the build. Secondary artifacts blocks are documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ProjectSecondarySourceArgs']]]] secondary_sources: A set of secondary sources to be used inside the build. Secondary sources blocks are documented below.
         :param pulumi.Input[str] service_role: The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that enables AWS CodeBuild to interact with dependent AWS services on behalf of the AWS account.
-        :param pulumi.Input['ProjectSourceArgs'] source: Information about the project's input source code. Source blocks are documented below.
+        :param pulumi.Input[pulumi.InputType['ProjectSourceArgs']] source: Information about the project's input source code. Source blocks are documented below.
         :param pulumi.Input[str] source_version: A version of the build input to be built for this project. If not specified, the latest version is used.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
-        :param pulumi.Input['ProjectVpcConfigArgs'] vpc_config: Configuration for the builds to run inside a VPC. VPC config blocks are documented below.
+        :param pulumi.Input[pulumi.InputType['ProjectVpcConfigArgs']] vpc_config: Configuration for the builds to run inside a VPC. VPC config blocks are documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

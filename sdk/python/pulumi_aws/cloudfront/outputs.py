@@ -8,6 +8,29 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'DistributionCustomErrorResponse',
+    'DistributionDefaultCacheBehavior',
+    'DistributionDefaultCacheBehaviorForwardedValues',
+    'DistributionDefaultCacheBehaviorForwardedValuesCookies',
+    'DistributionDefaultCacheBehaviorLambdaFunctionAssociation',
+    'DistributionLoggingConfig',
+    'DistributionOrderedCacheBehavior',
+    'DistributionOrderedCacheBehaviorForwardedValues',
+    'DistributionOrderedCacheBehaviorForwardedValuesCookies',
+    'DistributionOrderedCacheBehaviorLambdaFunctionAssociation',
+    'DistributionOrigin',
+    'DistributionOriginCustomHeader',
+    'DistributionOriginCustomOriginConfig',
+    'DistributionOriginGroup',
+    'DistributionOriginGroupFailoverCriteria',
+    'DistributionOriginGroupMember',
+    'DistributionOriginS3OriginConfig',
+    'DistributionRestrictions',
+    'DistributionRestrictionsGeoRestriction',
+    'DistributionViewerCertificate',
+]
+
 @pulumi.output_type
 class DistributionCustomErrorResponse(dict):
     error_caching_min_ttl: Optional[float] = pulumi.output_property("errorCachingMinTtl")

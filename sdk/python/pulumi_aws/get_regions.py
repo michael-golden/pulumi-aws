@@ -10,6 +10,12 @@ from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetRegionsResult',
+    'AwaitableGetRegionsResult',
+    'get_regions',
+]
+
 
 class GetRegionsResult:
     """
@@ -49,7 +55,7 @@ class AwaitableGetRegionsResult(GetRegionsResult):
             names=self.names)
 
 
-def get_regions(all_regions=None, filters=None, opts=None):
+def get_regions(all_regions: Optional[bool] = None, filters: Optional[List[pulumi.InputType['GetRegionsFilterArgs']]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegionsResult:
     """
     Provides information about AWS Regions. Can be used to filter regions i.e. by Opt-In status or only regions enabled for current account. To get details like endpoint and description of each region the data source can be combined with the `getRegion` data source.
 
@@ -88,7 +94,7 @@ def get_regions(all_regions=None, filters=None, opts=None):
 
 
     :param bool all_regions: If true the source will query all regions regardless of availability.
-    :param List['GetRegionsFilterArgs'] filters: Configuration block(s) to use as filters. Detailed below.
+    :param List[pulumi.InputType['GetRegionsFilterArgs']] filters: Configuration block(s) to use as filters. Detailed below.
     """
     __args__ = dict()
     __args__['allRegions'] = all_regions

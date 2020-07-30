@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Function']
+
 
 class Function(pulumi.CustomResource):
     api_id: pulumi.Output[str] = pulumi.output_property("apiId")
@@ -47,7 +49,7 @@ class Function(pulumi.CustomResource):
     The Function response mapping template.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id=None, data_source=None, description=None, function_version=None, name=None, request_mapping_template=None, response_mapping_template=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, data_source: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, function_version: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, request_mapping_template: Optional[pulumi.Input[str]] = None, response_mapping_template: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AppSync Function.
 
@@ -158,7 +160,7 @@ class Function(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, api_id=None, arn=None, data_source=None, description=None, function_id=None, function_version=None, name=None, request_mapping_template=None, response_mapping_template=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, data_source: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, function_id: Optional[pulumi.Input[str]] = None, function_version: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, request_mapping_template: Optional[pulumi.Input[str]] = None, response_mapping_template: Optional[pulumi.Input[str]] = None) -> 'Function':
         """
         Get an existing Function resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

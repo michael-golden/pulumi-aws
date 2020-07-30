@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Ciphertext']
+
 
 class Ciphertext(pulumi.CustomResource):
     ciphertext_blob: pulumi.Output[str] = pulumi.output_property("ciphertextBlob")
@@ -27,7 +29,7 @@ class Ciphertext(pulumi.CustomResource):
     Data to be encrypted. Note that this may show up in logs, and it will be stored in the state file.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, context=None, key_id=None, plaintext=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, context: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, key_id: Optional[pulumi.Input[str]] = None, plaintext: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         The KMS ciphertext resource allows you to encrypt plaintext into ciphertext
         by using an AWS KMS customer master key. The value returned by this resource
@@ -93,7 +95,7 @@ class Ciphertext(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, ciphertext_blob=None, context=None, key_id=None, plaintext=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, ciphertext_blob: Optional[pulumi.Input[str]] = None, context: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, key_id: Optional[pulumi.Input[str]] = None, plaintext: Optional[pulumi.Input[str]] = None) -> 'Ciphertext':
         """
         Get an existing Ciphertext resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

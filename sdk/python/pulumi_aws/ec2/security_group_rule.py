@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['SecurityGroupRule']
+
 
 class SecurityGroupRule(pulumi.CustomResource):
     cidr_blocks: pulumi.Output[Optional[List[str]]] = pulumi.output_property("cidrBlocks")
@@ -59,7 +61,7 @@ class SecurityGroupRule(pulumi.CustomResource):
     or `egress` (outbound).
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cidr_blocks=None, description=None, from_port=None, ipv6_cidr_blocks=None, prefix_list_ids=None, protocol=None, security_group_id=None, self=None, source_security_group_id=None, to_port=None, type=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cidr_blocks: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, description: Optional[pulumi.Input[str]] = None, from_port: Optional[pulumi.Input[float]] = None, ipv6_cidr_blocks: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, prefix_list_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, protocol: Optional[pulumi.Input[str]] = None, security_group_id: Optional[pulumi.Input[str]] = None, self: Optional[pulumi.Input[bool]] = None, source_security_group_id: Optional[pulumi.Input[str]] = None, to_port: Optional[pulumi.Input[float]] = None, type: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a security group rule resource. Represents a single `ingress` or
         `egress` group rule, which can be added to external Security Groups.
@@ -175,7 +177,7 @@ class SecurityGroupRule(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, cidr_blocks=None, description=None, from_port=None, ipv6_cidr_blocks=None, prefix_list_ids=None, protocol=None, security_group_id=None, self=None, source_security_group_id=None, to_port=None, type=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, cidr_blocks: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, description: Optional[pulumi.Input[str]] = None, from_port: Optional[pulumi.Input[float]] = None, ipv6_cidr_blocks: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, prefix_list_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, protocol: Optional[pulumi.Input[str]] = None, security_group_id: Optional[pulumi.Input[str]] = None, self: Optional[pulumi.Input[bool]] = None, source_security_group_id: Optional[pulumi.Input[str]] = None, to_port: Optional[pulumi.Input[float]] = None, type: Optional[pulumi.Input[str]] = None) -> 'SecurityGroupRule':
         """
         Get an existing SecurityGroupRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

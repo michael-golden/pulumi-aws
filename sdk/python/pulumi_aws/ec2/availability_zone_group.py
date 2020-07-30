@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['AvailabilityZoneGroup']
+
 
 class AvailabilityZoneGroup(pulumi.CustomResource):
     group_name: pulumi.Output[str] = pulumi.output_property("groupName")
@@ -19,7 +21,7 @@ class AvailabilityZoneGroup(pulumi.CustomResource):
     Indicates whether to enable or disable Availability Zone Group. Valid values: `opted-in` or `not-opted-in`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, group_name=None, opt_in_status=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, group_name: Optional[pulumi.Input[str]] = None, opt_in_status: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an EC2 Availability Zone Group, such as updating its opt-in status.
 
@@ -71,7 +73,7 @@ class AvailabilityZoneGroup(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, group_name=None, opt_in_status=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, group_name: Optional[pulumi.Input[str]] = None, opt_in_status: Optional[pulumi.Input[str]] = None) -> 'AvailabilityZoneGroup':
         """
         Get an existing AvailabilityZoneGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

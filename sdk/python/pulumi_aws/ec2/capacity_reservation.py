@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['CapacityReservation']
+
 
 class CapacityReservation(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -59,7 +61,7 @@ class CapacityReservation(pulumi.CustomResource):
     Indicates the tenancy of the Capacity Reservation. Specify either `default` or `dedicated`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zone=None, ebs_optimized=None, end_date=None, end_date_type=None, ephemeral_storage=None, instance_count=None, instance_match_criteria=None, instance_platform=None, instance_type=None, tags=None, tenancy=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zone: Optional[pulumi.Input[str]] = None, ebs_optimized: Optional[pulumi.Input[bool]] = None, end_date: Optional[pulumi.Input[str]] = None, end_date_type: Optional[pulumi.Input[str]] = None, ephemeral_storage: Optional[pulumi.Input[bool]] = None, instance_count: Optional[pulumi.Input[float]] = None, instance_match_criteria: Optional[pulumi.Input[str]] = None, instance_platform: Optional[pulumi.Input[str]] = None, instance_type: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, tenancy: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an EC2 Capacity Reservation. This allows you to reserve capacity for your Amazon EC2 instances in a specific Availability Zone for any duration.
 
@@ -134,7 +136,7 @@ class CapacityReservation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, availability_zone=None, ebs_optimized=None, end_date=None, end_date_type=None, ephemeral_storage=None, instance_count=None, instance_match_criteria=None, instance_platform=None, instance_type=None, tags=None, tenancy=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, availability_zone: Optional[pulumi.Input[str]] = None, ebs_optimized: Optional[pulumi.Input[bool]] = None, end_date: Optional[pulumi.Input[str]] = None, end_date_type: Optional[pulumi.Input[str]] = None, ephemeral_storage: Optional[pulumi.Input[bool]] = None, instance_count: Optional[pulumi.Input[float]] = None, instance_match_criteria: Optional[pulumi.Input[str]] = None, instance_platform: Optional[pulumi.Input[str]] = None, instance_type: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, tenancy: Optional[pulumi.Input[str]] = None) -> 'CapacityReservation':
         """
         Get an existing CapacityReservation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

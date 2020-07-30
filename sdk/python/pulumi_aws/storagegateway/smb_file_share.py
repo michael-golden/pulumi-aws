@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['SmbFileShare']
+
 
 class SmbFileShare(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -79,7 +81,7 @@ class SmbFileShare(pulumi.CustomResource):
     A list of users in the Active Directory that are allowed to access the file share. Only valid if `authentication` is set to `ActiveDirectory`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, authentication=None, default_storage_class=None, gateway_arn=None, guess_mime_type_enabled=None, invalid_user_lists=None, kms_encrypted=None, kms_key_arn=None, location_arn=None, object_acl=None, read_only=None, requester_pays=None, role_arn=None, tags=None, valid_user_lists=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, authentication: Optional[pulumi.Input[str]] = None, default_storage_class: Optional[pulumi.Input[str]] = None, gateway_arn: Optional[pulumi.Input[str]] = None, guess_mime_type_enabled: Optional[pulumi.Input[bool]] = None, invalid_user_lists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, kms_encrypted: Optional[pulumi.Input[bool]] = None, kms_key_arn: Optional[pulumi.Input[str]] = None, location_arn: Optional[pulumi.Input[str]] = None, object_acl: Optional[pulumi.Input[str]] = None, read_only: Optional[pulumi.Input[bool]] = None, requester_pays: Optional[pulumi.Input[bool]] = None, role_arn: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, valid_user_lists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an AWS Storage Gateway SMB File Share.
 
@@ -177,7 +179,7 @@ class SmbFileShare(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, authentication=None, default_storage_class=None, fileshare_id=None, gateway_arn=None, guess_mime_type_enabled=None, invalid_user_lists=None, kms_encrypted=None, kms_key_arn=None, location_arn=None, object_acl=None, path=None, read_only=None, requester_pays=None, role_arn=None, tags=None, valid_user_lists=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, authentication: Optional[pulumi.Input[str]] = None, default_storage_class: Optional[pulumi.Input[str]] = None, fileshare_id: Optional[pulumi.Input[str]] = None, gateway_arn: Optional[pulumi.Input[str]] = None, guess_mime_type_enabled: Optional[pulumi.Input[bool]] = None, invalid_user_lists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, kms_encrypted: Optional[pulumi.Input[bool]] = None, kms_key_arn: Optional[pulumi.Input[str]] = None, location_arn: Optional[pulumi.Input[str]] = None, object_acl: Optional[pulumi.Input[str]] = None, path: Optional[pulumi.Input[str]] = None, read_only: Optional[pulumi.Input[bool]] = None, requester_pays: Optional[pulumi.Input[bool]] = None, role_arn: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, valid_user_lists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'SmbFileShare':
         """
         Get an existing SmbFileShare resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

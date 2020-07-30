@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['EmailChannel']
+
 
 class EmailChannel(pulumi.CustomResource):
     application_id: pulumi.Output[str] = pulumi.output_property("applicationId")
@@ -35,7 +37,7 @@ class EmailChannel(pulumi.CustomResource):
     The ARN of an IAM Role used to submit events to Mobile Analytics' event ingestion service.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application_id=None, enabled=None, from_address=None, identity=None, role_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application_id: Optional[pulumi.Input[str]] = None, enabled: Optional[pulumi.Input[bool]] = None, from_address: Optional[pulumi.Input[str]] = None, identity: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Pinpoint Email Channel resource.
 
@@ -132,7 +134,7 @@ class EmailChannel(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, application_id=None, enabled=None, from_address=None, identity=None, messages_per_second=None, role_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, application_id: Optional[pulumi.Input[str]] = None, enabled: Optional[pulumi.Input[bool]] = None, from_address: Optional[pulumi.Input[str]] = None, identity: Optional[pulumi.Input[str]] = None, messages_per_second: Optional[pulumi.Input[float]] = None, role_arn: Optional[pulumi.Input[str]] = None) -> 'EmailChannel':
         """
         Get an existing EmailChannel resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

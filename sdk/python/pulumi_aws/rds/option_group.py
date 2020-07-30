@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['OptionGroup']
+
 
 class OptionGroup(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -45,7 +47,7 @@ class OptionGroup(pulumi.CustomResource):
     A map of tags to assign to the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, engine_name=None, major_engine_version=None, name=None, name_prefix=None, option_group_description=None, options=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, engine_name: Optional[pulumi.Input[str]] = None, major_engine_version: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, option_group_description: Optional[pulumi.Input[str]] = None, options: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['OptionGroupOptionArgs']]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an RDS DB option group resource. Documentation of the available options for various RDS engines can be found at:
 
@@ -94,7 +96,7 @@ class OptionGroup(pulumi.CustomResource):
         :param pulumi.Input[str] name: The Name of the setting.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`. Must be lowercase, to match as it is stored in AWS.
         :param pulumi.Input[str] option_group_description: The description of the option group. Defaults to "Managed by Pulumi".
-        :param pulumi.Input[List[pulumi.Input['OptionGroupOptionArgs']]] options: A list of Options to apply.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['OptionGroupOptionArgs']]]] options: A list of Options to apply.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         if __name__ is not None:
@@ -135,7 +137,7 @@ class OptionGroup(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, engine_name=None, major_engine_version=None, name=None, name_prefix=None, option_group_description=None, options=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, engine_name: Optional[pulumi.Input[str]] = None, major_engine_version: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, option_group_description: Optional[pulumi.Input[str]] = None, options: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['OptionGroupOptionArgs']]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'OptionGroup':
         """
         Get an existing OptionGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -149,7 +151,7 @@ class OptionGroup(pulumi.CustomResource):
         :param pulumi.Input[str] name: The Name of the setting.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`. Must be lowercase, to match as it is stored in AWS.
         :param pulumi.Input[str] option_group_description: The description of the option group. Defaults to "Managed by Pulumi".
-        :param pulumi.Input[List[pulumi.Input['OptionGroupOptionArgs']]] options: A list of Options to apply.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['OptionGroupOptionArgs']]]] options: A list of Options to apply.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

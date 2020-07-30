@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Tag']
+
 
 class Tag(pulumi.CustomResource):
     key: pulumi.Output[str] = pulumi.output_property("key")
@@ -23,7 +25,7 @@ class Tag(pulumi.CustomResource):
     The value of the tag.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, key=None, resource_id=None, value=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, key: Optional[pulumi.Input[str]] = None, resource_id: Optional[pulumi.Input[str]] = None, value: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Create a Tag resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -65,7 +67,7 @@ class Tag(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, key=None, resource_id=None, value=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, key: Optional[pulumi.Input[str]] = None, resource_id: Optional[pulumi.Input[str]] = None, value: Optional[pulumi.Input[str]] = None) -> 'Tag':
         """
         Get an existing Tag resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

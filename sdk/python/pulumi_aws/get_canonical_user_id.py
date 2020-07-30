@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
 
+__all__ = [
+    'GetCanonicalUserIdResult',
+    'AwaitableGetCanonicalUserIdResult',
+    'get_canonical_user_id',
+]
+
 
 class GetCanonicalUserIdResult:
     """
@@ -39,7 +45,7 @@ class AwaitableGetCanonicalUserIdResult(GetCanonicalUserIdResult):
             id=self.id)
 
 
-def get_canonical_user_id(opts=None):
+def get_canonical_user_id(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCanonicalUserIdResult:
     """
     The Canonical User ID data source allows access to the [canonical user ID](http://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html)
     for the effective account in which this provider is working.

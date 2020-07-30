@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['PublicKey']
+
 
 class PublicKey(pulumi.CustomResource):
     caller_reference: pulumi.Output[str] = pulumi.output_property("callerReference")
@@ -35,7 +37,7 @@ class PublicKey(pulumi.CustomResource):
     The name for the public key. Conflicts with `name`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, comment=None, encoded_key=None, name=None, name_prefix=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, comment: Optional[pulumi.Input[str]] = None, encoded_key: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         ## Example Usage
 
@@ -89,7 +91,7 @@ class PublicKey(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, caller_reference=None, comment=None, encoded_key=None, etag=None, name=None, name_prefix=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, caller_reference: Optional[pulumi.Input[str]] = None, comment: Optional[pulumi.Input[str]] = None, encoded_key: Optional[pulumi.Input[str]] = None, etag: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None) -> 'PublicKey':
         """
         Get an existing PublicKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,10 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetProductFilter',
+]
+
 @pulumi.output_type
 class GetProductFilter(dict):
     field: str = pulumi.output_property("field")

@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['VpcEndpoint']
+
 
 class VpcEndpoint(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -86,7 +88,7 @@ class VpcEndpoint(pulumi.CustomResource):
     The ID of the VPC in which the endpoint will be used.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, auto_accept=None, policy=None, private_dns_enabled=None, route_table_ids=None, security_group_ids=None, service_name=None, subnet_ids=None, tags=None, vpc_endpoint_type=None, vpc_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, auto_accept: Optional[pulumi.Input[bool]] = None, policy: Optional[pulumi.Input[str]] = None, private_dns_enabled: Optional[pulumi.Input[bool]] = None, route_table_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, service_name: Optional[pulumi.Input[str]] = None, subnet_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_endpoint_type: Optional[pulumi.Input[str]] = None, vpc_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a VPC Endpoint resource.
 
@@ -220,7 +222,7 @@ class VpcEndpoint(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, auto_accept=None, cidr_blocks=None, dns_entries=None, network_interface_ids=None, owner_id=None, policy=None, prefix_list_id=None, private_dns_enabled=None, requester_managed=None, route_table_ids=None, security_group_ids=None, service_name=None, state=None, subnet_ids=None, tags=None, vpc_endpoint_type=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, auto_accept: Optional[pulumi.Input[bool]] = None, cidr_blocks: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, dns_entries: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['VpcEndpointDnsEntryArgs']]]]] = None, network_interface_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, owner_id: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, prefix_list_id: Optional[pulumi.Input[str]] = None, private_dns_enabled: Optional[pulumi.Input[bool]] = None, requester_managed: Optional[pulumi.Input[bool]] = None, route_table_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, service_name: Optional[pulumi.Input[str]] = None, state: Optional[pulumi.Input[str]] = None, subnet_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_endpoint_type: Optional[pulumi.Input[str]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'VpcEndpoint':
         """
         Get an existing VpcEndpoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -231,7 +233,7 @@ class VpcEndpoint(pulumi.CustomResource):
         :param pulumi.Input[str] arn: The Amazon Resource Name (ARN) of the VPC endpoint.
         :param pulumi.Input[bool] auto_accept: Accept the VPC endpoint (the VPC endpoint and service need to be in the same AWS account).
         :param pulumi.Input[List[pulumi.Input[str]]] cidr_blocks: The list of CIDR blocks for the exposed AWS service. Applicable for endpoints of type `Gateway`.
-        :param pulumi.Input[List[pulumi.Input['VpcEndpointDnsEntryArgs']]] dns_entries: The DNS entries for the VPC Endpoint. Applicable for endpoints of type `Interface`. DNS blocks are documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['VpcEndpointDnsEntryArgs']]]] dns_entries: The DNS entries for the VPC Endpoint. Applicable for endpoints of type `Interface`. DNS blocks are documented below.
         :param pulumi.Input[List[pulumi.Input[str]]] network_interface_ids: One or more network interfaces for the VPC Endpoint. Applicable for endpoints of type `Interface`.
         :param pulumi.Input[str] owner_id: The ID of the AWS account that owns the VPC endpoint.
         :param pulumi.Input[str] policy: A policy to attach to the endpoint that controls access to the service. Defaults to full access. All `Gateway` and some `Interface` endpoints support policies - see the [relevant AWS documentation](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-access.html) for more details.

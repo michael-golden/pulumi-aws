@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Deployment']
+
 
 class Deployment(pulumi.CustomResource):
     api_id: pulumi.Output[str] = pulumi.output_property("apiId")
@@ -27,7 +29,7 @@ class Deployment(pulumi.CustomResource):
     A map of arbitrary keys and values that, when changed, will trigger a redeployment.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id=None, description=None, triggers=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, triggers: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an Amazon API Gateway Version 2 deployment.
         More information can be found in the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html).
@@ -82,7 +84,7 @@ class Deployment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, api_id=None, auto_deployed=None, description=None, triggers=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, auto_deployed: Optional[pulumi.Input[bool]] = None, description: Optional[pulumi.Input[str]] = None, triggers: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Deployment':
         """
         Get an existing Deployment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

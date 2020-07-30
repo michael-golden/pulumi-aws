@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetNetworkInterfaceResult',
+    'AwaitableGetNetworkInterfaceResult',
+    'get_network_interface',
+]
+
 
 class GetNetworkInterfaceResult:
     """
@@ -151,7 +157,7 @@ class AwaitableGetNetworkInterfaceResult(GetNetworkInterfaceResult):
             vpc_id=self.vpc_id)
 
 
-def get_network_interface(filters=None, id=None, tags=None, opts=None):
+def get_network_interface(filters: Optional[List[pulumi.InputType['GetNetworkInterfaceFilterArgs']]] = None, id: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkInterfaceResult:
     """
     Use this data source to get information about a Network Interface.
 
@@ -165,7 +171,7 @@ def get_network_interface(filters=None, id=None, tags=None, opts=None):
     ```
 
 
-    :param List['GetNetworkInterfaceFilterArgs'] filters: One or more name/value pairs to filter off of. There are several valid keys, for a full reference, check out [describe-network-interfaces](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interfaces.html) in the AWS CLI reference.
+    :param List[pulumi.InputType['GetNetworkInterfaceFilterArgs']] filters: One or more name/value pairs to filter off of. There are several valid keys, for a full reference, check out [describe-network-interfaces](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interfaces.html) in the AWS CLI reference.
     :param str id: The identifier for the network interface.
     :param Dict[str, str] tags: Any tags assigned to the network interface.
     """

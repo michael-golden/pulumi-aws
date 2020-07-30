@@ -8,6 +8,13 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ClusterLogging',
+    'ClusterSnapshotCopy',
+    'ParameterGroupParameter',
+    'SecurityGroupIngress',
+]
+
 @pulumi.output_type
 class ClusterLogging(dict):
     bucket_name: Optional[str] = pulumi.output_property("bucketName")

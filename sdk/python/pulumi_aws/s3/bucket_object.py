@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['BucketObject']
+
 
 class BucketObject(pulumi.CustomResource):
     acl: pulumi.Output[Optional[str]] = pulumi.output_property("acl")
@@ -110,7 +112,7 @@ class BucketObject(pulumi.CustomResource):
     Specifies a target URL for [website redirect](http://docs.aws.amazon.com/AmazonS3/latest/dev/how-to-page-redirect.html).
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, acl=None, bucket=None, cache_control=None, content=None, content_base64=None, content_disposition=None, content_encoding=None, content_language=None, content_type=None, etag=None, force_destroy=None, key=None, kms_key_id=None, metadata=None, object_lock_legal_hold_status=None, object_lock_mode=None, object_lock_retain_until_date=None, server_side_encryption=None, source=None, storage_class=None, tags=None, website_redirect=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, acl: Optional[pulumi.Input[str]] = None, bucket: Optional[pulumi.Input[str]] = None, cache_control: Optional[pulumi.Input[str]] = None, content: Optional[pulumi.Input[str]] = None, content_base64: Optional[pulumi.Input[str]] = None, content_disposition: Optional[pulumi.Input[str]] = None, content_encoding: Optional[pulumi.Input[str]] = None, content_language: Optional[pulumi.Input[str]] = None, content_type: Optional[pulumi.Input[str]] = None, etag: Optional[pulumi.Input[str]] = None, force_destroy: Optional[pulumi.Input[bool]] = None, key: Optional[pulumi.Input[str]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, metadata: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, object_lock_legal_hold_status: Optional[pulumi.Input[str]] = None, object_lock_mode: Optional[pulumi.Input[str]] = None, object_lock_retain_until_date: Optional[pulumi.Input[str]] = None, server_side_encryption: Optional[pulumi.Input[str]] = None, source: Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]] = None, storage_class: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, website_redirect: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a S3 bucket object resource.
 
@@ -261,7 +263,7 @@ class BucketObject(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, acl=None, bucket=None, cache_control=None, content=None, content_base64=None, content_disposition=None, content_encoding=None, content_language=None, content_type=None, etag=None, force_destroy=None, key=None, kms_key_id=None, metadata=None, object_lock_legal_hold_status=None, object_lock_mode=None, object_lock_retain_until_date=None, server_side_encryption=None, source=None, storage_class=None, tags=None, version_id=None, website_redirect=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, acl: Optional[pulumi.Input[str]] = None, bucket: Optional[pulumi.Input[str]] = None, cache_control: Optional[pulumi.Input[str]] = None, content: Optional[pulumi.Input[str]] = None, content_base64: Optional[pulumi.Input[str]] = None, content_disposition: Optional[pulumi.Input[str]] = None, content_encoding: Optional[pulumi.Input[str]] = None, content_language: Optional[pulumi.Input[str]] = None, content_type: Optional[pulumi.Input[str]] = None, etag: Optional[pulumi.Input[str]] = None, force_destroy: Optional[pulumi.Input[bool]] = None, key: Optional[pulumi.Input[str]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, metadata: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, object_lock_legal_hold_status: Optional[pulumi.Input[str]] = None, object_lock_mode: Optional[pulumi.Input[str]] = None, object_lock_retain_until_date: Optional[pulumi.Input[str]] = None, server_side_encryption: Optional[pulumi.Input[str]] = None, source: Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]] = None, storage_class: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, version_id: Optional[pulumi.Input[str]] = None, website_redirect: Optional[pulumi.Input[str]] = None) -> 'BucketObject':
         """
         Get an existing BucketObject resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

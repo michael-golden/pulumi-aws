@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetOutpostResult',
+    'AwaitableGetOutpostResult',
+    'get_outpost',
+]
+
 
 class GetOutpostResult:
     """
@@ -75,7 +81,7 @@ class AwaitableGetOutpostResult(GetOutpostResult):
             site_id=self.site_id)
 
 
-def get_outpost(id=None, name=None, opts=None):
+def get_outpost(id: Optional[str] = None, name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOutpostResult:
     """
     Provides details about an Outposts Outpost.
 

@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetRateBasedRuleResult',
+    'AwaitableGetRateBasedRuleResult',
+    'get_rate_based_rule',
+]
+
 
 class GetRateBasedRuleResult:
     """
@@ -36,7 +42,7 @@ class AwaitableGetRateBasedRuleResult(GetRateBasedRuleResult):
             name=self.name)
 
 
-def get_rate_based_rule(name=None, opts=None):
+def get_rate_based_rule(name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRateBasedRuleResult:
     """
     `waf.RateBasedRule` Retrieves a WAF Rate Based Rule Resource Id.
 

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Dashboard']
+
 
 class Dashboard(pulumi.CustomResource):
     dashboard_arn: pulumi.Output[str] = pulumi.output_property("dashboardArn")
@@ -23,7 +25,7 @@ class Dashboard(pulumi.CustomResource):
     The name of the dashboard.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, dashboard_body=None, dashboard_name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, dashboard_body: Optional[pulumi.Input[str]] = None, dashboard_name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CloudWatch Dashboard resource.
 
@@ -110,7 +112,7 @@ class Dashboard(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, dashboard_arn=None, dashboard_body=None, dashboard_name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, dashboard_arn: Optional[pulumi.Input[str]] = None, dashboard_body: Optional[pulumi.Input[str]] = None, dashboard_name: Optional[pulumi.Input[str]] = None) -> 'Dashboard':
         """
         Get an existing Dashboard resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

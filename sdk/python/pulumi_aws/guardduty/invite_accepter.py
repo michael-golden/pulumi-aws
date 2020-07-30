@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['InviteAccepter']
+
 
 class InviteAccepter(pulumi.CustomResource):
     detector_id: pulumi.Output[str] = pulumi.output_property("detectorId")
@@ -19,7 +21,7 @@ class InviteAccepter(pulumi.CustomResource):
     AWS account ID for master account.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, detector_id=None, master_account_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, detector_id: Optional[pulumi.Input[str]] = None, master_account_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to accept a pending GuardDuty invite on creation, ensure the detector has the correct master account on read, and disassociate with the master account upon removal.
 
@@ -78,7 +80,7 @@ class InviteAccepter(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, detector_id=None, master_account_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, detector_id: Optional[pulumi.Input[str]] = None, master_account_id: Optional[pulumi.Input[str]] = None) -> 'InviteAccepter':
         """
         Get an existing InviteAccepter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['MountTarget']
+
 
 class MountTarget(pulumi.CustomResource):
     availability_zone_id: pulumi.Output[str] = pulumi.output_property("availabilityZoneId")
@@ -57,7 +59,7 @@ class MountTarget(pulumi.CustomResource):
     The ID of the subnet to add the mount target in.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, file_system_id=None, ip_address=None, security_groups=None, subnet_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, file_system_id: Optional[pulumi.Input[str]] = None, ip_address: Optional[pulumi.Input[str]] = None, security_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, subnet_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Elastic File System (EFS) mount target.
 
@@ -125,7 +127,7 @@ class MountTarget(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, availability_zone_id=None, availability_zone_name=None, dns_name=None, file_system_arn=None, file_system_id=None, ip_address=None, mount_target_dns_name=None, network_interface_id=None, owner_id=None, security_groups=None, subnet_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, availability_zone_id: Optional[pulumi.Input[str]] = None, availability_zone_name: Optional[pulumi.Input[str]] = None, dns_name: Optional[pulumi.Input[str]] = None, file_system_arn: Optional[pulumi.Input[str]] = None, file_system_id: Optional[pulumi.Input[str]] = None, ip_address: Optional[pulumi.Input[str]] = None, mount_target_dns_name: Optional[pulumi.Input[str]] = None, network_interface_id: Optional[pulumi.Input[str]] = None, owner_id: Optional[pulumi.Input[str]] = None, security_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, subnet_id: Optional[pulumi.Input[str]] = None) -> 'MountTarget':
         """
         Get an existing MountTarget resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

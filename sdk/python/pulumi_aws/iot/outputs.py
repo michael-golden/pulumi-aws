@@ -8,6 +8,43 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ThingTypeProperties',
+    'TopicRuleCloudwatchAlarm',
+    'TopicRuleCloudwatchMetric',
+    'TopicRuleDynamodb',
+    'TopicRuleDynamodbv2',
+    'TopicRuleDynamodbv2PutItem',
+    'TopicRuleElasticsearch',
+    'TopicRuleErrorAction',
+    'TopicRuleErrorActionCloudwatchAlarm',
+    'TopicRuleErrorActionCloudwatchMetric',
+    'TopicRuleErrorActionDynamodb',
+    'TopicRuleErrorActionDynamodbv2',
+    'TopicRuleErrorActionDynamodbv2PutItem',
+    'TopicRuleErrorActionElasticsearch',
+    'TopicRuleErrorActionFirehose',
+    'TopicRuleErrorActionIotAnalytics',
+    'TopicRuleErrorActionIotEvents',
+    'TopicRuleErrorActionKinesis',
+    'TopicRuleErrorActionLambda',
+    'TopicRuleErrorActionRepublish',
+    'TopicRuleErrorActionS3',
+    'TopicRuleErrorActionSns',
+    'TopicRuleErrorActionSqs',
+    'TopicRuleErrorActionStepFunctions',
+    'TopicRuleFirehose',
+    'TopicRuleIotAnalytic',
+    'TopicRuleIotEvent',
+    'TopicRuleKinesis',
+    'TopicRuleLambda',
+    'TopicRuleRepublish',
+    'TopicRuleS3',
+    'TopicRuleSns',
+    'TopicRuleSqs',
+    'TopicRuleStepFunction',
+]
+
 @pulumi.output_type
 class ThingTypeProperties(dict):
     description: Optional[str] = pulumi.output_property("description")

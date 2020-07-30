@@ -8,6 +8,10 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GroupResourceQuery',
+]
+
 @pulumi.output_type
 class GroupResourceQuery(dict):
     query: str = pulumi.output_property("query")

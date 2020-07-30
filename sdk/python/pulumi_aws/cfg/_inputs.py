@@ -8,6 +8,16 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ConfigurationAggregatorAccountAggregationSourceArgs',
+    'ConfigurationAggregatorOrganizationAggregationSourceArgs',
+    'DeliveryChannelSnapshotDeliveryPropertiesArgs',
+    'RecorderRecordingGroupArgs',
+    'RuleScopeArgs',
+    'RuleSourceArgs',
+    'RuleSourceSourceDetailArgs',
+]
+
 @pulumi.input_type
 class ConfigurationAggregatorAccountAggregationSourceArgs:
     account_ids: pulumi.Input[List[pulumi.Input[str]]] = pulumi.input_property("accountIds")

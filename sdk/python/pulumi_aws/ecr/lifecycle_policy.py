@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['LifecyclePolicy']
+
 
 class LifecyclePolicy(pulumi.CustomResource):
     policy: pulumi.Output[str] = pulumi.output_property("policy")
@@ -23,7 +25,7 @@ class LifecyclePolicy(pulumi.CustomResource):
     Name of the repository to apply the policy.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, policy=None, repository=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, policy: Optional[pulumi.Input[str]] = None, repository: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an ECR repository lifecycle policy.
 
@@ -127,7 +129,7 @@ class LifecyclePolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, policy=None, registry_id=None, repository=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, policy: Optional[pulumi.Input[str]] = None, registry_id: Optional[pulumi.Input[str]] = None, repository: Optional[pulumi.Input[str]] = None) -> 'LifecyclePolicy':
         """
         Get an existing LifecyclePolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

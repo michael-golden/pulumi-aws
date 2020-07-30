@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['DefaultKmsKey']
+
 
 class DefaultKmsKey(pulumi.CustomResource):
     key_arn: pulumi.Output[str] = pulumi.output_property("keyArn")
@@ -15,7 +17,7 @@ class DefaultKmsKey(pulumi.CustomResource):
     The ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use to encrypt the EBS volume.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, key_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, key_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage the default customer master key (CMK) that your AWS account uses to encrypt EBS volumes.
 
@@ -66,7 +68,7 @@ class DefaultKmsKey(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, key_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, key_arn: Optional[pulumi.Input[str]] = None) -> 'DefaultKmsKey':
         """
         Get an existing DefaultKmsKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,29 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'AssociationOutputLocation',
+    'AssociationTarget',
+    'DocumentAttachmentsSource',
+    'DocumentParameter',
+    'MaintenanceWindowTargetTarget',
+    'MaintenanceWindowTaskLoggingInfo',
+    'MaintenanceWindowTaskTarget',
+    'MaintenanceWindowTaskTaskInvocationParameters',
+    'MaintenanceWindowTaskTaskInvocationParametersAutomationParameters',
+    'MaintenanceWindowTaskTaskInvocationParametersAutomationParametersParameter',
+    'MaintenanceWindowTaskTaskInvocationParametersLambdaParameters',
+    'MaintenanceWindowTaskTaskInvocationParametersRunCommandParameters',
+    'MaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfig',
+    'MaintenanceWindowTaskTaskInvocationParametersRunCommandParametersParameter',
+    'MaintenanceWindowTaskTaskInvocationParametersStepFunctionsParameters',
+    'MaintenanceWindowTaskTaskParameter',
+    'PatchBaselineApprovalRule',
+    'PatchBaselineApprovalRulePatchFilter',
+    'PatchBaselineGlobalFilter',
+    'ResourceDataSyncS3Destination',
+]
+
 @pulumi.output_type
 class AssociationOutputLocation(dict):
     s3_bucket_name: str = pulumi.output_property("s3BucketName")

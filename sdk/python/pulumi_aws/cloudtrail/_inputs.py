@@ -8,6 +8,11 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'TrailEventSelectorArgs',
+    'TrailEventSelectorDataResourceArgs',
+]
+
 @pulumi.input_type
 class TrailEventSelectorArgs:
     data_resources: Optional[pulumi.Input[List[pulumi.Input['TrailEventSelectorDataResourceArgs']]]] = pulumi.input_property("dataResources")

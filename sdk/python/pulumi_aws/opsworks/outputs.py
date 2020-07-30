@@ -8,6 +8,26 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ApplicationAppSource',
+    'ApplicationEnvironment',
+    'ApplicationSslConfiguration',
+    'CustomLayerEbsVolume',
+    'GangliaLayerEbsVolume',
+    'HaproxyLayerEbsVolume',
+    'InstanceEbsBlockDevice',
+    'InstanceEphemeralBlockDevice',
+    'InstanceRootBlockDevice',
+    'JavaAppLayerEbsVolume',
+    'MemcachedLayerEbsVolume',
+    'MysqlLayerEbsVolume',
+    'NodejsAppLayerEbsVolume',
+    'PhpAppLayerEbsVolume',
+    'RailsAppLayerEbsVolume',
+    'StackCustomCookbooksSource',
+    'StaticWebLayerEbsVolume',
+]
+
 @pulumi.output_type
 class ApplicationAppSource(dict):
     password: Optional[str] = pulumi.output_property("password")

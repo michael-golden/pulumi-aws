@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Api']
+
 
 class Api(pulumi.CustomResource):
     api_endpoint: pulumi.Output[str] = pulumi.output_property("apiEndpoint")
@@ -76,7 +78,7 @@ class Api(pulumi.CustomResource):
     A version identifier for the API.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_key_selection_expression=None, cors_configuration=None, credentials_arn=None, description=None, name=None, protocol_type=None, route_key=None, route_selection_expression=None, tags=None, target=None, version=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_key_selection_expression: Optional[pulumi.Input[str]] = None, cors_configuration: Optional[pulumi.Input[pulumi.InputType['ApiCorsConfigurationArgs']]] = None, credentials_arn: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, protocol_type: Optional[pulumi.Input[str]] = None, route_key: Optional[pulumi.Input[str]] = None, route_selection_expression: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, target: Optional[pulumi.Input[str]] = None, version: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an Amazon API Gateway Version 2 API.
 
@@ -107,7 +109,7 @@ class Api(pulumi.CustomResource):
         :param pulumi.Input[str] api_key_selection_expression: An [API key selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions).
                Valid values: `$context.authorizer.usageIdentifierKey`, `$request.header.x-api-key`. Defaults to `$request.header.x-api-key`.
                Applicable for WebSocket APIs.
-        :param pulumi.Input['ApiCorsConfigurationArgs'] cors_configuration: The cross-origin resource sharing (CORS) [configuration](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html). Applicable for HTTP APIs.
+        :param pulumi.Input[pulumi.InputType['ApiCorsConfigurationArgs']] cors_configuration: The cross-origin resource sharing (CORS) [configuration](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html). Applicable for HTTP APIs.
         :param pulumi.Input[str] credentials_arn: Part of _quick create_. Specifies any credentials required for the integration. Applicable for HTTP APIs.
         :param pulumi.Input[str] description: The description of the API.
         :param pulumi.Input[str] name: The name of the API.
@@ -161,7 +163,7 @@ class Api(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, api_endpoint=None, api_key_selection_expression=None, arn=None, cors_configuration=None, credentials_arn=None, description=None, execution_arn=None, name=None, protocol_type=None, route_key=None, route_selection_expression=None, tags=None, target=None, version=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, api_endpoint: Optional[pulumi.Input[str]] = None, api_key_selection_expression: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, cors_configuration: Optional[pulumi.Input[pulumi.InputType['ApiCorsConfigurationArgs']]] = None, credentials_arn: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, execution_arn: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, protocol_type: Optional[pulumi.Input[str]] = None, route_key: Optional[pulumi.Input[str]] = None, route_selection_expression: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, target: Optional[pulumi.Input[str]] = None, version: Optional[pulumi.Input[str]] = None) -> 'Api':
         """
         Get an existing Api resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -174,7 +176,7 @@ class Api(pulumi.CustomResource):
                Valid values: `$context.authorizer.usageIdentifierKey`, `$request.header.x-api-key`. Defaults to `$request.header.x-api-key`.
                Applicable for WebSocket APIs.
         :param pulumi.Input[str] arn: The ARN of the API.
-        :param pulumi.Input['ApiCorsConfigurationArgs'] cors_configuration: The cross-origin resource sharing (CORS) [configuration](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html). Applicable for HTTP APIs.
+        :param pulumi.Input[pulumi.InputType['ApiCorsConfigurationArgs']] cors_configuration: The cross-origin resource sharing (CORS) [configuration](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html). Applicable for HTTP APIs.
         :param pulumi.Input[str] credentials_arn: Part of _quick create_. Specifies any credentials required for the integration. Applicable for HTTP APIs.
         :param pulumi.Input[str] description: The description of the API.
         :param pulumi.Input[str] execution_arn: The ARN prefix to be used in an `lambda.Permission`'s `source_arn` attribute

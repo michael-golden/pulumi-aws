@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Parameter']
+
 
 class Parameter(pulumi.CustomResource):
     allowed_pattern: pulumi.Output[Optional[str]] = pulumi.output_property("allowedPattern")
@@ -55,7 +57,7 @@ class Parameter(pulumi.CustomResource):
     The version of the parameter.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allowed_pattern=None, arn=None, description=None, key_id=None, name=None, overwrite=None, tags=None, tier=None, type=None, value=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allowed_pattern: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, key_id: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, overwrite: Optional[pulumi.Input[bool]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, tier: Optional[pulumi.Input[str]] = None, type: Optional[pulumi.Input[str]] = None, value: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an SSM Parameter resource.
 
@@ -152,7 +154,7 @@ class Parameter(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allowed_pattern=None, arn=None, description=None, key_id=None, name=None, overwrite=None, tags=None, tier=None, type=None, value=None, version=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, allowed_pattern: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, key_id: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, overwrite: Optional[pulumi.Input[bool]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, tier: Optional[pulumi.Input[str]] = None, type: Optional[pulumi.Input[str]] = None, value: Optional[pulumi.Input[str]] = None, version: Optional[pulumi.Input[float]] = None) -> 'Parameter':
         """
         Get an existing Parameter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

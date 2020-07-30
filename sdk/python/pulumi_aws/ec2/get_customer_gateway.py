@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetCustomerGatewayResult',
+    'AwaitableGetCustomerGatewayResult',
+    'get_customer_gateway',
+]
+
 
 class GetCustomerGatewayResult:
     """
@@ -70,7 +76,7 @@ class AwaitableGetCustomerGatewayResult(GetCustomerGatewayResult):
             type=self.type)
 
 
-def get_customer_gateway(filters=None, id=None, tags=None, opts=None):
+def get_customer_gateway(filters: Optional[List[pulumi.InputType['GetCustomerGatewayFilterArgs']]] = None, id: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCustomerGatewayResult:
     """
     Get an existing AWS Customer Gateway.
 
@@ -95,7 +101,7 @@ def get_customer_gateway(filters=None, id=None, tags=None, opts=None):
     ```
 
 
-    :param List['GetCustomerGatewayFilterArgs'] filters: One or more [name-value pairs][dcg-filters] to filter by.
+    :param List[pulumi.InputType['GetCustomerGatewayFilterArgs']] filters: One or more [name-value pairs][dcg-filters] to filter by.
     :param str id: The ID of the gateway.
     :param Dict[str, str] tags: Map of key-value pairs assigned to the gateway.
     """

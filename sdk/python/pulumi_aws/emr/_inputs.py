@@ -8,6 +8,21 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ClusterBootstrapActionArgs',
+    'ClusterCoreInstanceGroupArgs',
+    'ClusterCoreInstanceGroupEbsConfigArgs',
+    'ClusterEc2AttributesArgs',
+    'ClusterInstanceGroupArgs',
+    'ClusterInstanceGroupEbsConfigArgs',
+    'ClusterKerberosAttributesArgs',
+    'ClusterMasterInstanceGroupArgs',
+    'ClusterMasterInstanceGroupEbsConfigArgs',
+    'ClusterStepArgs',
+    'ClusterStepHadoopJarStepArgs',
+    'InstanceGroupEbsConfigArgs',
+]
+
 @pulumi.input_type
 class ClusterBootstrapActionArgs:
     name: pulumi.Input[str] = pulumi.input_property("name")

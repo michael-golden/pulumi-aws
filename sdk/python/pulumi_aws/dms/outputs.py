@@ -8,6 +8,14 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'EndpointElasticsearchSettings',
+    'EndpointKafkaSettings',
+    'EndpointKinesisSettings',
+    'EndpointMongodbSettings',
+    'EndpointS3Settings',
+]
+
 @pulumi.output_type
 class EndpointElasticsearchSettings(dict):
     endpoint_uri: str = pulumi.output_property("endpointUri")

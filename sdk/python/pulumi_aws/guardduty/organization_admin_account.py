@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['OrganizationAdminAccount']
+
 
 class OrganizationAdminAccount(pulumi.CustomResource):
     admin_account_id: pulumi.Output[str] = pulumi.output_property("adminAccountId")
@@ -15,7 +17,7 @@ class OrganizationAdminAccount(pulumi.CustomResource):
     AWS account identifier to designate as a delegated administrator for GuardDuty.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, admin_account_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, admin_account_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a GuardDuty Organization Admin Account. The AWS account utilizing this resource must be an Organizations master account. More information about Organizations support in GuardDuty can be found in the [GuardDuty User Guide](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html).
 
@@ -64,7 +66,7 @@ class OrganizationAdminAccount(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, admin_account_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, admin_account_id: Optional[pulumi.Input[str]] = None) -> 'OrganizationAdminAccount':
         """
         Get an existing OrganizationAdminAccount resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

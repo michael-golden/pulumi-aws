@@ -8,6 +8,16 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'AliasRoutingStrategy',
+    'BuildStorageLocation',
+    'FleetEc2InboundPermission',
+    'FleetResourceCreationLimitPolicy',
+    'FleetRuntimeConfiguration',
+    'FleetRuntimeConfigurationServerProcess',
+    'GameSessionQueuePlayerLatencyPolicy',
+]
+
 @pulumi.output_type
 class AliasRoutingStrategy(dict):
     fleet_id: Optional[str] = pulumi.output_property("fleetId")

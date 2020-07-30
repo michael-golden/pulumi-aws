@@ -8,6 +8,29 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'DistributionCustomErrorResponseArgs',
+    'DistributionDefaultCacheBehaviorArgs',
+    'DistributionDefaultCacheBehaviorForwardedValuesArgs',
+    'DistributionDefaultCacheBehaviorForwardedValuesCookiesArgs',
+    'DistributionDefaultCacheBehaviorLambdaFunctionAssociationArgs',
+    'DistributionLoggingConfigArgs',
+    'DistributionOrderedCacheBehaviorArgs',
+    'DistributionOrderedCacheBehaviorForwardedValuesArgs',
+    'DistributionOrderedCacheBehaviorForwardedValuesCookiesArgs',
+    'DistributionOrderedCacheBehaviorLambdaFunctionAssociationArgs',
+    'DistributionOriginArgs',
+    'DistributionOriginCustomHeaderArgs',
+    'DistributionOriginCustomOriginConfigArgs',
+    'DistributionOriginGroupArgs',
+    'DistributionOriginGroupFailoverCriteriaArgs',
+    'DistributionOriginGroupMemberArgs',
+    'DistributionOriginS3OriginConfigArgs',
+    'DistributionRestrictionsArgs',
+    'DistributionRestrictionsGeoRestrictionArgs',
+    'DistributionViewerCertificateArgs',
+]
+
 @pulumi.input_type
 class DistributionCustomErrorResponseArgs:
     error_code: pulumi.Input[float] = pulumi.input_property("errorCode")

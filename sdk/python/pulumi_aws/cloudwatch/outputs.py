@@ -8,6 +8,20 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'EventPermissionCondition',
+    'EventTargetBatchTarget',
+    'EventTargetEcsTarget',
+    'EventTargetEcsTargetNetworkConfiguration',
+    'EventTargetInputTransformer',
+    'EventTargetKinesisTarget',
+    'EventTargetRunCommandTarget',
+    'EventTargetSqsTarget',
+    'LogMetricFilterMetricTransformation',
+    'MetricAlarmMetricQuery',
+    'MetricAlarmMetricQueryMetric',
+]
+
 @pulumi.output_type
 class EventPermissionCondition(dict):
     key: str = pulumi.output_property("key")

@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Trigger']
+
 
 class Trigger(pulumi.CustomResource):
     configuration_id: pulumi.Output[str] = pulumi.output_property("configurationId")
@@ -19,7 +21,7 @@ class Trigger(pulumi.CustomResource):
     """
     triggers: pulumi.Output[List['outputs.TriggerTrigger']] = pulumi.output_property("triggers")
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, repository_name=None, triggers=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, repository_name: Optional[pulumi.Input[str]] = None, triggers: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TriggerTriggerArgs']]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CodeCommit Trigger Resource.
 
@@ -74,7 +76,7 @@ class Trigger(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, configuration_id=None, repository_name=None, triggers=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, configuration_id: Optional[pulumi.Input[str]] = None, repository_name: Optional[pulumi.Input[str]] = None, triggers: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TriggerTriggerArgs']]]]] = None) -> 'Trigger':
         """
         Get an existing Trigger resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

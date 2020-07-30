@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['LoadBalancerCookieStickinessPolicy']
+
 warnings.warn("aws.elasticloadbalancing.LoadBalancerCookieStickinessPolicy has been deprecated in favor of aws.elb.LoadBalancerCookieStickinessPolicy", DeprecationWarning)
 
 
@@ -35,7 +37,7 @@ class LoadBalancerCookieStickinessPolicy(pulumi.CustomResource):
     warnings.warn("aws.elasticloadbalancing.LoadBalancerCookieStickinessPolicy has been deprecated in favor of aws.elb.LoadBalancerCookieStickinessPolicy", DeprecationWarning)
 
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cookie_expiration_period=None, lb_port=None, load_balancer=None, name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cookie_expiration_period: Optional[pulumi.Input[float]] = None, lb_port: Optional[pulumi.Input[float]] = None, load_balancer: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a load balancer cookie stickiness policy, which allows an ELB to control the sticky session lifetime of the browser.
 
@@ -103,7 +105,7 @@ class LoadBalancerCookieStickinessPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, cookie_expiration_period=None, lb_port=None, load_balancer=None, name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, cookie_expiration_period: Optional[pulumi.Input[float]] = None, lb_port: Optional[pulumi.Input[float]] = None, load_balancer: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None) -> 'LoadBalancerCookieStickinessPolicy':
         """
         Get an existing LoadBalancerCookieStickinessPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

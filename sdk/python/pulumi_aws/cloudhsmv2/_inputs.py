@@ -8,6 +8,10 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ClusterClusterCertificateArgs',
+]
+
 @pulumi.input_type
 class ClusterClusterCertificateArgs:
     aws_hardware_certificate: Optional[pulumi.Input[str]] = pulumi.input_property("awsHardwareCertificate")

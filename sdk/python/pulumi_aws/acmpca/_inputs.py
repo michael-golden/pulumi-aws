@@ -8,6 +8,15 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'CertificateAuthorityCertificateAuthorityConfigurationArgs',
+    'CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs',
+    'CertificateAuthorityRevocationConfigurationArgs',
+    'CertificateAuthorityRevocationConfigurationCrlConfigurationArgs',
+    'GetCertificateAuthorityRevocationConfigurationArgs',
+    'GetCertificateAuthorityRevocationConfigurationCrlConfigurationArgs',
+]
+
 @pulumi.input_type
 class CertificateAuthorityCertificateAuthorityConfigurationArgs:
     key_algorithm: pulumi.Input[str] = pulumi.input_property("keyAlgorithm")

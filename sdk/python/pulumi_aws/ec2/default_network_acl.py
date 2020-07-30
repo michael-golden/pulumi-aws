@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['DefaultNetworkAcl']
+
 
 class DefaultNetworkAcl(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -47,7 +49,7 @@ class DefaultNetworkAcl(pulumi.CustomResource):
     The ID of the associated VPC
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, default_network_acl_id=None, egress=None, ingress=None, subnet_ids=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, default_network_acl_id: Optional[pulumi.Input[str]] = None, egress: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DefaultNetworkAclEgressArgs']]]]] = None, ingress: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DefaultNetworkAclIngressArgs']]]]] = None, subnet_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage the default AWS Network ACL. VPC Only.
 
@@ -145,8 +147,8 @@ class DefaultNetworkAcl(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] default_network_acl_id: The Network ACL ID to manage. This
                attribute is exported from `ec2.Vpc`, or manually found via the AWS Console.
-        :param pulumi.Input[List[pulumi.Input['DefaultNetworkAclEgressArgs']]] egress: Specifies an egress rule. Parameters defined below.
-        :param pulumi.Input[List[pulumi.Input['DefaultNetworkAclIngressArgs']]] ingress: Specifies an ingress rule. Parameters defined below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DefaultNetworkAclEgressArgs']]]] egress: Specifies an egress rule. Parameters defined below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DefaultNetworkAclIngressArgs']]]] ingress: Specifies an ingress rule. Parameters defined below.
         :param pulumi.Input[List[pulumi.Input[str]]] subnet_ids: A list of Subnet IDs to apply the ACL to. See the
                notes below on managing Subnets in the Default Network ACL
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
@@ -185,7 +187,7 @@ class DefaultNetworkAcl(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, default_network_acl_id=None, egress=None, ingress=None, owner_id=None, subnet_ids=None, tags=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, default_network_acl_id: Optional[pulumi.Input[str]] = None, egress: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DefaultNetworkAclEgressArgs']]]]] = None, ingress: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DefaultNetworkAclIngressArgs']]]]] = None, owner_id: Optional[pulumi.Input[str]] = None, subnet_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'DefaultNetworkAcl':
         """
         Get an existing DefaultNetworkAcl resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -196,8 +198,8 @@ class DefaultNetworkAcl(pulumi.CustomResource):
         :param pulumi.Input[str] arn: The ARN of the Default Network ACL
         :param pulumi.Input[str] default_network_acl_id: The Network ACL ID to manage. This
                attribute is exported from `ec2.Vpc`, or manually found via the AWS Console.
-        :param pulumi.Input[List[pulumi.Input['DefaultNetworkAclEgressArgs']]] egress: Specifies an egress rule. Parameters defined below.
-        :param pulumi.Input[List[pulumi.Input['DefaultNetworkAclIngressArgs']]] ingress: Specifies an ingress rule. Parameters defined below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DefaultNetworkAclEgressArgs']]]] egress: Specifies an egress rule. Parameters defined below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DefaultNetworkAclIngressArgs']]]] ingress: Specifies an ingress rule. Parameters defined below.
         :param pulumi.Input[str] owner_id: The ID of the AWS account that owns the Default Network ACL
         :param pulumi.Input[List[pulumi.Input[str]]] subnet_ids: A list of Subnet IDs to apply the ACL to. See the
                notes below on managing Subnets in the Default Network ACL

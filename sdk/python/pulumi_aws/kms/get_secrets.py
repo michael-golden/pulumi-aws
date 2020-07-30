@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetSecretsResult',
+    'AwaitableGetSecretsResult',
+    'get_secrets',
+]
+
 
 class GetSecretsResult:
     """
@@ -45,12 +51,12 @@ class AwaitableGetSecretsResult(GetSecretsResult):
             secrets=self.secrets)
 
 
-def get_secrets(secrets=None, opts=None):
+def get_secrets(secrets: Optional[List[pulumi.InputType['GetSecretsSecretArgs']]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretsResult:
     """
     Decrypt multiple secrets from data encrypted with the AWS KMS service.
 
 
-    :param List['GetSecretsSecretArgs'] secrets: One or more encrypted payload definitions from the KMS service. See the Secret Definitions below.
+    :param List[pulumi.InputType['GetSecretsSecretArgs']] secrets: One or more encrypted payload definitions from the KMS service. See the Secret Definitions below.
     """
     __args__ = dict()
     __args__['secrets'] = secrets

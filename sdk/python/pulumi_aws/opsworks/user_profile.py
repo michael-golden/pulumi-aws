@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['UserProfile']
+
 
 class UserProfile(pulumi.CustomResource):
     allow_self_management: pulumi.Output[Optional[bool]] = pulumi.output_property("allowSelfManagement")
@@ -27,7 +29,7 @@ class UserProfile(pulumi.CustomResource):
     The user's IAM ARN
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allow_self_management=None, ssh_public_key=None, ssh_username=None, user_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allow_self_management: Optional[pulumi.Input[bool]] = None, ssh_public_key: Optional[pulumi.Input[str]] = None, ssh_username: Optional[pulumi.Input[str]] = None, user_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an OpsWorks User Profile resource.
 
@@ -81,7 +83,7 @@ class UserProfile(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allow_self_management=None, ssh_public_key=None, ssh_username=None, user_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, allow_self_management: Optional[pulumi.Input[bool]] = None, ssh_public_key: Optional[pulumi.Input[str]] = None, ssh_username: Optional[pulumi.Input[str]] = None, user_arn: Optional[pulumi.Input[str]] = None) -> 'UserProfile':
         """
         Get an existing UserProfile resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

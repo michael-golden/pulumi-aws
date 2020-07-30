@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetLaunchTemplateResult',
+    'AwaitableGetLaunchTemplateResult',
+    'get_launch_template',
+]
+
 
 class GetLaunchTemplateResult:
     """
@@ -239,7 +245,7 @@ class AwaitableGetLaunchTemplateResult(GetLaunchTemplateResult):
             vpc_security_group_ids=self.vpc_security_group_ids)
 
 
-def get_launch_template(filters=None, name=None, tags=None, opts=None):
+def get_launch_template(filters: Optional[List[pulumi.InputType['GetLaunchTemplateFilterArgs']]] = None, name: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLaunchTemplateResult:
     """
     Provides information about a Launch Template.
 
@@ -264,7 +270,7 @@ def get_launch_template(filters=None, name=None, tags=None, opts=None):
     ```
 
 
-    :param List['GetLaunchTemplateFilterArgs'] filters: Configuration block(s) for filtering. Detailed below.
+    :param List[pulumi.InputType['GetLaunchTemplateFilterArgs']] filters: Configuration block(s) for filtering. Detailed below.
     :param str name: The name of the filter field. Valid values can be found in the [EC2 DescribeLaunchTemplates API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLaunchTemplates.html).
     :param Dict[str, str] tags: A map of tags, each pair of which must exactly match a pair on the desired Launch Template.
     """

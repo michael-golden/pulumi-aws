@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Function']
+
 
 class Function(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -123,7 +125,7 @@ class Function(pulumi.CustomResource):
     Provide this to allow your function to access your VPC. Fields documented below. See [Lambda in VPC](http://docs.aws.amazon.com/lambda/latest/dg/vpc.html)
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, code=None, dead_letter_config=None, description=None, environment=None, file_system_config=None, handler=None, kms_key_arn=None, layers=None, memory_size=None, name=None, publish=None, reserved_concurrent_executions=None, role=None, runtime=None, s3_bucket=None, s3_key=None, s3_object_version=None, source_code_hash=None, tags=None, timeout=None, tracing_config=None, vpc_config=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, code: Optional[pulumi.Input[pulumi.Archive]] = None, dead_letter_config: Optional[pulumi.Input[pulumi.InputType['FunctionDeadLetterConfigArgs']]] = None, description: Optional[pulumi.Input[str]] = None, environment: Optional[pulumi.Input[pulumi.InputType['FunctionEnvironmentArgs']]] = None, file_system_config: Optional[pulumi.Input[pulumi.InputType['FunctionFileSystemConfigArgs']]] = None, handler: Optional[pulumi.Input[str]] = None, kms_key_arn: Optional[pulumi.Input[str]] = None, layers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, memory_size: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, publish: Optional[pulumi.Input[bool]] = None, reserved_concurrent_executions: Optional[pulumi.Input[float]] = None, role: Optional[pulumi.Input[str]] = None, runtime: Optional[pulumi.Input[str]] = None, s3_bucket: Optional[pulumi.Input[str]] = None, s3_key: Optional[pulumi.Input[str]] = None, s3_object_version: Optional[pulumi.Input[str]] = None, source_code_hash: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, timeout: Optional[pulumi.Input[float]] = None, tracing_config: Optional[pulumi.Input[pulumi.InputType['FunctionTracingConfigArgs']]] = None, vpc_config: Optional[pulumi.Input[pulumi.InputType['FunctionVpcConfigArgs']]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Lambda Function resource. Lambda allows you to trigger execution of code in response to events in AWS, enabling serverless backend solutions. The Lambda Function itself includes source code and runtime configuration.
 
@@ -241,10 +243,10 @@ class Function(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.Archive] code: The path to the function's deployment package within the local filesystem. If defined, The `s3_`-prefixed options cannot be used.
-        :param pulumi.Input['FunctionDeadLetterConfigArgs'] dead_letter_config: Nested block to configure the function's *dead letter queue*. See details below.
+        :param pulumi.Input[pulumi.InputType['FunctionDeadLetterConfigArgs']] dead_letter_config: Nested block to configure the function's *dead letter queue*. See details below.
         :param pulumi.Input[str] description: Description of what your Lambda Function does.
-        :param pulumi.Input['FunctionEnvironmentArgs'] environment: The Lambda environment's configuration settings. Fields documented below.
-        :param pulumi.Input['FunctionFileSystemConfigArgs'] file_system_config: The connection settings for an EFS file system. Fields documented below. Before creating or updating Lambda functions with `file_system_config`, EFS mount targets much be in available lifecycle state. Use `depends_on` to explicitly declare this dependency. See [Using Amazon EFS with Lambda](https://docs.aws.amazon.com/lambda/latest/dg/services-efs.html).
+        :param pulumi.Input[pulumi.InputType['FunctionEnvironmentArgs']] environment: The Lambda environment's configuration settings. Fields documented below.
+        :param pulumi.Input[pulumi.InputType['FunctionFileSystemConfigArgs']] file_system_config: The connection settings for an EFS file system. Fields documented below. Before creating or updating Lambda functions with `file_system_config`, EFS mount targets much be in available lifecycle state. Use `depends_on` to explicitly declare this dependency. See [Using Amazon EFS with Lambda](https://docs.aws.amazon.com/lambda/latest/dg/services-efs.html).
         :param pulumi.Input[str] handler: The function [entrypoint](https://docs.aws.amazon.com/lambda/latest/dg/walkthrough-custom-events-create-test-function.html) in your code.
         :param pulumi.Input[str] kms_key_arn: Amazon Resource Name (ARN) of the AWS Key Management Service (KMS) key that is used to encrypt environment variables. If this configuration is not provided when environment variables are in use, AWS Lambda uses a default service key. If this configuration is provided when environment variables are not in use, the AWS Lambda API does not save this configuration and this provider will show a perpetual difference of adding the key. To fix the perpetual difference, remove this configuration.
         :param pulumi.Input[List[pulumi.Input[str]]] layers: List of Lambda Layer Version ARNs (maximum of 5) to attach to your Lambda Function. See [Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
@@ -260,7 +262,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] source_code_hash: Used to trigger updates. Must be set to a base64-encoded SHA256 hash of the package file specified with either `filename` or `s3_key`. The usual way to set this is `filebase64sha256("file.zip")` (this provider 0.11.12 and later) or `base64sha256(file("file.zip"))` (this provider 0.11.11 and earlier), where "file.zip" is the local filename of the lambda function source archive.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A mapping of tags to assign to the object.
         :param pulumi.Input[float] timeout: The amount of time your Lambda Function has to run in seconds. Defaults to `3`. See [Limits](https://docs.aws.amazon.com/lambda/latest/dg/limits.html)
-        :param pulumi.Input['FunctionVpcConfigArgs'] vpc_config: Provide this to allow your function to access your VPC. Fields documented below. See [Lambda in VPC](http://docs.aws.amazon.com/lambda/latest/dg/vpc.html)
+        :param pulumi.Input[pulumi.InputType['FunctionVpcConfigArgs']] vpc_config: Provide this to allow your function to access your VPC. Fields documented below. See [Lambda in VPC](http://docs.aws.amazon.com/lambda/latest/dg/vpc.html)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -320,7 +322,7 @@ class Function(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, code=None, dead_letter_config=None, description=None, environment=None, file_system_config=None, handler=None, invoke_arn=None, kms_key_arn=None, last_modified=None, layers=None, memory_size=None, name=None, publish=None, qualified_arn=None, reserved_concurrent_executions=None, role=None, runtime=None, s3_bucket=None, s3_key=None, s3_object_version=None, source_code_hash=None, source_code_size=None, tags=None, timeout=None, tracing_config=None, version=None, vpc_config=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, code: Optional[pulumi.Input[pulumi.Archive]] = None, dead_letter_config: Optional[pulumi.Input[pulumi.InputType['FunctionDeadLetterConfigArgs']]] = None, description: Optional[pulumi.Input[str]] = None, environment: Optional[pulumi.Input[pulumi.InputType['FunctionEnvironmentArgs']]] = None, file_system_config: Optional[pulumi.Input[pulumi.InputType['FunctionFileSystemConfigArgs']]] = None, handler: Optional[pulumi.Input[str]] = None, invoke_arn: Optional[pulumi.Input[str]] = None, kms_key_arn: Optional[pulumi.Input[str]] = None, last_modified: Optional[pulumi.Input[str]] = None, layers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, memory_size: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, publish: Optional[pulumi.Input[bool]] = None, qualified_arn: Optional[pulumi.Input[str]] = None, reserved_concurrent_executions: Optional[pulumi.Input[float]] = None, role: Optional[pulumi.Input[str]] = None, runtime: Optional[pulumi.Input[str]] = None, s3_bucket: Optional[pulumi.Input[str]] = None, s3_key: Optional[pulumi.Input[str]] = None, s3_object_version: Optional[pulumi.Input[str]] = None, source_code_hash: Optional[pulumi.Input[str]] = None, source_code_size: Optional[pulumi.Input[float]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, timeout: Optional[pulumi.Input[float]] = None, tracing_config: Optional[pulumi.Input[pulumi.InputType['FunctionTracingConfigArgs']]] = None, version: Optional[pulumi.Input[str]] = None, vpc_config: Optional[pulumi.Input[pulumi.InputType['FunctionVpcConfigArgs']]] = None) -> 'Function':
         """
         Get an existing Function resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -330,10 +332,10 @@ class Function(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: The Amazon Resource Name (ARN) of the Amazon EFS Access Point that provides access to the file system.
         :param pulumi.Input[pulumi.Archive] code: The path to the function's deployment package within the local filesystem. If defined, The `s3_`-prefixed options cannot be used.
-        :param pulumi.Input['FunctionDeadLetterConfigArgs'] dead_letter_config: Nested block to configure the function's *dead letter queue*. See details below.
+        :param pulumi.Input[pulumi.InputType['FunctionDeadLetterConfigArgs']] dead_letter_config: Nested block to configure the function's *dead letter queue*. See details below.
         :param pulumi.Input[str] description: Description of what your Lambda Function does.
-        :param pulumi.Input['FunctionEnvironmentArgs'] environment: The Lambda environment's configuration settings. Fields documented below.
-        :param pulumi.Input['FunctionFileSystemConfigArgs'] file_system_config: The connection settings for an EFS file system. Fields documented below. Before creating or updating Lambda functions with `file_system_config`, EFS mount targets much be in available lifecycle state. Use `depends_on` to explicitly declare this dependency. See [Using Amazon EFS with Lambda](https://docs.aws.amazon.com/lambda/latest/dg/services-efs.html).
+        :param pulumi.Input[pulumi.InputType['FunctionEnvironmentArgs']] environment: The Lambda environment's configuration settings. Fields documented below.
+        :param pulumi.Input[pulumi.InputType['FunctionFileSystemConfigArgs']] file_system_config: The connection settings for an EFS file system. Fields documented below. Before creating or updating Lambda functions with `file_system_config`, EFS mount targets much be in available lifecycle state. Use `depends_on` to explicitly declare this dependency. See [Using Amazon EFS with Lambda](https://docs.aws.amazon.com/lambda/latest/dg/services-efs.html).
         :param pulumi.Input[str] handler: The function [entrypoint](https://docs.aws.amazon.com/lambda/latest/dg/walkthrough-custom-events-create-test-function.html) in your code.
         :param pulumi.Input[str] invoke_arn: The ARN to be used for invoking Lambda Function from API Gateway - to be used in `apigateway.Integration`'s `uri`
         :param pulumi.Input[str] kms_key_arn: Amazon Resource Name (ARN) of the AWS Key Management Service (KMS) key that is used to encrypt environment variables. If this configuration is not provided when environment variables are in use, AWS Lambda uses a default service key. If this configuration is provided when environment variables are not in use, the AWS Lambda API does not save this configuration and this provider will show a perpetual difference of adding the key. To fix the perpetual difference, remove this configuration.
@@ -355,7 +357,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A mapping of tags to assign to the object.
         :param pulumi.Input[float] timeout: The amount of time your Lambda Function has to run in seconds. Defaults to `3`. See [Limits](https://docs.aws.amazon.com/lambda/latest/dg/limits.html)
         :param pulumi.Input[str] version: Latest published version of your Lambda Function.
-        :param pulumi.Input['FunctionVpcConfigArgs'] vpc_config: Provide this to allow your function to access your VPC. Fields documented below. See [Lambda in VPC](http://docs.aws.amazon.com/lambda/latest/dg/vpc.html)
+        :param pulumi.Input[pulumi.InputType['FunctionVpcConfigArgs']] vpc_config: Provide this to allow your function to access your VPC. Fields documented below. See [Lambda in VPC](http://docs.aws.amazon.com/lambda/latest/dg/vpc.html)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

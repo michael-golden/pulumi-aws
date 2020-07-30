@@ -8,6 +8,11 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'FleetIdentityProvider',
+    'FleetNetwork',
+]
+
 @pulumi.output_type
 class FleetIdentityProvider(dict):
     saml_metadata: str = pulumi.output_property("samlMetadata")

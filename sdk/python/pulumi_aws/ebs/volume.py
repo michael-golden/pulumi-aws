@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Volume']
+
 
 class Volume(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -55,7 +57,7 @@ class Volume(pulumi.CustomResource):
     The type of EBS volume. Can be "standard", "gp2", "io1", "sc1" or "st1" (Default: "gp2").
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zone=None, encrypted=None, iops=None, kms_key_id=None, multi_attach_enabled=None, outpost_arn=None, size=None, snapshot_id=None, tags=None, type=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zone: Optional[pulumi.Input[str]] = None, encrypted: Optional[pulumi.Input[bool]] = None, iops: Optional[pulumi.Input[float]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, multi_attach_enabled: Optional[pulumi.Input[bool]] = None, outpost_arn: Optional[pulumi.Input[str]] = None, size: Optional[pulumi.Input[float]] = None, snapshot_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, type: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a single EBS volume.
 
@@ -125,7 +127,7 @@ class Volume(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, availability_zone=None, encrypted=None, iops=None, kms_key_id=None, multi_attach_enabled=None, outpost_arn=None, size=None, snapshot_id=None, tags=None, type=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, availability_zone: Optional[pulumi.Input[str]] = None, encrypted: Optional[pulumi.Input[bool]] = None, iops: Optional[pulumi.Input[float]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, multi_attach_enabled: Optional[pulumi.Input[bool]] = None, outpost_arn: Optional[pulumi.Input[str]] = None, size: Optional[pulumi.Input[float]] = None, snapshot_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, type: Optional[pulumi.Input[str]] = None) -> 'Volume':
         """
         Get an existing Volume resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

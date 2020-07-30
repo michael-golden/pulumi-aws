@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Snapshot']
+
 
 class Snapshot(pulumi.CustomResource):
     allocated_storage: pulumi.Output[float] = pulumi.output_property("allocatedStorage")
@@ -85,7 +87,7 @@ class Snapshot(pulumi.CustomResource):
     Specifies the storage type associated with DB snapshot.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, db_instance_identifier=None, db_snapshot_identifier=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, db_instance_identifier: Optional[pulumi.Input[str]] = None, db_snapshot_identifier: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an RDS database instance snapshot. For managing RDS database cluster snapshots, see the `rds.ClusterSnapshot` resource.
 
@@ -165,7 +167,7 @@ class Snapshot(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allocated_storage=None, availability_zone=None, db_instance_identifier=None, db_snapshot_arn=None, db_snapshot_identifier=None, encrypted=None, engine=None, engine_version=None, iops=None, kms_key_id=None, license_model=None, option_group_name=None, port=None, snapshot_type=None, source_db_snapshot_identifier=None, source_region=None, status=None, storage_type=None, tags=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, allocated_storage: Optional[pulumi.Input[float]] = None, availability_zone: Optional[pulumi.Input[str]] = None, db_instance_identifier: Optional[pulumi.Input[str]] = None, db_snapshot_arn: Optional[pulumi.Input[str]] = None, db_snapshot_identifier: Optional[pulumi.Input[str]] = None, encrypted: Optional[pulumi.Input[bool]] = None, engine: Optional[pulumi.Input[str]] = None, engine_version: Optional[pulumi.Input[str]] = None, iops: Optional[pulumi.Input[float]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, license_model: Optional[pulumi.Input[str]] = None, option_group_name: Optional[pulumi.Input[str]] = None, port: Optional[pulumi.Input[float]] = None, snapshot_type: Optional[pulumi.Input[str]] = None, source_db_snapshot_identifier: Optional[pulumi.Input[str]] = None, source_region: Optional[pulumi.Input[str]] = None, status: Optional[pulumi.Input[str]] = None, storage_type: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'Snapshot':
         """
         Get an existing Snapshot resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Model']
+
 
 class Model(pulumi.CustomResource):
     content_type: pulumi.Output[str] = pulumi.output_property("contentType")
@@ -31,7 +33,7 @@ class Model(pulumi.CustomResource):
     The schema of the model in a JSON form
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, content_type=None, description=None, name=None, rest_api=None, schema=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, content_type: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, schema: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Model for a REST API Gateway.
 
@@ -94,7 +96,7 @@ class Model(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, content_type=None, description=None, name=None, rest_api=None, schema=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, content_type: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, schema: Optional[pulumi.Input[str]] = None) -> 'Model':
         """
         Get an existing Model resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

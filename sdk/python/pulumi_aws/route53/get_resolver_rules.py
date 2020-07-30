@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetResolverRulesResult',
+    'AwaitableGetResolverRulesResult',
+    'get_resolver_rules',
+]
+
 
 class GetResolverRulesResult:
     """
@@ -55,7 +61,7 @@ class AwaitableGetResolverRulesResult(GetResolverRulesResult):
             share_status=self.share_status)
 
 
-def get_resolver_rules(owner_id=None, resolver_endpoint_id=None, rule_type=None, share_status=None, opts=None):
+def get_resolver_rules(owner_id: Optional[str] = None, resolver_endpoint_id: Optional[str] = None, rule_type: Optional[str] = None, share_status: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResolverRulesResult:
     """
     `route53.getResolverRules` provides details about a set of Route53 Resolver rules.
 

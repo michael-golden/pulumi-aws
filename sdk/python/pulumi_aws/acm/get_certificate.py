@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetCertificateResult',
+    'AwaitableGetCertificateResult',
+    'get_certificate',
+]
+
 
 class GetCertificateResult:
     """
@@ -66,7 +72,7 @@ class AwaitableGetCertificateResult(GetCertificateResult):
             types=self.types)
 
 
-def get_certificate(domain=None, key_types=None, most_recent=None, statuses=None, tags=None, types=None, opts=None):
+def get_certificate(domain: Optional[str] = None, key_types: Optional[List[str]] = None, most_recent: Optional[bool] = None, statuses: Optional[List[str]] = None, tags: Optional[Dict[str, str]] = None, types: Optional[List[str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCertificateResult:
     """
     Use this data source to get the ARN of a certificate in AWS Certificate
     Manager (ACM), you can reference

@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetResourceResult',
+    'AwaitableGetResourceResult',
+    'get_resource',
+]
+
 
 class GetResourceResult:
     """
@@ -54,7 +60,7 @@ class AwaitableGetResourceResult(GetResourceResult):
             rest_api_id=self.rest_api_id)
 
 
-def get_resource(path=None, rest_api_id=None, opts=None):
+def get_resource(path: Optional[str] = None, rest_api_id: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResourceResult:
     """
     Use this data source to get the id of a Resource in API Gateway.
     To fetch the Resource, you must provide the REST API id as well as the full path.

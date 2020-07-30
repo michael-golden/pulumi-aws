@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetSubnetResult',
+    'AwaitableGetSubnetResult',
+    'get_subnet',
+]
+
 
 class GetSubnetResult:
     """
@@ -100,7 +106,7 @@ class AwaitableGetSubnetResult(GetSubnetResult):
             vpc_id=self.vpc_id)
 
 
-def get_subnet(availability_zone=None, availability_zone_id=None, cidr_block=None, default_for_az=None, filters=None, id=None, ipv6_cidr_block=None, state=None, tags=None, vpc_id=None, opts=None):
+def get_subnet(availability_zone: Optional[str] = None, availability_zone_id: Optional[str] = None, cidr_block: Optional[str] = None, default_for_az: Optional[bool] = None, filters: Optional[List[pulumi.InputType['GetSubnetFilterArgs']]] = None, id: Optional[str] = None, ipv6_cidr_block: Optional[str] = None, state: Optional[str] = None, tags: Optional[Dict[str, str]] = None, vpc_id: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSubnetResult:
     """
     `ec2.Subnet` provides details about a specific VPC subnet.
 
@@ -138,7 +144,7 @@ def get_subnet(availability_zone=None, availability_zone_id=None, cidr_block=Non
     :param str cidr_block: The cidr block of the desired subnet.
     :param bool default_for_az: Boolean constraint for whether the desired
            subnet must be the default subnet for its associated availability zone.
-    :param List['GetSubnetFilterArgs'] filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetSubnetFilterArgs']] filters: Custom filter block as described below.
     :param str id: The id of the specific subnet to retrieve.
     :param str ipv6_cidr_block: The Ipv6 cidr block of the desired subnet
     :param str state: The state that the desired subnet must have.

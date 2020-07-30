@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Ami']
+
 
 class Ami(pulumi.CustomResource):
     architecture: pulumi.Output[Optional[str]] = pulumi.output_property("architecture")
@@ -82,7 +84,7 @@ class Ami(pulumi.CustomResource):
     changes the set of further arguments that are required, as described below.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, architecture=None, description=None, ebs_block_devices=None, ena_support=None, ephemeral_block_devices=None, image_location=None, kernel_id=None, name=None, ramdisk_id=None, root_device_name=None, sriov_net_support=None, tags=None, virtualization_type=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, architecture: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, ebs_block_devices: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiEbsBlockDeviceArgs']]]]] = None, ena_support: Optional[pulumi.Input[bool]] = None, ephemeral_block_devices: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiEphemeralBlockDeviceArgs']]]]] = None, image_location: Optional[pulumi.Input[str]] = None, kernel_id: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, ramdisk_id: Optional[pulumi.Input[str]] = None, root_device_name: Optional[pulumi.Input[str]] = None, sriov_net_support: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, virtualization_type: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         The AMI resource allows the creation and management of a completely-custom
         *Amazon Machine Image* (AMI).
@@ -116,10 +118,10 @@ class Ami(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] architecture: Machine architecture for created instances. Defaults to "x86_64".
         :param pulumi.Input[str] description: A longer, human-readable description for the AMI.
-        :param pulumi.Input[List[pulumi.Input['AmiEbsBlockDeviceArgs']]] ebs_block_devices: Nested block describing an EBS block device that should be
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiEbsBlockDeviceArgs']]]] ebs_block_devices: Nested block describing an EBS block device that should be
                attached to created instances. The structure of this block is described below.
         :param pulumi.Input[bool] ena_support: Specifies whether enhanced networking with ENA is enabled. Defaults to `false`.
-        :param pulumi.Input[List[pulumi.Input['AmiEphemeralBlockDeviceArgs']]] ephemeral_block_devices: Nested block describing an ephemeral block device that
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiEphemeralBlockDeviceArgs']]]] ephemeral_block_devices: Nested block describing an ephemeral block device that
                should be attached to created instances. The structure of this block is described below.
         :param pulumi.Input[str] image_location: Path to an S3 object containing an image manifest, e.g. created
                by the `ec2-upload-bundle` command in the EC2 command line tools.
@@ -176,7 +178,7 @@ class Ami(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, architecture=None, arn=None, description=None, ebs_block_devices=None, ena_support=None, ephemeral_block_devices=None, image_location=None, kernel_id=None, manage_ebs_snapshots=None, name=None, ramdisk_id=None, root_device_name=None, root_snapshot_id=None, sriov_net_support=None, tags=None, virtualization_type=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, architecture: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, ebs_block_devices: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiEbsBlockDeviceArgs']]]]] = None, ena_support: Optional[pulumi.Input[bool]] = None, ephemeral_block_devices: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiEphemeralBlockDeviceArgs']]]]] = None, image_location: Optional[pulumi.Input[str]] = None, kernel_id: Optional[pulumi.Input[str]] = None, manage_ebs_snapshots: Optional[pulumi.Input[bool]] = None, name: Optional[pulumi.Input[str]] = None, ramdisk_id: Optional[pulumi.Input[str]] = None, root_device_name: Optional[pulumi.Input[str]] = None, root_snapshot_id: Optional[pulumi.Input[str]] = None, sriov_net_support: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, virtualization_type: Optional[pulumi.Input[str]] = None) -> 'Ami':
         """
         Get an existing Ami resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -187,10 +189,10 @@ class Ami(pulumi.CustomResource):
         :param pulumi.Input[str] architecture: Machine architecture for created instances. Defaults to "x86_64".
         :param pulumi.Input[str] arn: The ARN of the AMI.
         :param pulumi.Input[str] description: A longer, human-readable description for the AMI.
-        :param pulumi.Input[List[pulumi.Input['AmiEbsBlockDeviceArgs']]] ebs_block_devices: Nested block describing an EBS block device that should be
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiEbsBlockDeviceArgs']]]] ebs_block_devices: Nested block describing an EBS block device that should be
                attached to created instances. The structure of this block is described below.
         :param pulumi.Input[bool] ena_support: Specifies whether enhanced networking with ENA is enabled. Defaults to `false`.
-        :param pulumi.Input[List[pulumi.Input['AmiEphemeralBlockDeviceArgs']]] ephemeral_block_devices: Nested block describing an ephemeral block device that
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiEphemeralBlockDeviceArgs']]]] ephemeral_block_devices: Nested block describing an ephemeral block device that
                should be attached to created instances. The structure of this block is described below.
         :param pulumi.Input[str] image_location: Path to an S3 object containing an image manifest, e.g. created
                by the `ec2-upload-bundle` command in the EC2 command line tools.

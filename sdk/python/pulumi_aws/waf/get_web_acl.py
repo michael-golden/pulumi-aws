@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetWebAclResult',
+    'AwaitableGetWebAclResult',
+    'get_web_acl',
+]
+
 
 class GetWebAclResult:
     """
@@ -36,7 +42,7 @@ class AwaitableGetWebAclResult(GetWebAclResult):
             name=self.name)
 
 
-def get_web_acl(name=None, opts=None):
+def get_web_acl(name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebAclResult:
     """
     `waf.WebAcl` Retrieves a WAF Web ACL Resource Id.
 

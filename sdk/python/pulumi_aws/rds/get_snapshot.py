@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetSnapshotResult',
+    'AwaitableGetSnapshotResult',
+    'get_snapshot',
+]
+
 
 class GetSnapshotResult:
     """
@@ -172,7 +178,7 @@ class AwaitableGetSnapshotResult(GetSnapshotResult):
             vpc_id=self.vpc_id)
 
 
-def get_snapshot(db_instance_identifier=None, db_snapshot_identifier=None, include_public=None, include_shared=None, most_recent=None, snapshot_type=None, opts=None):
+def get_snapshot(db_instance_identifier: Optional[str] = None, db_snapshot_identifier: Optional[str] = None, include_public: Optional[bool] = None, include_shared: Optional[bool] = None, most_recent: Optional[bool] = None, snapshot_type: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSnapshotResult:
     """
     Use this data source to get information about a DB Snapshot for use when provisioning DB instances
 

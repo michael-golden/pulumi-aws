@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Cluster']
+
 
 class Cluster(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -103,7 +105,7 @@ class Cluster(pulumi.CustomResource):
     A map of tags to assign to the resource
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zones=None, cluster_name=None, description=None, iam_role_arn=None, maintenance_window=None, node_type=None, notification_topic_arn=None, parameter_group_name=None, replication_factor=None, security_group_ids=None, server_side_encryption=None, subnet_group_name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, cluster_name: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, iam_role_arn: Optional[pulumi.Input[str]] = None, maintenance_window: Optional[pulumi.Input[str]] = None, node_type: Optional[pulumi.Input[str]] = None, notification_topic_arn: Optional[pulumi.Input[str]] = None, parameter_group_name: Optional[pulumi.Input[str]] = None, replication_factor: Optional[pulumi.Input[float]] = None, security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, server_side_encryption: Optional[pulumi.Input[pulumi.InputType['ClusterServerSideEncryptionArgs']]] = None, subnet_group_name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a DAX Cluster resource.
 
@@ -146,7 +148,7 @@ class Cluster(pulumi.CustomResource):
                replicas
         :param pulumi.Input[List[pulumi.Input[str]]] security_group_ids: One or more VPC security groups associated
                with the cluster
-        :param pulumi.Input['ClusterServerSideEncryptionArgs'] server_side_encryption: Encrypt at rest options
+        :param pulumi.Input[pulumi.InputType['ClusterServerSideEncryptionArgs']] server_side_encryption: Encrypt at rest options
         :param pulumi.Input[str] subnet_group_name: Name of the subnet group to be used for the
                cluster
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource
@@ -201,7 +203,7 @@ class Cluster(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, availability_zones=None, cluster_address=None, cluster_name=None, configuration_endpoint=None, description=None, iam_role_arn=None, maintenance_window=None, node_type=None, nodes=None, notification_topic_arn=None, parameter_group_name=None, port=None, replication_factor=None, security_group_ids=None, server_side_encryption=None, subnet_group_name=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, availability_zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, cluster_address: Optional[pulumi.Input[str]] = None, cluster_name: Optional[pulumi.Input[str]] = None, configuration_endpoint: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, iam_role_arn: Optional[pulumi.Input[str]] = None, maintenance_window: Optional[pulumi.Input[str]] = None, node_type: Optional[pulumi.Input[str]] = None, nodes: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ClusterNodeArgs']]]]] = None, notification_topic_arn: Optional[pulumi.Input[str]] = None, parameter_group_name: Optional[pulumi.Input[str]] = None, port: Optional[pulumi.Input[float]] = None, replication_factor: Optional[pulumi.Input[float]] = None, security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, server_side_encryption: Optional[pulumi.Input[pulumi.InputType['ClusterServerSideEncryptionArgs']]] = None, subnet_group_name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -227,7 +229,7 @@ class Cluster(pulumi.CustomResource):
                `sun:05:00-sun:09:00`
         :param pulumi.Input[str] node_type: The compute and memory capacity of the nodes. See
                [Nodes](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.concepts.cluster.html#DAX.concepts.nodes) for supported node types
-        :param pulumi.Input[List[pulumi.Input['ClusterNodeArgs']]] nodes: List of node objects including `id`, `address`, `port` and
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ClusterNodeArgs']]]] nodes: List of node objects including `id`, `address`, `port` and
                `availability_zone`. Referenceable e.g. as
                `${aws_dax_cluster.test.nodes.0.address}`
         :param pulumi.Input[str] notification_topic_arn: An Amazon Resource Name (ARN) of an
@@ -241,7 +243,7 @@ class Cluster(pulumi.CustomResource):
                replicas
         :param pulumi.Input[List[pulumi.Input[str]]] security_group_ids: One or more VPC security groups associated
                with the cluster
-        :param pulumi.Input['ClusterServerSideEncryptionArgs'] server_side_encryption: Encrypt at rest options
+        :param pulumi.Input[pulumi.InputType['ClusterServerSideEncryptionArgs']] server_side_encryption: Encrypt at rest options
         :param pulumi.Input[str] subnet_group_name: Name of the subnet group to be used for the
                cluster
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource

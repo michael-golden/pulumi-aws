@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetDelegationSetResult',
+    'AwaitableGetDelegationSetResult',
+    'get_delegation_set',
+]
+
 
 class GetDelegationSetResult:
     """
@@ -37,7 +43,7 @@ class AwaitableGetDelegationSetResult(GetDelegationSetResult):
             name_servers=self.name_servers)
 
 
-def get_delegation_set(id=None, opts=None):
+def get_delegation_set(id: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDelegationSetResult:
     """
     `route53.DelegationSet` provides details about a specific Route 53 Delegation Set.
 

@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetComputeEnvironmentResult',
+    'AwaitableGetComputeEnvironmentResult',
+    'get_compute_environment',
+]
+
 
 class GetComputeEnvironmentResult:
     """
@@ -85,7 +91,7 @@ class AwaitableGetComputeEnvironmentResult(GetComputeEnvironmentResult):
             type=self.type)
 
 
-def get_compute_environment(compute_environment_name=None, opts=None):
+def get_compute_environment(compute_environment_name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetComputeEnvironmentResult:
     """
     The Batch Compute Environment data source allows access to details of a specific
     compute environment within AWS Batch.

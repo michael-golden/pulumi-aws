@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['SpotDatafeedSubscription']
+
 
 class SpotDatafeedSubscription(pulumi.CustomResource):
     bucket: pulumi.Output[str] = pulumi.output_property("bucket")
@@ -19,7 +21,7 @@ class SpotDatafeedSubscription(pulumi.CustomResource):
     Path of folder inside bucket to place spot pricing data.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, bucket=None, prefix=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, bucket: Optional[pulumi.Input[str]] = None, prefix: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         > **Note:** There is only a single subscription allowed per account.
 
@@ -71,7 +73,7 @@ class SpotDatafeedSubscription(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, bucket=None, prefix=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, bucket: Optional[pulumi.Input[str]] = None, prefix: Optional[pulumi.Input[str]] = None) -> 'SpotDatafeedSubscription':
         """
         Get an existing SpotDatafeedSubscription resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

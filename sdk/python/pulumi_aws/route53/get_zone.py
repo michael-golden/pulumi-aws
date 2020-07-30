@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetZoneResult',
+    'AwaitableGetZoneResult',
+    'get_zone',
+]
+
 
 class GetZoneResult:
     """
@@ -94,7 +100,7 @@ class AwaitableGetZoneResult(GetZoneResult):
             zone_id=self.zone_id)
 
 
-def get_zone(name=None, private_zone=None, resource_record_set_count=None, tags=None, vpc_id=None, zone_id=None, opts=None):
+def get_zone(name: Optional[str] = None, private_zone: Optional[bool] = None, resource_record_set_count: Optional[float] = None, tags: Optional[Dict[str, str]] = None, vpc_id: Optional[str] = None, zone_id: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetZoneResult:
     """
     `route53.Zone` provides details about a specific Route 53 Hosted Zone.
 

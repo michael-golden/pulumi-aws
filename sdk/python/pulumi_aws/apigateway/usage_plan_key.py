@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['UsagePlanKey']
+
 
 class UsagePlanKey(pulumi.CustomResource):
     key_id: pulumi.Output[str] = pulumi.output_property("keyId")
@@ -31,7 +33,7 @@ class UsagePlanKey(pulumi.CustomResource):
     The value of a usage plan key.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, key_id=None, key_type=None, usage_plan_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, key_id: Optional[pulumi.Input[str]] = None, key_type: Optional[pulumi.Input[str]] = None, usage_plan_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an API Gateway Usage Plan Key.
 
@@ -94,7 +96,7 @@ class UsagePlanKey(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, key_id=None, key_type=None, name=None, usage_plan_id=None, value=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, key_id: Optional[pulumi.Input[str]] = None, key_type: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, usage_plan_id: Optional[pulumi.Input[str]] = None, value: Optional[pulumi.Input[str]] = None) -> 'UsagePlanKey':
         """
         Get an existing UsagePlanKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

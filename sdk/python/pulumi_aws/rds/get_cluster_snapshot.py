@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetClusterSnapshotResult',
+    'AwaitableGetClusterSnapshotResult',
+    'get_cluster_snapshot',
+]
+
 
 class GetClusterSnapshotResult:
     """
@@ -154,7 +160,7 @@ class AwaitableGetClusterSnapshotResult(GetClusterSnapshotResult):
             vpc_id=self.vpc_id)
 
 
-def get_cluster_snapshot(db_cluster_identifier=None, db_cluster_snapshot_identifier=None, include_public=None, include_shared=None, most_recent=None, snapshot_type=None, tags=None, opts=None):
+def get_cluster_snapshot(db_cluster_identifier: Optional[str] = None, db_cluster_snapshot_identifier: Optional[str] = None, include_public: Optional[bool] = None, include_shared: Optional[bool] = None, most_recent: Optional[bool] = None, snapshot_type: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterSnapshotResult:
     """
     Use this data source to get information about a DB Cluster Snapshot for use when provisioning DB clusters.
 

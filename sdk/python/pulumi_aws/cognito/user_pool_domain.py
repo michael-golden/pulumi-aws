@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['UserPoolDomain']
+
 
 class UserPoolDomain(pulumi.CustomResource):
     aws_account_id: pulumi.Output[str] = pulumi.output_property("awsAccountId")
@@ -39,7 +41,7 @@ class UserPoolDomain(pulumi.CustomResource):
     The app version.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, certificate_arn=None, domain=None, user_pool_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, certificate_arn: Optional[pulumi.Input[str]] = None, domain: Optional[pulumi.Input[str]] = None, user_pool_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Cognito User Pool Domain resource.
 
@@ -119,7 +121,7 @@ class UserPoolDomain(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, aws_account_id=None, certificate_arn=None, cloudfront_distribution_arn=None, domain=None, s3_bucket=None, user_pool_id=None, version=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, aws_account_id: Optional[pulumi.Input[str]] = None, certificate_arn: Optional[pulumi.Input[str]] = None, cloudfront_distribution_arn: Optional[pulumi.Input[str]] = None, domain: Optional[pulumi.Input[str]] = None, s3_bucket: Optional[pulumi.Input[str]] = None, user_pool_id: Optional[pulumi.Input[str]] = None, version: Optional[pulumi.Input[str]] = None) -> 'UserPoolDomain':
         """
         Get an existing UserPoolDomain resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

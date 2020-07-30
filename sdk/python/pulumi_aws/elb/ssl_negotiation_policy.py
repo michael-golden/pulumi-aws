@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['SslNegotiationPolicy']
+
 
 class SslNegotiationPolicy(pulumi.CustomResource):
     attributes: pulumi.Output[Optional[List['outputs.SslNegotiationPolicyAttribute']]] = pulumi.output_property("attributes")
@@ -32,7 +34,7 @@ class SslNegotiationPolicy(pulumi.CustomResource):
     The name of the attribute
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, attributes=None, lb_port=None, load_balancer=None, name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, attributes: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['SslNegotiationPolicyAttributeArgs']]]]] = None, lb_port: Optional[pulumi.Input[float]] = None, load_balancer: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a load balancer SSL negotiation policy, which allows an ELB to control the ciphers and protocols that are supported during SSL negotiations between a client and a load balancer.
 
@@ -88,7 +90,7 @@ class SslNegotiationPolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input['SslNegotiationPolicyAttributeArgs']]] attributes: An SSL Negotiation policy attribute. Each has two properties:
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['SslNegotiationPolicyAttributeArgs']]]] attributes: An SSL Negotiation policy attribute. Each has two properties:
         :param pulumi.Input[float] lb_port: The load balancer port to which the policy
                should be applied. This must be an active listener on the load
                balancer.
@@ -130,7 +132,7 @@ class SslNegotiationPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, attributes=None, lb_port=None, load_balancer=None, name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, attributes: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['SslNegotiationPolicyAttributeArgs']]]]] = None, lb_port: Optional[pulumi.Input[float]] = None, load_balancer: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None) -> 'SslNegotiationPolicy':
         """
         Get an existing SslNegotiationPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -138,7 +140,7 @@ class SslNegotiationPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input['SslNegotiationPolicyAttributeArgs']]] attributes: An SSL Negotiation policy attribute. Each has two properties:
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['SslNegotiationPolicyAttributeArgs']]]] attributes: An SSL Negotiation policy attribute. Each has two properties:
         :param pulumi.Input[float] lb_port: The load balancer port to which the policy
                should be applied. This must be an active listener on the load
                balancer.

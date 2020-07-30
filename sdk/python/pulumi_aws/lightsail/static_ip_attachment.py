@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['StaticIpAttachment']
+
 
 class StaticIpAttachment(pulumi.CustomResource):
     instance_name: pulumi.Output[str] = pulumi.output_property("instanceName")
@@ -23,7 +25,7 @@ class StaticIpAttachment(pulumi.CustomResource):
     The name of the allocated static IP
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, instance_name=None, static_ip_name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, instance_name: Optional[pulumi.Input[str]] = None, static_ip_name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a static IP address attachment - relationship between a Lightsail static IP & Lightsail instance.
 
@@ -82,7 +84,7 @@ class StaticIpAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, instance_name=None, ip_address=None, static_ip_name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, instance_name: Optional[pulumi.Input[str]] = None, ip_address: Optional[pulumi.Input[str]] = None, static_ip_name: Optional[pulumi.Input[str]] = None) -> 'StaticIpAttachment':
         """
         Get an existing StaticIpAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

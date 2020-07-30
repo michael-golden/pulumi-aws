@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['DomainDkim']
+
 
 class DomainDkim(pulumi.CustomResource):
     dkim_tokens: pulumi.Output[List[str]] = pulumi.output_property("dkimTokens")
@@ -24,7 +26,7 @@ class DomainDkim(pulumi.CustomResource):
     Verified domain name to generate DKIM tokens for.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, domain=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, domain: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an SES domain DKIM generation resource.
 
@@ -80,7 +82,7 @@ class DomainDkim(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, dkim_tokens=None, domain=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, dkim_tokens: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, domain: Optional[pulumi.Input[str]] = None) -> 'DomainDkim':
         """
         Get an existing DomainDkim resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

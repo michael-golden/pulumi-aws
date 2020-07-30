@@ -9,6 +9,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 from . import outputs
 
+__all__ = [
+    'GetDirectoryResult',
+    'AwaitableGetDirectoryResult',
+    'get_directory',
+]
+
 
 class GetDirectoryResult:
     """
@@ -129,7 +135,7 @@ class AwaitableGetDirectoryResult(GetDirectoryResult):
             vpc_settings=self.vpc_settings)
 
 
-def get_directory(directory_id=None, tags=None, opts=None):
+def get_directory(directory_id: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDirectoryResult:
     """
     Get attributes of AWS Directory Service directory (SimpleAD, Managed AD, AD Connector). It's especially useful to refer AWS Managed AD or on-premise AD in AD Connector configuration.
 

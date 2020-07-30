@@ -8,6 +8,22 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
 
+__all__ = [
+    'GetAmiBlockDeviceMapping',
+    'GetAmiFilter',
+    'GetAmiIdsFilter',
+    'GetAmiProductCode',
+    'GetAutoscalingGroupsFilter',
+    'GetAvailabilityZoneFilter',
+    'GetAvailabilityZonesFilter',
+    'GetElasticIpFilter',
+    'GetPrefixListFilter',
+    'GetRegionsFilter',
+    'ProviderAssumeRole',
+    'ProviderEndpoint',
+    'ProviderIgnoreTags',
+]
+
 @pulumi.output_type
 class GetAmiBlockDeviceMapping(dict):
     device_name: str = pulumi.output_property("deviceName")

@@ -8,6 +8,19 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'EventDestinationCloudwatchDestination',
+    'EventDestinationKinesisDestination',
+    'EventDestinationSnsDestination',
+    'ReceiptRuleAddHeaderAction',
+    'ReceiptRuleBounceAction',
+    'ReceiptRuleLambdaAction',
+    'ReceiptRuleS3Action',
+    'ReceiptRuleSnsAction',
+    'ReceiptRuleStopAction',
+    'ReceiptRuleWorkmailAction',
+]
+
 @pulumi.output_type
 class EventDestinationCloudwatchDestination(dict):
     default_value: str = pulumi.output_property("defaultValue")

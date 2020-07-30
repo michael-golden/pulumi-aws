@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetSnapshotResult',
+    'AwaitableGetSnapshotResult',
+    'get_snapshot',
+]
+
 
 class GetSnapshotResult:
     """
@@ -138,7 +144,7 @@ class AwaitableGetSnapshotResult(GetSnapshotResult):
             volume_size=self.volume_size)
 
 
-def get_snapshot(filters=None, most_recent=None, owners=None, restorable_by_user_ids=None, snapshot_ids=None, tags=None, opts=None):
+def get_snapshot(filters: Optional[List[pulumi.InputType['GetSnapshotFilterArgs']]] = None, most_recent: Optional[bool] = None, owners: Optional[List[str]] = None, restorable_by_user_ids: Optional[List[str]] = None, snapshot_ids: Optional[List[str]] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSnapshotResult:
     """
     Use this data source to get information about an EBS Snapshot for use when provisioning EBS Volumes
 
@@ -163,7 +169,7 @@ def get_snapshot(filters=None, most_recent=None, owners=None, restorable_by_user
     ```
 
 
-    :param List['GetSnapshotFilterArgs'] filters: One or more name/value pairs to filter off of. There are
+    :param List[pulumi.InputType['GetSnapshotFilterArgs']] filters: One or more name/value pairs to filter off of. There are
            several valid keys, for a full reference, check out
            [describe-snapshots in the AWS CLI reference][1].
     :param bool most_recent: If more than one result is returned, use the most recent snapshot.

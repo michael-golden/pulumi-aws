@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetPlanResult',
+    'AwaitableGetPlanResult',
+    'get_plan',
+]
+
 
 class GetPlanResult:
     """
@@ -64,7 +70,7 @@ class AwaitableGetPlanResult(GetPlanResult):
             version=self.version)
 
 
-def get_plan(plan_id=None, tags=None, opts=None):
+def get_plan(plan_id: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPlanResult:
     """
     Use this data source to get information on an existing backup plan.
 

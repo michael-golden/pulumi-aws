@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['SnapshotCreateVolumePermission']
+
 
 class SnapshotCreateVolumePermission(pulumi.CustomResource):
     account_id: pulumi.Output[str] = pulumi.output_property("accountId")
@@ -19,7 +21,7 @@ class SnapshotCreateVolumePermission(pulumi.CustomResource):
     A snapshot ID
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, account_id=None, snapshot_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, account_id: Optional[pulumi.Input[str]] = None, snapshot_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Adds permission to create volumes off of a given EBS Snapshot.
 
@@ -73,7 +75,7 @@ class SnapshotCreateVolumePermission(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, account_id=None, snapshot_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, account_id: Optional[pulumi.Input[str]] = None, snapshot_id: Optional[pulumi.Input[str]] = None) -> 'SnapshotCreateVolumePermission':
         """
         Get an existing SnapshotCreateVolumePermission resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
 
+__all__ = [
+    'GetRegionResult',
+    'AwaitableGetRegionResult',
+    'get_region',
+]
+
 
 class GetRegionResult:
     """
@@ -53,7 +59,7 @@ class AwaitableGetRegionResult(GetRegionResult):
             name=self.name)
 
 
-def get_region(endpoint=None, name=None, opts=None):
+def get_region(endpoint: Optional[str] = None, name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegionResult:
     """
     `getRegion` provides details about a specific AWS region.
 

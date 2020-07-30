@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetEbsVolumesResult',
+    'AwaitableGetEbsVolumesResult',
+    'get_ebs_volumes',
+]
+
 
 class GetEbsVolumesResult:
     """
@@ -50,7 +56,7 @@ class AwaitableGetEbsVolumesResult(GetEbsVolumesResult):
             tags=self.tags)
 
 
-def get_ebs_volumes(filters=None, tags=None, opts=None):
+def get_ebs_volumes(filters: Optional[List[pulumi.InputType['GetEbsVolumesFilterArgs']]] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEbsVolumesResult:
     """
     `ebs.getEbsVolumes` provides identifying information for EBS volumes matching given criteria.
 
@@ -75,7 +81,7 @@ def get_ebs_volumes(filters=None, tags=None, opts=None):
     ```
 
 
-    :param List['GetEbsVolumesFilterArgs'] filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetEbsVolumesFilterArgs']] filters: Custom filter block as described below.
     :param Dict[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired volumes.
     """

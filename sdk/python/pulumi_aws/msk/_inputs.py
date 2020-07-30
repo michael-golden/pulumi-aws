@@ -8,6 +8,24 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ClusterBrokerNodeGroupInfoArgs',
+    'ClusterClientAuthenticationArgs',
+    'ClusterClientAuthenticationTlsArgs',
+    'ClusterConfigurationInfoArgs',
+    'ClusterEncryptionInfoArgs',
+    'ClusterEncryptionInfoEncryptionInTransitArgs',
+    'ClusterLoggingInfoArgs',
+    'ClusterLoggingInfoBrokerLogsArgs',
+    'ClusterLoggingInfoBrokerLogsCloudwatchLogsArgs',
+    'ClusterLoggingInfoBrokerLogsFirehoseArgs',
+    'ClusterLoggingInfoBrokerLogsS3Args',
+    'ClusterOpenMonitoringArgs',
+    'ClusterOpenMonitoringPrometheusArgs',
+    'ClusterOpenMonitoringPrometheusJmxExporterArgs',
+    'ClusterOpenMonitoringPrometheusNodeExporterArgs',
+]
+
 @pulumi.input_type
 class ClusterBrokerNodeGroupInfoArgs:
     client_subnets: pulumi.Input[List[pulumi.Input[str]]] = pulumi.input_property("clientSubnets")

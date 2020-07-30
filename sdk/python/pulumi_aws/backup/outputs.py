@@ -8,6 +8,14 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'PlanRule',
+    'PlanRuleCopyAction',
+    'PlanRuleCopyActionLifecycle',
+    'PlanRuleLifecycle',
+    'SelectionSelectionTag',
+]
+
 @pulumi.output_type
 class PlanRule(dict):
     completion_window: Optional[float] = pulumi.output_property("completionWindow")

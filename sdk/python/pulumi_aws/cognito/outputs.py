@@ -8,6 +8,28 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'IdentityPoolCognitoIdentityProvider',
+    'IdentityPoolRoleAttachmentRoleMapping',
+    'IdentityPoolRoleAttachmentRoleMappingMappingRule',
+    'ResourceServerScope',
+    'UserPoolAdminCreateUserConfig',
+    'UserPoolAdminCreateUserConfigInviteMessageTemplate',
+    'UserPoolClientAnalyticsConfiguration',
+    'UserPoolDeviceConfiguration',
+    'UserPoolEmailConfiguration',
+    'UserPoolLambdaConfig',
+    'UserPoolPasswordPolicy',
+    'UserPoolSchema',
+    'UserPoolSchemaNumberAttributeConstraints',
+    'UserPoolSchemaStringAttributeConstraints',
+    'UserPoolSmsConfiguration',
+    'UserPoolSoftwareTokenMfaConfiguration',
+    'UserPoolUserPoolAddOns',
+    'UserPoolUsernameConfiguration',
+    'UserPoolVerificationMessageTemplate',
+]
+
 @pulumi.output_type
 class IdentityPoolCognitoIdentityProvider(dict):
     client_id: Optional[str] = pulumi.output_property("clientId")

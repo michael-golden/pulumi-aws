@@ -8,6 +8,16 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'BrokerConfigurationArgs',
+    'BrokerEncryptionOptionsArgs',
+    'BrokerInstanceArgs',
+    'BrokerLogsArgs',
+    'BrokerMaintenanceWindowStartTimeArgs',
+    'BrokerUserArgs',
+    'GetBrokerLogsArgs',
+]
+
 @pulumi.input_type
 class BrokerConfigurationArgs:
     id: Optional[pulumi.Input[str]] = pulumi.input_property("id")

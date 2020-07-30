@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['TransitGateway']
+
 
 class TransitGateway(pulumi.CustomResource):
     amazon_side_asn: pulumi.Output[Optional[float]] = pulumi.output_property("amazonSideAsn")
@@ -59,7 +61,7 @@ class TransitGateway(pulumi.CustomResource):
     Whether VPN Equal Cost Multipath Protocol support is enabled. Valid values: `disable`, `enable`. Default value: `enable`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, amazon_side_asn=None, auto_accept_shared_attachments=None, default_route_table_association=None, default_route_table_propagation=None, description=None, dns_support=None, tags=None, vpn_ecmp_support=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, amazon_side_asn: Optional[pulumi.Input[float]] = None, auto_accept_shared_attachments: Optional[pulumi.Input[str]] = None, default_route_table_association: Optional[pulumi.Input[str]] = None, default_route_table_propagation: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, dns_support: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpn_ecmp_support: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an EC2 Transit Gateway.
 
@@ -119,7 +121,7 @@ class TransitGateway(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, amazon_side_asn=None, arn=None, association_default_route_table_id=None, auto_accept_shared_attachments=None, default_route_table_association=None, default_route_table_propagation=None, description=None, dns_support=None, owner_id=None, propagation_default_route_table_id=None, tags=None, vpn_ecmp_support=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, amazon_side_asn: Optional[pulumi.Input[float]] = None, arn: Optional[pulumi.Input[str]] = None, association_default_route_table_id: Optional[pulumi.Input[str]] = None, auto_accept_shared_attachments: Optional[pulumi.Input[str]] = None, default_route_table_association: Optional[pulumi.Input[str]] = None, default_route_table_propagation: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, dns_support: Optional[pulumi.Input[str]] = None, owner_id: Optional[pulumi.Input[str]] = None, propagation_default_route_table_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpn_ecmp_support: Optional[pulumi.Input[str]] = None) -> 'TransitGateway':
         """
         Get an existing TransitGateway resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

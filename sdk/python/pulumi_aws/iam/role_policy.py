@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['RolePolicy']
+
 
 class RolePolicy(pulumi.CustomResource):
     name: pulumi.Output[str] = pulumi.output_property("name")
@@ -29,7 +31,7 @@ class RolePolicy(pulumi.CustomResource):
     The IAM role to attach to the policy.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, name_prefix=None, policy=None, role=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, role: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an IAM role inline policy.
 
@@ -111,7 +113,7 @@ class RolePolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, name=None, name_prefix=None, policy=None, role=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, role: Optional[pulumi.Input[str]] = None) -> 'RolePolicy':
         """
         Get an existing RolePolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

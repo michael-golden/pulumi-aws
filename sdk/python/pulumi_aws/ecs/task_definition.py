@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['TaskDefinition']
+
 
 class TaskDefinition(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -86,7 +88,7 @@ class TaskDefinition(pulumi.CustomResource):
     A set of volume blocks that containers in your task may use.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, container_definitions=None, cpu=None, execution_role_arn=None, family=None, inference_accelerators=None, ipc_mode=None, memory=None, network_mode=None, pid_mode=None, placement_constraints=None, proxy_configuration=None, requires_compatibilities=None, tags=None, task_role_arn=None, volumes=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, container_definitions: Optional[pulumi.Input[str]] = None, cpu: Optional[pulumi.Input[str]] = None, execution_role_arn: Optional[pulumi.Input[str]] = None, family: Optional[pulumi.Input[str]] = None, inference_accelerators: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TaskDefinitionInferenceAcceleratorArgs']]]]] = None, ipc_mode: Optional[pulumi.Input[str]] = None, memory: Optional[pulumi.Input[str]] = None, network_mode: Optional[pulumi.Input[str]] = None, pid_mode: Optional[pulumi.Input[str]] = None, placement_constraints: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TaskDefinitionPlacementConstraintArgs']]]]] = None, proxy_configuration: Optional[pulumi.Input[pulumi.InputType['TaskDefinitionProxyConfigurationArgs']]] = None, requires_compatibilities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, task_role_arn: Optional[pulumi.Input[str]] = None, volumes: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TaskDefinitionVolumeArgs']]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a revision of an ECS task definition to be used in `ecs.Service`.
 
@@ -124,17 +126,17 @@ class TaskDefinition(pulumi.CustomResource):
         :param pulumi.Input[str] cpu: The number of cpu units used by the task. If the `requires_compatibilities` is `FARGATE` this field is required.
         :param pulumi.Input[str] execution_role_arn: The Amazon Resource Name (ARN) of the task execution role that the Amazon ECS container agent and the Docker daemon can assume.
         :param pulumi.Input[str] family: A unique name for your task definition.
-        :param pulumi.Input[List[pulumi.Input['TaskDefinitionInferenceAcceleratorArgs']]] inference_accelerators: Configuration block(s) with Inference Accelerators settings. Detailed below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['TaskDefinitionInferenceAcceleratorArgs']]]] inference_accelerators: Configuration block(s) with Inference Accelerators settings. Detailed below.
         :param pulumi.Input[str] ipc_mode: The IPC resource namespace to be used for the containers in the task The valid values are `host`, `task`, and `none`.
         :param pulumi.Input[str] memory: The amount (in MiB) of memory used by the task. If the `requires_compatibilities` is `FARGATE` this field is required.
         :param pulumi.Input[str] network_mode: The Docker networking mode to use for the containers in the task. The valid values are `none`, `bridge`, `awsvpc`, and `host`.
         :param pulumi.Input[str] pid_mode: The process namespace to use for the containers in the task. The valid values are `host` and `task`.
-        :param pulumi.Input[List[pulumi.Input['TaskDefinitionPlacementConstraintArgs']]] placement_constraints: A set of placement constraints rules that are taken into consideration during task placement. Maximum number of `placement_constraints` is `10`.
-        :param pulumi.Input['TaskDefinitionProxyConfigurationArgs'] proxy_configuration: The proxy configuration details for the App Mesh proxy.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['TaskDefinitionPlacementConstraintArgs']]]] placement_constraints: A set of placement constraints rules that are taken into consideration during task placement. Maximum number of `placement_constraints` is `10`.
+        :param pulumi.Input[pulumi.InputType['TaskDefinitionProxyConfigurationArgs']] proxy_configuration: The proxy configuration details for the App Mesh proxy.
         :param pulumi.Input[List[pulumi.Input[str]]] requires_compatibilities: A set of launch types required by the task. The valid values are `EC2` and `FARGATE`.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         :param pulumi.Input[str] task_role_arn: The ARN of IAM role that allows your Amazon ECS container task to make calls to other AWS services.
-        :param pulumi.Input[List[pulumi.Input['TaskDefinitionVolumeArgs']]] volumes: A set of volume blocks that containers in your task may use.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['TaskDefinitionVolumeArgs']]]] volumes: A set of volume blocks that containers in your task may use.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -181,7 +183,7 @@ class TaskDefinition(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, container_definitions=None, cpu=None, execution_role_arn=None, family=None, inference_accelerators=None, ipc_mode=None, memory=None, network_mode=None, pid_mode=None, placement_constraints=None, proxy_configuration=None, requires_compatibilities=None, revision=None, tags=None, task_role_arn=None, volumes=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, container_definitions: Optional[pulumi.Input[str]] = None, cpu: Optional[pulumi.Input[str]] = None, execution_role_arn: Optional[pulumi.Input[str]] = None, family: Optional[pulumi.Input[str]] = None, inference_accelerators: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TaskDefinitionInferenceAcceleratorArgs']]]]] = None, ipc_mode: Optional[pulumi.Input[str]] = None, memory: Optional[pulumi.Input[str]] = None, network_mode: Optional[pulumi.Input[str]] = None, pid_mode: Optional[pulumi.Input[str]] = None, placement_constraints: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TaskDefinitionPlacementConstraintArgs']]]]] = None, proxy_configuration: Optional[pulumi.Input[pulumi.InputType['TaskDefinitionProxyConfigurationArgs']]] = None, requires_compatibilities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, revision: Optional[pulumi.Input[float]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, task_role_arn: Optional[pulumi.Input[str]] = None, volumes: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TaskDefinitionVolumeArgs']]]]] = None) -> 'TaskDefinition':
         """
         Get an existing TaskDefinition resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -199,18 +201,18 @@ class TaskDefinition(pulumi.CustomResource):
         :param pulumi.Input[str] cpu: The number of cpu units used by the task. If the `requires_compatibilities` is `FARGATE` this field is required.
         :param pulumi.Input[str] execution_role_arn: The Amazon Resource Name (ARN) of the task execution role that the Amazon ECS container agent and the Docker daemon can assume.
         :param pulumi.Input[str] family: A unique name for your task definition.
-        :param pulumi.Input[List[pulumi.Input['TaskDefinitionInferenceAcceleratorArgs']]] inference_accelerators: Configuration block(s) with Inference Accelerators settings. Detailed below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['TaskDefinitionInferenceAcceleratorArgs']]]] inference_accelerators: Configuration block(s) with Inference Accelerators settings. Detailed below.
         :param pulumi.Input[str] ipc_mode: The IPC resource namespace to be used for the containers in the task The valid values are `host`, `task`, and `none`.
         :param pulumi.Input[str] memory: The amount (in MiB) of memory used by the task. If the `requires_compatibilities` is `FARGATE` this field is required.
         :param pulumi.Input[str] network_mode: The Docker networking mode to use for the containers in the task. The valid values are `none`, `bridge`, `awsvpc`, and `host`.
         :param pulumi.Input[str] pid_mode: The process namespace to use for the containers in the task. The valid values are `host` and `task`.
-        :param pulumi.Input[List[pulumi.Input['TaskDefinitionPlacementConstraintArgs']]] placement_constraints: A set of placement constraints rules that are taken into consideration during task placement. Maximum number of `placement_constraints` is `10`.
-        :param pulumi.Input['TaskDefinitionProxyConfigurationArgs'] proxy_configuration: The proxy configuration details for the App Mesh proxy.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['TaskDefinitionPlacementConstraintArgs']]]] placement_constraints: A set of placement constraints rules that are taken into consideration during task placement. Maximum number of `placement_constraints` is `10`.
+        :param pulumi.Input[pulumi.InputType['TaskDefinitionProxyConfigurationArgs']] proxy_configuration: The proxy configuration details for the App Mesh proxy.
         :param pulumi.Input[List[pulumi.Input[str]]] requires_compatibilities: A set of launch types required by the task. The valid values are `EC2` and `FARGATE`.
         :param pulumi.Input[float] revision: The revision of the task in a particular family.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         :param pulumi.Input[str] task_role_arn: The ARN of IAM role that allows your Amazon ECS container task to make calls to other AWS services.
-        :param pulumi.Input[List[pulumi.Input['TaskDefinitionVolumeArgs']]] volumes: A set of volume blocks that containers in your task may use.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['TaskDefinitionVolumeArgs']]]] volumes: A set of volume blocks that containers in your task may use.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

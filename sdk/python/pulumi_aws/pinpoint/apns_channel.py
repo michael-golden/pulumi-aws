@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ApnsChannel']
+
 
 class ApnsChannel(pulumi.CustomResource):
     application_id: pulumi.Output[str] = pulumi.output_property("applicationId")
@@ -50,7 +52,7 @@ class ApnsChannel(pulumi.CustomResource):
     The ID assigned to your signing key. To find this value, choose Certificates, IDs & Profiles, and choose your key in the Keys section.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application_id=None, bundle_id=None, certificate=None, default_authentication_method=None, enabled=None, private_key=None, team_id=None, token_key=None, token_key_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application_id: Optional[pulumi.Input[str]] = None, bundle_id: Optional[pulumi.Input[str]] = None, certificate: Optional[pulumi.Input[str]] = None, default_authentication_method: Optional[pulumi.Input[str]] = None, enabled: Optional[pulumi.Input[bool]] = None, private_key: Optional[pulumi.Input[str]] = None, team_id: Optional[pulumi.Input[str]] = None, token_key: Optional[pulumi.Input[str]] = None, token_key_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Pinpoint APNs Channel resource.
 
@@ -119,7 +121,7 @@ class ApnsChannel(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, application_id=None, bundle_id=None, certificate=None, default_authentication_method=None, enabled=None, private_key=None, team_id=None, token_key=None, token_key_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, application_id: Optional[pulumi.Input[str]] = None, bundle_id: Optional[pulumi.Input[str]] = None, certificate: Optional[pulumi.Input[str]] = None, default_authentication_method: Optional[pulumi.Input[str]] = None, enabled: Optional[pulumi.Input[bool]] = None, private_key: Optional[pulumi.Input[str]] = None, team_id: Optional[pulumi.Input[str]] = None, token_key: Optional[pulumi.Input[str]] = None, token_key_id: Optional[pulumi.Input[str]] = None) -> 'ApnsChannel':
         """
         Get an existing ApnsChannel resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

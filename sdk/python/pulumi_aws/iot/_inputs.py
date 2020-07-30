@@ -8,6 +8,43 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ThingTypePropertiesArgs',
+    'TopicRuleCloudwatchAlarmArgs',
+    'TopicRuleCloudwatchMetricArgs',
+    'TopicRuleDynamodbArgs',
+    'TopicRuleDynamodbv2Args',
+    'TopicRuleDynamodbv2PutItemArgs',
+    'TopicRuleElasticsearchArgs',
+    'TopicRuleErrorActionArgs',
+    'TopicRuleErrorActionCloudwatchAlarmArgs',
+    'TopicRuleErrorActionCloudwatchMetricArgs',
+    'TopicRuleErrorActionDynamodbArgs',
+    'TopicRuleErrorActionDynamodbv2Args',
+    'TopicRuleErrorActionDynamodbv2PutItemArgs',
+    'TopicRuleErrorActionElasticsearchArgs',
+    'TopicRuleErrorActionFirehoseArgs',
+    'TopicRuleErrorActionIotAnalyticsArgs',
+    'TopicRuleErrorActionIotEventsArgs',
+    'TopicRuleErrorActionKinesisArgs',
+    'TopicRuleErrorActionLambdaArgs',
+    'TopicRuleErrorActionRepublishArgs',
+    'TopicRuleErrorActionS3Args',
+    'TopicRuleErrorActionSnsArgs',
+    'TopicRuleErrorActionSqsArgs',
+    'TopicRuleErrorActionStepFunctionsArgs',
+    'TopicRuleFirehoseArgs',
+    'TopicRuleIotAnalyticArgs',
+    'TopicRuleIotEventArgs',
+    'TopicRuleKinesisArgs',
+    'TopicRuleLambdaArgs',
+    'TopicRuleRepublishArgs',
+    'TopicRuleS3Args',
+    'TopicRuleSnsArgs',
+    'TopicRuleSqsArgs',
+    'TopicRuleStepFunctionArgs',
+]
+
 @pulumi.input_type
 class ThingTypePropertiesArgs:
     description: Optional[pulumi.Input[str]] = pulumi.input_property("description")

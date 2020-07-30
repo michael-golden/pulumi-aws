@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Document']
+
 
 class Document(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -94,7 +96,7 @@ class Document(pulumi.CustomResource):
     The target type which defines the kinds of resources the document can run on. For example, /AWS::EC2::Instance. For a list of valid resource types, see AWS Resource Types Reference (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, attachments_sources=None, content=None, document_format=None, document_type=None, name=None, permissions=None, tags=None, target_type=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, attachments_sources: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DocumentAttachmentsSourceArgs']]]]] = None, content: Optional[pulumi.Input[str]] = None, document_format: Optional[pulumi.Input[str]] = None, document_type: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, permissions: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, target_type: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an SSM Document resource
 
@@ -143,7 +145,7 @@ class Document(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input['DocumentAttachmentsSourceArgs']]] attachments_sources: One or more configuration blocks describing attachments sources to a version of a document. Defined below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DocumentAttachmentsSourceArgs']]]] attachments_sources: One or more configuration blocks describing attachments sources to a version of a document. Defined below.
         :param pulumi.Input[str] content: The JSON or YAML content of the document.
         :param pulumi.Input[str] document_format: The format of the document. Valid document types include: `JSON` and `YAML`
         :param pulumi.Input[str] document_type: The type of the document. Valid document types include: `Automation`, `Command`, `Package`, `Policy`, and `Session`
@@ -201,7 +203,7 @@ class Document(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, attachments_sources=None, content=None, created_date=None, default_version=None, description=None, document_format=None, document_type=None, document_version=None, hash=None, hash_type=None, latest_version=None, name=None, owner=None, parameters=None, permissions=None, platform_types=None, schema_version=None, status=None, tags=None, target_type=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, attachments_sources: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DocumentAttachmentsSourceArgs']]]]] = None, content: Optional[pulumi.Input[str]] = None, created_date: Optional[pulumi.Input[str]] = None, default_version: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, document_format: Optional[pulumi.Input[str]] = None, document_type: Optional[pulumi.Input[str]] = None, document_version: Optional[pulumi.Input[str]] = None, hash: Optional[pulumi.Input[str]] = None, hash_type: Optional[pulumi.Input[str]] = None, latest_version: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, owner: Optional[pulumi.Input[str]] = None, parameters: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DocumentParameterArgs']]]]] = None, permissions: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, platform_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, schema_version: Optional[pulumi.Input[str]] = None, status: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, target_type: Optional[pulumi.Input[str]] = None) -> 'Document':
         """
         Get an existing Document resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -209,7 +211,7 @@ class Document(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input['DocumentAttachmentsSourceArgs']]] attachments_sources: One or more configuration blocks describing attachments sources to a version of a document. Defined below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DocumentAttachmentsSourceArgs']]]] attachments_sources: One or more configuration blocks describing attachments sources to a version of a document. Defined below.
         :param pulumi.Input[str] content: The JSON or YAML content of the document.
         :param pulumi.Input[str] created_date: The date the document was created.
         :param pulumi.Input[str] default_version: The default version of the document.
@@ -222,7 +224,7 @@ class Document(pulumi.CustomResource):
         :param pulumi.Input[str] latest_version: The latest version of the document.
         :param pulumi.Input[str] name: The name of the document.
         :param pulumi.Input[str] owner: The AWS user account of the person who created the document.
-        :param pulumi.Input[List[pulumi.Input['DocumentParameterArgs']]] parameters: The parameters that are available to this document.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DocumentParameterArgs']]]] parameters: The parameters that are available to this document.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] permissions: Additional Permissions to attach to the document. See Permissions below for details.
         :param pulumi.Input[List[pulumi.Input[str]]] platform_types: A list of OS platforms compatible with this SSM document, either "Windows" or "Linux".
         :param pulumi.Input[str] schema_version: The schema version of the document.

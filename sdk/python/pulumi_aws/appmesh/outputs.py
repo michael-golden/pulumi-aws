@@ -8,6 +8,41 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'MeshSpec',
+    'MeshSpecEgressFilter',
+    'RouteSpec',
+    'RouteSpecHttpRoute',
+    'RouteSpecHttpRouteAction',
+    'RouteSpecHttpRouteActionWeightedTarget',
+    'RouteSpecHttpRouteMatch',
+    'RouteSpecHttpRouteMatchHeader',
+    'RouteSpecHttpRouteMatchHeaderMatch',
+    'RouteSpecHttpRouteMatchHeaderMatchRange',
+    'RouteSpecTcpRoute',
+    'RouteSpecTcpRouteAction',
+    'RouteSpecTcpRouteActionWeightedTarget',
+    'VirtualNodeSpec',
+    'VirtualNodeSpecBackend',
+    'VirtualNodeSpecBackendVirtualService',
+    'VirtualNodeSpecListener',
+    'VirtualNodeSpecListenerHealthCheck',
+    'VirtualNodeSpecListenerPortMapping',
+    'VirtualNodeSpecLogging',
+    'VirtualNodeSpecLoggingAccessLog',
+    'VirtualNodeSpecLoggingAccessLogFile',
+    'VirtualNodeSpecServiceDiscovery',
+    'VirtualNodeSpecServiceDiscoveryAwsCloudMap',
+    'VirtualNodeSpecServiceDiscoveryDns',
+    'VirtualRouterSpec',
+    'VirtualRouterSpecListener',
+    'VirtualRouterSpecListenerPortMapping',
+    'VirtualServiceSpec',
+    'VirtualServiceSpecProvider',
+    'VirtualServiceSpecProviderVirtualNode',
+    'VirtualServiceSpecProviderVirtualRouter',
+]
+
 @pulumi.output_type
 class MeshSpec(dict):
     egress_filter: Optional['outputs.MeshSpecEgressFilter'] = pulumi.output_property("egressFilter")

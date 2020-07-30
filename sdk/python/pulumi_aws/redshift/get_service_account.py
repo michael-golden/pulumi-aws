@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetServiceAccountResult',
+    'AwaitableGetServiceAccountResult',
+    'get_service_account',
+]
+
 
 class GetServiceAccountResult:
     """
@@ -43,7 +49,7 @@ class AwaitableGetServiceAccountResult(GetServiceAccountResult):
             region=self.region)
 
 
-def get_service_account(region=None, opts=None):
+def get_service_account(region: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceAccountResult:
     """
     Use this data source to get the Account ID of the [AWS Redshift Service Account](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html#db-auditing-enable-logging)
     in a given region for the purpose of allowing Redshift to store audit data in S3.

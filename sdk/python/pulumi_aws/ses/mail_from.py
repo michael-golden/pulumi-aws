@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['MailFrom']
+
 
 class MailFrom(pulumi.CustomResource):
     behavior_on_mx_failure: pulumi.Output[Optional[str]] = pulumi.output_property("behaviorOnMxFailure")
@@ -23,7 +25,7 @@ class MailFrom(pulumi.CustomResource):
     Subdomain (of above domain) which is to be used as MAIL FROM address (Required for DMARC validation)
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, behavior_on_mx_failure=None, domain=None, mail_from_domain=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, behavior_on_mx_failure: Optional[pulumi.Input[str]] = None, domain: Optional[pulumi.Input[str]] = None, mail_from_domain: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an SES domain MAIL FROM resource.
 
@@ -93,7 +95,7 @@ class MailFrom(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, behavior_on_mx_failure=None, domain=None, mail_from_domain=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, behavior_on_mx_failure: Optional[pulumi.Input[str]] = None, domain: Optional[pulumi.Input[str]] = None, mail_from_domain: Optional[pulumi.Input[str]] = None) -> 'MailFrom':
         """
         Get an existing MailFrom resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

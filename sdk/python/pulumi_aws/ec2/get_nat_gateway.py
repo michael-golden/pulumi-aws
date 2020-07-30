@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetNatGatewayResult',
+    'AwaitableGetNatGatewayResult',
+    'get_nat_gateway',
+]
+
 
 class GetNatGatewayResult:
     """
@@ -79,7 +85,7 @@ class AwaitableGetNatGatewayResult(GetNatGatewayResult):
             vpc_id=self.vpc_id)
 
 
-def get_nat_gateway(filters=None, id=None, state=None, subnet_id=None, tags=None, vpc_id=None, opts=None):
+def get_nat_gateway(filters: Optional[List[pulumi.InputType['GetNatGatewayFilterArgs']]] = None, id: Optional[str] = None, state: Optional[str] = None, subnet_id: Optional[str] = None, tags: Optional[Dict[str, str]] = None, vpc_id: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNatGatewayResult:
     """
     Provides details about a specific Nat Gateway.
 
@@ -107,7 +113,7 @@ def get_nat_gateway(filters=None, id=None, state=None, subnet_id=None, tags=None
     ```
 
 
-    :param List['GetNatGatewayFilterArgs'] filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetNatGatewayFilterArgs']] filters: Custom filter block as described below.
     :param str id: The id of the specific Nat Gateway to retrieve.
     :param str state: The state of the NAT gateway (pending | failed | available | deleting | deleted ).
     :param str subnet_id: The id of subnet that the Nat Gateway resides in.

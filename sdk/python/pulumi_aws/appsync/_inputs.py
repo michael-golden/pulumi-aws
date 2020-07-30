@@ -8,6 +8,21 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'DataSourceDynamodbConfigArgs',
+    'DataSourceElasticsearchConfigArgs',
+    'DataSourceHttpConfigArgs',
+    'DataSourceLambdaConfigArgs',
+    'GraphQLApiAdditionalAuthenticationProviderArgs',
+    'GraphQLApiAdditionalAuthenticationProviderOpenidConnectConfigArgs',
+    'GraphQLApiAdditionalAuthenticationProviderUserPoolConfigArgs',
+    'GraphQLApiLogConfigArgs',
+    'GraphQLApiOpenidConnectConfigArgs',
+    'GraphQLApiUserPoolConfigArgs',
+    'ResolverCachingConfigArgs',
+    'ResolverPipelineConfigArgs',
+]
+
 @pulumi.input_type
 class DataSourceDynamodbConfigArgs:
     table_name: pulumi.Input[str] = pulumi.input_property("tableName")

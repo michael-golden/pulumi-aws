@@ -8,6 +8,15 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ApiCorsConfiguration',
+    'AuthorizerJwtConfiguration',
+    'DomainNameDomainNameConfiguration',
+    'StageAccessLogSettings',
+    'StageDefaultRouteSettings',
+    'StageRouteSetting',
+]
+
 @pulumi.output_type
 class ApiCorsConfiguration(dict):
     allow_credentials: Optional[bool] = pulumi.output_property("allowCredentials")

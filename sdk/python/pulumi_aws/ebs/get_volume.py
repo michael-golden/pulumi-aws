@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetVolumeResult',
+    'AwaitableGetVolumeResult',
+    'get_volume',
+]
+
 
 class GetVolumeResult:
     """
@@ -126,7 +132,7 @@ class AwaitableGetVolumeResult(GetVolumeResult):
             volume_type=self.volume_type)
 
 
-def get_volume(filters=None, most_recent=None, tags=None, opts=None):
+def get_volume(filters: Optional[List[pulumi.InputType['GetVolumeFilterArgs']]] = None, most_recent: Optional[bool] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVolumeResult:
     """
     Use this data source to get information about an EBS volume for use in other
     resources.
@@ -151,7 +157,7 @@ def get_volume(filters=None, most_recent=None, tags=None, opts=None):
     ```
 
 
-    :param List['GetVolumeFilterArgs'] filters: One or more name/value pairs to filter off of. There are
+    :param List[pulumi.InputType['GetVolumeFilterArgs']] filters: One or more name/value pairs to filter off of. There are
            several valid keys, for a full reference, check out
            [describe-volumes in the AWS CLI reference][1].
     :param bool most_recent: If more than one result is returned, use the most

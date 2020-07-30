@@ -8,6 +8,26 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ApplicationAppSourceArgs',
+    'ApplicationEnvironmentArgs',
+    'ApplicationSslConfigurationArgs',
+    'CustomLayerEbsVolumeArgs',
+    'GangliaLayerEbsVolumeArgs',
+    'HaproxyLayerEbsVolumeArgs',
+    'InstanceEbsBlockDeviceArgs',
+    'InstanceEphemeralBlockDeviceArgs',
+    'InstanceRootBlockDeviceArgs',
+    'JavaAppLayerEbsVolumeArgs',
+    'MemcachedLayerEbsVolumeArgs',
+    'MysqlLayerEbsVolumeArgs',
+    'NodejsAppLayerEbsVolumeArgs',
+    'PhpAppLayerEbsVolumeArgs',
+    'RailsAppLayerEbsVolumeArgs',
+    'StackCustomCookbooksSourceArgs',
+    'StaticWebLayerEbsVolumeArgs',
+]
+
 @pulumi.input_type
 class ApplicationAppSourceArgs:
     type: pulumi.Input[str] = pulumi.input_property("type")

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['SecurityConfiguration']
+
 
 class SecurityConfiguration(pulumi.CustomResource):
     configuration: pulumi.Output[str] = pulumi.output_property("configuration")
@@ -28,7 +30,7 @@ class SecurityConfiguration(pulumi.CustomResource):
     prefix. Conflicts with `name`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, configuration=None, name=None, name_prefix=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, configuration: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage AWS EMR Security Configurations
 
@@ -94,7 +96,7 @@ class SecurityConfiguration(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, configuration=None, creation_date=None, name=None, name_prefix=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, configuration: Optional[pulumi.Input[str]] = None, creation_date: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None) -> 'SecurityConfiguration':
         """
         Get an existing SecurityConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

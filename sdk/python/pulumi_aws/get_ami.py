@@ -10,6 +10,12 @@ from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetAmiResult',
+    'AwaitableGetAmiResult',
+    'get_ami',
+]
+
 
 class GetAmiResult:
     """
@@ -256,7 +262,7 @@ class AwaitableGetAmiResult(GetAmiResult):
             virtualization_type=self.virtualization_type)
 
 
-def get_ami(executable_users=None, filters=None, most_recent=None, name_regex=None, owners=None, tags=None, opts=None):
+def get_ami(executable_users: Optional[List[str]] = None, filters: Optional[List[pulumi.InputType['GetAmiFilterArgs']]] = None, most_recent: Optional[bool] = None, name_regex: Optional[str] = None, owners: Optional[List[str]] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAmiResult:
     """
     Use this data source to get the ID of a registered AMI for use in other
     resources.
@@ -290,7 +296,7 @@ def get_ami(executable_users=None, filters=None, most_recent=None, name_regex=No
 
     :param List[str] executable_users: Limit search to users with *explicit* launch permission on
            the image. Valid items are the numeric account ID or `self`.
-    :param List['GetAmiFilterArgs'] filters: One or more name/value pairs to filter off of. There are
+    :param List[pulumi.InputType['GetAmiFilterArgs']] filters: One or more name/value pairs to filter off of. There are
            several valid keys, for a full reference, check out
            [describe-images in the AWS CLI reference][1].
     :param bool most_recent: If more than one result is returned, use the most

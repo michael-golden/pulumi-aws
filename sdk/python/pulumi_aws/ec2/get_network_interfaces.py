@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetNetworkInterfacesResult',
+    'AwaitableGetNetworkInterfacesResult',
+    'get_network_interfaces',
+]
+
 
 class GetNetworkInterfacesResult:
     """
@@ -49,7 +55,7 @@ class AwaitableGetNetworkInterfacesResult(GetNetworkInterfacesResult):
             tags=self.tags)
 
 
-def get_network_interfaces(filters=None, tags=None, opts=None):
+def get_network_interfaces(filters: Optional[List[pulumi.InputType['GetNetworkInterfacesFilterArgs']]] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkInterfacesResult:
     """
     ## Example Usage
 
@@ -90,7 +96,7 @@ def get_network_interfaces(filters=None, tags=None, opts=None):
     ```
 
 
-    :param List['GetNetworkInterfacesFilterArgs'] filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetNetworkInterfacesFilterArgs']] filters: Custom filter block as described below.
     :param Dict[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired network interfaces.
     """

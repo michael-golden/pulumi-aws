@@ -9,6 +9,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 from . import outputs
 
+__all__ = [
+    'GetJobQueueResult',
+    'AwaitableGetJobQueueResult',
+    'get_job_queue',
+]
+
 
 class GetJobQueueResult:
     """
@@ -84,7 +90,7 @@ class AwaitableGetJobQueueResult(GetJobQueueResult):
             status_reason=self.status_reason)
 
 
-def get_job_queue(name=None, opts=None):
+def get_job_queue(name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetJobQueueResult:
     """
     The Batch Job Queue data source allows access to details of a specific
     job queue within AWS Batch.

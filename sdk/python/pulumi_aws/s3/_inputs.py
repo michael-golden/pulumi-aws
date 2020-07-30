@@ -8,6 +8,50 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'AccessPointPublicAccessBlockConfigurationArgs',
+    'AccessPointVpcConfigurationArgs',
+    'AnalyticsConfigurationFilterArgs',
+    'AnalyticsConfigurationStorageClassAnalysisArgs',
+    'AnalyticsConfigurationStorageClassAnalysisDataExportArgs',
+    'AnalyticsConfigurationStorageClassAnalysisDataExportDestinationArgs',
+    'AnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDestinationArgs',
+    'BucketCorsRuleArgs',
+    'BucketGrantArgs',
+    'BucketLifecycleRuleArgs',
+    'BucketLifecycleRuleExpirationArgs',
+    'BucketLifecycleRuleNoncurrentVersionExpirationArgs',
+    'BucketLifecycleRuleNoncurrentVersionTransitionArgs',
+    'BucketLifecycleRuleTransitionArgs',
+    'BucketLoggingArgs',
+    'BucketMetricFilterArgs',
+    'BucketNotificationLambdaFunctionArgs',
+    'BucketNotificationQueueArgs',
+    'BucketNotificationTopicArgs',
+    'BucketObjectLockConfigurationArgs',
+    'BucketObjectLockConfigurationRuleArgs',
+    'BucketObjectLockConfigurationRuleDefaultRetentionArgs',
+    'BucketReplicationConfigurationArgs',
+    'BucketReplicationConfigurationRuleArgs',
+    'BucketReplicationConfigurationRuleDestinationArgs',
+    'BucketReplicationConfigurationRuleDestinationAccessControlTranslationArgs',
+    'BucketReplicationConfigurationRuleFilterArgs',
+    'BucketReplicationConfigurationRuleSourceSelectionCriteriaArgs',
+    'BucketReplicationConfigurationRuleSourceSelectionCriteriaSseKmsEncryptedObjectsArgs',
+    'BucketServerSideEncryptionConfigurationArgs',
+    'BucketServerSideEncryptionConfigurationRuleArgs',
+    'BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs',
+    'BucketVersioningArgs',
+    'BucketWebsiteArgs',
+    'InventoryDestinationArgs',
+    'InventoryDestinationBucketArgs',
+    'InventoryDestinationBucketEncryptionArgs',
+    'InventoryDestinationBucketEncryptionSseKmsArgs',
+    'InventoryDestinationBucketEncryptionSseS3Args',
+    'InventoryFilterArgs',
+    'InventoryScheduleArgs',
+]
+
 @pulumi.input_type
 class AccessPointPublicAccessBlockConfigurationArgs:
     block_public_acls: Optional[pulumi.Input[bool]] = pulumi.input_property("blockPublicAcls")

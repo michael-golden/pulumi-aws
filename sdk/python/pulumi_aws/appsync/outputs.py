@@ -8,6 +8,21 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'DataSourceDynamodbConfig',
+    'DataSourceElasticsearchConfig',
+    'DataSourceHttpConfig',
+    'DataSourceLambdaConfig',
+    'GraphQLApiAdditionalAuthenticationProvider',
+    'GraphQLApiAdditionalAuthenticationProviderOpenidConnectConfig',
+    'GraphQLApiAdditionalAuthenticationProviderUserPoolConfig',
+    'GraphQLApiLogConfig',
+    'GraphQLApiOpenidConnectConfig',
+    'GraphQLApiUserPoolConfig',
+    'ResolverCachingConfig',
+    'ResolverPipelineConfig',
+]
+
 @pulumi.output_type
 class DataSourceDynamodbConfig(dict):
     region: Optional[str] = pulumi.output_property("region")

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['GroupPolicyAttachment']
+
 
 class GroupPolicyAttachment(pulumi.CustomResource):
     group: pulumi.Output[str] = pulumi.output_property("group")
@@ -19,7 +21,7 @@ class GroupPolicyAttachment(pulumi.CustomResource):
     The ARN of the policy you want to apply
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, group=None, policy_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, group: Optional[pulumi.Input[str]] = None, policy_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Attaches a Managed IAM Policy to an IAM group
 
@@ -76,7 +78,7 @@ class GroupPolicyAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, group=None, policy_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, group: Optional[pulumi.Input[str]] = None, policy_arn: Optional[pulumi.Input[str]] = None) -> 'GroupPolicyAttachment':
         """
         Get an existing GroupPolicyAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

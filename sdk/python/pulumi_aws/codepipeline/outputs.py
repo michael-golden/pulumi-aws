@@ -8,6 +8,15 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'PipelineArtifactStore',
+    'PipelineArtifactStoreEncryptionKey',
+    'PipelineStage',
+    'PipelineStageAction',
+    'WebhookAuthenticationConfiguration',
+    'WebhookFilter',
+]
+
 @pulumi.output_type
 class PipelineArtifactStore(dict):
     encryption_key: Optional['outputs.PipelineArtifactStoreEncryptionKey'] = pulumi.output_property("encryptionKey")

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ReportDefinition']
+
 
 class ReportDefinition(pulumi.CustomResource):
     additional_artifacts: pulumi.Output[Optional[List[str]]] = pulumi.output_property("additionalArtifacts")
@@ -47,7 +49,7 @@ class ReportDefinition(pulumi.CustomResource):
     The frequency on which report data are measured and displayed.  Valid values are: HOURLY, DAILY.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, additional_artifacts=None, additional_schema_elements=None, compression=None, format=None, report_name=None, s3_bucket=None, s3_prefix=None, s3_region=None, time_unit=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, additional_artifacts: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, additional_schema_elements: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, compression: Optional[pulumi.Input[str]] = None, format: Optional[pulumi.Input[str]] = None, report_name: Optional[pulumi.Input[str]] = None, s3_bucket: Optional[pulumi.Input[str]] = None, s3_prefix: Optional[pulumi.Input[str]] = None, s3_region: Optional[pulumi.Input[str]] = None, time_unit: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages Cost and Usage Report Definitions.
 
@@ -134,7 +136,7 @@ class ReportDefinition(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, additional_artifacts=None, additional_schema_elements=None, compression=None, format=None, report_name=None, s3_bucket=None, s3_prefix=None, s3_region=None, time_unit=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, additional_artifacts: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, additional_schema_elements: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, compression: Optional[pulumi.Input[str]] = None, format: Optional[pulumi.Input[str]] = None, report_name: Optional[pulumi.Input[str]] = None, s3_bucket: Optional[pulumi.Input[str]] = None, s3_prefix: Optional[pulumi.Input[str]] = None, s3_region: Optional[pulumi.Input[str]] = None, time_unit: Optional[pulumi.Input[str]] = None) -> 'ReportDefinition':
         """
         Get an existing ReportDefinition resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetLocalDiskResult',
+    'AwaitableGetLocalDiskResult',
+    'get_local_disk',
+]
+
 
 class GetLocalDiskResult:
     """
@@ -51,7 +57,7 @@ class AwaitableGetLocalDiskResult(GetLocalDiskResult):
             id=self.id)
 
 
-def get_local_disk(disk_node=None, disk_path=None, gateway_arn=None, opts=None):
+def get_local_disk(disk_node: Optional[str] = None, disk_path: Optional[str] = None, gateway_arn: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLocalDiskResult:
     """
     Retrieve information about a Storage Gateway local disk. The disk identifier is useful for adding the disk as a cache or upload buffer to a gateway.
 

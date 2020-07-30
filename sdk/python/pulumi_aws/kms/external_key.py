@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ExternalKey']
+
 
 class ExternalKey(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -55,7 +57,7 @@ class ExternalKey(pulumi.CustomResource):
     Time at which the imported key material expires. When the key material expires, AWS KMS deletes the key material and the CMK becomes unusable. If not specified, key material does not expire. Valid values: [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`)
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, deletion_window_in_days=None, description=None, enabled=None, key_material_base64=None, policy=None, tags=None, valid_to=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, deletion_window_in_days: Optional[pulumi.Input[float]] = None, description: Optional[pulumi.Input[str]] = None, enabled: Optional[pulumi.Input[bool]] = None, key_material_base64: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, valid_to: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a KMS Customer Master Key that uses external key material. To instead manage a KMS Customer Master Key where AWS automatically generates and potentially rotates key material, see the `kms.Key` resource.
 
@@ -115,7 +117,7 @@ class ExternalKey(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, deletion_window_in_days=None, description=None, enabled=None, expiration_model=None, key_material_base64=None, key_state=None, key_usage=None, policy=None, tags=None, valid_to=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, deletion_window_in_days: Optional[pulumi.Input[float]] = None, description: Optional[pulumi.Input[str]] = None, enabled: Optional[pulumi.Input[bool]] = None, expiration_model: Optional[pulumi.Input[str]] = None, key_material_base64: Optional[pulumi.Input[str]] = None, key_state: Optional[pulumi.Input[str]] = None, key_usage: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, valid_to: Optional[pulumi.Input[str]] = None) -> 'ExternalKey':
         """
         Get an existing ExternalKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

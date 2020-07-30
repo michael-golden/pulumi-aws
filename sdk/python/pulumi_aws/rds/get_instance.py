@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetInstanceResult',
+    'AwaitableGetInstanceResult',
+    'get_instance',
+]
+
 
 class GetInstanceResult:
     """
@@ -299,7 +305,7 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             vpc_security_groups=self.vpc_security_groups)
 
 
-def get_instance(db_instance_identifier=None, tags=None, opts=None):
+def get_instance(db_instance_identifier: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceResult:
     """
     Use this data source to get information about an RDS instance
 

@@ -8,6 +8,29 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'AssociationOutputLocationArgs',
+    'AssociationTargetArgs',
+    'DocumentAttachmentsSourceArgs',
+    'DocumentParameterArgs',
+    'MaintenanceWindowTargetTargetArgs',
+    'MaintenanceWindowTaskLoggingInfoArgs',
+    'MaintenanceWindowTaskTargetArgs',
+    'MaintenanceWindowTaskTaskInvocationParametersArgs',
+    'MaintenanceWindowTaskTaskInvocationParametersAutomationParametersArgs',
+    'MaintenanceWindowTaskTaskInvocationParametersAutomationParametersParameterArgs',
+    'MaintenanceWindowTaskTaskInvocationParametersLambdaParametersArgs',
+    'MaintenanceWindowTaskTaskInvocationParametersRunCommandParametersArgs',
+    'MaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfigArgs',
+    'MaintenanceWindowTaskTaskInvocationParametersRunCommandParametersParameterArgs',
+    'MaintenanceWindowTaskTaskInvocationParametersStepFunctionsParametersArgs',
+    'MaintenanceWindowTaskTaskParameterArgs',
+    'PatchBaselineApprovalRuleArgs',
+    'PatchBaselineApprovalRulePatchFilterArgs',
+    'PatchBaselineGlobalFilterArgs',
+    'ResourceDataSyncS3DestinationArgs',
+]
+
 @pulumi.input_type
 class AssociationOutputLocationArgs:
     s3_bucket_name: pulumi.Input[str] = pulumi.input_property("s3BucketName")

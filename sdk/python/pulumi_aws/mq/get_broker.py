@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetBrokerResult',
+    'AwaitableGetBrokerResult',
+    'get_broker',
+]
+
 
 class GetBrokerResult:
     """
@@ -106,7 +112,7 @@ class AwaitableGetBrokerResult(GetBrokerResult):
             users=self.users)
 
 
-def get_broker(broker_id=None, broker_name=None, logs=None, tags=None, opts=None):
+def get_broker(broker_id: Optional[str] = None, broker_name: Optional[str] = None, logs: Optional[pulumi.InputType['GetBrokerLogsArgs']] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBrokerResult:
     """
     Provides information about a MQ Broker.
 

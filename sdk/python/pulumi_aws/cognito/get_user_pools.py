@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetUserPoolsResult',
+    'AwaitableGetUserPoolsResult',
+    'get_user_pools',
+]
+
 
 class GetUserPoolsResult:
     """
@@ -47,7 +53,7 @@ class AwaitableGetUserPoolsResult(GetUserPoolsResult):
             name=self.name)
 
 
-def get_user_pools(name=None, opts=None):
+def get_user_pools(name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserPoolsResult:
     """
     Use this data source to get a list of cognito user pools.
 

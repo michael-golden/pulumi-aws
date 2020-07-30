@@ -8,6 +8,38 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'CatalogTablePartitionKey',
+    'CatalogTableStorageDescriptor',
+    'CatalogTableStorageDescriptorColumn',
+    'CatalogTableStorageDescriptorSerDeInfo',
+    'CatalogTableStorageDescriptorSkewedInfo',
+    'CatalogTableStorageDescriptorSortColumn',
+    'ClassifierCsvClassifier',
+    'ClassifierGrokClassifier',
+    'ClassifierJsonClassifier',
+    'ClassifierXmlClassifier',
+    'ConnectionPhysicalConnectionRequirements',
+    'CrawlerCatalogTarget',
+    'CrawlerDynamodbTarget',
+    'CrawlerJdbcTarget',
+    'CrawlerS3Target',
+    'CrawlerSchemaChangePolicy',
+    'JobCommand',
+    'JobExecutionProperty',
+    'JobNotificationProperty',
+    'SecurityConfigurationEncryptionConfiguration',
+    'SecurityConfigurationEncryptionConfigurationCloudwatchEncryption',
+    'SecurityConfigurationEncryptionConfigurationJobBookmarksEncryption',
+    'SecurityConfigurationEncryptionConfigurationS3Encryption',
+    'TriggerAction',
+    'TriggerPredicate',
+    'TriggerPredicateCondition',
+    'GetScriptDagEdge',
+    'GetScriptDagNode',
+    'GetScriptDagNodeArg',
+]
+
 @pulumi.output_type
 class CatalogTablePartitionKey(dict):
     comment: Optional[str] = pulumi.output_property("comment")

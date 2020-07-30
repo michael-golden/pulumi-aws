@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['RestApi']
+
 
 class RestApi(pulumi.CustomResource):
     api_key_source: pulumi.Output[Optional[str]] = pulumi.output_property("apiKeySource")
@@ -67,7 +69,7 @@ class RestApi(pulumi.CustomResource):
     Key-value map of resource tags
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_key_source=None, binary_media_types=None, body=None, description=None, endpoint_configuration=None, minimum_compression_size=None, name=None, policy=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_key_source: Optional[pulumi.Input[str]] = None, binary_media_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, body: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, endpoint_configuration: Optional[pulumi.Input[pulumi.InputType['RestApiEndpointConfigurationArgs']]] = None, minimum_compression_size: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an API Gateway REST API.
 
@@ -99,7 +101,7 @@ class RestApi(pulumi.CustomResource):
         :param pulumi.Input[List[pulumi.Input[str]]] binary_media_types: The list of binary media types supported by the RestApi. By default, the RestApi supports only UTF-8-encoded text payloads.
         :param pulumi.Input[str] body: An OpenAPI specification that defines the set of routes and integrations to create as part of the REST API.
         :param pulumi.Input[str] description: The description of the REST API
-        :param pulumi.Input['RestApiEndpointConfigurationArgs'] endpoint_configuration: Nested argument defining API endpoint configuration including endpoint type. Defined below.
+        :param pulumi.Input[pulumi.InputType['RestApiEndpointConfigurationArgs']] endpoint_configuration: Nested argument defining API endpoint configuration including endpoint type. Defined below.
         :param pulumi.Input[float] minimum_compression_size: Minimum response size to compress for the REST API. Integer between -1 and 10485760 (10MB). Setting a value greater than -1 will enable compression, -1 disables compression (default).
         :param pulumi.Input[str] name: The name of the REST API
         :param pulumi.Input[str] policy: JSON formatted policy document that controls access to the API Gateway.
@@ -142,7 +144,7 @@ class RestApi(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, api_key_source=None, arn=None, binary_media_types=None, body=None, created_date=None, description=None, endpoint_configuration=None, execution_arn=None, minimum_compression_size=None, name=None, policy=None, root_resource_id=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, api_key_source: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, binary_media_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, body: Optional[pulumi.Input[str]] = None, created_date: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, endpoint_configuration: Optional[pulumi.Input[pulumi.InputType['RestApiEndpointConfigurationArgs']]] = None, execution_arn: Optional[pulumi.Input[str]] = None, minimum_compression_size: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, root_resource_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'RestApi':
         """
         Get an existing RestApi resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -156,7 +158,7 @@ class RestApi(pulumi.CustomResource):
         :param pulumi.Input[str] body: An OpenAPI specification that defines the set of routes and integrations to create as part of the REST API.
         :param pulumi.Input[str] created_date: The creation date of the REST API
         :param pulumi.Input[str] description: The description of the REST API
-        :param pulumi.Input['RestApiEndpointConfigurationArgs'] endpoint_configuration: Nested argument defining API endpoint configuration including endpoint type. Defined below.
+        :param pulumi.Input[pulumi.InputType['RestApiEndpointConfigurationArgs']] endpoint_configuration: Nested argument defining API endpoint configuration including endpoint type. Defined below.
         :param pulumi.Input[str] execution_arn: The execution ARN part to be used in `lambda_permission`'s `source_arn`
                when allowing API Gateway to invoke a Lambda function,
                e.g. `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j`, which can be concatenated with allowed stage, method and resource path.

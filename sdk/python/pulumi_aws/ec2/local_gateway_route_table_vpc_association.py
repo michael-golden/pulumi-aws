@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['LocalGatewayRouteTableVpcAssociation']
+
 
 class LocalGatewayRouteTableVpcAssociation(pulumi.CustomResource):
     local_gateway_id: pulumi.Output[str] = pulumi.output_property("localGatewayId")
@@ -24,7 +26,7 @@ class LocalGatewayRouteTableVpcAssociation(pulumi.CustomResource):
     Identifier of EC2 VPC.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, local_gateway_route_table_id=None, tags=None, vpc_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, local_gateway_route_table_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an EC2 Local Gateway Route Table VPC Association. More information can be found in the [Outposts User Guide](https://docs.aws.amazon.com/outposts/latest/userguide/outposts-local-gateways.html#vpc-associations).
 
@@ -79,7 +81,7 @@ class LocalGatewayRouteTableVpcAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, local_gateway_id=None, local_gateway_route_table_id=None, tags=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, local_gateway_id: Optional[pulumi.Input[str]] = None, local_gateway_route_table_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'LocalGatewayRouteTableVpcAssociation':
         """
         Get an existing LocalGatewayRouteTableVpcAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

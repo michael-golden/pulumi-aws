@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetConfigurationResult',
+    'AwaitableGetConfigurationResult',
+    'get_configuration',
+]
+
 
 class GetConfigurationResult:
     """
@@ -71,7 +77,7 @@ class AwaitableGetConfigurationResult(GetConfigurationResult):
             server_properties=self.server_properties)
 
 
-def get_configuration(name=None, opts=None):
+def get_configuration(name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetConfigurationResult:
     """
     Get information on an Amazon MSK Configuration.
 

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Attachment']
+
 
 class Attachment(pulumi.CustomResource):
     alb_target_group_arn: pulumi.Output[Optional[str]] = pulumi.output_property("albTargetGroupArn")
@@ -23,7 +25,7 @@ class Attachment(pulumi.CustomResource):
     The name of the ELB.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, alb_target_group_arn=None, autoscaling_group_name=None, elb=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, alb_target_group_arn: Optional[pulumi.Input[str]] = None, autoscaling_group_name: Optional[pulumi.Input[str]] = None, elb: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AutoScaling Attachment resource.
 
@@ -91,7 +93,7 @@ class Attachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, alb_target_group_arn=None, autoscaling_group_name=None, elb=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, alb_target_group_arn: Optional[pulumi.Input[str]] = None, autoscaling_group_name: Optional[pulumi.Input[str]] = None, elb: Optional[pulumi.Input[str]] = None) -> 'Attachment':
         """
         Get an existing Attachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

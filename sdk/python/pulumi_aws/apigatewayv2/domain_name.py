@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['DomainName']
+
 
 class DomainName(pulumi.CustomResource):
     api_mapping_selection_expression: pulumi.Output[str] = pulumi.output_property("apiMappingSelectionExpression")
@@ -33,7 +35,7 @@ class DomainName(pulumi.CustomResource):
     A map of tags to assign to the domain name.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, domain_name=None, domain_name_configuration=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, domain_name: Optional[pulumi.Input[str]] = None, domain_name_configuration: Optional[pulumi.Input[pulumi.InputType['DomainNameDomainNameConfigurationArgs']]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an Amazon API Gateway Version 2 domain name.
         More information can be found in the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html).
@@ -60,7 +62,7 @@ class DomainName(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] domain_name: The domain name.
-        :param pulumi.Input['DomainNameDomainNameConfigurationArgs'] domain_name_configuration: The domain name configuration.
+        :param pulumi.Input[pulumi.InputType['DomainNameDomainNameConfigurationArgs']] domain_name_configuration: The domain name configuration.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the domain name.
         """
         if __name__ is not None:
@@ -96,7 +98,7 @@ class DomainName(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, api_mapping_selection_expression=None, arn=None, domain_name=None, domain_name_configuration=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, api_mapping_selection_expression: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, domain_name: Optional[pulumi.Input[str]] = None, domain_name_configuration: Optional[pulumi.Input[pulumi.InputType['DomainNameDomainNameConfigurationArgs']]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'DomainName':
         """
         Get an existing DomainName resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -107,7 +109,7 @@ class DomainName(pulumi.CustomResource):
         :param pulumi.Input[str] api_mapping_selection_expression: The [API mapping selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-mapping-selection-expressions) for the domain name.
         :param pulumi.Input[str] arn: The ARN of the domain name.
         :param pulumi.Input[str] domain_name: The domain name.
-        :param pulumi.Input['DomainNameDomainNameConfigurationArgs'] domain_name_configuration: The domain name configuration.
+        :param pulumi.Input[pulumi.InputType['DomainNameDomainNameConfigurationArgs']] domain_name_configuration: The domain name configuration.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the domain name.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['MetricAlarm']
+
 
 class MetricAlarm(pulumi.CustomResource):
     actions_enabled: pulumi.Output[Optional[bool]] = pulumi.output_property("actionsEnabled")
@@ -113,7 +115,7 @@ class MetricAlarm(pulumi.CustomResource):
     The unit for this metric.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, actions_enabled=None, alarm_actions=None, alarm_description=None, comparison_operator=None, datapoints_to_alarm=None, dimensions=None, evaluate_low_sample_count_percentiles=None, evaluation_periods=None, extended_statistic=None, insufficient_data_actions=None, metric_name=None, metric_queries=None, name=None, namespace=None, ok_actions=None, period=None, statistic=None, tags=None, threshold=None, threshold_metric_id=None, treat_missing_data=None, unit=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, actions_enabled: Optional[pulumi.Input[bool]] = None, alarm_actions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, alarm_description: Optional[pulumi.Input[str]] = None, comparison_operator: Optional[pulumi.Input[str]] = None, datapoints_to_alarm: Optional[pulumi.Input[float]] = None, dimensions: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, evaluate_low_sample_count_percentiles: Optional[pulumi.Input[str]] = None, evaluation_periods: Optional[pulumi.Input[float]] = None, extended_statistic: Optional[pulumi.Input[str]] = None, insufficient_data_actions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, metric_name: Optional[pulumi.Input[str]] = None, metric_queries: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['MetricAlarmMetricQueryArgs']]]]] = None, name: Optional[pulumi.Input[str]] = None, namespace: Optional[pulumi.Input[str]] = None, ok_actions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, period: Optional[pulumi.Input[float]] = None, statistic: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, threshold: Optional[pulumi.Input[float]] = None, threshold_metric_id: Optional[pulumi.Input[str]] = None, treat_missing_data: Optional[pulumi.Input[str]] = None, unit: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CloudWatch Metric Alarm resource.
 
@@ -288,7 +290,7 @@ class MetricAlarm(pulumi.CustomResource):
         :param pulumi.Input[List[pulumi.Input[str]]] insufficient_data_actions: The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Name (ARN).
         :param pulumi.Input[str] metric_name: The name for this metric.
                See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-        :param pulumi.Input[List[pulumi.Input['MetricAlarmMetricQueryArgs']]] metric_queries: Enables you to create an alarm based on a metric math expression. You may specify at most 20.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['MetricAlarmMetricQueryArgs']]]] metric_queries: Enables you to create an alarm based on a metric math expression. You may specify at most 20.
         :param pulumi.Input[str] name: The descriptive name for the alarm. This name must be unique within the user's AWS account
         :param pulumi.Input[str] namespace: The namespace for this metric. See docs for the [list of namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/aws-namespaces.html).
                See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
@@ -353,7 +355,7 @@ class MetricAlarm(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, actions_enabled=None, alarm_actions=None, alarm_description=None, arn=None, comparison_operator=None, datapoints_to_alarm=None, dimensions=None, evaluate_low_sample_count_percentiles=None, evaluation_periods=None, extended_statistic=None, insufficient_data_actions=None, metric_name=None, metric_queries=None, name=None, namespace=None, ok_actions=None, period=None, statistic=None, tags=None, threshold=None, threshold_metric_id=None, treat_missing_data=None, unit=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, actions_enabled: Optional[pulumi.Input[bool]] = None, alarm_actions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, alarm_description: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, comparison_operator: Optional[pulumi.Input[str]] = None, datapoints_to_alarm: Optional[pulumi.Input[float]] = None, dimensions: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, evaluate_low_sample_count_percentiles: Optional[pulumi.Input[str]] = None, evaluation_periods: Optional[pulumi.Input[float]] = None, extended_statistic: Optional[pulumi.Input[str]] = None, insufficient_data_actions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, metric_name: Optional[pulumi.Input[str]] = None, metric_queries: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['MetricAlarmMetricQueryArgs']]]]] = None, name: Optional[pulumi.Input[str]] = None, namespace: Optional[pulumi.Input[str]] = None, ok_actions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, period: Optional[pulumi.Input[float]] = None, statistic: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, threshold: Optional[pulumi.Input[float]] = None, threshold_metric_id: Optional[pulumi.Input[str]] = None, treat_missing_data: Optional[pulumi.Input[str]] = None, unit: Optional[pulumi.Input[str]] = None) -> 'MetricAlarm':
         """
         Get an existing MetricAlarm resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -379,7 +381,7 @@ class MetricAlarm(pulumi.CustomResource):
         :param pulumi.Input[List[pulumi.Input[str]]] insufficient_data_actions: The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Name (ARN).
         :param pulumi.Input[str] metric_name: The name for this metric.
                See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-        :param pulumi.Input[List[pulumi.Input['MetricAlarmMetricQueryArgs']]] metric_queries: Enables you to create an alarm based on a metric math expression. You may specify at most 20.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['MetricAlarmMetricQueryArgs']]]] metric_queries: Enables you to create an alarm based on a metric math expression. You may specify at most 20.
         :param pulumi.Input[str] name: The descriptive name for the alarm. This name must be unique within the user's AWS account
         :param pulumi.Input[str] namespace: The namespace for this metric. See docs for the [list of namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/aws-namespaces.html).
                See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).

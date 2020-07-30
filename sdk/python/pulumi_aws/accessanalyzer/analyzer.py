@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Analyzer']
+
 
 class Analyzer(pulumi.CustomResource):
     analyzer_name: pulumi.Output[str] = pulumi.output_property("analyzerName")
@@ -24,7 +26,7 @@ class Analyzer(pulumi.CustomResource):
     Type of Analyzer. Valid value is currently only `ACCOUNT`. Defaults to `ACCOUNT`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, analyzer_name=None, tags=None, type=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, analyzer_name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, type: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an Access Analyzer Analyzer. More information can be found in the [Access Analyzer User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html).
 
@@ -73,7 +75,7 @@ class Analyzer(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, analyzer_name=None, arn=None, tags=None, type=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, analyzer_name: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, type: Optional[pulumi.Input[str]] = None) -> 'Analyzer':
         """
         Get an existing Analyzer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

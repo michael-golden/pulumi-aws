@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Authorizer']
+
 
 class Authorizer(pulumi.CustomResource):
     api_id: pulumi.Output[str] = pulumi.output_property("apiId")
@@ -49,7 +51,7 @@ class Authorizer(pulumi.CustomResource):
     The name of the authorizer.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id=None, authorizer_credentials_arn=None, authorizer_type=None, authorizer_uri=None, identity_sources=None, jwt_configuration=None, name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, authorizer_credentials_arn: Optional[pulumi.Input[str]] = None, authorizer_type: Optional[pulumi.Input[str]] = None, authorizer_uri: Optional[pulumi.Input[str]] = None, identity_sources: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, jwt_configuration: Optional[pulumi.Input[pulumi.InputType['AuthorizerJwtConfigurationArgs']]] = None, name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an Amazon API Gateway Version 2 authorizer.
         More information can be found in the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html).
@@ -97,7 +99,7 @@ class Authorizer(pulumi.CustomResource):
         :param pulumi.Input[List[pulumi.Input[str]]] identity_sources: The identity sources for which authorization is requested.
                For `REQUEST` authorizers the value is a list of one or more mapping expressions of the specified request parameters.
                For `JWT` authorizers the single entry specifies where to extract the JSON Web Token (JWT) from inbound requests.
-        :param pulumi.Input['AuthorizerJwtConfigurationArgs'] jwt_configuration: The configuration of a JWT authorizer. Required for the `JWT` authorizer type.
+        :param pulumi.Input[pulumi.InputType['AuthorizerJwtConfigurationArgs']] jwt_configuration: The configuration of a JWT authorizer. Required for the `JWT` authorizer type.
                Supported only for HTTP APIs.
         :param pulumi.Input[str] name: The name of the authorizer.
         """
@@ -138,7 +140,7 @@ class Authorizer(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, api_id=None, authorizer_credentials_arn=None, authorizer_type=None, authorizer_uri=None, identity_sources=None, jwt_configuration=None, name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, authorizer_credentials_arn: Optional[pulumi.Input[str]] = None, authorizer_type: Optional[pulumi.Input[str]] = None, authorizer_uri: Optional[pulumi.Input[str]] = None, identity_sources: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, jwt_configuration: Optional[pulumi.Input[pulumi.InputType['AuthorizerJwtConfigurationArgs']]] = None, name: Optional[pulumi.Input[str]] = None) -> 'Authorizer':
         """
         Get an existing Authorizer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -158,7 +160,7 @@ class Authorizer(pulumi.CustomResource):
         :param pulumi.Input[List[pulumi.Input[str]]] identity_sources: The identity sources for which authorization is requested.
                For `REQUEST` authorizers the value is a list of one or more mapping expressions of the specified request parameters.
                For `JWT` authorizers the single entry specifies where to extract the JSON Web Token (JWT) from inbound requests.
-        :param pulumi.Input['AuthorizerJwtConfigurationArgs'] jwt_configuration: The configuration of a JWT authorizer. Required for the `JWT` authorizer type.
+        :param pulumi.Input[pulumi.InputType['AuthorizerJwtConfigurationArgs']] jwt_configuration: The configuration of a JWT authorizer. Required for the `JWT` authorizer type.
                Supported only for HTTP APIs.
         :param pulumi.Input[str] name: The name of the authorizer.
         """

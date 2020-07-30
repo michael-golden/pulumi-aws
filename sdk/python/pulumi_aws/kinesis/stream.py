@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Stream']
+
 
 class Stream(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -48,7 +50,7 @@ class Stream(pulumi.CustomResource):
     A map of tags to assign to the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, arn=None, encryption_type=None, enforce_consumer_deletion=None, kms_key_id=None, name=None, retention_period=None, shard_count=None, shard_level_metrics=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, encryption_type: Optional[pulumi.Input[str]] = None, enforce_consumer_deletion: Optional[pulumi.Input[bool]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, retention_period: Optional[pulumi.Input[float]] = None, shard_count: Optional[pulumi.Input[float]] = None, shard_level_metrics: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Kinesis Stream resource. Amazon Kinesis is a managed service that
         scales elastically for real-time processing of streaming big data.
@@ -121,7 +123,7 @@ class Stream(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, encryption_type=None, enforce_consumer_deletion=None, kms_key_id=None, name=None, retention_period=None, shard_count=None, shard_level_metrics=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, encryption_type: Optional[pulumi.Input[str]] = None, enforce_consumer_deletion: Optional[pulumi.Input[bool]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, retention_period: Optional[pulumi.Input[float]] = None, shard_count: Optional[pulumi.Input[float]] = None, shard_level_metrics: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Stream':
         """
         Get an existing Stream resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

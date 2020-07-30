@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['QueuePolicy']
+
 
 class QueuePolicy(pulumi.CustomResource):
     policy: pulumi.Output[str] = pulumi.output_property("policy")
@@ -19,7 +21,7 @@ class QueuePolicy(pulumi.CustomResource):
     The URL of the SQS Queue to which to attach the policy
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, policy=None, queue_url=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, policy: Optional[pulumi.Input[str]] = None, queue_url: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Allows you to set a policy of an SQS Queue
         while referencing ARN of the queue within the policy.
@@ -90,7 +92,7 @@ class QueuePolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, policy=None, queue_url=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, policy: Optional[pulumi.Input[str]] = None, queue_url: Optional[pulumi.Input[str]] = None) -> 'QueuePolicy':
         """
         Get an existing QueuePolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

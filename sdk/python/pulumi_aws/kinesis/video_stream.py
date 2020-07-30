@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['VideoStream']
+
 
 class VideoStream(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -48,7 +50,7 @@ class VideoStream(pulumi.CustomResource):
     The version of the stream.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, data_retention_in_hours=None, device_name=None, kms_key_id=None, media_type=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, data_retention_in_hours: Optional[pulumi.Input[float]] = None, device_name: Optional[pulumi.Input[str]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, media_type: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Kinesis Video Stream resource. Amazon Kinesis Video Streams makes it easy to securely stream video from connected devices to AWS for analytics, machine learning (ML), playback, and other processing.
 
@@ -112,7 +114,7 @@ class VideoStream(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, creation_time=None, data_retention_in_hours=None, device_name=None, kms_key_id=None, media_type=None, name=None, tags=None, version=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, creation_time: Optional[pulumi.Input[str]] = None, data_retention_in_hours: Optional[pulumi.Input[float]] = None, device_name: Optional[pulumi.Input[str]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, media_type: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, version: Optional[pulumi.Input[str]] = None) -> 'VideoStream':
         """
         Get an existing VideoStream resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

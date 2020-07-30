@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Cluster']
+
 
 class Cluster(pulumi.CustomResource):
     apply_immediately: pulumi.Output[bool] = pulumi.output_property("applyImmediately")
@@ -142,7 +144,7 @@ class Cluster(pulumi.CustomResource):
     A map of tags to assign to the resource
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, apply_immediately=None, availability_zone=None, az_mode=None, cluster_id=None, engine=None, engine_version=None, maintenance_window=None, node_type=None, notification_topic_arn=None, num_cache_nodes=None, parameter_group_name=None, port=None, preferred_availability_zones=None, replication_group_id=None, security_group_ids=None, security_group_names=None, snapshot_arns=None, snapshot_name=None, snapshot_retention_limit=None, snapshot_window=None, subnet_group_name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, apply_immediately: Optional[pulumi.Input[bool]] = None, availability_zone: Optional[pulumi.Input[str]] = None, az_mode: Optional[pulumi.Input[str]] = None, cluster_id: Optional[pulumi.Input[str]] = None, engine: Optional[pulumi.Input[str]] = None, engine_version: Optional[pulumi.Input[str]] = None, maintenance_window: Optional[pulumi.Input[str]] = None, node_type: Optional[pulumi.Input[str]] = None, notification_topic_arn: Optional[pulumi.Input[str]] = None, num_cache_nodes: Optional[pulumi.Input[float]] = None, parameter_group_name: Optional[pulumi.Input[str]] = None, port: Optional[pulumi.Input[float]] = None, preferred_availability_zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, replication_group_id: Optional[pulumi.Input[str]] = None, security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, security_group_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, snapshot_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, snapshot_name: Optional[pulumi.Input[str]] = None, snapshot_retention_limit: Optional[pulumi.Input[float]] = None, snapshot_window: Optional[pulumi.Input[str]] = None, subnet_group_name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an ElastiCache Cluster resource, which manages a Memcached cluster or Redis instance.
         For working with Redis (Cluster Mode Enabled) replication groups, see the
@@ -296,7 +298,7 @@ class Cluster(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, apply_immediately=None, arn=None, availability_zone=None, az_mode=None, cache_nodes=None, cluster_address=None, cluster_id=None, configuration_endpoint=None, engine=None, engine_version=None, maintenance_window=None, node_type=None, notification_topic_arn=None, num_cache_nodes=None, parameter_group_name=None, port=None, preferred_availability_zones=None, replication_group_id=None, security_group_ids=None, security_group_names=None, snapshot_arns=None, snapshot_name=None, snapshot_retention_limit=None, snapshot_window=None, subnet_group_name=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, apply_immediately: Optional[pulumi.Input[bool]] = None, arn: Optional[pulumi.Input[str]] = None, availability_zone: Optional[pulumi.Input[str]] = None, az_mode: Optional[pulumi.Input[str]] = None, cache_nodes: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ClusterCacheNodeArgs']]]]] = None, cluster_address: Optional[pulumi.Input[str]] = None, cluster_id: Optional[pulumi.Input[str]] = None, configuration_endpoint: Optional[pulumi.Input[str]] = None, engine: Optional[pulumi.Input[str]] = None, engine_version: Optional[pulumi.Input[str]] = None, maintenance_window: Optional[pulumi.Input[str]] = None, node_type: Optional[pulumi.Input[str]] = None, notification_topic_arn: Optional[pulumi.Input[str]] = None, num_cache_nodes: Optional[pulumi.Input[float]] = None, parameter_group_name: Optional[pulumi.Input[str]] = None, port: Optional[pulumi.Input[float]] = None, preferred_availability_zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, replication_group_id: Optional[pulumi.Input[str]] = None, security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, security_group_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, snapshot_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, snapshot_name: Optional[pulumi.Input[str]] = None, snapshot_retention_limit: Optional[pulumi.Input[float]] = None, snapshot_window: Optional[pulumi.Input[str]] = None, subnet_group_name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -310,7 +312,7 @@ class Cluster(pulumi.CustomResource):
                (Available since v0.6.0)
         :param pulumi.Input[str] availability_zone: The Availability Zone for the cache cluster. If you want to create cache nodes in multi-az, use `preferred_availability_zones` instead. Default: System chosen Availability Zone.
         :param pulumi.Input[str] az_mode: Specifies whether the nodes in this Memcached node group are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region. Valid values for this parameter are `single-az` or `cross-az`, default is `single-az`. If you want to choose `cross-az`, `num_cache_nodes` must be greater than `1`
-        :param pulumi.Input[List[pulumi.Input['ClusterCacheNodeArgs']]] cache_nodes: List of node objects including `id`, `address`, `port` and `availability_zone`.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ClusterCacheNodeArgs']]]] cache_nodes: List of node objects including `id`, `address`, `port` and `availability_zone`.
                Referenceable e.g. as `${aws_elasticache_cluster.bar.cache_nodes.0.address}`
         :param pulumi.Input[str] cluster_address: (Memcached only) The DNS name of the cache cluster without the port appended.
         :param pulumi.Input[str] cluster_id: Group identifier. ElastiCache converts

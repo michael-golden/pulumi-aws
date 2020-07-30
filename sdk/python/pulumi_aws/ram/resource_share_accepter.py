@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ResourceShareAccepter']
+
 
 class ResourceShareAccepter(pulumi.CustomResource):
     invitation_arn: pulumi.Output[str] = pulumi.output_property("invitationArn")
@@ -43,7 +45,7 @@ class ResourceShareAccepter(pulumi.CustomResource):
     The status of the resource share (ACTIVE, PENDING, FAILED, DELETING, DELETED).
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, share_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, share_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manage accepting a Resource Access Manager (RAM) Resource Share invitation. From a _receiver_ AWS account, accept an invitation to share resources that were shared by a _sender_ AWS account. To create a resource share in the _sender_, see the `ram.ResourceShare` resource.
 
@@ -111,7 +113,7 @@ class ResourceShareAccepter(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, invitation_arn=None, receiver_account_id=None, resources=None, sender_account_id=None, share_arn=None, share_id=None, share_name=None, status=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, invitation_arn: Optional[pulumi.Input[str]] = None, receiver_account_id: Optional[pulumi.Input[str]] = None, resources: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, sender_account_id: Optional[pulumi.Input[str]] = None, share_arn: Optional[pulumi.Input[str]] = None, share_id: Optional[pulumi.Input[str]] = None, share_name: Optional[pulumi.Input[str]] = None, status: Optional[pulumi.Input[str]] = None) -> 'ResourceShareAccepter':
         """
         Get an existing ResourceShareAccepter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

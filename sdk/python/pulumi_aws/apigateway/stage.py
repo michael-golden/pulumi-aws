@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Stage']
+
 
 class Stage(pulumi.CustomResource):
     access_log_settings: pulumi.Output[Optional['outputs.StageAccessLogSettings']] = pulumi.output_property("accessLogSettings")
@@ -77,7 +79,7 @@ class Stage(pulumi.CustomResource):
     Whether active tracing with X-ray is enabled. Defaults to `false`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, access_log_settings=None, cache_cluster_enabled=None, cache_cluster_size=None, client_certificate_id=None, deployment=None, description=None, documentation_version=None, rest_api=None, stage_name=None, tags=None, variables=None, xray_tracing_enabled=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, access_log_settings: Optional[pulumi.Input[pulumi.InputType['StageAccessLogSettingsArgs']]] = None, cache_cluster_enabled: Optional[pulumi.Input[bool]] = None, cache_cluster_size: Optional[pulumi.Input[str]] = None, client_certificate_id: Optional[pulumi.Input[str]] = None, deployment: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, documentation_version: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, stage_name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, variables: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, xray_tracing_enabled: Optional[pulumi.Input[bool]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an API Gateway Stage.
 
@@ -141,7 +143,7 @@ class Stage(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['StageAccessLogSettingsArgs'] access_log_settings: Enables access logs for the API stage. Detailed below.
+        :param pulumi.Input[pulumi.InputType['StageAccessLogSettingsArgs']] access_log_settings: Enables access logs for the API stage. Detailed below.
         :param pulumi.Input[bool] cache_cluster_enabled: Specifies whether a cache cluster is enabled for the stage
         :param pulumi.Input[str] cache_cluster_size: The size of the cache cluster for the stage, if enabled.
                Allowed values include `0.5`, `1.6`, `6.1`, `13.5`, `28.4`, `58.2`, `118` and `237`.
@@ -200,7 +202,7 @@ class Stage(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_log_settings=None, arn=None, cache_cluster_enabled=None, cache_cluster_size=None, client_certificate_id=None, deployment=None, description=None, documentation_version=None, execution_arn=None, invoke_url=None, rest_api=None, stage_name=None, tags=None, variables=None, xray_tracing_enabled=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, access_log_settings: Optional[pulumi.Input[pulumi.InputType['StageAccessLogSettingsArgs']]] = None, arn: Optional[pulumi.Input[str]] = None, cache_cluster_enabled: Optional[pulumi.Input[bool]] = None, cache_cluster_size: Optional[pulumi.Input[str]] = None, client_certificate_id: Optional[pulumi.Input[str]] = None, deployment: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, documentation_version: Optional[pulumi.Input[str]] = None, execution_arn: Optional[pulumi.Input[str]] = None, invoke_url: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, stage_name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, variables: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, xray_tracing_enabled: Optional[pulumi.Input[bool]] = None) -> 'Stage':
         """
         Get an existing Stage resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -208,7 +210,7 @@ class Stage(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['StageAccessLogSettingsArgs'] access_log_settings: Enables access logs for the API stage. Detailed below.
+        :param pulumi.Input[pulumi.InputType['StageAccessLogSettingsArgs']] access_log_settings: Enables access logs for the API stage. Detailed below.
         :param pulumi.Input[str] arn: Amazon Resource Name (ARN)
         :param pulumi.Input[bool] cache_cluster_enabled: Specifies whether a cache cluster is enabled for the stage
         :param pulumi.Input[str] cache_cluster_size: The size of the cache cluster for the stage, if enabled.

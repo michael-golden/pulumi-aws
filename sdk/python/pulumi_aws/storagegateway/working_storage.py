@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['WorkingStorage']
+
 
 class WorkingStorage(pulumi.CustomResource):
     disk_id: pulumi.Output[str] = pulumi.output_property("diskId")
@@ -19,7 +21,7 @@ class WorkingStorage(pulumi.CustomResource):
     The Amazon Resource Name (ARN) of the gateway.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, disk_id=None, gateway_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, disk_id: Optional[pulumi.Input[str]] = None, gateway_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an AWS Storage Gateway working storage.
 
@@ -71,7 +73,7 @@ class WorkingStorage(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, disk_id=None, gateway_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, disk_id: Optional[pulumi.Input[str]] = None, gateway_arn: Optional[pulumi.Input[str]] = None) -> 'WorkingStorage':
         """
         Get an existing WorkingStorage resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

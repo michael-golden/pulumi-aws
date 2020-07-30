@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ServiceLinkedRole']
+
 
 class ServiceLinkedRole(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -43,7 +45,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
     The stable and unique string identifying the role.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, aws_service_name=None, custom_suffix=None, description=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, aws_service_name: Optional[pulumi.Input[str]] = None, custom_suffix: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an [IAM service-linked role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html).
 
@@ -96,7 +98,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, aws_service_name=None, create_date=None, custom_suffix=None, description=None, name=None, path=None, unique_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, aws_service_name: Optional[pulumi.Input[str]] = None, create_date: Optional[pulumi.Input[str]] = None, custom_suffix: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, path: Optional[pulumi.Input[str]] = None, unique_id: Optional[pulumi.Input[str]] = None) -> 'ServiceLinkedRole':
         """
         Get an existing ServiceLinkedRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

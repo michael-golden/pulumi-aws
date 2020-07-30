@@ -8,6 +8,13 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'EndpointConfigurationProductionVariantArgs',
+    'ModelContainerArgs',
+    'ModelPrimaryContainerArgs',
+    'ModelVpcConfigArgs',
+]
+
 @pulumi.input_type
 class EndpointConfigurationProductionVariantArgs:
     initial_instance_count: pulumi.Input[float] = pulumi.input_property("initialInstanceCount")

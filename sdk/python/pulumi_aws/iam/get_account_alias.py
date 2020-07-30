@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetAccountAliasResult',
+    'AwaitableGetAccountAliasResult',
+    'get_account_alias',
+]
+
 
 class GetAccountAliasResult:
     """
@@ -39,7 +45,7 @@ class AwaitableGetAccountAliasResult(GetAccountAliasResult):
             id=self.id)
 
 
-def get_account_alias(opts=None):
+def get_account_alias(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountAliasResult:
     """
     The IAM Account Alias data source allows access to the account alias
     for the effective account in which this provider is working.

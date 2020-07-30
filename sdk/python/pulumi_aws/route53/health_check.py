@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['HealthCheck']
+
 
 class HealthCheck(pulumi.CustomResource):
     child_health_threshold: pulumi.Output[Optional[float]] = pulumi.output_property("childHealthThreshold")
@@ -88,7 +90,7 @@ class HealthCheck(pulumi.CustomResource):
     The protocol to use when performing health checks. Valid values are `HTTP`, `HTTPS`, `HTTP_STR_MATCH`, `HTTPS_STR_MATCH`, `TCP`, `CALCULATED` and `CLOUDWATCH_METRIC`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, child_health_threshold=None, child_healthchecks=None, cloudwatch_alarm_name=None, cloudwatch_alarm_region=None, enable_sni=None, failure_threshold=None, fqdn=None, insufficient_data_health_status=None, invert_healthcheck=None, ip_address=None, measure_latency=None, port=None, reference_name=None, regions=None, request_interval=None, resource_path=None, search_string=None, tags=None, type=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, child_health_threshold: Optional[pulumi.Input[float]] = None, child_healthchecks: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, cloudwatch_alarm_name: Optional[pulumi.Input[str]] = None, cloudwatch_alarm_region: Optional[pulumi.Input[str]] = None, enable_sni: Optional[pulumi.Input[bool]] = None, failure_threshold: Optional[pulumi.Input[float]] = None, fqdn: Optional[pulumi.Input[str]] = None, insufficient_data_health_status: Optional[pulumi.Input[str]] = None, invert_healthcheck: Optional[pulumi.Input[bool]] = None, ip_address: Optional[pulumi.Input[str]] = None, measure_latency: Optional[pulumi.Input[bool]] = None, port: Optional[pulumi.Input[float]] = None, reference_name: Optional[pulumi.Input[str]] = None, regions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, request_interval: Optional[pulumi.Input[float]] = None, resource_path: Optional[pulumi.Input[str]] = None, search_string: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, type: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Route53 health check.
 
@@ -229,7 +231,7 @@ class HealthCheck(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, child_health_threshold=None, child_healthchecks=None, cloudwatch_alarm_name=None, cloudwatch_alarm_region=None, enable_sni=None, failure_threshold=None, fqdn=None, insufficient_data_health_status=None, invert_healthcheck=None, ip_address=None, measure_latency=None, port=None, reference_name=None, regions=None, request_interval=None, resource_path=None, search_string=None, tags=None, type=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, child_health_threshold: Optional[pulumi.Input[float]] = None, child_healthchecks: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, cloudwatch_alarm_name: Optional[pulumi.Input[str]] = None, cloudwatch_alarm_region: Optional[pulumi.Input[str]] = None, enable_sni: Optional[pulumi.Input[bool]] = None, failure_threshold: Optional[pulumi.Input[float]] = None, fqdn: Optional[pulumi.Input[str]] = None, insufficient_data_health_status: Optional[pulumi.Input[str]] = None, invert_healthcheck: Optional[pulumi.Input[bool]] = None, ip_address: Optional[pulumi.Input[str]] = None, measure_latency: Optional[pulumi.Input[bool]] = None, port: Optional[pulumi.Input[float]] = None, reference_name: Optional[pulumi.Input[str]] = None, regions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, request_interval: Optional[pulumi.Input[float]] = None, resource_path: Optional[pulumi.Input[str]] = None, search_string: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, type: Optional[pulumi.Input[str]] = None) -> 'HealthCheck':
         """
         Get an existing HealthCheck resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

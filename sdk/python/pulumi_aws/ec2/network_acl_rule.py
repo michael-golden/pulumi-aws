@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['NetworkAclRule']
+
 
 class NetworkAclRule(pulumi.CustomResource):
     cidr_block: pulumi.Output[Optional[str]] = pulumi.output_property("cidrBlock")
@@ -55,7 +57,7 @@ class NetworkAclRule(pulumi.CustomResource):
     The to port to match.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cidr_block=None, egress=None, from_port=None, icmp_code=None, icmp_type=None, ipv6_cidr_block=None, network_acl_id=None, protocol=None, rule_action=None, rule_number=None, to_port=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, cidr_block: Optional[pulumi.Input[str]] = None, egress: Optional[pulumi.Input[bool]] = None, from_port: Optional[pulumi.Input[float]] = None, icmp_code: Optional[pulumi.Input[str]] = None, icmp_type: Optional[pulumi.Input[str]] = None, ipv6_cidr_block: Optional[pulumi.Input[str]] = None, network_acl_id: Optional[pulumi.Input[str]] = None, protocol: Optional[pulumi.Input[str]] = None, rule_action: Optional[pulumi.Input[str]] = None, rule_number: Optional[pulumi.Input[float]] = None, to_port: Optional[pulumi.Input[float]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates an entry (a rule) in a network ACL with the specified rule number.
 
@@ -142,7 +144,7 @@ class NetworkAclRule(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, cidr_block=None, egress=None, from_port=None, icmp_code=None, icmp_type=None, ipv6_cidr_block=None, network_acl_id=None, protocol=None, rule_action=None, rule_number=None, to_port=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, cidr_block: Optional[pulumi.Input[str]] = None, egress: Optional[pulumi.Input[bool]] = None, from_port: Optional[pulumi.Input[float]] = None, icmp_code: Optional[pulumi.Input[str]] = None, icmp_type: Optional[pulumi.Input[str]] = None, ipv6_cidr_block: Optional[pulumi.Input[str]] = None, network_acl_id: Optional[pulumi.Input[str]] = None, protocol: Optional[pulumi.Input[str]] = None, rule_action: Optional[pulumi.Input[str]] = None, rule_number: Optional[pulumi.Input[float]] = None, to_port: Optional[pulumi.Input[float]] = None) -> 'NetworkAclRule':
         """
         Get an existing NetworkAclRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

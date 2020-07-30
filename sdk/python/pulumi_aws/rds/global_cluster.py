@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['GlobalCluster']
+
 
 class GlobalCluster(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -44,7 +46,7 @@ class GlobalCluster(pulumi.CustomResource):
     Specifies whether the DB cluster is encrypted. The default is `false`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, database_name=None, deletion_protection=None, engine=None, engine_version=None, global_cluster_identifier=None, storage_encrypted=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, database_name: Optional[pulumi.Input[str]] = None, deletion_protection: Optional[pulumi.Input[bool]] = None, engine: Optional[pulumi.Input[str]] = None, engine_version: Optional[pulumi.Input[str]] = None, global_cluster_identifier: Optional[pulumi.Input[str]] = None, storage_encrypted: Optional[pulumi.Input[bool]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an RDS Global Cluster, which is an Aurora global database spread across multiple regions. The global database contains a single primary cluster with read-write capability, and a read-only secondary cluster that receives data from the primary cluster through high-speed replication performed by the Aurora storage subsystem.
 
@@ -120,7 +122,7 @@ class GlobalCluster(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, database_name=None, deletion_protection=None, engine=None, engine_version=None, global_cluster_identifier=None, global_cluster_resource_id=None, storage_encrypted=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, database_name: Optional[pulumi.Input[str]] = None, deletion_protection: Optional[pulumi.Input[bool]] = None, engine: Optional[pulumi.Input[str]] = None, engine_version: Optional[pulumi.Input[str]] = None, global_cluster_identifier: Optional[pulumi.Input[str]] = None, global_cluster_resource_id: Optional[pulumi.Input[str]] = None, storage_encrypted: Optional[pulumi.Input[bool]] = None) -> 'GlobalCluster':
         """
         Get an existing GlobalCluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

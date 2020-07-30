@@ -8,6 +8,16 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'AliasRoutingStrategyArgs',
+    'BuildStorageLocationArgs',
+    'FleetEc2InboundPermissionArgs',
+    'FleetResourceCreationLimitPolicyArgs',
+    'FleetRuntimeConfigurationArgs',
+    'FleetRuntimeConfigurationServerProcessArgs',
+    'GameSessionQueuePlayerLatencyPolicyArgs',
+]
+
 @pulumi.input_type
 class AliasRoutingStrategyArgs:
     type: pulumi.Input[str] = pulumi.input_property("type")

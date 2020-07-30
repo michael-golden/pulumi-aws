@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['RouteResponse']
+
 
 class RouteResponse(pulumi.CustomResource):
     api_id: pulumi.Output[str] = pulumi.output_property("apiId")
@@ -31,7 +33,7 @@ class RouteResponse(pulumi.CustomResource):
     The route response key.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id=None, model_selection_expression=None, response_models=None, route_id=None, route_response_key=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, model_selection_expression: Optional[pulumi.Input[str]] = None, response_models: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, route_id: Optional[pulumi.Input[str]] = None, route_response_key: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an Amazon API Gateway Version 2 route response.
         More information can be found in the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html).
@@ -92,7 +94,7 @@ class RouteResponse(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, api_id=None, model_selection_expression=None, response_models=None, route_id=None, route_response_key=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, model_selection_expression: Optional[pulumi.Input[str]] = None, response_models: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, route_id: Optional[pulumi.Input[str]] = None, route_response_key: Optional[pulumi.Input[str]] = None) -> 'RouteResponse':
         """
         Get an existing RouteResponse resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['InstanceProfile']
+
 
 class InstanceProfile(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -43,7 +45,7 @@ class InstanceProfile(pulumi.CustomResource):
     The [unique ID][1] assigned by AWS.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, name_prefix=None, path=None, role=None, roles=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, path: Optional[pulumi.Input[str]] = None, role: Optional[pulumi.Input[str]] = None, roles: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an IAM instance profile.
 
@@ -116,7 +118,7 @@ class InstanceProfile(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, create_date=None, name=None, name_prefix=None, path=None, role=None, roles=None, unique_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, create_date: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, path: Optional[pulumi.Input[str]] = None, role: Optional[pulumi.Input[str]] = None, roles: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, unique_id: Optional[pulumi.Input[str]] = None) -> 'InstanceProfile':
         """
         Get an existing InstanceProfile resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

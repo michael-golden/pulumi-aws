@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetVpcsResult',
+    'AwaitableGetVpcsResult',
+    'get_vpcs',
+]
+
 
 class GetVpcsResult:
     """
@@ -49,7 +55,7 @@ class AwaitableGetVpcsResult(GetVpcsResult):
             tags=self.tags)
 
 
-def get_vpcs(filters=None, tags=None, opts=None):
+def get_vpcs(filters: Optional[List[pulumi.InputType['GetVpcsFilterArgs']]] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcsResult:
     """
     This resource can be useful for getting back a list of VPC Ids for a region.
 
@@ -83,7 +89,7 @@ def get_vpcs(filters=None, tags=None, opts=None):
     ```
 
 
-    :param List['GetVpcsFilterArgs'] filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetVpcsFilterArgs']] filters: Custom filter block as described below.
     :param Dict[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired vpcs.
     """

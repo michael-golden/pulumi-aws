@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Target']
+
 
 class Target(pulumi.CustomResource):
     max_capacity: pulumi.Output[float] = pulumi.output_property("maxCapacity")
@@ -35,7 +37,7 @@ class Target(pulumi.CustomResource):
     The AWS service namespace of the scalable target. Documentation can be found in the `ServiceNamespace` parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, max_capacity=None, min_capacity=None, resource_id=None, role_arn=None, scalable_dimension=None, service_namespace=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, max_capacity: Optional[pulumi.Input[float]] = None, min_capacity: Optional[pulumi.Input[float]] = None, resource_id: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None, scalable_dimension: Optional[pulumi.Input[str]] = None, service_namespace: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Application AutoScaling ScalableTarget resource. To manage policies which get attached to the target, see the `appautoscaling.Policy` resource.
 
@@ -144,7 +146,7 @@ class Target(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, max_capacity=None, min_capacity=None, resource_id=None, role_arn=None, scalable_dimension=None, service_namespace=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, max_capacity: Optional[pulumi.Input[float]] = None, min_capacity: Optional[pulumi.Input[float]] = None, resource_id: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None, scalable_dimension: Optional[pulumi.Input[str]] = None, service_namespace: Optional[pulumi.Input[str]] = None) -> 'Target':
         """
         Get an existing Target resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

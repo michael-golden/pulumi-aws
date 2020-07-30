@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['VpcDhcpOptions']
+
 
 class VpcDhcpOptions(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -43,7 +45,7 @@ class VpcDhcpOptions(pulumi.CustomResource):
     A map of tags to assign to the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, domain_name=None, domain_name_servers=None, netbios_name_servers=None, netbios_node_type=None, ntp_servers=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, domain_name: Optional[pulumi.Input[str]] = None, domain_name_servers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, netbios_name_servers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, netbios_node_type: Optional[pulumi.Input[str]] = None, ntp_servers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a VPC DHCP Options resource.
 
@@ -129,7 +131,7 @@ class VpcDhcpOptions(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, domain_name=None, domain_name_servers=None, netbios_name_servers=None, netbios_node_type=None, ntp_servers=None, owner_id=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, domain_name: Optional[pulumi.Input[str]] = None, domain_name_servers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, netbios_name_servers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, netbios_node_type: Optional[pulumi.Input[str]] = None, ntp_servers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, owner_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'VpcDhcpOptions':
         """
         Get an existing VpcDhcpOptions resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

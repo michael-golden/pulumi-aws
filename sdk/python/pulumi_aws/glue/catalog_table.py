@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['CatalogTable']
+
 
 class CatalogTable(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -65,7 +67,7 @@ class CatalogTable(pulumi.CustomResource):
     If the table is a view, the original text of the view; otherwise null.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, catalog_id=None, database_name=None, description=None, name=None, owner=None, parameters=None, partition_keys=None, retention=None, storage_descriptor=None, table_type=None, view_expanded_text=None, view_original_text=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, catalog_id: Optional[pulumi.Input[str]] = None, database_name: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, owner: Optional[pulumi.Input[str]] = None, parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, partition_keys: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['CatalogTablePartitionKeyArgs']]]]] = None, retention: Optional[pulumi.Input[float]] = None, storage_descriptor: Optional[pulumi.Input[pulumi.InputType['CatalogTableStorageDescriptorArgs']]] = None, table_type: Optional[pulumi.Input[str]] = None, view_expanded_text: Optional[pulumi.Input[str]] = None, view_original_text: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Glue Catalog Table Resource. You can refer to the [Glue Developer Guide](http://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) for a full explanation of the Glue Data Catalog functionality.
 
@@ -141,9 +143,9 @@ class CatalogTable(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the SerDe.
         :param pulumi.Input[str] owner: Owner of the table.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] parameters: A map of initialization parameters for the SerDe, in key-value form.
-        :param pulumi.Input[List[pulumi.Input['CatalogTablePartitionKeyArgs']]] partition_keys: A list of columns by which the table is partitioned. Only primitive types are supported as partition keys.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['CatalogTablePartitionKeyArgs']]]] partition_keys: A list of columns by which the table is partitioned. Only primitive types are supported as partition keys.
         :param pulumi.Input[float] retention: Retention time for this table.
-        :param pulumi.Input['CatalogTableStorageDescriptorArgs'] storage_descriptor: A storage descriptor object containing information about the physical storage of this table. You can refer to the [Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-catalog-tables.html#aws-glue-api-catalog-tables-StorageDescriptor) for a full explanation of this object.
+        :param pulumi.Input[pulumi.InputType['CatalogTableStorageDescriptorArgs']] storage_descriptor: A storage descriptor object containing information about the physical storage of this table. You can refer to the [Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-catalog-tables.html#aws-glue-api-catalog-tables-StorageDescriptor) for a full explanation of this object.
         :param pulumi.Input[str] table_type: The type of this table (EXTERNAL_TABLE, VIRTUAL_VIEW, etc.).
         :param pulumi.Input[str] view_expanded_text: If the table is a view, the expanded text of the view; otherwise null.
         :param pulumi.Input[str] view_original_text: If the table is a view, the original text of the view; otherwise null.
@@ -187,7 +189,7 @@ class CatalogTable(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, catalog_id=None, database_name=None, description=None, name=None, owner=None, parameters=None, partition_keys=None, retention=None, storage_descriptor=None, table_type=None, view_expanded_text=None, view_original_text=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, catalog_id: Optional[pulumi.Input[str]] = None, database_name: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, owner: Optional[pulumi.Input[str]] = None, parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, partition_keys: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['CatalogTablePartitionKeyArgs']]]]] = None, retention: Optional[pulumi.Input[float]] = None, storage_descriptor: Optional[pulumi.Input[pulumi.InputType['CatalogTableStorageDescriptorArgs']]] = None, table_type: Optional[pulumi.Input[str]] = None, view_expanded_text: Optional[pulumi.Input[str]] = None, view_original_text: Optional[pulumi.Input[str]] = None) -> 'CatalogTable':
         """
         Get an existing CatalogTable resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -202,9 +204,9 @@ class CatalogTable(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the SerDe.
         :param pulumi.Input[str] owner: Owner of the table.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] parameters: A map of initialization parameters for the SerDe, in key-value form.
-        :param pulumi.Input[List[pulumi.Input['CatalogTablePartitionKeyArgs']]] partition_keys: A list of columns by which the table is partitioned. Only primitive types are supported as partition keys.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['CatalogTablePartitionKeyArgs']]]] partition_keys: A list of columns by which the table is partitioned. Only primitive types are supported as partition keys.
         :param pulumi.Input[float] retention: Retention time for this table.
-        :param pulumi.Input['CatalogTableStorageDescriptorArgs'] storage_descriptor: A storage descriptor object containing information about the physical storage of this table. You can refer to the [Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-catalog-tables.html#aws-glue-api-catalog-tables-StorageDescriptor) for a full explanation of this object.
+        :param pulumi.Input[pulumi.InputType['CatalogTableStorageDescriptorArgs']] storage_descriptor: A storage descriptor object containing information about the physical storage of this table. You can refer to the [Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-catalog-tables.html#aws-glue-api-catalog-tables-StorageDescriptor) for a full explanation of this object.
         :param pulumi.Input[str] table_type: The type of this table (EXTERNAL_TABLE, VIRTUAL_VIEW, etc.).
         :param pulumi.Input[str] view_expanded_text: If the table is a view, the expanded text of the view; otherwise null.
         :param pulumi.Input[str] view_original_text: If the table is a view, the original text of the view; otherwise null.

@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetVpcPeeringConnectionResult',
+    'AwaitableGetVpcPeeringConnectionResult',
+    'get_vpc_peering_connection',
+]
+
 
 class GetVpcPeeringConnectionResult:
     """
@@ -91,7 +97,7 @@ class AwaitableGetVpcPeeringConnectionResult(GetVpcPeeringConnectionResult):
             vpc_id=self.vpc_id)
 
 
-def get_vpc_peering_connection(cidr_block=None, filters=None, id=None, owner_id=None, peer_cidr_block=None, peer_owner_id=None, peer_region=None, peer_vpc_id=None, region=None, status=None, tags=None, vpc_id=None, opts=None):
+def get_vpc_peering_connection(cidr_block: Optional[str] = None, filters: Optional[List[pulumi.InputType['GetVpcPeeringConnectionFilterArgs']]] = None, id: Optional[str] = None, owner_id: Optional[str] = None, peer_cidr_block: Optional[str] = None, peer_owner_id: Optional[str] = None, peer_region: Optional[str] = None, peer_vpc_id: Optional[str] = None, region: Optional[str] = None, status: Optional[str] = None, tags: Optional[Dict[str, str]] = None, vpc_id: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPeeringConnectionResult:
     """
     The VPC Peering Connection data source provides details about
     a specific VPC peering connection.
@@ -115,7 +121,7 @@ def get_vpc_peering_connection(cidr_block=None, filters=None, id=None, owner_id=
 
 
     :param str cidr_block: The CIDR block of the requester VPC of the specific VPC Peering Connection to retrieve.
-    :param List['GetVpcPeeringConnectionFilterArgs'] filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetVpcPeeringConnectionFilterArgs']] filters: Custom filter block as described below.
     :param str id: The ID of the specific VPC Peering Connection to retrieve.
     :param str owner_id: The AWS account ID of the owner of the requester VPC of the specific VPC Peering Connection to retrieve.
     :param str peer_cidr_block: The CIDR block of the accepter VPC of the specific VPC Peering Connection to retrieve.

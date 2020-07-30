@@ -8,6 +8,20 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
 
+__all__ = [
+    'GetAmiFilterArgs',
+    'GetAmiIdsFilterArgs',
+    'GetAutoscalingGroupsFilterArgs',
+    'GetAvailabilityZoneFilterArgs',
+    'GetAvailabilityZonesFilterArgs',
+    'GetElasticIpFilterArgs',
+    'GetPrefixListFilterArgs',
+    'GetRegionsFilterArgs',
+    'ProviderAssumeRoleArgs',
+    'ProviderEndpointArgs',
+    'ProviderIgnoreTagsArgs',
+]
+
 @pulumi.input_type
 class GetAmiFilterArgs:
     name: str = pulumi.input_property("name")

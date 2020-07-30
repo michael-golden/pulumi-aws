@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Eip']
+
 
 class Eip(pulumi.CustomResource):
     allocation_id: pulumi.Output[str] = pulumi.output_property("allocationId")
@@ -64,7 +66,7 @@ class Eip(pulumi.CustomResource):
     Boolean if the EIP is in a VPC or not.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, associate_with_private_ip=None, customer_owned_ipv4_pool=None, instance=None, network_interface=None, public_ipv4_pool=None, tags=None, vpc=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, associate_with_private_ip: Optional[pulumi.Input[str]] = None, customer_owned_ipv4_pool: Optional[pulumi.Input[str]] = None, instance: Optional[pulumi.Input[str]] = None, network_interface: Optional[pulumi.Input[str]] = None, public_ipv4_pool: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc: Optional[pulumi.Input[bool]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Elastic IP resource.
 
@@ -196,7 +198,7 @@ class Eip(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allocation_id=None, associate_with_private_ip=None, association_id=None, customer_owned_ip=None, customer_owned_ipv4_pool=None, domain=None, instance=None, network_interface=None, private_dns=None, private_ip=None, public_dns=None, public_ip=None, public_ipv4_pool=None, tags=None, vpc=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, allocation_id: Optional[pulumi.Input[str]] = None, associate_with_private_ip: Optional[pulumi.Input[str]] = None, association_id: Optional[pulumi.Input[str]] = None, customer_owned_ip: Optional[pulumi.Input[str]] = None, customer_owned_ipv4_pool: Optional[pulumi.Input[str]] = None, domain: Optional[pulumi.Input[str]] = None, instance: Optional[pulumi.Input[str]] = None, network_interface: Optional[pulumi.Input[str]] = None, private_dns: Optional[pulumi.Input[str]] = None, private_ip: Optional[pulumi.Input[str]] = None, public_dns: Optional[pulumi.Input[str]] = None, public_ip: Optional[pulumi.Input[str]] = None, public_ipv4_pool: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc: Optional[pulumi.Input[bool]] = None) -> 'Eip':
         """
         Get an existing Eip resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

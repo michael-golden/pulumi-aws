@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['LifecycleHook']
+
 
 class LifecycleHook(pulumi.CustomResource):
     autoscaling_group_name: pulumi.Output[str] = pulumi.output_property("autoscalingGroupName")
@@ -43,7 +45,7 @@ class LifecycleHook(pulumi.CustomResource):
     The ARN of the IAM role that allows the Auto Scaling group to publish to the specified notification target.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, autoscaling_group_name=None, default_result=None, heartbeat_timeout=None, lifecycle_transition=None, name=None, notification_metadata=None, notification_target_arn=None, role_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, autoscaling_group_name: Optional[pulumi.Input[str]] = None, default_result: Optional[pulumi.Input[str]] = None, heartbeat_timeout: Optional[pulumi.Input[float]] = None, lifecycle_transition: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, notification_metadata: Optional[pulumi.Input[str]] = None, notification_target_arn: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AutoScaling Lifecycle Hook resource.
 
@@ -135,7 +137,7 @@ class LifecycleHook(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, autoscaling_group_name=None, default_result=None, heartbeat_timeout=None, lifecycle_transition=None, name=None, notification_metadata=None, notification_target_arn=None, role_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, autoscaling_group_name: Optional[pulumi.Input[str]] = None, default_result: Optional[pulumi.Input[str]] = None, heartbeat_timeout: Optional[pulumi.Input[float]] = None, lifecycle_transition: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, notification_metadata: Optional[pulumi.Input[str]] = None, notification_target_arn: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None) -> 'LifecycleHook':
         """
         Get an existing LifecycleHook resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

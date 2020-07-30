@@ -9,6 +9,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 from . import outputs
 
+__all__ = [
+    'GetSecretResult',
+    'AwaitableGetSecretResult',
+    'get_secret',
+]
+
 
 class GetSecretResult:
     """
@@ -105,7 +111,7 @@ class AwaitableGetSecretResult(GetSecretResult):
             tags=self.tags)
 
 
-def get_secret(arn=None, name=None, opts=None):
+def get_secret(arn: Optional[str] = None, name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretResult:
     """
     Retrieve metadata information about a Secrets Manager secret. To retrieve a secret value, see the `secretsmanager.SecretVersion`.
 

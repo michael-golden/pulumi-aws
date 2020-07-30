@@ -9,6 +9,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 from . import outputs
 
+__all__ = [
+    'GetClusterResult',
+    'AwaitableGetClusterResult',
+    'get_cluster',
+]
+
 
 class GetClusterResult:
     """
@@ -79,7 +85,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             status=self.status)
 
 
-def get_cluster(cluster_name=None, opts=None):
+def get_cluster(cluster_name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
     The ECS Cluster data source allows access to details of a specific
     cluster within an AWS ECS service.

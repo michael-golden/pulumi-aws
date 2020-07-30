@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetCoipPoolsResult',
+    'AwaitableGetCoipPoolsResult',
+    'get_coip_pools',
+]
+
 
 class GetCoipPoolsResult:
     """
@@ -49,12 +55,12 @@ class AwaitableGetCoipPoolsResult(GetCoipPoolsResult):
             tags=self.tags)
 
 
-def get_coip_pools(filters=None, tags=None, opts=None):
+def get_coip_pools(filters: Optional[List[pulumi.InputType['GetCoipPoolsFilterArgs']]] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCoipPoolsResult:
     """
     Provides information for multiple EC2 Customer-Owned IP Pools, such as their identifiers.
 
 
-    :param List['GetCoipPoolsFilterArgs'] filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetCoipPoolsFilterArgs']] filters: Custom filter block as described below.
     :param Dict[str, str] tags: A mapping of tags, each pair of which must exactly match
            a pair on the desired aws_ec2_coip_pools.
     """

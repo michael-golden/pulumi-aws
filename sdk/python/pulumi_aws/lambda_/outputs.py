@@ -8,6 +8,25 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'AliasRoutingConfig',
+    'EventSourceMappingDestinationConfig',
+    'EventSourceMappingDestinationConfigOnFailure',
+    'FunctionDeadLetterConfig',
+    'FunctionEnvironment',
+    'FunctionEventInvokeConfigDestinationConfig',
+    'FunctionEventInvokeConfigDestinationConfigOnFailure',
+    'FunctionEventInvokeConfigDestinationConfigOnSuccess',
+    'FunctionFileSystemConfig',
+    'FunctionTracingConfig',
+    'FunctionVpcConfig',
+    'GetFunctionDeadLetterConfig',
+    'GetFunctionEnvironment',
+    'GetFunctionFileSystemConfig',
+    'GetFunctionTracingConfig',
+    'GetFunctionVpcConfig',
+]
+
 @pulumi.output_type
 class AliasRoutingConfig(dict):
     additional_version_weights: Optional[Dict[str, float]] = pulumi.output_property("additionalVersionWeights")

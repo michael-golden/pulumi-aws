@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['PatchGroup']
+
 
 class PatchGroup(pulumi.CustomResource):
     baseline_id: pulumi.Output[str] = pulumi.output_property("baselineId")
@@ -19,7 +21,7 @@ class PatchGroup(pulumi.CustomResource):
     The name of the patch group that should be registered with the patch baseline.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, baseline_id=None, patch_group=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, baseline_id: Optional[pulumi.Input[str]] = None, patch_group: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an SSM Patch Group resource
 
@@ -70,7 +72,7 @@ class PatchGroup(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, baseline_id=None, patch_group=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, baseline_id: Optional[pulumi.Input[str]] = None, patch_group: Optional[pulumi.Input[str]] = None) -> 'PatchGroup':
         """
         Get an existing PatchGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

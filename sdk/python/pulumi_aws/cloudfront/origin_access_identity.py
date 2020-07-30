@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['OriginAccessIdentity']
+
 
 class OriginAccessIdentity(pulumi.CustomResource):
     caller_reference: pulumi.Output[str] = pulumi.output_property("callerReference")
@@ -42,7 +44,7 @@ class OriginAccessIdentity(pulumi.CustomResource):
     permission to an object in Amazon S3.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, comment=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, comment: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates an Amazon CloudFront origin access identity.
 
@@ -146,7 +148,7 @@ class OriginAccessIdentity(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, caller_reference=None, cloudfront_access_identity_path=None, comment=None, etag=None, iam_arn=None, s3_canonical_user_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, caller_reference: Optional[pulumi.Input[str]] = None, cloudfront_access_identity_path: Optional[pulumi.Input[str]] = None, comment: Optional[pulumi.Input[str]] = None, etag: Optional[pulumi.Input[str]] = None, iam_arn: Optional[pulumi.Input[str]] = None, s3_canonical_user_id: Optional[pulumi.Input[str]] = None) -> 'OriginAccessIdentity':
         """
         Get an existing OriginAccessIdentity resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

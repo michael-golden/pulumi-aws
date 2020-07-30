@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Gateway']
+
 
 class Gateway(pulumi.CustomResource):
     amazon_side_asn: pulumi.Output[str] = pulumi.output_property("amazonSideAsn")
@@ -23,7 +25,7 @@ class Gateway(pulumi.CustomResource):
     AWS Account ID of the gateway.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, amazon_side_asn=None, name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, amazon_side_asn: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Direct Connect Gateway.
 
@@ -70,7 +72,7 @@ class Gateway(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, amazon_side_asn=None, name=None, owner_account_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, amazon_side_asn: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, owner_account_id: Optional[pulumi.Input[str]] = None) -> 'Gateway':
         """
         Get an existing Gateway resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

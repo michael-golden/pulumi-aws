@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['IdentityPoolRoleAttachment']
+
 
 class IdentityPoolRoleAttachment(pulumi.CustomResource):
     identity_pool_id: pulumi.Output[str] = pulumi.output_property("identityPoolId")
@@ -25,7 +27,7 @@ class IdentityPoolRoleAttachment(pulumi.CustomResource):
     The map of roles associated with this pool. For a given role, the key will be either "authenticated" or "unauthenticated" and the value will be the Role ARN.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, identity_pool_id=None, role_mappings=None, roles=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, identity_pool_id: Optional[pulumi.Input[str]] = None, role_mappings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['IdentityPoolRoleAttachmentRoleMappingArgs']]]]] = None, roles: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AWS Cognito Identity Pool Roles Attachment.
 
@@ -104,7 +106,7 @@ class IdentityPoolRoleAttachment(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] identity_pool_id: An identity pool ID in the format REGION:GUID.
-        :param pulumi.Input[List[pulumi.Input['IdentityPoolRoleAttachmentRoleMappingArgs']]] role_mappings: A List of Role Mapping.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['IdentityPoolRoleAttachmentRoleMappingArgs']]]] role_mappings: A List of Role Mapping.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] roles: The map of roles associated with this pool. For a given role, the key will be either "authenticated" or "unauthenticated" and the value will be the Role ARN.
         """
         if __name__ is not None:
@@ -138,7 +140,7 @@ class IdentityPoolRoleAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, identity_pool_id=None, role_mappings=None, roles=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, identity_pool_id: Optional[pulumi.Input[str]] = None, role_mappings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['IdentityPoolRoleAttachmentRoleMappingArgs']]]]] = None, roles: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'IdentityPoolRoleAttachment':
         """
         Get an existing IdentityPoolRoleAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -147,7 +149,7 @@ class IdentityPoolRoleAttachment(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] identity_pool_id: An identity pool ID in the format REGION:GUID.
-        :param pulumi.Input[List[pulumi.Input['IdentityPoolRoleAttachmentRoleMappingArgs']]] role_mappings: A List of Role Mapping.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['IdentityPoolRoleAttachmentRoleMappingArgs']]]] role_mappings: A List of Role Mapping.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] roles: The map of roles associated with this pool. For a given role, the key will be either "authenticated" or "unauthenticated" and the value will be the Role ARN.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

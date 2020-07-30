@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['EndpointGroup']
+
 
 class EndpointGroup(pulumi.CustomResource):
     endpoint_configurations: pulumi.Output[Optional[List['outputs.EndpointGroupEndpointConfiguration']]] = pulumi.output_property("endpointConfigurations")
@@ -49,7 +51,7 @@ class EndpointGroup(pulumi.CustomResource):
     The percentage of traffic to send to an AWS Region. Additional traffic is distributed to other endpoint groups for this listener. The default value is 100.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, endpoint_configurations=None, endpoint_group_region=None, health_check_interval_seconds=None, health_check_path=None, health_check_port=None, health_check_protocol=None, listener_arn=None, threshold_count=None, traffic_dial_percentage=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, endpoint_configurations: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointGroupEndpointConfigurationArgs']]]]] = None, endpoint_group_region: Optional[pulumi.Input[str]] = None, health_check_interval_seconds: Optional[pulumi.Input[float]] = None, health_check_path: Optional[pulumi.Input[str]] = None, health_check_port: Optional[pulumi.Input[float]] = None, health_check_protocol: Optional[pulumi.Input[str]] = None, listener_arn: Optional[pulumi.Input[str]] = None, threshold_count: Optional[pulumi.Input[float]] = None, traffic_dial_percentage: Optional[pulumi.Input[float]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Global Accelerator endpoint group.
 
@@ -69,7 +71,7 @@ class EndpointGroup(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input['EndpointGroupEndpointConfigurationArgs']]] endpoint_configurations: The list of endpoint objects. Fields documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointGroupEndpointConfigurationArgs']]]] endpoint_configurations: The list of endpoint objects. Fields documented below.
         :param pulumi.Input[str] endpoint_group_region: The name of the AWS Region where the endpoint group is located.
         :param pulumi.Input[float] health_check_interval_seconds: The time—10 seconds or 30 seconds—between each health check for an endpoint. The default value is 30.
         :param pulumi.Input[str] health_check_path: If the protocol is HTTP/S, then this specifies the path that is the destination for health check targets. The default value is slash (/).
@@ -114,7 +116,7 @@ class EndpointGroup(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, endpoint_configurations=None, endpoint_group_region=None, health_check_interval_seconds=None, health_check_path=None, health_check_port=None, health_check_protocol=None, listener_arn=None, threshold_count=None, traffic_dial_percentage=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, endpoint_configurations: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointGroupEndpointConfigurationArgs']]]]] = None, endpoint_group_region: Optional[pulumi.Input[str]] = None, health_check_interval_seconds: Optional[pulumi.Input[float]] = None, health_check_path: Optional[pulumi.Input[str]] = None, health_check_port: Optional[pulumi.Input[float]] = None, health_check_protocol: Optional[pulumi.Input[str]] = None, listener_arn: Optional[pulumi.Input[str]] = None, threshold_count: Optional[pulumi.Input[float]] = None, traffic_dial_percentage: Optional[pulumi.Input[float]] = None) -> 'EndpointGroup':
         """
         Get an existing EndpointGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -122,7 +124,7 @@ class EndpointGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input['EndpointGroupEndpointConfigurationArgs']]] endpoint_configurations: The list of endpoint objects. Fields documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointGroupEndpointConfigurationArgs']]]] endpoint_configurations: The list of endpoint objects. Fields documented below.
         :param pulumi.Input[str] endpoint_group_region: The name of the AWS Region where the endpoint group is located.
         :param pulumi.Input[float] health_check_interval_seconds: The time—10 seconds or 30 seconds—between each health check for an endpoint. The default value is 30.
         :param pulumi.Input[str] health_check_path: If the protocol is HTTP/S, then this specifies the path that is the destination for health check targets. The default value is slash (/).

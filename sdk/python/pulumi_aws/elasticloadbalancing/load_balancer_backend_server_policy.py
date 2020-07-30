@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['LoadBalancerBackendServerPolicy']
+
 warnings.warn("aws.elasticloadbalancing.LoadBalancerBackendServerPolicy has been deprecated in favor of aws.elb.LoadBalancerBackendServerPolicy", DeprecationWarning)
 
 
@@ -27,7 +29,7 @@ class LoadBalancerBackendServerPolicy(pulumi.CustomResource):
     warnings.warn("aws.elasticloadbalancing.LoadBalancerBackendServerPolicy has been deprecated in favor of aws.elb.LoadBalancerBackendServerPolicy", DeprecationWarning)
 
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, instance_port=None, load_balancer_name=None, policy_names=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, instance_port: Optional[pulumi.Input[float]] = None, load_balancer_name: Optional[pulumi.Input[str]] = None, policy_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Attaches a load balancer policy to an ELB backend server.
 
@@ -117,7 +119,7 @@ class LoadBalancerBackendServerPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, instance_port=None, load_balancer_name=None, policy_names=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, instance_port: Optional[pulumi.Input[float]] = None, load_balancer_name: Optional[pulumi.Input[str]] = None, policy_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'LoadBalancerBackendServerPolicy':
         """
         Get an existing LoadBalancerBackendServerPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

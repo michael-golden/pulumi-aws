@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ConnectionAssociation']
+
 
 class ConnectionAssociation(pulumi.CustomResource):
     connection_id: pulumi.Output[str] = pulumi.output_property("connectionId")
@@ -19,7 +21,7 @@ class ConnectionAssociation(pulumi.CustomResource):
     The ID of the LAG with which to associate the connection.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, connection_id=None, lag_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, connection_id: Optional[pulumi.Input[str]] = None, lag_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Associates a Direct Connect Connection with a LAG.
 
@@ -75,7 +77,7 @@ class ConnectionAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, connection_id=None, lag_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, connection_id: Optional[pulumi.Input[str]] = None, lag_id: Optional[pulumi.Input[str]] = None) -> 'ConnectionAssociation':
         """
         Get an existing ConnectionAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

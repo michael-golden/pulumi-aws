@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['SshKey']
+
 
 class SshKey(pulumi.CustomResource):
     encoding: pulumi.Output[str] = pulumi.output_property("encoding")
@@ -35,7 +37,7 @@ class SshKey(pulumi.CustomResource):
     The name of the IAM user to associate the SSH public key with.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, encoding=None, public_key=None, status=None, username=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, encoding: Optional[pulumi.Input[str]] = None, public_key: Optional[pulumi.Input[str]] = None, status: Optional[pulumi.Input[str]] = None, username: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Uploads an SSH public key and associates it with the specified IAM user.
 
@@ -95,7 +97,7 @@ class SshKey(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, encoding=None, fingerprint=None, public_key=None, ssh_public_key_id=None, status=None, username=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, encoding: Optional[pulumi.Input[str]] = None, fingerprint: Optional[pulumi.Input[str]] = None, public_key: Optional[pulumi.Input[str]] = None, ssh_public_key_id: Optional[pulumi.Input[str]] = None, status: Optional[pulumi.Input[str]] = None, username: Optional[pulumi.Input[str]] = None) -> 'SshKey':
         """
         Get an existing SshKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

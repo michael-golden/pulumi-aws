@@ -9,6 +9,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 from . import outputs
 
+__all__ = [
+    'GetAccessPointResult',
+    'AwaitableGetAccessPointResult',
+    'get_access_point',
+]
+
 
 class GetAccessPointResult:
     """
@@ -80,7 +86,7 @@ class AwaitableGetAccessPointResult(GetAccessPointResult):
             tags=self.tags)
 
 
-def get_access_point(access_point_id=None, tags=None, opts=None):
+def get_access_point(access_point_id: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccessPointResult:
     """
     Provides information about an Elastic File System (EFS) Access Point.
 

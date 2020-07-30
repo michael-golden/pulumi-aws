@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Queue']
+
 
 class Queue(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -71,7 +73,7 @@ class Queue(pulumi.CustomResource):
     The visibility timeout for the queue. An integer from 0 to 43200 (12 hours). The default for this attribute is 30. For more information about visibility timeout, see [AWS docs](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html).
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, content_based_deduplication=None, delay_seconds=None, fifo_queue=None, kms_data_key_reuse_period_seconds=None, kms_master_key_id=None, max_message_size=None, message_retention_seconds=None, name=None, name_prefix=None, policy=None, receive_wait_time_seconds=None, redrive_policy=None, tags=None, visibility_timeout_seconds=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, content_based_deduplication: Optional[pulumi.Input[bool]] = None, delay_seconds: Optional[pulumi.Input[float]] = None, fifo_queue: Optional[pulumi.Input[bool]] = None, kms_data_key_reuse_period_seconds: Optional[pulumi.Input[float]] = None, kms_master_key_id: Optional[pulumi.Input[str]] = None, max_message_size: Optional[pulumi.Input[float]] = None, message_retention_seconds: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, receive_wait_time_seconds: Optional[pulumi.Input[float]] = None, redrive_policy: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, visibility_timeout_seconds: Optional[pulumi.Input[float]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         ## Example Usage
 
@@ -171,7 +173,7 @@ class Queue(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, content_based_deduplication=None, delay_seconds=None, fifo_queue=None, kms_data_key_reuse_period_seconds=None, kms_master_key_id=None, max_message_size=None, message_retention_seconds=None, name=None, name_prefix=None, policy=None, receive_wait_time_seconds=None, redrive_policy=None, tags=None, visibility_timeout_seconds=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, content_based_deduplication: Optional[pulumi.Input[bool]] = None, delay_seconds: Optional[pulumi.Input[float]] = None, fifo_queue: Optional[pulumi.Input[bool]] = None, kms_data_key_reuse_period_seconds: Optional[pulumi.Input[float]] = None, kms_master_key_id: Optional[pulumi.Input[str]] = None, max_message_size: Optional[pulumi.Input[float]] = None, message_retention_seconds: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, receive_wait_time_seconds: Optional[pulumi.Input[float]] = None, redrive_policy: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, visibility_timeout_seconds: Optional[pulumi.Input[float]] = None) -> 'Queue':
         """
         Get an existing Queue resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

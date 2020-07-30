@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetExportResult',
+    'AwaitableGetExportResult',
+    'get_export',
+]
+
 
 class GetExportResult:
     """
@@ -50,7 +56,7 @@ class AwaitableGetExportResult(GetExportResult):
             value=self.value)
 
 
-def get_export(name=None, opts=None):
+def get_export(name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetExportResult:
     """
     The CloudFormation Export data source allows access to stack
     exports specified in the [Output](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html) section of the Cloudformation Template using the optional Export Property.

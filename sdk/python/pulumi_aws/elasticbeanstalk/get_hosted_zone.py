@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetHostedZoneResult',
+    'AwaitableGetHostedZoneResult',
+    'get_hosted_zone',
+]
+
 
 class GetHostedZoneResult:
     """
@@ -39,7 +45,7 @@ class AwaitableGetHostedZoneResult(GetHostedZoneResult):
             region=self.region)
 
 
-def get_hosted_zone(region=None, opts=None):
+def get_hosted_zone(region: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHostedZoneResult:
     """
     Use this data source to get the ID of an [elastic beanstalk hosted zone](http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticbeanstalk_region).
 

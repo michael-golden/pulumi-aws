@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['BucketPublicAccessBlock']
+
 
 class BucketPublicAccessBlock(pulumi.CustomResource):
     block_public_acls: pulumi.Output[Optional[bool]] = pulumi.output_property("blockPublicAcls")
@@ -36,7 +38,7 @@ class BucketPublicAccessBlock(pulumi.CustomResource):
     * Only the bucket owner and AWS Services can access this buckets if it has a public policy.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, block_public_acls=None, block_public_policy=None, bucket=None, ignore_public_acls=None, restrict_public_buckets=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, block_public_acls: Optional[pulumi.Input[bool]] = None, block_public_policy: Optional[pulumi.Input[bool]] = None, bucket: Optional[pulumi.Input[str]] = None, ignore_public_acls: Optional[pulumi.Input[bool]] = None, restrict_public_buckets: Optional[pulumi.Input[bool]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages S3 bucket-level Public Access Block configuration. For more information about these settings, see the [AWS S3 Block Public Access documentation](https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
 
@@ -97,7 +99,7 @@ class BucketPublicAccessBlock(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, block_public_acls=None, block_public_policy=None, bucket=None, ignore_public_acls=None, restrict_public_buckets=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, block_public_acls: Optional[pulumi.Input[bool]] = None, block_public_policy: Optional[pulumi.Input[bool]] = None, bucket: Optional[pulumi.Input[str]] = None, ignore_public_acls: Optional[pulumi.Input[bool]] = None, restrict_public_buckets: Optional[pulumi.Input[bool]] = None) -> 'BucketPublicAccessBlock':
         """
         Get an existing BucketPublicAccessBlock resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

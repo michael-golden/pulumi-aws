@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Vpc']
+
 
 class Vpc(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -84,7 +86,7 @@ class Vpc(pulumi.CustomResource):
     A map of tags to assign to the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, assign_generated_ipv6_cidr_block=None, cidr_block=None, enable_classiclink=None, enable_classiclink_dns_support=None, enable_dns_hostnames=None, enable_dns_support=None, instance_tenancy=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, assign_generated_ipv6_cidr_block: Optional[pulumi.Input[bool]] = None, cidr_block: Optional[pulumi.Input[str]] = None, enable_classiclink: Optional[pulumi.Input[bool]] = None, enable_classiclink_dns_support: Optional[pulumi.Input[bool]] = None, enable_dns_hostnames: Optional[pulumi.Input[bool]] = None, enable_dns_support: Optional[pulumi.Input[bool]] = None, instance_tenancy: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a VPC resource.
 
@@ -173,7 +175,7 @@ class Vpc(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, assign_generated_ipv6_cidr_block=None, cidr_block=None, default_network_acl_id=None, default_route_table_id=None, default_security_group_id=None, dhcp_options_id=None, enable_classiclink=None, enable_classiclink_dns_support=None, enable_dns_hostnames=None, enable_dns_support=None, instance_tenancy=None, ipv6_association_id=None, ipv6_cidr_block=None, main_route_table_id=None, owner_id=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, assign_generated_ipv6_cidr_block: Optional[pulumi.Input[bool]] = None, cidr_block: Optional[pulumi.Input[str]] = None, default_network_acl_id: Optional[pulumi.Input[str]] = None, default_route_table_id: Optional[pulumi.Input[str]] = None, default_security_group_id: Optional[pulumi.Input[str]] = None, dhcp_options_id: Optional[pulumi.Input[str]] = None, enable_classiclink: Optional[pulumi.Input[bool]] = None, enable_classiclink_dns_support: Optional[pulumi.Input[bool]] = None, enable_dns_hostnames: Optional[pulumi.Input[bool]] = None, enable_dns_support: Optional[pulumi.Input[bool]] = None, instance_tenancy: Optional[pulumi.Input[str]] = None, ipv6_association_id: Optional[pulumi.Input[str]] = None, ipv6_cidr_block: Optional[pulumi.Input[str]] = None, main_route_table_id: Optional[pulumi.Input[str]] = None, owner_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Vpc':
         """
         Get an existing Vpc resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

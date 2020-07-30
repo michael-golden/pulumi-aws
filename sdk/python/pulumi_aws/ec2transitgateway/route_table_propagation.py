@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['RouteTablePropagation']
+
 
 class RouteTablePropagation(pulumi.CustomResource):
     resource_id: pulumi.Output[str] = pulumi.output_property("resourceId")
@@ -27,7 +29,7 @@ class RouteTablePropagation(pulumi.CustomResource):
     Identifier of EC2 Transit Gateway Route Table.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, transit_gateway_attachment_id=None, transit_gateway_route_table_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, transit_gateway_attachment_id: Optional[pulumi.Input[str]] = None, transit_gateway_route_table_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an EC2 Transit Gateway Route Table propagation.
 
@@ -79,7 +81,7 @@ class RouteTablePropagation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, resource_id=None, resource_type=None, transit_gateway_attachment_id=None, transit_gateway_route_table_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, resource_id: Optional[pulumi.Input[str]] = None, resource_type: Optional[pulumi.Input[str]] = None, transit_gateway_attachment_id: Optional[pulumi.Input[str]] = None, transit_gateway_route_table_id: Optional[pulumi.Input[str]] = None) -> 'RouteTablePropagation':
         """
         Get an existing RouteTablePropagation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

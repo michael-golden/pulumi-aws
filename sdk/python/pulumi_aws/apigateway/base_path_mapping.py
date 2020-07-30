@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['BasePathMapping']
+
 
 class BasePathMapping(pulumi.CustomResource):
     base_path: pulumi.Output[Optional[str]] = pulumi.output_property("basePath")
@@ -27,7 +29,7 @@ class BasePathMapping(pulumi.CustomResource):
     The name of a specific deployment stage to expose at the given path. If omitted, callers may select any stage by including its name as a path element after the base path.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, base_path=None, domain_name=None, rest_api=None, stage_name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, base_path: Optional[pulumi.Input[str]] = None, domain_name: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, stage_name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Connects a custom domain name registered via `apigateway.DomainName`
         with a deployed API so that its methods can be called via the
@@ -93,7 +95,7 @@ class BasePathMapping(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, base_path=None, domain_name=None, rest_api=None, stage_name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, base_path: Optional[pulumi.Input[str]] = None, domain_name: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, stage_name: Optional[pulumi.Input[str]] = None) -> 'BasePathMapping':
         """
         Get an existing BasePathMapping resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

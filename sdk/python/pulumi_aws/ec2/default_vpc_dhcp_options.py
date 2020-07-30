@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['DefaultVpcDhcpOptions']
+
 
 class DefaultVpcDhcpOptions(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -34,7 +36,7 @@ class DefaultVpcDhcpOptions(pulumi.CustomResource):
     A map of tags to assign to the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, netbios_name_servers=None, netbios_node_type=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, netbios_name_servers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, netbios_node_type: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage the [default AWS DHCP Options Set](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html#AmazonDNS)
         in the current region.
@@ -98,7 +100,7 @@ class DefaultVpcDhcpOptions(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, domain_name=None, domain_name_servers=None, netbios_name_servers=None, netbios_node_type=None, ntp_servers=None, owner_id=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, domain_name: Optional[pulumi.Input[str]] = None, domain_name_servers: Optional[pulumi.Input[str]] = None, netbios_name_servers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, netbios_node_type: Optional[pulumi.Input[str]] = None, ntp_servers: Optional[pulumi.Input[str]] = None, owner_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'DefaultVpcDhcpOptions':
         """
         Get an existing DefaultVpcDhcpOptions resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Permission']
+
 
 class Permission(pulumi.CustomResource):
     allow_ssh: pulumi.Output[bool] = pulumi.output_property("allowSsh")
@@ -31,7 +33,7 @@ class Permission(pulumi.CustomResource):
     The user's IAM ARN to set permissions for
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allow_ssh=None, allow_sudo=None, level=None, stack_id=None, user_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allow_ssh: Optional[pulumi.Input[bool]] = None, allow_sudo: Optional[pulumi.Input[bool]] = None, level: Optional[pulumi.Input[str]] = None, stack_id: Optional[pulumi.Input[str]] = None, user_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an OpsWorks permission resource.
 
@@ -88,7 +90,7 @@ class Permission(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allow_ssh=None, allow_sudo=None, level=None, stack_id=None, user_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, allow_ssh: Optional[pulumi.Input[bool]] = None, allow_sudo: Optional[pulumi.Input[bool]] = None, level: Optional[pulumi.Input[str]] = None, stack_id: Optional[pulumi.Input[str]] = None, user_arn: Optional[pulumi.Input[str]] = None) -> 'Permission':
         """
         Get an existing Permission resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,22 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GroupInitialLifecycleHookArgs',
+    'GroupLaunchTemplateArgs',
+    'GroupMixedInstancesPolicyArgs',
+    'GroupMixedInstancesPolicyInstancesDistributionArgs',
+    'GroupMixedInstancesPolicyLaunchTemplateArgs',
+    'GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationArgs',
+    'GroupMixedInstancesPolicyLaunchTemplateOverrideArgs',
+    'GroupTagArgs',
+    'PolicyStepAdjustmentArgs',
+    'PolicyTargetTrackingConfigurationArgs',
+    'PolicyTargetTrackingConfigurationCustomizedMetricSpecificationArgs',
+    'PolicyTargetTrackingConfigurationCustomizedMetricSpecificationMetricDimensionArgs',
+    'PolicyTargetTrackingConfigurationPredefinedMetricSpecificationArgs',
+]
+
 @pulumi.input_type
 class GroupInitialLifecycleHookArgs:
     lifecycle_transition: pulumi.Input[str] = pulumi.input_property("lifecycleTransition")

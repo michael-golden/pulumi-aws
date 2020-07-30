@@ -9,6 +9,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 from . import outputs
 
+__all__ = [
+    'GetApplicationResult',
+    'AwaitableGetApplicationResult',
+    'get_application',
+]
+
 
 class GetApplicationResult:
     """
@@ -55,7 +61,7 @@ class AwaitableGetApplicationResult(GetApplicationResult):
             name=self.name)
 
 
-def get_application(name=None, opts=None):
+def get_application(name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetApplicationResult:
     """
     Retrieve information about an Elastic Beanstalk Application.
 

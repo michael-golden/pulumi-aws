@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetScriptResult',
+    'AwaitableGetScriptResult',
+    'get_script',
+]
+
 
 class GetScriptResult:
     """
@@ -60,7 +66,7 @@ class AwaitableGetScriptResult(GetScriptResult):
             scala_code=self.scala_code)
 
 
-def get_script(dag_edges=None, dag_nodes=None, language=None, opts=None):
+def get_script(dag_edges: Optional[List[pulumi.InputType['GetScriptDagEdgeArgs']]] = None, dag_nodes: Optional[List[pulumi.InputType['GetScriptDagNodeArgs']]] = None, language: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetScriptResult:
     """
     Use this data source to generate a Glue script from a Directed Acyclic Graph (DAG).
 
@@ -249,8 +255,8 @@ def get_script(dag_edges=None, dag_nodes=None, language=None, opts=None):
     ```
 
 
-    :param List['GetScriptDagEdgeArgs'] dag_edges: A list of the edges in the DAG. Defined below.
-    :param List['GetScriptDagNodeArgs'] dag_nodes: A list of the nodes in the DAG. Defined below.
+    :param List[pulumi.InputType['GetScriptDagEdgeArgs']] dag_edges: A list of the edges in the DAG. Defined below.
+    :param List[pulumi.InputType['GetScriptDagNodeArgs']] dag_nodes: A list of the nodes in the DAG. Defined below.
     :param str language: The programming language of the resulting code from the DAG. Defaults to `PYTHON`. Valid values are `PYTHON` and `SCALA`.
     """
     __args__ = dict()

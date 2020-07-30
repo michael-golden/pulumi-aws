@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetActivityResult',
+    'AwaitableGetActivityResult',
+    'get_activity',
+]
+
 
 class GetActivityResult:
     """
@@ -47,7 +53,7 @@ class AwaitableGetActivityResult(GetActivityResult):
             name=self.name)
 
 
-def get_activity(arn=None, name=None, opts=None):
+def get_activity(arn: Optional[str] = None, name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetActivityResult:
     """
     Provides a Step Functions Activity data source
 

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['NotebookInstanceLifecycleConfiguration']
+
 
 class NotebookInstanceLifecycleConfiguration(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -27,7 +29,7 @@ class NotebookInstanceLifecycleConfiguration(pulumi.CustomResource):
     A shell script (base64-encoded) that runs every time the SageMaker Notebook Instance is started including the time it's created.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, on_create=None, on_start=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name: Optional[pulumi.Input[str]] = None, on_create: Optional[pulumi.Input[str]] = None, on_start: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a lifecycle configuration for SageMaker Notebook Instances.
 
@@ -65,7 +67,7 @@ class NotebookInstanceLifecycleConfiguration(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, name=None, on_create=None, on_start=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, on_create: Optional[pulumi.Input[str]] = None, on_start: Optional[pulumi.Input[str]] = None) -> 'NotebookInstanceLifecycleConfiguration':
         """
         Get an existing NotebookInstanceLifecycleConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Protection']
+
 
 class Protection(pulumi.CustomResource):
     name: pulumi.Output[str] = pulumi.output_property("name")
@@ -19,7 +21,7 @@ class Protection(pulumi.CustomResource):
     The ARN (Amazon Resource Name) of the resource to be protected.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, resource_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name: Optional[pulumi.Input[str]] = None, resource_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Enables AWS Shield Advanced for a specific AWS resource.
         The resource can be an Amazon CloudFront distribution, Elastic Load Balancing load balancer, AWS Global Accelerator accelerator, Elastic IP Address, or an Amazon Route 53 hosted zone.
@@ -71,7 +73,7 @@ class Protection(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, name=None, resource_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, name: Optional[pulumi.Input[str]] = None, resource_arn: Optional[pulumi.Input[str]] = None) -> 'Protection':
         """
         Get an existing Protection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

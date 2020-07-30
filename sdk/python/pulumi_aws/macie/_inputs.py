@@ -8,6 +8,10 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'S3BucketAssociationClassificationTypeArgs',
+]
+
 @pulumi.input_type
 class S3BucketAssociationClassificationTypeArgs:
     continuous: Optional[pulumi.Input[str]] = pulumi.input_property("continuous")

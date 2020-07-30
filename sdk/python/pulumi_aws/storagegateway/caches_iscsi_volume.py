@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['CachesIscsiVolume']
+
 
 class CachesIscsiVolume(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -67,7 +69,7 @@ class CachesIscsiVolume(pulumi.CustomResource):
     The size of the volume in bytes.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, gateway_arn=None, network_interface_id=None, snapshot_id=None, source_volume_arn=None, tags=None, target_name=None, volume_size_in_bytes=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, gateway_arn: Optional[pulumi.Input[str]] = None, network_interface_id: Optional[pulumi.Input[str]] = None, snapshot_id: Optional[pulumi.Input[str]] = None, source_volume_arn: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, target_name: Optional[pulumi.Input[str]] = None, volume_size_in_bytes: Optional[pulumi.Input[float]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an AWS Storage Gateway cached iSCSI volume.
 
@@ -174,7 +176,7 @@ class CachesIscsiVolume(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, chap_enabled=None, gateway_arn=None, lun_number=None, network_interface_id=None, network_interface_port=None, snapshot_id=None, source_volume_arn=None, tags=None, target_arn=None, target_name=None, volume_arn=None, volume_id=None, volume_size_in_bytes=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, chap_enabled: Optional[pulumi.Input[bool]] = None, gateway_arn: Optional[pulumi.Input[str]] = None, lun_number: Optional[pulumi.Input[float]] = None, network_interface_id: Optional[pulumi.Input[str]] = None, network_interface_port: Optional[pulumi.Input[float]] = None, snapshot_id: Optional[pulumi.Input[str]] = None, source_volume_arn: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, target_arn: Optional[pulumi.Input[str]] = None, target_name: Optional[pulumi.Input[str]] = None, volume_arn: Optional[pulumi.Input[str]] = None, volume_id: Optional[pulumi.Input[str]] = None, volume_size_in_bytes: Optional[pulumi.Input[float]] = None) -> 'CachesIscsiVolume':
         """
         Get an existing CachesIscsiVolume resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

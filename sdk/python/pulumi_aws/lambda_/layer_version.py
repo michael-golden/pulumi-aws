@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['LayerVersion']
+
 
 class LayerVersion(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -67,7 +69,7 @@ class LayerVersion(pulumi.CustomResource):
     This Lamba Layer version.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, code=None, compatible_runtimes=None, description=None, layer_name=None, license_info=None, s3_bucket=None, s3_key=None, s3_object_version=None, source_code_hash=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, code: Optional[pulumi.Input[pulumi.Archive]] = None, compatible_runtimes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, description: Optional[pulumi.Input[str]] = None, layer_name: Optional[pulumi.Input[str]] = None, license_info: Optional[pulumi.Input[str]] = None, s3_bucket: Optional[pulumi.Input[str]] = None, s3_key: Optional[pulumi.Input[str]] = None, s3_object_version: Optional[pulumi.Input[str]] = None, source_code_hash: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Lambda Layer Version resource. Lambda Layers allow you to reuse shared bits of code across multiple lambda functions.
 
@@ -148,7 +150,7 @@ class LayerVersion(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, code=None, compatible_runtimes=None, created_date=None, description=None, layer_arn=None, layer_name=None, license_info=None, s3_bucket=None, s3_key=None, s3_object_version=None, source_code_hash=None, source_code_size=None, version=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, code: Optional[pulumi.Input[pulumi.Archive]] = None, compatible_runtimes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, created_date: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, layer_arn: Optional[pulumi.Input[str]] = None, layer_name: Optional[pulumi.Input[str]] = None, license_info: Optional[pulumi.Input[str]] = None, s3_bucket: Optional[pulumi.Input[str]] = None, s3_key: Optional[pulumi.Input[str]] = None, s3_object_version: Optional[pulumi.Input[str]] = None, source_code_hash: Optional[pulumi.Input[str]] = None, source_code_size: Optional[pulumi.Input[float]] = None, version: Optional[pulumi.Input[str]] = None) -> 'LayerVersion':
         """
         Get an existing LayerVersion resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

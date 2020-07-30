@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetRouteTableResult',
+    'AwaitableGetRouteTableResult',
+    'get_route_table',
+]
+
 
 class GetRouteTableResult:
     """
@@ -66,7 +72,7 @@ class AwaitableGetRouteTableResult(GetRouteTableResult):
             transit_gateway_id=self.transit_gateway_id)
 
 
-def get_route_table(filters=None, id=None, tags=None, opts=None):
+def get_route_table(filters: Optional[List[pulumi.InputType['GetRouteTableFilterArgs']]] = None, id: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRouteTableResult:
     """
     Get information on an EC2 Transit Gateway Route Table.
 
@@ -98,7 +104,7 @@ def get_route_table(filters=None, id=None, tags=None, opts=None):
     ```
 
 
-    :param List['GetRouteTableFilterArgs'] filters: One or more configuration blocks containing name-values filters. Detailed below.
+    :param List[pulumi.InputType['GetRouteTableFilterArgs']] filters: One or more configuration blocks containing name-values filters. Detailed below.
     :param str id: Identifier of the EC2 Transit Gateway Route Table.
     :param Dict[str, str] tags: Key-value tags for the EC2 Transit Gateway Route Table
     """

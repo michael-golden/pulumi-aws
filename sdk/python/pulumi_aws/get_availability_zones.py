@@ -10,6 +10,12 @@ from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetAvailabilityZonesResult',
+    'AwaitableGetAvailabilityZonesResult',
+    'get_availability_zones',
+]
+
 
 class GetAvailabilityZonesResult:
     """
@@ -88,7 +94,7 @@ class AwaitableGetAvailabilityZonesResult(GetAvailabilityZonesResult):
             zone_ids=self.zone_ids)
 
 
-def get_availability_zones(all_availability_zones=None, blacklisted_names=None, blacklisted_zone_ids=None, exclude_names=None, exclude_zone_ids=None, filters=None, group_names=None, state=None, opts=None):
+def get_availability_zones(all_availability_zones: Optional[bool] = None, blacklisted_names: Optional[List[str]] = None, blacklisted_zone_ids: Optional[List[str]] = None, exclude_names: Optional[List[str]] = None, exclude_zone_ids: Optional[List[str]] = None, filters: Optional[List[pulumi.InputType['GetAvailabilityZonesFilterArgs']]] = None, group_names: Optional[List[str]] = None, state: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAvailabilityZonesResult:
     """
     The Availability Zones data source allows access to the list of AWS
     Availability Zones which can be accessed by an AWS account within the region
@@ -148,7 +154,7 @@ def get_availability_zones(all_availability_zones=None, blacklisted_names=None, 
     :param List[str] blacklisted_zone_ids: List of Availability Zone IDs to exclude. Use `exclude_zone_ids` instead.
     :param List[str] exclude_names: List of Availability Zone names to exclude.
     :param List[str] exclude_zone_ids: List of Availability Zone IDs to exclude.
-    :param List['GetAvailabilityZonesFilterArgs'] filters: Configuration block(s) for filtering. Detailed below.
+    :param List[pulumi.InputType['GetAvailabilityZonesFilterArgs']] filters: Configuration block(s) for filtering. Detailed below.
     :param str state: Allows to filter list of Availability Zones based on their
            current state. Can be either `"available"`, `"information"`, `"impaired"` or
            `"unavailable"`. By default the list includes a complete set of Availability Zones

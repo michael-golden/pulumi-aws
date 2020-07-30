@@ -8,6 +8,17 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'AccessPointPosixUser',
+    'AccessPointRootDirectory',
+    'AccessPointRootDirectoryCreationInfo',
+    'FileSystemLifecyclePolicy',
+    'GetAccessPointPosixUser',
+    'GetAccessPointRootDirectory',
+    'GetAccessPointRootDirectoryCreationInfo',
+    'GetFileSystemLifecyclePolicy',
+]
+
 @pulumi.output_type
 class AccessPointPosixUser(dict):
     gid: float = pulumi.output_property("gid")

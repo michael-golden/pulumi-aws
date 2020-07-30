@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
 
+__all__ = [
+    'GetIpRangesResult',
+    'AwaitableGetIpRangesResult',
+    'get_ip_ranges',
+]
+
 
 class GetIpRangesResult:
     """
@@ -73,7 +79,7 @@ class AwaitableGetIpRangesResult(GetIpRangesResult):
             url=self.url)
 
 
-def get_ip_ranges(regions=None, services=None, url=None, opts=None):
+def get_ip_ranges(regions: Optional[List[str]] = None, services: Optional[List[str]] = None, url: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpRangesResult:
     """
     Use this data source to get the IP ranges of various AWS products and services. For more information about the contents of this data source and required JSON syntax if referencing a custom URL, see the [AWS IP Address Ranges documention](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html).
 

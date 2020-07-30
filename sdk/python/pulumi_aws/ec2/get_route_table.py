@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetRouteTableResult',
+    'AwaitableGetRouteTableResult',
+    'get_route_table',
+]
+
 
 class GetRouteTableResult:
     """
@@ -82,7 +88,7 @@ class AwaitableGetRouteTableResult(GetRouteTableResult):
             vpc_id=self.vpc_id)
 
 
-def get_route_table(filters=None, gateway_id=None, route_table_id=None, subnet_id=None, tags=None, vpc_id=None, opts=None):
+def get_route_table(filters: Optional[List[pulumi.InputType['GetRouteTableFilterArgs']]] = None, gateway_id: Optional[str] = None, route_table_id: Optional[str] = None, subnet_id: Optional[str] = None, tags: Optional[Dict[str, str]] = None, vpc_id: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRouteTableResult:
     """
     `ec2.RouteTable` provides details about a specific Route Table.
 
@@ -109,7 +115,7 @@ def get_route_table(filters=None, gateway_id=None, route_table_id=None, subnet_i
     ```
 
 
-    :param List['GetRouteTableFilterArgs'] filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetRouteTableFilterArgs']] filters: Custom filter block as described below.
     :param str gateway_id: The id of an Internet Gateway or Virtual Private Gateway which is connected to the Route Table (not exported if not passed as a parameter).
     :param str route_table_id: The id of the specific Route Table to retrieve.
     :param str subnet_id: The id of a Subnet which is connected to the Route Table (not exported if not passed as a parameter).

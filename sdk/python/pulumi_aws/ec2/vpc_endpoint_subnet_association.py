@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['VpcEndpointSubnetAssociation']
+
 
 class VpcEndpointSubnetAssociation(pulumi.CustomResource):
     subnet_id: pulumi.Output[str] = pulumi.output_property("subnetId")
@@ -19,7 +21,7 @@ class VpcEndpointSubnetAssociation(pulumi.CustomResource):
     The ID of the VPC endpoint with which the subnet will be associated.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, subnet_id=None, vpc_endpoint_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, subnet_id: Optional[pulumi.Input[str]] = None, vpc_endpoint_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to create an association between a VPC endpoint and a subnet.
 
@@ -77,7 +79,7 @@ class VpcEndpointSubnetAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, subnet_id=None, vpc_endpoint_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, subnet_id: Optional[pulumi.Input[str]] = None, vpc_endpoint_id: Optional[pulumi.Input[str]] = None) -> 'VpcEndpointSubnetAssociation':
         """
         Get an existing VpcEndpointSubnetAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -8,6 +8,17 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ClusterParameterGroupParameterArgs',
+    'ClusterS3ImportArgs',
+    'ClusterScalingConfigurationArgs',
+    'InstanceS3ImportArgs',
+    'OptionGroupOptionArgs',
+    'OptionGroupOptionOptionSettingArgs',
+    'ParameterGroupParameterArgs',
+    'SecurityGroupIngressArgs',
+]
+
 @pulumi.input_type
 class ClusterParameterGroupParameterArgs:
     name: pulumi.Input[str] = pulumi.input_property("name")

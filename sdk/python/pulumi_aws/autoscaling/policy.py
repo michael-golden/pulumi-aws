@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Policy']
+
 
 class Policy(pulumi.CustomResource):
     adjustment_type: pulumi.Output[Optional[str]] = pulumi.output_property("adjustmentType")
@@ -61,7 +63,7 @@ class Policy(pulumi.CustomResource):
     A target tracking policy. These have the following structure:
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, adjustment_type=None, autoscaling_group_name=None, cooldown=None, estimated_instance_warmup=None, metric_aggregation_type=None, min_adjustment_magnitude=None, name=None, policy_type=None, scaling_adjustment=None, step_adjustments=None, target_tracking_configuration=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, adjustment_type: Optional[pulumi.Input[str]] = None, autoscaling_group_name: Optional[pulumi.Input[str]] = None, cooldown: Optional[pulumi.Input[float]] = None, estimated_instance_warmup: Optional[pulumi.Input[float]] = None, metric_aggregation_type: Optional[pulumi.Input[str]] = None, min_adjustment_magnitude: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, policy_type: Optional[pulumi.Input[str]] = None, scaling_adjustment: Optional[pulumi.Input[float]] = None, step_adjustments: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['PolicyStepAdjustmentArgs']]]]] = None, target_tracking_configuration: Optional[pulumi.Input[pulumi.InputType['PolicyTargetTrackingConfigurationArgs']]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AutoScaling Scaling Policy resource.
 
@@ -104,9 +106,9 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[float] scaling_adjustment: The number of members by which to
                scale, when the adjustment bounds are breached. A positive value scales
                up. A negative value scales down.
-        :param pulumi.Input[List[pulumi.Input['PolicyStepAdjustmentArgs']]] step_adjustments: A set of adjustments that manage
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['PolicyStepAdjustmentArgs']]]] step_adjustments: A set of adjustments that manage
                group scaling. These have the following structure:
-        :param pulumi.Input['PolicyTargetTrackingConfigurationArgs'] target_tracking_configuration: A target tracking policy. These have the following structure:
+        :param pulumi.Input[pulumi.InputType['PolicyTargetTrackingConfigurationArgs']] target_tracking_configuration: A target tracking policy. These have the following structure:
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -146,7 +148,7 @@ class Policy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, adjustment_type=None, arn=None, autoscaling_group_name=None, cooldown=None, estimated_instance_warmup=None, metric_aggregation_type=None, min_adjustment_magnitude=None, name=None, policy_type=None, scaling_adjustment=None, step_adjustments=None, target_tracking_configuration=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, adjustment_type: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, autoscaling_group_name: Optional[pulumi.Input[str]] = None, cooldown: Optional[pulumi.Input[float]] = None, estimated_instance_warmup: Optional[pulumi.Input[float]] = None, metric_aggregation_type: Optional[pulumi.Input[str]] = None, min_adjustment_magnitude: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, policy_type: Optional[pulumi.Input[str]] = None, scaling_adjustment: Optional[pulumi.Input[float]] = None, step_adjustments: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['PolicyStepAdjustmentArgs']]]]] = None, target_tracking_configuration: Optional[pulumi.Input[pulumi.InputType['PolicyTargetTrackingConfigurationArgs']]] = None) -> 'Policy':
         """
         Get an existing Policy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -165,9 +167,9 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[float] scaling_adjustment: The number of members by which to
                scale, when the adjustment bounds are breached. A positive value scales
                up. A negative value scales down.
-        :param pulumi.Input[List[pulumi.Input['PolicyStepAdjustmentArgs']]] step_adjustments: A set of adjustments that manage
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['PolicyStepAdjustmentArgs']]]] step_adjustments: A set of adjustments that manage
                group scaling. These have the following structure:
-        :param pulumi.Input['PolicyTargetTrackingConfigurationArgs'] target_tracking_configuration: A target tracking policy. These have the following structure:
+        :param pulumi.Input[pulumi.InputType['PolicyTargetTrackingConfigurationArgs']] target_tracking_configuration: A target tracking policy. These have the following structure:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

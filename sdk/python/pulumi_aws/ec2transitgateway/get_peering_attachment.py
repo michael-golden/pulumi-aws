@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetPeeringAttachmentResult',
+    'AwaitableGetPeeringAttachmentResult',
+    'get_peering_attachment',
+]
+
 
 class GetPeeringAttachmentResult:
     """
@@ -67,7 +73,7 @@ class AwaitableGetPeeringAttachmentResult(GetPeeringAttachmentResult):
             transit_gateway_id=self.transit_gateway_id)
 
 
-def get_peering_attachment(filters=None, id=None, tags=None, opts=None):
+def get_peering_attachment(filters: Optional[List[pulumi.InputType['GetPeeringAttachmentFilterArgs']]] = None, id: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPeeringAttachmentResult:
     """
     Get information on an EC2 Transit Gateway Peering Attachment.
 
@@ -93,7 +99,7 @@ def get_peering_attachment(filters=None, id=None, tags=None, opts=None):
     ```
 
 
-    :param List['GetPeeringAttachmentFilterArgs'] filters: One or more configuration blocks containing name-values filters. Detailed below.
+    :param List[pulumi.InputType['GetPeeringAttachmentFilterArgs']] filters: One or more configuration blocks containing name-values filters. Detailed below.
     :param str id: Identifier of the EC2 Transit Gateway Peering Attachment.
     :param Dict[str, str] tags: A mapping of tags, each pair of which must exactly match
            a pair on the specific EC2 Transit Gateway Peering Attachment to retrieve.

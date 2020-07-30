@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['DocumentationPart']
+
 
 class DocumentationPart(pulumi.CustomResource):
     location: pulumi.Output['outputs.DocumentationPartLocation'] = pulumi.output_property("location")
@@ -25,7 +27,7 @@ class DocumentationPart(pulumi.CustomResource):
     The ID of the associated Rest API
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, location=None, properties=None, rest_api_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, location: Optional[pulumi.Input[pulumi.InputType['DocumentationPartLocationArgs']]] = None, properties: Optional[pulumi.Input[str]] = None, rest_api_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a settings of an API Gateway Documentation Part.
 
@@ -48,7 +50,7 @@ class DocumentationPart(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['DocumentationPartLocationArgs'] location: The location of the targeted API entity of the to-be-created documentation part. See below.
+        :param pulumi.Input[pulumi.InputType['DocumentationPartLocationArgs']] location: The location of the targeted API entity of the to-be-created documentation part. See below.
         :param pulumi.Input[str] properties: A content map of API-specific key-value pairs describing the targeted API entity. The map must be encoded as a JSON string, e.g., "{ \"description\": \"The API does ...\" }". Only Swagger-compliant key-value pairs can be exported and, hence, published.
         :param pulumi.Input[str] rest_api_id: The ID of the associated Rest API
         """
@@ -85,7 +87,7 @@ class DocumentationPart(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, location=None, properties=None, rest_api_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, location: Optional[pulumi.Input[pulumi.InputType['DocumentationPartLocationArgs']]] = None, properties: Optional[pulumi.Input[str]] = None, rest_api_id: Optional[pulumi.Input[str]] = None) -> 'DocumentationPart':
         """
         Get an existing DocumentationPart resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -93,7 +95,7 @@ class DocumentationPart(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['DocumentationPartLocationArgs'] location: The location of the targeted API entity of the to-be-created documentation part. See below.
+        :param pulumi.Input[pulumi.InputType['DocumentationPartLocationArgs']] location: The location of the targeted API entity of the to-be-created documentation part. See below.
         :param pulumi.Input[str] properties: A content map of API-specific key-value pairs describing the targeted API entity. The map must be encoded as a JSON string, e.g., "{ \"description\": \"The API does ...\" }". Only Swagger-compliant key-value pairs can be exported and, hence, published.
         :param pulumi.Input[str] rest_api_id: The ID of the associated Rest API
         """

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['LogSubscriptionFilter']
+
 
 class LogSubscriptionFilter(pulumi.CustomResource):
     destination_arn: pulumi.Output[str] = pulumi.output_property("destinationArn")
@@ -35,7 +37,7 @@ class LogSubscriptionFilter(pulumi.CustomResource):
     The ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ingested log events to the destination. If you use Lambda as a destination, you should skip this argument and use `lambda.Permission` resource for granting access from CloudWatch logs to the destination Lambda function.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, destination_arn=None, distribution=None, filter_pattern=None, log_group=None, name=None, role_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, destination_arn: Optional[pulumi.Input[str]] = None, distribution: Optional[pulumi.Input[str]] = None, filter_pattern: Optional[pulumi.Input[str]] = None, log_group: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a CloudWatch Logs subscription filter resource.
 
@@ -98,7 +100,7 @@ class LogSubscriptionFilter(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, destination_arn=None, distribution=None, filter_pattern=None, log_group=None, name=None, role_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, destination_arn: Optional[pulumi.Input[str]] = None, distribution: Optional[pulumi.Input[str]] = None, filter_pattern: Optional[pulumi.Input[str]] = None, log_group: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, role_arn: Optional[pulumi.Input[str]] = None) -> 'LogSubscriptionFilter':
         """
         Get an existing LogSubscriptionFilter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Directory']
+
 
 class Directory(pulumi.CustomResource):
     access_url: pulumi.Output[str] = pulumi.output_property("accessUrl")
@@ -73,7 +75,7 @@ class Directory(pulumi.CustomResource):
     VPC related information about the directory. Fields documented below.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, alias=None, connect_settings=None, description=None, edition=None, enable_sso=None, name=None, password=None, short_name=None, size=None, tags=None, type=None, vpc_settings=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, alias: Optional[pulumi.Input[str]] = None, connect_settings: Optional[pulumi.Input[pulumi.InputType['DirectoryConnectSettingsArgs']]] = None, description: Optional[pulumi.Input[str]] = None, edition: Optional[pulumi.Input[str]] = None, enable_sso: Optional[pulumi.Input[bool]] = None, name: Optional[pulumi.Input[str]] = None, password: Optional[pulumi.Input[str]] = None, short_name: Optional[pulumi.Input[str]] = None, size: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, type: Optional[pulumi.Input[str]] = None, vpc_settings: Optional[pulumi.Input[pulumi.InputType['DirectoryVpcSettingsArgs']]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Simple or Managed Microsoft directory in AWS Directory Service.
 
@@ -172,7 +174,7 @@ class Directory(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alias: The alias for the directory (must be unique amongst all aliases in AWS). Required for `enable_sso`.
-        :param pulumi.Input['DirectoryConnectSettingsArgs'] connect_settings: Connector related information about the directory. Fields documented below.
+        :param pulumi.Input[pulumi.InputType['DirectoryConnectSettingsArgs']] connect_settings: Connector related information about the directory. Fields documented below.
         :param pulumi.Input[str] description: A textual description for the directory.
         :param pulumi.Input[str] edition: The MicrosoftAD edition (`Standard` or `Enterprise`). Defaults to `Enterprise` (applies to MicrosoftAD type only).
         :param pulumi.Input[bool] enable_sso: Whether to enable single-sign on for the directory. Requires `alias`. Defaults to `false`.
@@ -182,7 +184,7 @@ class Directory(pulumi.CustomResource):
         :param pulumi.Input[str] size: The size of the directory (`Small` or `Large` are accepted values).
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] type: The directory type (`SimpleAD`, `ADConnector` or `MicrosoftAD` are accepted values). Defaults to `SimpleAD`.
-        :param pulumi.Input['DirectoryVpcSettingsArgs'] vpc_settings: VPC related information about the directory. Fields documented below.
+        :param pulumi.Input[pulumi.InputType['DirectoryVpcSettingsArgs']] vpc_settings: VPC related information about the directory. Fields documented below.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -225,7 +227,7 @@ class Directory(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_url=None, alias=None, connect_settings=None, description=None, dns_ip_addresses=None, edition=None, enable_sso=None, name=None, password=None, security_group_id=None, short_name=None, size=None, tags=None, type=None, vpc_settings=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, access_url: Optional[pulumi.Input[str]] = None, alias: Optional[pulumi.Input[str]] = None, connect_settings: Optional[pulumi.Input[pulumi.InputType['DirectoryConnectSettingsArgs']]] = None, description: Optional[pulumi.Input[str]] = None, dns_ip_addresses: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, edition: Optional[pulumi.Input[str]] = None, enable_sso: Optional[pulumi.Input[bool]] = None, name: Optional[pulumi.Input[str]] = None, password: Optional[pulumi.Input[str]] = None, security_group_id: Optional[pulumi.Input[str]] = None, short_name: Optional[pulumi.Input[str]] = None, size: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, type: Optional[pulumi.Input[str]] = None, vpc_settings: Optional[pulumi.Input[pulumi.InputType['DirectoryVpcSettingsArgs']]] = None) -> 'Directory':
         """
         Get an existing Directory resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -235,7 +237,7 @@ class Directory(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_url: The access URL for the directory, such as `http://alias.awsapps.com`.
         :param pulumi.Input[str] alias: The alias for the directory (must be unique amongst all aliases in AWS). Required for `enable_sso`.
-        :param pulumi.Input['DirectoryConnectSettingsArgs'] connect_settings: Connector related information about the directory. Fields documented below.
+        :param pulumi.Input[pulumi.InputType['DirectoryConnectSettingsArgs']] connect_settings: Connector related information about the directory. Fields documented below.
         :param pulumi.Input[str] description: A textual description for the directory.
         :param pulumi.Input[List[pulumi.Input[str]]] dns_ip_addresses: A list of IP addresses of the DNS servers for the directory or connector.
         :param pulumi.Input[str] edition: The MicrosoftAD edition (`Standard` or `Enterprise`). Defaults to `Enterprise` (applies to MicrosoftAD type only).
@@ -247,7 +249,7 @@ class Directory(pulumi.CustomResource):
         :param pulumi.Input[str] size: The size of the directory (`Small` or `Large` are accepted values).
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] type: The directory type (`SimpleAD`, `ADConnector` or `MicrosoftAD` are accepted values). Defaults to `SimpleAD`.
-        :param pulumi.Input['DirectoryVpcSettingsArgs'] vpc_settings: VPC related information about the directory. Fields documented below.
+        :param pulumi.Input[pulumi.InputType['DirectoryVpcSettingsArgs']] vpc_settings: VPC related information about the directory. Fields documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Key']
+
 
 class Key(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -55,7 +57,7 @@ class Key(pulumi.CustomResource):
     A map of tags to assign to the object.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, customer_master_key_spec=None, deletion_window_in_days=None, description=None, enable_key_rotation=None, is_enabled=None, key_usage=None, policy=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, customer_master_key_spec: Optional[pulumi.Input[str]] = None, deletion_window_in_days: Optional[pulumi.Input[float]] = None, description: Optional[pulumi.Input[str]] = None, enable_key_rotation: Optional[pulumi.Input[bool]] = None, is_enabled: Optional[pulumi.Input[bool]] = None, key_usage: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a KMS customer master key.
 
@@ -119,7 +121,7 @@ class Key(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, customer_master_key_spec=None, deletion_window_in_days=None, description=None, enable_key_rotation=None, is_enabled=None, key_id=None, key_usage=None, policy=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, customer_master_key_spec: Optional[pulumi.Input[str]] = None, deletion_window_in_days: Optional[pulumi.Input[float]] = None, description: Optional[pulumi.Input[str]] = None, enable_key_rotation: Optional[pulumi.Input[bool]] = None, is_enabled: Optional[pulumi.Input[bool]] = None, key_id: Optional[pulumi.Input[str]] = None, key_usage: Optional[pulumi.Input[str]] = None, policy: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Key':
         """
         Get an existing Key resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

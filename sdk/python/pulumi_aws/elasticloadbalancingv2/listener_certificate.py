@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ListenerCertificate']
+
 warnings.warn("aws.elasticloadbalancingv2.ListenerCertificate has been deprecated in favor of aws.lb.ListenerCertificate", DeprecationWarning)
 
 
@@ -23,7 +25,7 @@ class ListenerCertificate(pulumi.CustomResource):
     warnings.warn("aws.elasticloadbalancingv2.ListenerCertificate has been deprecated in favor of aws.lb.ListenerCertificate", DeprecationWarning)
 
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, certificate_arn=None, listener_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, certificate_arn: Optional[pulumi.Input[str]] = None, listener_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Load Balancer Listener Certificate resource.
 
@@ -81,7 +83,7 @@ class ListenerCertificate(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, certificate_arn=None, listener_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, certificate_arn: Optional[pulumi.Input[str]] = None, listener_arn: Optional[pulumi.Input[str]] = None) -> 'ListenerCertificate':
         """
         Get an existing ListenerCertificate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

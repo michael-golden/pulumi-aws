@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'DirectorySelfServicePermissionsArgs',
+    'IpGroupRuleArgs',
+    'WorkspaceWorkspacePropertiesArgs',
+]
+
 @pulumi.input_type
 class DirectorySelfServicePermissionsArgs:
     change_compute_type: Optional[pulumi.Input[bool]] = pulumi.input_property("changeComputeType")

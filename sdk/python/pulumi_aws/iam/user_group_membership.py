@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['UserGroupMembership']
+
 
 class UserGroupMembership(pulumi.CustomResource):
     groups: pulumi.Output[List[str]] = pulumi.output_property("groups")
@@ -19,7 +21,7 @@ class UserGroupMembership(pulumi.CustomResource):
     The name of the [IAM User](https://www.terraform.io/docs/providers/aws/r/iam_user.html) to add to groups
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, groups=None, user=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, user: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource for adding an [IAM User](https://www.terraform.io/docs/providers/aws/r/iam_user.html) to [IAM Groups](https://www.terraform.io/docs/providers/aws/r/iam_group.html). This
         resource can be used multiple times with the same user for non-overlapping
@@ -84,7 +86,7 @@ class UserGroupMembership(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, groups=None, user=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, user: Optional[pulumi.Input[str]] = None) -> 'UserGroupMembership':
         """
         Get an existing UserGroupMembership resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

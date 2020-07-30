@@ -8,6 +8,11 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GatewaySmbActiveDirectorySettings',
+    'NfsFileShareNfsFileShareDefaults',
+]
+
 @pulumi.output_type
 class GatewaySmbActiveDirectorySettings(dict):
     domain_name: str = pulumi.output_property("domainName")

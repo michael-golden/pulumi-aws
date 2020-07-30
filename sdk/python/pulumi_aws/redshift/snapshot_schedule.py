@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['SnapshotSchedule']
+
 
 class SnapshotSchedule(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -37,7 +39,7 @@ class SnapshotSchedule(pulumi.CustomResource):
     A map of tags to assign to the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, definitions=None, description=None, force_destroy=None, identifier=None, identifier_prefix=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, definitions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, description: Optional[pulumi.Input[str]] = None, force_destroy: Optional[pulumi.Input[bool]] = None, identifier: Optional[pulumi.Input[str]] = None, identifier_prefix: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         ## Example Usage
 
@@ -93,7 +95,7 @@ class SnapshotSchedule(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, definitions=None, description=None, force_destroy=None, identifier=None, identifier_prefix=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, definitions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, description: Optional[pulumi.Input[str]] = None, force_destroy: Optional[pulumi.Input[bool]] = None, identifier: Optional[pulumi.Input[str]] = None, identifier_prefix: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'SnapshotSchedule':
         """
         Get an existing SnapshotSchedule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

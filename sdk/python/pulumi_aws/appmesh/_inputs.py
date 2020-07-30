@@ -8,6 +8,41 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'MeshSpecArgs',
+    'MeshSpecEgressFilterArgs',
+    'RouteSpecArgs',
+    'RouteSpecHttpRouteArgs',
+    'RouteSpecHttpRouteActionArgs',
+    'RouteSpecHttpRouteActionWeightedTargetArgs',
+    'RouteSpecHttpRouteMatchArgs',
+    'RouteSpecHttpRouteMatchHeaderArgs',
+    'RouteSpecHttpRouteMatchHeaderMatchArgs',
+    'RouteSpecHttpRouteMatchHeaderMatchRangeArgs',
+    'RouteSpecTcpRouteArgs',
+    'RouteSpecTcpRouteActionArgs',
+    'RouteSpecTcpRouteActionWeightedTargetArgs',
+    'VirtualNodeSpecArgs',
+    'VirtualNodeSpecBackendArgs',
+    'VirtualNodeSpecBackendVirtualServiceArgs',
+    'VirtualNodeSpecListenerArgs',
+    'VirtualNodeSpecListenerHealthCheckArgs',
+    'VirtualNodeSpecListenerPortMappingArgs',
+    'VirtualNodeSpecLoggingArgs',
+    'VirtualNodeSpecLoggingAccessLogArgs',
+    'VirtualNodeSpecLoggingAccessLogFileArgs',
+    'VirtualNodeSpecServiceDiscoveryArgs',
+    'VirtualNodeSpecServiceDiscoveryAwsCloudMapArgs',
+    'VirtualNodeSpecServiceDiscoveryDnsArgs',
+    'VirtualRouterSpecArgs',
+    'VirtualRouterSpecListenerArgs',
+    'VirtualRouterSpecListenerPortMappingArgs',
+    'VirtualServiceSpecArgs',
+    'VirtualServiceSpecProviderArgs',
+    'VirtualServiceSpecProviderVirtualNodeArgs',
+    'VirtualServiceSpecProviderVirtualRouterArgs',
+]
+
 @pulumi.input_type
 class MeshSpecArgs:
     egress_filter: Optional[pulumi.Input['MeshSpecEgressFilterArgs']] = pulumi.input_property("egressFilter")

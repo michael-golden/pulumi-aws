@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['LustreFileSystem']
+
 
 class LustreFileSystem(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -63,7 +65,7 @@ class LustreFileSystem(pulumi.CustomResource):
     The preferred start time (in `d:HH:MM` format) to perform weekly maintenance, in the UTC time zone.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, export_path=None, import_path=None, imported_file_chunk_size=None, security_group_ids=None, storage_capacity=None, subnet_ids=None, tags=None, weekly_maintenance_start_time=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, export_path: Optional[pulumi.Input[str]] = None, import_path: Optional[pulumi.Input[str]] = None, imported_file_chunk_size: Optional[pulumi.Input[float]] = None, security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, storage_capacity: Optional[pulumi.Input[float]] = None, subnet_ids: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, weekly_maintenance_start_time: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a FSx Lustre File System. See the [FSx Lustre Guide](https://docs.aws.amazon.com/fsx/latest/LustreGuide/what-is.html) for more information.
 
@@ -131,7 +133,7 @@ class LustreFileSystem(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, dns_name=None, export_path=None, import_path=None, imported_file_chunk_size=None, network_interface_ids=None, owner_id=None, security_group_ids=None, storage_capacity=None, subnet_ids=None, tags=None, vpc_id=None, weekly_maintenance_start_time=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, dns_name: Optional[pulumi.Input[str]] = None, export_path: Optional[pulumi.Input[str]] = None, import_path: Optional[pulumi.Input[str]] = None, imported_file_chunk_size: Optional[pulumi.Input[float]] = None, network_interface_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, owner_id: Optional[pulumi.Input[str]] = None, security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, storage_capacity: Optional[pulumi.Input[float]] = None, subnet_ids: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_id: Optional[pulumi.Input[str]] = None, weekly_maintenance_start_time: Optional[pulumi.Input[str]] = None) -> 'LustreFileSystem':
         """
         Get an existing LustreFileSystem resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

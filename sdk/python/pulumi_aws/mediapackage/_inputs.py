@@ -8,6 +8,11 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ChannelHlsIngestArgs',
+    'ChannelHlsIngestIngestEndpointArgs',
+]
+
 @pulumi.input_type
 class ChannelHlsIngestArgs:
     ingest_endpoints: Optional[pulumi.Input[List[pulumi.Input['ChannelHlsIngestIngestEndpointArgs']]]] = pulumi.input_property("ingestEndpoints")

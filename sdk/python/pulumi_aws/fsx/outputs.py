@@ -8,6 +8,10 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'WindowsFileSystemSelfManagedActiveDirectory',
+]
+
 @pulumi.output_type
 class WindowsFileSystemSelfManagedActiveDirectory(dict):
     dns_ips: List[str] = pulumi.output_property("dnsIps")

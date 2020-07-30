@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ListenerPolicy']
+
 warnings.warn("aws.elasticloadbalancing.ListenerPolicy has been deprecated in favor of aws.elb.ListenerPolicy", DeprecationWarning)
 
 
@@ -27,7 +29,7 @@ class ListenerPolicy(pulumi.CustomResource):
     warnings.warn("aws.elasticloadbalancing.ListenerPolicy has been deprecated in favor of aws.elb.ListenerPolicy", DeprecationWarning)
 
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, load_balancer_name=None, load_balancer_port=None, policy_names=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, load_balancer_name: Optional[pulumi.Input[str]] = None, load_balancer_port: Optional[pulumi.Input[float]] = None, policy_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Attaches a load balancer policy to an ELB Listener.
 
@@ -143,7 +145,7 @@ class ListenerPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, load_balancer_name=None, load_balancer_port=None, policy_names=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, load_balancer_name: Optional[pulumi.Input[str]] = None, load_balancer_port: Optional[pulumi.Input[float]] = None, policy_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'ListenerPolicy':
         """
         Get an existing ListenerPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

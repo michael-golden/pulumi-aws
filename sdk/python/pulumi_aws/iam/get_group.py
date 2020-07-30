@@ -9,6 +9,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 from . import outputs
 
+__all__ = [
+    'GetGroupResult',
+    'AwaitableGetGroupResult',
+    'get_group',
+]
+
 
 class GetGroupResult:
     """
@@ -65,7 +71,7 @@ class AwaitableGetGroupResult(GetGroupResult):
             users=self.users)
 
 
-def get_group(group_name=None, opts=None):
+def get_group(group_name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
     This data source can be used to fetch information about a specific
     IAM group. By using this data source, you can reference IAM group

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['GroupMembership']
+
 
 class GroupMembership(pulumi.CustomResource):
     group: pulumi.Output[str] = pulumi.output_property("group")
@@ -23,7 +25,7 @@ class GroupMembership(pulumi.CustomResource):
     A list of IAM User names to associate with the Group
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, group=None, name=None, users=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, group: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, users: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         > **WARNING:** Multiple iam.GroupMembership resources with the same group name will produce inconsistent behavior!
 
@@ -88,7 +90,7 @@ class GroupMembership(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, group=None, name=None, users=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, group: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, users: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'GroupMembership':
         """
         Get an existing GroupMembership resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

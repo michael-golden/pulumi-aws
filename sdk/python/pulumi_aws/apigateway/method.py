@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Method']
+
 
 class Method(pulumi.CustomResource):
     api_key_required: pulumi.Output[Optional[bool]] = pulumi.output_property("apiKeyRequired")
@@ -54,7 +56,7 @@ class Method(pulumi.CustomResource):
     The ID of the associated REST API
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_key_required=None, authorization=None, authorization_scopes=None, authorizer_id=None, http_method=None, request_models=None, request_parameters=None, request_validator_id=None, resource_id=None, rest_api=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_key_required: Optional[pulumi.Input[bool]] = None, authorization: Optional[pulumi.Input[str]] = None, authorization_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, authorizer_id: Optional[pulumi.Input[str]] = None, http_method: Optional[pulumi.Input[str]] = None, request_models: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, request_parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[bool]]]] = None, request_validator_id: Optional[pulumi.Input[str]] = None, resource_id: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a HTTP Method for an API Gateway Resource.
 
@@ -162,7 +164,7 @@ class Method(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, api_key_required=None, authorization=None, authorization_scopes=None, authorizer_id=None, http_method=None, request_models=None, request_parameters=None, request_validator_id=None, resource_id=None, rest_api=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, api_key_required: Optional[pulumi.Input[bool]] = None, authorization: Optional[pulumi.Input[str]] = None, authorization_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, authorizer_id: Optional[pulumi.Input[str]] = None, http_method: Optional[pulumi.Input[str]] = None, request_models: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, request_parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[bool]]]] = None, request_validator_id: Optional[pulumi.Input[str]] = None, resource_id: Optional[pulumi.Input[str]] = None, rest_api: Optional[pulumi.Input[str]] = None) -> 'Method':
         """
         Get an existing Method resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

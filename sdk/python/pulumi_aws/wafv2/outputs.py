@@ -8,6 +8,11 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'RegexPatternSetRegularExpression',
+    'GetRegexPatternSetRegularExpression',
+]
+
 @pulumi.output_type
 class RegexPatternSetRegularExpression(dict):
     regex_string: str = pulumi.output_property("regexString")

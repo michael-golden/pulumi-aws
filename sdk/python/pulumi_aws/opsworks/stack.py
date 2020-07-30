@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Stack']
+
 
 class Stack(pulumi.CustomResource):
     agent_version: pulumi.Output[str] = pulumi.output_property("agentVersion")
@@ -110,7 +112,7 @@ class Stack(pulumi.CustomResource):
     The id of the VPC that this stack belongs to.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, agent_version=None, berkshelf_version=None, color=None, configuration_manager_name=None, configuration_manager_version=None, custom_cookbooks_sources=None, custom_json=None, default_availability_zone=None, default_instance_profile_arn=None, default_os=None, default_root_device_type=None, default_ssh_key_name=None, default_subnet_id=None, hostname_theme=None, manage_berkshelf=None, name=None, region=None, service_role_arn=None, tags=None, use_custom_cookbooks=None, use_opsworks_security_groups=None, vpc_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, agent_version: Optional[pulumi.Input[str]] = None, berkshelf_version: Optional[pulumi.Input[str]] = None, color: Optional[pulumi.Input[str]] = None, configuration_manager_name: Optional[pulumi.Input[str]] = None, configuration_manager_version: Optional[pulumi.Input[str]] = None, custom_cookbooks_sources: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['StackCustomCookbooksSourceArgs']]]]] = None, custom_json: Optional[pulumi.Input[str]] = None, default_availability_zone: Optional[pulumi.Input[str]] = None, default_instance_profile_arn: Optional[pulumi.Input[str]] = None, default_os: Optional[pulumi.Input[str]] = None, default_root_device_type: Optional[pulumi.Input[str]] = None, default_ssh_key_name: Optional[pulumi.Input[str]] = None, default_subnet_id: Optional[pulumi.Input[str]] = None, hostname_theme: Optional[pulumi.Input[str]] = None, manage_berkshelf: Optional[pulumi.Input[bool]] = None, name: Optional[pulumi.Input[str]] = None, region: Optional[pulumi.Input[str]] = None, service_role_arn: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, use_custom_cookbooks: Optional[pulumi.Input[bool]] = None, use_opsworks_security_groups: Optional[pulumi.Input[bool]] = None, vpc_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an OpsWorks stack resource.
 
@@ -143,7 +145,7 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[str] color: Color to paint next to the stack's resources in the OpsWorks console.
         :param pulumi.Input[str] configuration_manager_name: Name of the configuration manager to use. Defaults to "Chef".
         :param pulumi.Input[str] configuration_manager_version: Version of the configuration manager to use. Defaults to "11.4".
-        :param pulumi.Input[List[pulumi.Input['StackCustomCookbooksSourceArgs']]] custom_cookbooks_sources: When `use_custom_cookbooks` is set, provide this sub-object as
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['StackCustomCookbooksSourceArgs']]]] custom_cookbooks_sources: When `use_custom_cookbooks` is set, provide this sub-object as
                described below.
         :param pulumi.Input[str] custom_json: Custom JSON attributes to apply to the entire stack.
         :param pulumi.Input[str] default_availability_zone: Name of the availability zone where instances will be created
@@ -222,7 +224,7 @@ class Stack(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, agent_version=None, arn=None, berkshelf_version=None, color=None, configuration_manager_name=None, configuration_manager_version=None, custom_cookbooks_sources=None, custom_json=None, default_availability_zone=None, default_instance_profile_arn=None, default_os=None, default_root_device_type=None, default_ssh_key_name=None, default_subnet_id=None, hostname_theme=None, manage_berkshelf=None, name=None, region=None, service_role_arn=None, stack_endpoint=None, tags=None, use_custom_cookbooks=None, use_opsworks_security_groups=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, agent_version: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, berkshelf_version: Optional[pulumi.Input[str]] = None, color: Optional[pulumi.Input[str]] = None, configuration_manager_name: Optional[pulumi.Input[str]] = None, configuration_manager_version: Optional[pulumi.Input[str]] = None, custom_cookbooks_sources: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['StackCustomCookbooksSourceArgs']]]]] = None, custom_json: Optional[pulumi.Input[str]] = None, default_availability_zone: Optional[pulumi.Input[str]] = None, default_instance_profile_arn: Optional[pulumi.Input[str]] = None, default_os: Optional[pulumi.Input[str]] = None, default_root_device_type: Optional[pulumi.Input[str]] = None, default_ssh_key_name: Optional[pulumi.Input[str]] = None, default_subnet_id: Optional[pulumi.Input[str]] = None, hostname_theme: Optional[pulumi.Input[str]] = None, manage_berkshelf: Optional[pulumi.Input[bool]] = None, name: Optional[pulumi.Input[str]] = None, region: Optional[pulumi.Input[str]] = None, service_role_arn: Optional[pulumi.Input[str]] = None, stack_endpoint: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, use_custom_cookbooks: Optional[pulumi.Input[bool]] = None, use_opsworks_security_groups: Optional[pulumi.Input[bool]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'Stack':
         """
         Get an existing Stack resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -235,7 +237,7 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[str] color: Color to paint next to the stack's resources in the OpsWorks console.
         :param pulumi.Input[str] configuration_manager_name: Name of the configuration manager to use. Defaults to "Chef".
         :param pulumi.Input[str] configuration_manager_version: Version of the configuration manager to use. Defaults to "11.4".
-        :param pulumi.Input[List[pulumi.Input['StackCustomCookbooksSourceArgs']]] custom_cookbooks_sources: When `use_custom_cookbooks` is set, provide this sub-object as
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['StackCustomCookbooksSourceArgs']]]] custom_cookbooks_sources: When `use_custom_cookbooks` is set, provide this sub-object as
                described below.
         :param pulumi.Input[str] custom_json: Custom JSON attributes to apply to the entire stack.
         :param pulumi.Input[str] default_availability_zone: Name of the availability zone where instances will be created

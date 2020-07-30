@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Route']
+
 
 class Route(pulumi.CustomResource):
     blackhole: pulumi.Output[Optional[bool]] = pulumi.output_property("blackhole")
@@ -27,7 +29,7 @@ class Route(pulumi.CustomResource):
     Identifier of EC2 Transit Gateway Route Table.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, blackhole=None, destination_cidr_block=None, transit_gateway_attachment_id=None, transit_gateway_route_table_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, blackhole: Optional[pulumi.Input[bool]] = None, destination_cidr_block: Optional[pulumi.Input[str]] = None, transit_gateway_attachment_id: Optional[pulumi.Input[str]] = None, transit_gateway_route_table_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an EC2 Transit Gateway Route.
 
@@ -94,7 +96,7 @@ class Route(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, blackhole=None, destination_cidr_block=None, transit_gateway_attachment_id=None, transit_gateway_route_table_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, blackhole: Optional[pulumi.Input[bool]] = None, destination_cidr_block: Optional[pulumi.Input[str]] = None, transit_gateway_attachment_id: Optional[pulumi.Input[str]] = None, transit_gateway_route_table_id: Optional[pulumi.Input[str]] = None) -> 'Route':
         """
         Get an existing Route resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -9,6 +9,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 from . import outputs
 
+__all__ = [
+    'GetDomainResult',
+    'AwaitableGetDomainResult',
+    'get_domain',
+]
+
 
 class GetDomainResult:
     """
@@ -175,7 +181,7 @@ class AwaitableGetDomainResult(GetDomainResult):
             vpc_options=self.vpc_options)
 
 
-def get_domain(domain_name=None, tags=None, opts=None):
+def get_domain(domain_name: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDomainResult:
     """
     Use this data source to get information about an Elasticsearch Domain
 

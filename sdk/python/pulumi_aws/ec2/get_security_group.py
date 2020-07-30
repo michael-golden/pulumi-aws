@@ -10,6 +10,12 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = [
+    'GetSecurityGroupResult',
+    'AwaitableGetSecurityGroupResult',
+    'get_security_group',
+]
+
 
 class GetSecurityGroupResult:
     """
@@ -61,7 +67,7 @@ class AwaitableGetSecurityGroupResult(GetSecurityGroupResult):
             vpc_id=self.vpc_id)
 
 
-def get_security_group(filters=None, id=None, name=None, tags=None, vpc_id=None, opts=None):
+def get_security_group(filters: Optional[List[pulumi.InputType['GetSecurityGroupFilterArgs']]] = None, id: Optional[str] = None, name: Optional[str] = None, tags: Optional[Dict[str, str]] = None, vpc_id: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecurityGroupResult:
     """
     `ec2.SecurityGroup` provides details about a specific Security Group.
 
@@ -87,7 +93,7 @@ def get_security_group(filters=None, id=None, name=None, tags=None, vpc_id=None,
     ```
 
 
-    :param List['GetSecurityGroupFilterArgs'] filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetSecurityGroupFilterArgs']] filters: Custom filter block as described below.
     :param str id: The id of the specific security group to retrieve.
     :param str name: The name of the field to filter by, as defined by
            [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSecurityGroups.html).

@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['NfsFileShare']
+
 
 class NfsFileShare(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -81,7 +83,7 @@ class NfsFileShare(pulumi.CustomResource):
     Key-value map of resource tags
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, client_lists=None, default_storage_class=None, gateway_arn=None, guess_mime_type_enabled=None, kms_encrypted=None, kms_key_arn=None, location_arn=None, nfs_file_share_defaults=None, object_acl=None, read_only=None, requester_pays=None, role_arn=None, squash=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, client_lists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, default_storage_class: Optional[pulumi.Input[str]] = None, gateway_arn: Optional[pulumi.Input[str]] = None, guess_mime_type_enabled: Optional[pulumi.Input[bool]] = None, kms_encrypted: Optional[pulumi.Input[bool]] = None, kms_key_arn: Optional[pulumi.Input[str]] = None, location_arn: Optional[pulumi.Input[str]] = None, nfs_file_share_defaults: Optional[pulumi.Input[pulumi.InputType['NfsFileShareNfsFileShareDefaultsArgs']]] = None, object_acl: Optional[pulumi.Input[str]] = None, read_only: Optional[pulumi.Input[bool]] = None, requester_pays: Optional[pulumi.Input[bool]] = None, role_arn: Optional[pulumi.Input[str]] = None, squash: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an AWS Storage Gateway NFS File Share.
 
@@ -107,7 +109,7 @@ class NfsFileShare(pulumi.CustomResource):
         :param pulumi.Input[bool] kms_encrypted: Boolean value if `true` to use Amazon S3 server side encryption with your own AWS KMS key, or `false` to use a key managed by Amazon S3. Defaults to `false`.
         :param pulumi.Input[str] kms_key_arn: Amazon Resource Name (ARN) for KMS key used for Amazon S3 server side encryption. This value can only be set when `kms_encrypted` is true.
         :param pulumi.Input[str] location_arn: The ARN of the backed storage used for storing file data.
-        :param pulumi.Input['NfsFileShareNfsFileShareDefaultsArgs'] nfs_file_share_defaults: Nested argument with file share default values. More information below.
+        :param pulumi.Input[pulumi.InputType['NfsFileShareNfsFileShareDefaultsArgs']] nfs_file_share_defaults: Nested argument with file share default values. More information below.
         :param pulumi.Input[str] object_acl: Access Control List permission for S3 bucket objects. Defaults to `private`.
         :param pulumi.Input[bool] read_only: Boolean to indicate write status of file share. File share does not accept writes if `true`. Defaults to `false`.
         :param pulumi.Input[bool] requester_pays: Boolean who pays the cost of the request and the data download from the Amazon S3 bucket. Set this value to `true` if you want the requester to pay instead of the bucket owner. Defaults to `false`.
@@ -164,7 +166,7 @@ class NfsFileShare(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, client_lists=None, default_storage_class=None, fileshare_id=None, gateway_arn=None, guess_mime_type_enabled=None, kms_encrypted=None, kms_key_arn=None, location_arn=None, nfs_file_share_defaults=None, object_acl=None, path=None, read_only=None, requester_pays=None, role_arn=None, squash=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, client_lists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, default_storage_class: Optional[pulumi.Input[str]] = None, fileshare_id: Optional[pulumi.Input[str]] = None, gateway_arn: Optional[pulumi.Input[str]] = None, guess_mime_type_enabled: Optional[pulumi.Input[bool]] = None, kms_encrypted: Optional[pulumi.Input[bool]] = None, kms_key_arn: Optional[pulumi.Input[str]] = None, location_arn: Optional[pulumi.Input[str]] = None, nfs_file_share_defaults: Optional[pulumi.Input[pulumi.InputType['NfsFileShareNfsFileShareDefaultsArgs']]] = None, object_acl: Optional[pulumi.Input[str]] = None, path: Optional[pulumi.Input[str]] = None, read_only: Optional[pulumi.Input[bool]] = None, requester_pays: Optional[pulumi.Input[bool]] = None, role_arn: Optional[pulumi.Input[str]] = None, squash: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'NfsFileShare':
         """
         Get an existing NfsFileShare resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -181,7 +183,7 @@ class NfsFileShare(pulumi.CustomResource):
         :param pulumi.Input[bool] kms_encrypted: Boolean value if `true` to use Amazon S3 server side encryption with your own AWS KMS key, or `false` to use a key managed by Amazon S3. Defaults to `false`.
         :param pulumi.Input[str] kms_key_arn: Amazon Resource Name (ARN) for KMS key used for Amazon S3 server side encryption. This value can only be set when `kms_encrypted` is true.
         :param pulumi.Input[str] location_arn: The ARN of the backed storage used for storing file data.
-        :param pulumi.Input['NfsFileShareNfsFileShareDefaultsArgs'] nfs_file_share_defaults: Nested argument with file share default values. More information below.
+        :param pulumi.Input[pulumi.InputType['NfsFileShareNfsFileShareDefaultsArgs']] nfs_file_share_defaults: Nested argument with file share default values. More information below.
         :param pulumi.Input[str] object_acl: Access Control List permission for S3 bucket objects. Defaults to `private`.
         :param pulumi.Input[str] path: File share path used by the NFS client to identify the mount point.
         :param pulumi.Input[bool] read_only: Boolean to indicate write status of file share. File share does not accept writes if `true`. Defaults to `false`.

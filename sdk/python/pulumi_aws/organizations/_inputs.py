@@ -8,6 +8,14 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'OrganizationAccountArgs',
+    'OrganizationNonMasterAccountArgs',
+    'OrganizationRootArgs',
+    'OrganizationRootPolicyTypeArgs',
+    'OrganizationalUnitAccountArgs',
+]
+
 @pulumi.input_type
 class OrganizationAccountArgs:
     arn: Optional[pulumi.Input[str]] = pulumi.input_property("arn")

@@ -8,6 +8,16 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'PolicyStepScalingPolicyConfiguration',
+    'PolicyStepScalingPolicyConfigurationStepAdjustment',
+    'PolicyTargetTrackingScalingPolicyConfiguration',
+    'PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecification',
+    'PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationDimension',
+    'PolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecification',
+    'ScheduledActionScalableTargetAction',
+]
+
 @pulumi.output_type
 class PolicyStepScalingPolicyConfiguration(dict):
     adjustment_type: Optional[str] = pulumi.output_property("adjustmentType")

@@ -8,6 +8,15 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetDirectConnectGatewayAttachmentFilterArgs',
+    'GetPeeringAttachmentFilterArgs',
+    'GetRouteTableFilterArgs',
+    'GetTransitGatewayFilterArgs',
+    'GetVpcAttachmentFilterArgs',
+    'GetVpnAttachmentFilterArgs',
+]
+
 @pulumi.input_type
 class GetDirectConnectGatewayAttachmentFilterArgs:
     name: str = pulumi.input_property("name")

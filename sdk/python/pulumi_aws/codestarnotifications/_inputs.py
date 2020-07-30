@@ -8,6 +8,10 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'NotificationRuleTargetArgs',
+]
+
 @pulumi.input_type
 class NotificationRuleTargetArgs:
     address: pulumi.Input[str] = pulumi.input_property("address")

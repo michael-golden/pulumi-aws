@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['ConfigurationTemplate']
+
 
 class ConfigurationTemplate(pulumi.CustomResource):
     application: pulumi.Output[str] = pulumi.output_property("application")
@@ -40,7 +42,7 @@ class ConfigurationTemplate(pulumi.CustomResource):
     off of. Example stacks can be found in the [Amazon API documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html)
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application=None, description=None, environment_id=None, name=None, settings=None, solution_stack_name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, environment_id: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, settings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ConfigurationTemplateSettingArgs']]]]] = None, solution_stack_name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an Elastic Beanstalk Configuration Template, which are associated with
         a specific application and are used to deploy different versions of the
@@ -72,7 +74,7 @@ class ConfigurationTemplate(pulumi.CustomResource):
         :param pulumi.Input[str] description: Short description of the Template
         :param pulumi.Input[str] environment_id: The ID of the environment used with this configuration template
         :param pulumi.Input[str] name: A unique name for this Template.
-        :param pulumi.Input[List[pulumi.Input['ConfigurationTemplateSettingArgs']]] settings: Option settings to configure the new Environment. These
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ConfigurationTemplateSettingArgs']]]] settings: Option settings to configure the new Environment. These
                override specific values that are set as defaults. The format is detailed
                below in Option Settings
         :param pulumi.Input[str] solution_stack_name: A solution stack to base your Template
@@ -110,7 +112,7 @@ class ConfigurationTemplate(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, application=None, description=None, environment_id=None, name=None, settings=None, solution_stack_name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, application: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, environment_id: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, settings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ConfigurationTemplateSettingArgs']]]]] = None, solution_stack_name: Optional[pulumi.Input[str]] = None) -> 'ConfigurationTemplate':
         """
         Get an existing ConfigurationTemplate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -122,7 +124,7 @@ class ConfigurationTemplate(pulumi.CustomResource):
         :param pulumi.Input[str] description: Short description of the Template
         :param pulumi.Input[str] environment_id: The ID of the environment used with this configuration template
         :param pulumi.Input[str] name: A unique name for this Template.
-        :param pulumi.Input[List[pulumi.Input['ConfigurationTemplateSettingArgs']]] settings: Option settings to configure the new Environment. These
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ConfigurationTemplateSettingArgs']]]] settings: Option settings to configure the new Environment. These
                override specific values that are set as defaults. The format is detailed
                below in Option Settings
         :param pulumi.Input[str] solution_stack_name: A solution stack to base your Template

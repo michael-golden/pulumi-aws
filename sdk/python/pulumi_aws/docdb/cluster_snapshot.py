@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ClusterSnapshot']
+
 
 class ClusterSnapshot(pulumi.CustomResource):
     availability_zones: pulumi.Output[List[str]] = pulumi.output_property("availabilityZones")
@@ -57,7 +59,7 @@ class ClusterSnapshot(pulumi.CustomResource):
     The VPC ID associated with the DocDB cluster snapshot.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, db_cluster_identifier=None, db_cluster_snapshot_identifier=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, db_cluster_identifier: Optional[pulumi.Input[str]] = None, db_cluster_snapshot_identifier: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a DocDB database cluster snapshot for DocDB clusters.
 
@@ -118,7 +120,7 @@ class ClusterSnapshot(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, availability_zones=None, db_cluster_identifier=None, db_cluster_snapshot_arn=None, db_cluster_snapshot_identifier=None, engine=None, engine_version=None, kms_key_id=None, port=None, snapshot_type=None, source_db_cluster_snapshot_arn=None, status=None, storage_encrypted=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, availability_zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, db_cluster_identifier: Optional[pulumi.Input[str]] = None, db_cluster_snapshot_arn: Optional[pulumi.Input[str]] = None, db_cluster_snapshot_identifier: Optional[pulumi.Input[str]] = None, engine: Optional[pulumi.Input[str]] = None, engine_version: Optional[pulumi.Input[str]] = None, kms_key_id: Optional[pulumi.Input[str]] = None, port: Optional[pulumi.Input[float]] = None, snapshot_type: Optional[pulumi.Input[str]] = None, source_db_cluster_snapshot_arn: Optional[pulumi.Input[str]] = None, status: Optional[pulumi.Input[str]] = None, storage_encrypted: Optional[pulumi.Input[bool]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'ClusterSnapshot':
         """
         Get an existing ClusterSnapshot resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

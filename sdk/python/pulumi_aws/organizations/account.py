@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Account']
+
 
 class Account(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -42,7 +44,7 @@ class Account(pulumi.CustomResource):
     Key-value mapping of resource tags.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, email=None, iam_user_access_to_billing=None, name=None, parent_id=None, role_name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, email: Optional[pulumi.Input[str]] = None, iam_user_access_to_billing: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, parent_id: Optional[pulumi.Input[str]] = None, role_name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to create a member account in the current organization.
 
@@ -104,7 +106,7 @@ class Account(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, email=None, iam_user_access_to_billing=None, joined_method=None, joined_timestamp=None, name=None, parent_id=None, role_name=None, status=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, email: Optional[pulumi.Input[str]] = None, iam_user_access_to_billing: Optional[pulumi.Input[str]] = None, joined_method: Optional[pulumi.Input[str]] = None, joined_timestamp: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, parent_id: Optional[pulumi.Input[str]] = None, role_name: Optional[pulumi.Input[str]] = None, status: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Account':
         """
         Get an existing Account resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

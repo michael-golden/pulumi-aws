@@ -8,6 +8,10 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'WindowsFileSystemSelfManagedActiveDirectoryArgs',
+]
+
 @pulumi.input_type
 class WindowsFileSystemSelfManagedActiveDirectoryArgs:
     dns_ips: pulumi.Input[List[pulumi.Input[str]]] = pulumi.input_property("dnsIps")

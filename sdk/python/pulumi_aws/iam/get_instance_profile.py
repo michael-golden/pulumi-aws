@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetInstanceProfileResult',
+    'AwaitableGetInstanceProfileResult',
+    'get_instance_profile',
+]
+
 
 class GetInstanceProfileResult:
     """
@@ -79,7 +85,7 @@ class AwaitableGetInstanceProfileResult(GetInstanceProfileResult):
             role_name=self.role_name)
 
 
-def get_instance_profile(name=None, opts=None):
+def get_instance_profile(name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceProfileResult:
     """
     This data source can be used to fetch information about a specific
     IAM instance profile. By using this data source, you can reference IAM

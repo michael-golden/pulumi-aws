@@ -8,6 +8,11 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'TrailEventSelector',
+    'TrailEventSelectorDataResource',
+]
+
 @pulumi.output_type
 class TrailEventSelector(dict):
     data_resources: Optional[List['outputs.TrailEventSelectorDataResource']] = pulumi.output_property("dataResources")

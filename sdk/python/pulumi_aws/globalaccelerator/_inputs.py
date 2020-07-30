@@ -8,6 +8,13 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'AcceleratorAttributesArgs',
+    'AcceleratorIpSetArgs',
+    'EndpointGroupEndpointConfigurationArgs',
+    'ListenerPortRangeArgs',
+]
+
 @pulumi.input_type
 class AcceleratorAttributesArgs:
     flow_logs_enabled: Optional[pulumi.Input[bool]] = pulumi.input_property("flowLogsEnabled")

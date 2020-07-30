@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['LinkAggregationGroup']
+
 
 class LinkAggregationGroup(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -41,7 +43,7 @@ class LinkAggregationGroup(pulumi.CustomResource):
     A map of tags to assign to the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, connections_bandwidth=None, force_destroy=None, location=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, connections_bandwidth: Optional[pulumi.Input[str]] = None, force_destroy: Optional[pulumi.Input[bool]] = None, location: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Direct Connect LAG. Connections can be added to the LAG via the `directconnect.Connection` and `directconnect.ConnectionAssociation` resources.
 
@@ -103,7 +105,7 @@ class LinkAggregationGroup(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, connections_bandwidth=None, force_destroy=None, has_logical_redundancy=None, jumbo_frame_capable=None, location=None, name=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, connections_bandwidth: Optional[pulumi.Input[str]] = None, force_destroy: Optional[pulumi.Input[bool]] = None, has_logical_redundancy: Optional[pulumi.Input[str]] = None, jumbo_frame_capable: Optional[pulumi.Input[bool]] = None, location: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'LinkAggregationGroup':
         """
         Get an existing LinkAggregationGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

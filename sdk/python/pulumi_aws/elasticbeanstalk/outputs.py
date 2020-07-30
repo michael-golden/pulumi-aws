@@ -8,6 +8,14 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ApplicationAppversionLifecycle',
+    'ConfigurationTemplateSetting',
+    'EnvironmentAllSetting',
+    'EnvironmentSetting',
+    'GetApplicationAppversionLifecycle',
+]
+
 @pulumi.output_type
 class ApplicationAppversionLifecycle(dict):
     delete_source_from_s3: Optional[bool] = pulumi.output_property("deleteSourceFromS3")

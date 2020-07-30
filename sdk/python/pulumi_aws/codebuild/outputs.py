@@ -8,6 +8,27 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ProjectArtifacts',
+    'ProjectCache',
+    'ProjectEnvironment',
+    'ProjectEnvironmentEnvironmentVariable',
+    'ProjectEnvironmentRegistryCredential',
+    'ProjectLogsConfig',
+    'ProjectLogsConfigCloudwatchLogs',
+    'ProjectLogsConfigS3Logs',
+    'ProjectSecondaryArtifact',
+    'ProjectSecondarySource',
+    'ProjectSecondarySourceAuth',
+    'ProjectSecondarySourceGitSubmodulesConfig',
+    'ProjectSource',
+    'ProjectSourceAuth',
+    'ProjectSourceGitSubmodulesConfig',
+    'ProjectVpcConfig',
+    'WebhookFilterGroup',
+    'WebhookFilterGroupFilter',
+]
+
 @pulumi.output_type
 class ProjectArtifacts(dict):
     artifact_identifier: Optional[str] = pulumi.output_property("artifactIdentifier")

@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Fleet']
+
 
 class Fleet(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -57,7 +59,7 @@ class Fleet(pulumi.CustomResource):
     The option to optimize for better performance by routing traffic through the closest AWS Region to users, which may be outside of your home Region. Defaults to `true`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, audit_stream_arn=None, device_ca_certificate=None, display_name=None, identity_provider=None, name=None, network=None, optimize_for_end_user_location=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, audit_stream_arn: Optional[pulumi.Input[str]] = None, device_ca_certificate: Optional[pulumi.Input[str]] = None, display_name: Optional[pulumi.Input[str]] = None, identity_provider: Optional[pulumi.Input[pulumi.InputType['FleetIdentityProviderArgs']]] = None, name: Optional[pulumi.Input[str]] = None, network: Optional[pulumi.Input[pulumi.InputType['FleetNetworkArgs']]] = None, optimize_for_end_user_location: Optional[pulumi.Input[bool]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         ## Example Usage
 
@@ -100,9 +102,9 @@ class Fleet(pulumi.CustomResource):
         :param pulumi.Input[str] audit_stream_arn: The ARN of the Amazon Kinesis data stream that receives the audit events.
         :param pulumi.Input[str] device_ca_certificate: The certificate chain, including intermediate certificates and the root certificate authority certificate used to issue device certificates.
         :param pulumi.Input[str] display_name: The name of the fleet.
-        :param pulumi.Input['FleetIdentityProviderArgs'] identity_provider: Provide this to allow manage the identity provider configuration for the fleet. Fields documented below.
+        :param pulumi.Input[pulumi.InputType['FleetIdentityProviderArgs']] identity_provider: Provide this to allow manage the identity provider configuration for the fleet. Fields documented below.
         :param pulumi.Input[str] name: A region-unique name for the AMI.
-        :param pulumi.Input['FleetNetworkArgs'] network: Provide this to allow manage the company network configuration for the fleet. Fields documented below.
+        :param pulumi.Input[pulumi.InputType['FleetNetworkArgs']] network: Provide this to allow manage the company network configuration for the fleet. Fields documented below.
         :param pulumi.Input[bool] optimize_for_end_user_location: The option to optimize for better performance by routing traffic through the closest AWS Region to users, which may be outside of your home Region. Defaults to `true`.
         """
         if __name__ is not None:
@@ -140,7 +142,7 @@ class Fleet(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, audit_stream_arn=None, company_code=None, created_time=None, device_ca_certificate=None, display_name=None, identity_provider=None, last_updated_time=None, name=None, network=None, optimize_for_end_user_location=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, audit_stream_arn: Optional[pulumi.Input[str]] = None, company_code: Optional[pulumi.Input[str]] = None, created_time: Optional[pulumi.Input[str]] = None, device_ca_certificate: Optional[pulumi.Input[str]] = None, display_name: Optional[pulumi.Input[str]] = None, identity_provider: Optional[pulumi.Input[pulumi.InputType['FleetIdentityProviderArgs']]] = None, last_updated_time: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, network: Optional[pulumi.Input[pulumi.InputType['FleetNetworkArgs']]] = None, optimize_for_end_user_location: Optional[pulumi.Input[bool]] = None) -> 'Fleet':
         """
         Get an existing Fleet resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -154,10 +156,10 @@ class Fleet(pulumi.CustomResource):
         :param pulumi.Input[str] created_time: The time that the fleet was created.
         :param pulumi.Input[str] device_ca_certificate: The certificate chain, including intermediate certificates and the root certificate authority certificate used to issue device certificates.
         :param pulumi.Input[str] display_name: The name of the fleet.
-        :param pulumi.Input['FleetIdentityProviderArgs'] identity_provider: Provide this to allow manage the identity provider configuration for the fleet. Fields documented below.
+        :param pulumi.Input[pulumi.InputType['FleetIdentityProviderArgs']] identity_provider: Provide this to allow manage the identity provider configuration for the fleet. Fields documented below.
         :param pulumi.Input[str] last_updated_time: The time that the fleet was last updated.
         :param pulumi.Input[str] name: A region-unique name for the AMI.
-        :param pulumi.Input['FleetNetworkArgs'] network: Provide this to allow manage the company network configuration for the fleet. Fields documented below.
+        :param pulumi.Input[pulumi.InputType['FleetNetworkArgs']] network: Provide this to allow manage the company network configuration for the fleet. Fields documented below.
         :param pulumi.Input[bool] optimize_for_end_user_location: The option to optimize for better performance by routing traffic through the closest AWS Region to users, which may be outside of your home Region. Defaults to `true`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

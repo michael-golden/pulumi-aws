@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['NetworkAssociation']
+
 
 class NetworkAssociation(pulumi.CustomResource):
     client_vpn_endpoint_id: pulumi.Output[str] = pulumi.output_property("clientVpnEndpointId")
@@ -31,7 +33,7 @@ class NetworkAssociation(pulumi.CustomResource):
     The ID of the VPC in which the target network (subnet) is located.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, client_vpn_endpoint_id=None, subnet_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, client_vpn_endpoint_id: Optional[pulumi.Input[str]] = None, subnet_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides network associations for AWS Client VPN endpoints. For more information on usage, please see the
         [AWS Client VPN Administrator's Guide](https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html).
@@ -85,7 +87,7 @@ class NetworkAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, client_vpn_endpoint_id=None, security_groups=None, status=None, subnet_id=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, client_vpn_endpoint_id: Optional[pulumi.Input[str]] = None, security_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, status: Optional[pulumi.Input[str]] = None, subnet_id: Optional[pulumi.Input[str]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'NetworkAssociation':
         """
         Get an existing NetworkAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

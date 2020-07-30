@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['OpenIdConnectProvider']
+
 
 class OpenIdConnectProvider(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -27,7 +29,7 @@ class OpenIdConnectProvider(pulumi.CustomResource):
     The URL of the identity provider. Corresponds to the _iss_ claim.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, client_id_lists=None, thumbprint_lists=None, url=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, client_id_lists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, thumbprint_lists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, url: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an IAM OpenID Connect provider.
 
@@ -83,7 +85,7 @@ class OpenIdConnectProvider(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, client_id_lists=None, thumbprint_lists=None, url=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, client_id_lists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, thumbprint_lists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, url: Optional[pulumi.Input[str]] = None) -> 'OpenIdConnectProvider':
         """
         Get an existing OpenIdConnectProvider resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

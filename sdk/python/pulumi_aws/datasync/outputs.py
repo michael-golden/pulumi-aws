@@ -8,6 +8,14 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'EfsLocationEc2Config',
+    'LocationSmbMountOptions',
+    'NfsLocationOnPremConfig',
+    'S3LocationS3Config',
+    'TaskOptions',
+]
+
 @pulumi.output_type
 class EfsLocationEc2Config(dict):
     security_group_arns: List[str] = pulumi.output_property("securityGroupArns")

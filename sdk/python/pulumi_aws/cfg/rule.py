@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Rule']
+
 
 class Rule(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -51,7 +53,7 @@ class Rule(pulumi.CustomResource):
     A map of tags to assign to the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, input_parameters=None, maximum_execution_frequency=None, name=None, scope=None, source=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, input_parameters: Optional[pulumi.Input[str]] = None, maximum_execution_frequency: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, scope: Optional[pulumi.Input[pulumi.InputType['RuleScopeArgs']]] = None, source: Optional[pulumi.Input[pulumi.InputType['RuleSourceArgs']]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AWS Config Rule.
 
@@ -134,8 +136,8 @@ class Rule(pulumi.CustomResource):
         :param pulumi.Input[str] maximum_execution_frequency: The frequency that you want AWS Config to run evaluations for a rule that
                is triggered periodically. If specified, requires `message_type` to be `ScheduledNotification`.
         :param pulumi.Input[str] name: The name of the rule
-        :param pulumi.Input['RuleScopeArgs'] scope: Scope defines which resources can trigger an evaluation for the rule as documented below.
-        :param pulumi.Input['RuleSourceArgs'] source: Source specifies the rule owner, the rule identifier, and the notifications that cause
+        :param pulumi.Input[pulumi.InputType['RuleScopeArgs']] scope: Scope defines which resources can trigger an evaluation for the rule as documented below.
+        :param pulumi.Input[pulumi.InputType['RuleSourceArgs']] source: Source specifies the rule owner, the rule identifier, and the notifications that cause
                the function to evaluate your AWS resources as documented below.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
@@ -174,7 +176,7 @@ class Rule(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, description=None, input_parameters=None, maximum_execution_frequency=None, name=None, rule_id=None, scope=None, source=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, input_parameters: Optional[pulumi.Input[str]] = None, maximum_execution_frequency: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, rule_id: Optional[pulumi.Input[str]] = None, scope: Optional[pulumi.Input[pulumi.InputType['RuleScopeArgs']]] = None, source: Optional[pulumi.Input[pulumi.InputType['RuleSourceArgs']]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'Rule':
         """
         Get an existing Rule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -189,8 +191,8 @@ class Rule(pulumi.CustomResource):
                is triggered periodically. If specified, requires `message_type` to be `ScheduledNotification`.
         :param pulumi.Input[str] name: The name of the rule
         :param pulumi.Input[str] rule_id: The ID of the config rule
-        :param pulumi.Input['RuleScopeArgs'] scope: Scope defines which resources can trigger an evaluation for the rule as documented below.
-        :param pulumi.Input['RuleSourceArgs'] source: Source specifies the rule owner, the rule identifier, and the notifications that cause
+        :param pulumi.Input[pulumi.InputType['RuleScopeArgs']] scope: Scope defines which resources can trigger an evaluation for the rule as documented below.
+        :param pulumi.Input[pulumi.InputType['RuleSourceArgs']] source: Source specifies the rule owner, the rule identifier, and the notifications that cause
                the function to evaluate your AWS resources as documented below.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['CatalogDatabase']
+
 
 class CatalogDatabase(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -35,7 +37,7 @@ class CatalogDatabase(pulumi.CustomResource):
     A list of key-value pairs that define parameters and properties of the database.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, catalog_id=None, description=None, location_uri=None, name=None, parameters=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, catalog_id: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, location_uri: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Glue Catalog Database Resource. You can refer to the [Glue Developer Guide](http://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) for a full explanation of the Glue Data Catalog functionality
 
@@ -86,7 +88,7 @@ class CatalogDatabase(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, catalog_id=None, description=None, location_uri=None, name=None, parameters=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, catalog_id: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, location_uri: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'CatalogDatabase':
         """
         Get an existing CatalogDatabase resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

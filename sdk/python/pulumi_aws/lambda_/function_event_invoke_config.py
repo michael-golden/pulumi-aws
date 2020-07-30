@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['FunctionEventInvokeConfig']
+
 
 class FunctionEventInvokeConfig(pulumi.CustomResource):
     destination_config: pulumi.Output[Optional['outputs.FunctionEventInvokeConfigDestinationConfig']] = pulumi.output_property("destinationConfig")
@@ -33,7 +35,7 @@ class FunctionEventInvokeConfig(pulumi.CustomResource):
     Lambda Function published version, `$LATEST`, or Lambda Alias name.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, destination_config=None, function_name=None, maximum_event_age_in_seconds=None, maximum_retry_attempts=None, qualifier=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, destination_config: Optional[pulumi.Input[pulumi.InputType['FunctionEventInvokeConfigDestinationConfigArgs']]] = None, function_name: Optional[pulumi.Input[str]] = None, maximum_event_age_in_seconds: Optional[pulumi.Input[float]] = None, maximum_retry_attempts: Optional[pulumi.Input[float]] = None, qualifier: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an asynchronous invocation configuration for a Lambda Function or Alias. More information about asynchronous invocations and the configurable values can be found in the [Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html).
 
@@ -104,7 +106,7 @@ class FunctionEventInvokeConfig(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['FunctionEventInvokeConfigDestinationConfigArgs'] destination_config: Configuration block with destination configuration. See below for details.
+        :param pulumi.Input[pulumi.InputType['FunctionEventInvokeConfigDestinationConfigArgs']] destination_config: Configuration block with destination configuration. See below for details.
         :param pulumi.Input[str] function_name: Name or Amazon Resource Name (ARN) of the Lambda Function, omitting any version or alias qualifier.
         :param pulumi.Input[float] maximum_event_age_in_seconds: Maximum age of a request that Lambda sends to a function for processing in seconds. Valid values between 60 and 21600.
         :param pulumi.Input[float] maximum_retry_attempts: Maximum number of times to retry when the function returns an error. Valid values between 0 and 2. Defaults to 2.
@@ -141,7 +143,7 @@ class FunctionEventInvokeConfig(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, destination_config=None, function_name=None, maximum_event_age_in_seconds=None, maximum_retry_attempts=None, qualifier=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, destination_config: Optional[pulumi.Input[pulumi.InputType['FunctionEventInvokeConfigDestinationConfigArgs']]] = None, function_name: Optional[pulumi.Input[str]] = None, maximum_event_age_in_seconds: Optional[pulumi.Input[float]] = None, maximum_retry_attempts: Optional[pulumi.Input[float]] = None, qualifier: Optional[pulumi.Input[str]] = None) -> 'FunctionEventInvokeConfig':
         """
         Get an existing FunctionEventInvokeConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -149,7 +151,7 @@ class FunctionEventInvokeConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['FunctionEventInvokeConfigDestinationConfigArgs'] destination_config: Configuration block with destination configuration. See below for details.
+        :param pulumi.Input[pulumi.InputType['FunctionEventInvokeConfigDestinationConfigArgs']] destination_config: Configuration block with destination configuration. See below for details.
         :param pulumi.Input[str] function_name: Name or Amazon Resource Name (ARN) of the Lambda Function, omitting any version or alias qualifier.
         :param pulumi.Input[float] maximum_event_age_in_seconds: Maximum age of a request that Lambda sends to a function for processing in seconds. Valid values between 60 and 21600.
         :param pulumi.Input[float] maximum_retry_attempts: Maximum number of times to retry when the function returns an error. Valid values between 0 and 2. Defaults to 2.

@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Association']
+
 
 class Association(pulumi.CustomResource):
     license_configuration_arn: pulumi.Output[str] = pulumi.output_property("licenseConfigurationArn")
@@ -19,7 +21,7 @@ class Association(pulumi.CustomResource):
     ARN of the resource associated with the license configuration.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, license_configuration_arn=None, resource_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, license_configuration_arn: Optional[pulumi.Input[str]] = None, resource_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a License Manager association.
 
@@ -60,7 +62,7 @@ class Association(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, license_configuration_arn=None, resource_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, license_configuration_arn: Optional[pulumi.Input[str]] = None, resource_arn: Optional[pulumi.Input[str]] = None) -> 'Association':
         """
         Get an existing Association resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

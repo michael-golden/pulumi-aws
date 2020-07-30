@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['DefaultSubnet']
+
 
 class DefaultSubnet(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -43,7 +45,7 @@ class DefaultSubnet(pulumi.CustomResource):
     The VPC ID.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zone=None, map_public_ip_on_launch=None, outpost_arn=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zone: Optional[pulumi.Input[str]] = None, map_public_ip_on_launch: Optional[pulumi.Input[bool]] = None, outpost_arn: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a resource to manage a [default AWS VPC subnet](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/default-vpc.html#default-vpc-basics)
         in the current region.
@@ -112,7 +114,7 @@ class DefaultSubnet(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, assign_ipv6_address_on_creation=None, availability_zone=None, availability_zone_id=None, cidr_block=None, ipv6_cidr_block=None, ipv6_cidr_block_association_id=None, map_public_ip_on_launch=None, outpost_arn=None, owner_id=None, tags=None, vpc_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, assign_ipv6_address_on_creation: Optional[pulumi.Input[bool]] = None, availability_zone: Optional[pulumi.Input[str]] = None, availability_zone_id: Optional[pulumi.Input[str]] = None, cidr_block: Optional[pulumi.Input[str]] = None, ipv6_cidr_block: Optional[pulumi.Input[str]] = None, ipv6_cidr_block_association_id: Optional[pulumi.Input[str]] = None, map_public_ip_on_launch: Optional[pulumi.Input[bool]] = None, outpost_arn: Optional[pulumi.Input[str]] = None, owner_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_id: Optional[pulumi.Input[str]] = None) -> 'DefaultSubnet':
         """
         Get an existing DefaultSubnet resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

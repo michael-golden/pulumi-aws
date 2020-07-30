@@ -8,6 +8,10 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetResourceShareFilter',
+]
+
 @pulumi.output_type
 class GetResourceShareFilter(dict):
     name: str = pulumi.output_property("name")

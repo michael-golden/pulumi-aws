@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['PeeringAttachment']
+
 
 class PeeringAttachment(pulumi.CustomResource):
     peer_account_id: pulumi.Output[str] = pulumi.output_property("peerAccountId")
@@ -31,7 +33,7 @@ class PeeringAttachment(pulumi.CustomResource):
     Identifier of EC2 Transit Gateway.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, peer_account_id=None, peer_region=None, peer_transit_gateway_id=None, tags=None, transit_gateway_id=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, peer_account_id: Optional[pulumi.Input[str]] = None, peer_region: Optional[pulumi.Input[str]] = None, peer_transit_gateway_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, transit_gateway_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an EC2 Transit Gateway Peering Attachment.
         For examples of custom route table association and propagation, see the [EC2 Transit Gateway Networking Examples Guide](https://docs.aws.amazon.com/vpc/latest/tgw/TGW_Scenarios.html).
@@ -107,7 +109,7 @@ class PeeringAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, peer_account_id=None, peer_region=None, peer_transit_gateway_id=None, tags=None, transit_gateway_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, peer_account_id: Optional[pulumi.Input[str]] = None, peer_region: Optional[pulumi.Input[str]] = None, peer_transit_gateway_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, transit_gateway_id: Optional[pulumi.Input[str]] = None) -> 'PeeringAttachment':
         """
         Get an existing PeeringAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

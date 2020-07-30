@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['IntegrationResponse']
+
 
 class IntegrationResponse(pulumi.CustomResource):
     content_handling: pulumi.Output[Optional[str]] = pulumi.output_property("contentHandling")
@@ -47,7 +49,7 @@ class IntegrationResponse(pulumi.CustomResource):
     The HTTP status code
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, content_handling=None, http_method=None, resource_id=None, response_parameters=None, response_templates=None, rest_api=None, selection_pattern=None, status_code=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, content_handling: Optional[pulumi.Input[str]] = None, http_method: Optional[pulumi.Input[str]] = None, resource_id: Optional[pulumi.Input[str]] = None, response_parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, response_templates: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, rest_api: Optional[pulumi.Input[str]] = None, selection_pattern: Optional[pulumi.Input[str]] = None, status_code: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an HTTP Method Integration Response for an API Gateway Resource.
 
@@ -151,7 +153,7 @@ class IntegrationResponse(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, content_handling=None, http_method=None, resource_id=None, response_parameters=None, response_templates=None, rest_api=None, selection_pattern=None, status_code=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, content_handling: Optional[pulumi.Input[str]] = None, http_method: Optional[pulumi.Input[str]] = None, resource_id: Optional[pulumi.Input[str]] = None, response_parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, response_templates: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, rest_api: Optional[pulumi.Input[str]] = None, selection_pattern: Optional[pulumi.Input[str]] = None, status_code: Optional[pulumi.Input[str]] = None) -> 'IntegrationResponse':
         """
         Get an existing IntegrationResponse resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

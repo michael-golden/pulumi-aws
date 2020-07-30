@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['StackSet']
+
 
 class StackSet(pulumi.CustomResource):
     administration_role_arn: pulumi.Output[str] = pulumi.output_property("administrationRoleArn")
@@ -55,7 +57,7 @@ class StackSet(pulumi.CustomResource):
     String containing the location of a file containing the CloudFormation template body. The URL must point to a template that is located in an Amazon S3 bucket. Maximum location file size: 460,800 bytes. Conflicts with `template_body`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, administration_role_arn=None, capabilities=None, description=None, execution_role_name=None, name=None, parameters=None, tags=None, template_body=None, template_url=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, administration_role_arn: Optional[pulumi.Input[str]] = None, capabilities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, description: Optional[pulumi.Input[str]] = None, execution_role_name: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, template_body: Optional[pulumi.Input[str]] = None, template_url: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a CloudFormation StackSet. StackSets allow CloudFormation templates to be easily deployed across multiple accounts and regions via StackSet Instances (`cloudformation.StackSetInstance` resource). Additional information about StackSets can be found in the [AWS CloudFormation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/what-is-cfnstacksets.html).
 
@@ -164,7 +166,7 @@ class StackSet(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, administration_role_arn=None, arn=None, capabilities=None, description=None, execution_role_name=None, name=None, parameters=None, stack_set_id=None, tags=None, template_body=None, template_url=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, administration_role_arn: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, capabilities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, description: Optional[pulumi.Input[str]] = None, execution_role_name: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, parameters: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, stack_set_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, template_body: Optional[pulumi.Input[str]] = None, template_url: Optional[pulumi.Input[str]] = None) -> 'StackSet':
         """
         Get an existing StackSet resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

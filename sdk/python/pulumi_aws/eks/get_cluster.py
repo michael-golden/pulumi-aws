@@ -9,6 +9,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 from . import outputs
 
+__all__ = [
+    'GetClusterResult',
+    'AwaitableGetClusterResult',
+    'get_cluster',
+]
+
 
 class GetClusterResult:
     """
@@ -121,7 +127,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             vpc_config=self.vpc_config)
 
 
-def get_cluster(name=None, tags=None, opts=None):
+def get_cluster(name: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
     Retrieve information about an EKS Cluster.
 

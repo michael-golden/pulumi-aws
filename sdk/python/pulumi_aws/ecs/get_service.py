@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetServiceResult',
+    'AwaitableGetServiceResult',
+    'get_service',
+]
+
 
 class GetServiceResult:
     """
@@ -75,7 +81,7 @@ class AwaitableGetServiceResult(GetServiceResult):
             task_definition=self.task_definition)
 
 
-def get_service(cluster_arn=None, service_name=None, opts=None):
+def get_service(cluster_arn: Optional[str] = None, service_name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceResult:
     """
     The ECS Service data source allows access to details of a specific
     Service within a AWS ECS Cluster.

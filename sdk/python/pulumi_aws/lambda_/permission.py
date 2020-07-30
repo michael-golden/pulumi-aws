@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Permission']
+
 
 class Permission(pulumi.CustomResource):
     action: pulumi.Output[str] = pulumi.output_property("action")
@@ -55,7 +57,7 @@ class Permission(pulumi.CustomResource):
     A statement identifier prefix. This provider will generate a unique suffix. Conflicts with `statement_id`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, action=None, event_source_token=None, function=None, principal=None, qualifier=None, source_account=None, source_arn=None, statement_id=None, statement_id_prefix=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, action: Optional[pulumi.Input[str]] = None, event_source_token: Optional[pulumi.Input[str]] = None, function: Optional[pulumi.Input[str]] = None, principal: Optional[pulumi.Input[str]] = None, qualifier: Optional[pulumi.Input[str]] = None, source_account: Optional[pulumi.Input[str]] = None, source_arn: Optional[pulumi.Input[str]] = None, statement_id: Optional[pulumi.Input[str]] = None, statement_id_prefix: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Gives an external source (like a CloudWatch Event Rule, SNS, or S3) permission to access the Lambda function.
 
@@ -207,7 +209,7 @@ class Permission(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, action=None, event_source_token=None, function=None, principal=None, qualifier=None, source_account=None, source_arn=None, statement_id=None, statement_id_prefix=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, action: Optional[pulumi.Input[str]] = None, event_source_token: Optional[pulumi.Input[str]] = None, function: Optional[pulumi.Input[str]] = None, principal: Optional[pulumi.Input[str]] = None, qualifier: Optional[pulumi.Input[str]] = None, source_account: Optional[pulumi.Input[str]] = None, source_arn: Optional[pulumi.Input[str]] = None, statement_id: Optional[pulumi.Input[str]] = None, statement_id_prefix: Optional[pulumi.Input[str]] = None) -> 'Permission':
         """
         Get an existing Permission resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

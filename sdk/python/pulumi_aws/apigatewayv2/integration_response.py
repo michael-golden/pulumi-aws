@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['IntegrationResponse']
+
 
 class IntegrationResponse(pulumi.CustomResource):
     api_id: pulumi.Output[str] = pulumi.output_property("apiId")
@@ -35,7 +37,7 @@ class IntegrationResponse(pulumi.CustomResource):
     The [template selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-template-selection-expressions) for the integration response.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id=None, content_handling_strategy=None, integration_id=None, integration_response_key=None, response_templates=None, template_selection_expression=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, content_handling_strategy: Optional[pulumi.Input[str]] = None, integration_id: Optional[pulumi.Input[str]] = None, integration_response_key: Optional[pulumi.Input[str]] = None, response_templates: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, template_selection_expression: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an Amazon API Gateway Version 2 integration response.
         More information can be found in the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html).
@@ -98,7 +100,7 @@ class IntegrationResponse(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, api_id=None, content_handling_strategy=None, integration_id=None, integration_response_key=None, response_templates=None, template_selection_expression=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, api_id: Optional[pulumi.Input[str]] = None, content_handling_strategy: Optional[pulumi.Input[str]] = None, integration_id: Optional[pulumi.Input[str]] = None, integration_response_key: Optional[pulumi.Input[str]] = None, response_templates: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, template_selection_expression: Optional[pulumi.Input[str]] = None) -> 'IntegrationResponse':
         """
         Get an existing IntegrationResponse resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

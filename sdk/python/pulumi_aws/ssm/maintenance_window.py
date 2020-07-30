@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['MaintenanceWindow']
+
 
 class MaintenanceWindow(pulumi.CustomResource):
     allow_unassociated_targets: pulumi.Output[Optional[bool]] = pulumi.output_property("allowUnassociatedTargets")
@@ -55,7 +57,7 @@ class MaintenanceWindow(pulumi.CustomResource):
     A map of tags to assign to the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allow_unassociated_targets=None, cutoff=None, description=None, duration=None, enabled=None, end_date=None, name=None, schedule=None, schedule_timezone=None, start_date=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allow_unassociated_targets: Optional[pulumi.Input[bool]] = None, cutoff: Optional[pulumi.Input[float]] = None, description: Optional[pulumi.Input[str]] = None, duration: Optional[pulumi.Input[float]] = None, enabled: Optional[pulumi.Input[bool]] = None, end_date: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, schedule: Optional[pulumi.Input[str]] = None, schedule_timezone: Optional[pulumi.Input[str]] = None, start_date: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an SSM Maintenance Window resource
 
@@ -126,7 +128,7 @@ class MaintenanceWindow(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allow_unassociated_targets=None, cutoff=None, description=None, duration=None, enabled=None, end_date=None, name=None, schedule=None, schedule_timezone=None, start_date=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, allow_unassociated_targets: Optional[pulumi.Input[bool]] = None, cutoff: Optional[pulumi.Input[float]] = None, description: Optional[pulumi.Input[str]] = None, duration: Optional[pulumi.Input[float]] = None, enabled: Optional[pulumi.Input[bool]] = None, end_date: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, schedule: Optional[pulumi.Input[str]] = None, schedule_timezone: Optional[pulumi.Input[str]] = None, start_date: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'MaintenanceWindow':
         """
         Get an existing MaintenanceWindow resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

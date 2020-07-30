@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetStreamResult',
+    'AwaitableGetStreamResult',
+    'get_stream',
+]
+
 
 class GetStreamResult:
     """
@@ -95,7 +101,7 @@ class AwaitableGetStreamResult(GetStreamResult):
             tags=self.tags)
 
 
-def get_stream(name=None, tags=None, opts=None):
+def get_stream(name: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStreamResult:
     """
     Use this data source to get information about a Kinesis Stream for use in other
     resources.

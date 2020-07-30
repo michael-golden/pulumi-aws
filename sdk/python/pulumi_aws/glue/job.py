@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Job']
+
 
 class Job(pulumi.CustomResource):
     allocated_capacity: pulumi.Output[float] = pulumi.output_property("allocatedCapacity")
@@ -85,7 +87,7 @@ class Job(pulumi.CustomResource):
     The type of predefined worker that is allocated when a job runs. Accepts a value of Standard, G.1X, or G.2X.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allocated_capacity=None, command=None, connections=None, default_arguments=None, description=None, execution_property=None, glue_version=None, max_capacity=None, max_retries=None, name=None, notification_property=None, number_of_workers=None, role_arn=None, security_configuration=None, tags=None, timeout=None, worker_type=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allocated_capacity: Optional[pulumi.Input[float]] = None, command: Optional[pulumi.Input[pulumi.InputType['JobCommandArgs']]] = None, connections: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, default_arguments: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, description: Optional[pulumi.Input[str]] = None, execution_property: Optional[pulumi.Input[pulumi.InputType['JobExecutionPropertyArgs']]] = None, glue_version: Optional[pulumi.Input[str]] = None, max_capacity: Optional[pulumi.Input[float]] = None, max_retries: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, notification_property: Optional[pulumi.Input[pulumi.InputType['JobNotificationPropertyArgs']]] = None, number_of_workers: Optional[pulumi.Input[float]] = None, role_arn: Optional[pulumi.Input[str]] = None, security_configuration: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, timeout: Optional[pulumi.Input[float]] = None, worker_type: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a Glue Job resource.
 
@@ -137,16 +139,16 @@ class Job(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] allocated_capacity: **DEPRECATED** (Optional) The number of AWS Glue data processing units (DPUs) to allocate to this Job. At least 2 DPUs need to be allocated; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory.
-        :param pulumi.Input['JobCommandArgs'] command: The command of the job. Defined below.
+        :param pulumi.Input[pulumi.InputType['JobCommandArgs']] command: The command of the job. Defined below.
         :param pulumi.Input[List[pulumi.Input[str]]] connections: The list of connections used for this job.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] default_arguments: The map of default arguments for this job. You can specify arguments here that your own job-execution script consumes, as well as arguments that AWS Glue itself consumes. For information about how to specify and consume your own Job arguments, see the [Calling AWS Glue APIs in Python](http://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-calling.html) topic in the developer guide. For information about the key-value pairs that AWS Glue consumes to set up your job, see the [Special Parameters Used by AWS Glue](http://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-glue-arguments.html) topic in the developer guide.
         :param pulumi.Input[str] description: Description of the job.
-        :param pulumi.Input['JobExecutionPropertyArgs'] execution_property: Execution property of the job. Defined below.
+        :param pulumi.Input[pulumi.InputType['JobExecutionPropertyArgs']] execution_property: Execution property of the job. Defined below.
         :param pulumi.Input[str] glue_version: The version of glue to use, for example "1.0". For information about available versions, see the [AWS Glue Release Notes](https://docs.aws.amazon.com/glue/latest/dg/release-notes.html).
         :param pulumi.Input[float] max_capacity: The maximum number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. `Required` when `pythonshell` is set, accept either `0.0625` or `1.0`.
         :param pulumi.Input[float] max_retries: The maximum number of times to retry this job if it fails.
         :param pulumi.Input[str] name: The name you assign to this job. It must be unique in your account.
-        :param pulumi.Input['JobNotificationPropertyArgs'] notification_property: Notification property of the job. Defined below.
+        :param pulumi.Input[pulumi.InputType['JobNotificationPropertyArgs']] notification_property: Notification property of the job. Defined below.
         :param pulumi.Input[float] number_of_workers: The number of workers of a defined workerType that are allocated when a job runs.
         :param pulumi.Input[str] role_arn: The ARN of the IAM role associated with this job.
         :param pulumi.Input[str] security_configuration: The name of the Security Configuration to be associated with the job.
@@ -203,7 +205,7 @@ class Job(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allocated_capacity=None, arn=None, command=None, connections=None, default_arguments=None, description=None, execution_property=None, glue_version=None, max_capacity=None, max_retries=None, name=None, notification_property=None, number_of_workers=None, role_arn=None, security_configuration=None, tags=None, timeout=None, worker_type=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, allocated_capacity: Optional[pulumi.Input[float]] = None, arn: Optional[pulumi.Input[str]] = None, command: Optional[pulumi.Input[pulumi.InputType['JobCommandArgs']]] = None, connections: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, default_arguments: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, description: Optional[pulumi.Input[str]] = None, execution_property: Optional[pulumi.Input[pulumi.InputType['JobExecutionPropertyArgs']]] = None, glue_version: Optional[pulumi.Input[str]] = None, max_capacity: Optional[pulumi.Input[float]] = None, max_retries: Optional[pulumi.Input[float]] = None, name: Optional[pulumi.Input[str]] = None, notification_property: Optional[pulumi.Input[pulumi.InputType['JobNotificationPropertyArgs']]] = None, number_of_workers: Optional[pulumi.Input[float]] = None, role_arn: Optional[pulumi.Input[str]] = None, security_configuration: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, timeout: Optional[pulumi.Input[float]] = None, worker_type: Optional[pulumi.Input[str]] = None) -> 'Job':
         """
         Get an existing Job resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -213,16 +215,16 @@ class Job(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] allocated_capacity: **DEPRECATED** (Optional) The number of AWS Glue data processing units (DPUs) to allocate to this Job. At least 2 DPUs need to be allocated; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory.
         :param pulumi.Input[str] arn: Amazon Resource Name (ARN) of Glue Job
-        :param pulumi.Input['JobCommandArgs'] command: The command of the job. Defined below.
+        :param pulumi.Input[pulumi.InputType['JobCommandArgs']] command: The command of the job. Defined below.
         :param pulumi.Input[List[pulumi.Input[str]]] connections: The list of connections used for this job.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] default_arguments: The map of default arguments for this job. You can specify arguments here that your own job-execution script consumes, as well as arguments that AWS Glue itself consumes. For information about how to specify and consume your own Job arguments, see the [Calling AWS Glue APIs in Python](http://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-calling.html) topic in the developer guide. For information about the key-value pairs that AWS Glue consumes to set up your job, see the [Special Parameters Used by AWS Glue](http://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-glue-arguments.html) topic in the developer guide.
         :param pulumi.Input[str] description: Description of the job.
-        :param pulumi.Input['JobExecutionPropertyArgs'] execution_property: Execution property of the job. Defined below.
+        :param pulumi.Input[pulumi.InputType['JobExecutionPropertyArgs']] execution_property: Execution property of the job. Defined below.
         :param pulumi.Input[str] glue_version: The version of glue to use, for example "1.0". For information about available versions, see the [AWS Glue Release Notes](https://docs.aws.amazon.com/glue/latest/dg/release-notes.html).
         :param pulumi.Input[float] max_capacity: The maximum number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. `Required` when `pythonshell` is set, accept either `0.0625` or `1.0`.
         :param pulumi.Input[float] max_retries: The maximum number of times to retry this job if it fails.
         :param pulumi.Input[str] name: The name you assign to this job. It must be unique in your account.
-        :param pulumi.Input['JobNotificationPropertyArgs'] notification_property: Notification property of the job. Defined below.
+        :param pulumi.Input[pulumi.InputType['JobNotificationPropertyArgs']] notification_property: Notification property of the job. Defined below.
         :param pulumi.Input[float] number_of_workers: The number of workers of a defined workerType that are allocated when a job runs.
         :param pulumi.Input[str] role_arn: The ARN of the IAM role associated with this job.
         :param pulumi.Input[str] security_configuration: The name of the Security Configuration to be associated with the job.

@@ -8,6 +8,28 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'CapacityProviderAutoScalingGroupProvider',
+    'CapacityProviderAutoScalingGroupProviderManagedScaling',
+    'ClusterDefaultCapacityProviderStrategy',
+    'ClusterSetting',
+    'ServiceCapacityProviderStrategy',
+    'ServiceDeploymentController',
+    'ServiceLoadBalancer',
+    'ServiceNetworkConfiguration',
+    'ServiceOrderedPlacementStrategy',
+    'ServicePlacementConstraint',
+    'ServiceServiceRegistries',
+    'TaskDefinitionInferenceAccelerator',
+    'TaskDefinitionPlacementConstraint',
+    'TaskDefinitionProxyConfiguration',
+    'TaskDefinitionVolume',
+    'TaskDefinitionVolumeDockerVolumeConfiguration',
+    'TaskDefinitionVolumeEfsVolumeConfiguration',
+    'TaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfig',
+    'GetClusterSetting',
+]
+
 @pulumi.output_type
 class CapacityProviderAutoScalingGroupProvider(dict):
     auto_scaling_group_arn: str = pulumi.output_property("autoScalingGroupArn")

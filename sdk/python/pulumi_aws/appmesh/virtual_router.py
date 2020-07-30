@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['VirtualRouter']
+
 
 class VirtualRouter(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -41,7 +43,7 @@ class VirtualRouter(pulumi.CustomResource):
     A map of tags to assign to the resource.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, mesh_name=None, name=None, spec=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, mesh_name: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, spec: Optional[pulumi.Input[pulumi.InputType['VirtualRouterSpecArgs']]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AWS App Mesh virtual router resource.
 
@@ -79,7 +81,7 @@ class VirtualRouter(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] mesh_name: The name of the service mesh in which to create the virtual router.
         :param pulumi.Input[str] name: The name to use for the virtual router.
-        :param pulumi.Input['VirtualRouterSpecArgs'] spec: The virtual router specification to apply.
+        :param pulumi.Input[pulumi.InputType['VirtualRouterSpecArgs']] spec: The virtual router specification to apply.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         if __name__ is not None:
@@ -117,7 +119,7 @@ class VirtualRouter(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, created_date=None, last_updated_date=None, mesh_name=None, name=None, spec=None, tags=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, created_date: Optional[pulumi.Input[str]] = None, last_updated_date: Optional[pulumi.Input[str]] = None, mesh_name: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, spec: Optional[pulumi.Input[pulumi.InputType['VirtualRouterSpecArgs']]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None) -> 'VirtualRouter':
         """
         Get an existing VirtualRouter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -130,7 +132,7 @@ class VirtualRouter(pulumi.CustomResource):
         :param pulumi.Input[str] last_updated_date: The last update date of the virtual router.
         :param pulumi.Input[str] mesh_name: The name of the service mesh in which to create the virtual router.
         :param pulumi.Input[str] name: The name to use for the virtual router.
-        :param pulumi.Input['VirtualRouterSpecArgs'] spec: The virtual router specification to apply.
+        :param pulumi.Input[pulumi.InputType['VirtualRouterSpecArgs']] spec: The virtual router specification to apply.
         :param pulumi.Input[Dict[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

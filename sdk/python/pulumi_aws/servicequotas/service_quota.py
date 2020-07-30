@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ServiceQuota']
+
 
 class ServiceQuota(pulumi.CustomResource):
     adjustable: pulumi.Output[bool] = pulumi.output_property("adjustable")
@@ -45,7 +47,7 @@ class ServiceQuota(pulumi.CustomResource):
     Float specifying the desired value for the service quota. If the desired value is higher than the current value, a quota increase request is submitted. When a known request is submitted and pending, the value reflects the desired value of the pending request.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, quota_code=None, service_code=None, value=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, quota_code: Optional[pulumi.Input[str]] = None, service_code: Optional[pulumi.Input[str]] = None, value: Optional[pulumi.Input[float]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages an individual Service Quota.
 
@@ -107,7 +109,7 @@ class ServiceQuota(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, adjustable=None, arn=None, default_value=None, quota_code=None, quota_name=None, request_id=None, request_status=None, service_code=None, service_name=None, value=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, adjustable: Optional[pulumi.Input[bool]] = None, arn: Optional[pulumi.Input[str]] = None, default_value: Optional[pulumi.Input[float]] = None, quota_code: Optional[pulumi.Input[str]] = None, quota_name: Optional[pulumi.Input[str]] = None, request_id: Optional[pulumi.Input[str]] = None, request_status: Optional[pulumi.Input[str]] = None, service_code: Optional[pulumi.Input[str]] = None, service_name: Optional[pulumi.Input[str]] = None, value: Optional[pulumi.Input[float]] = None) -> 'ServiceQuota':
         """
         Get an existing ServiceQuota resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

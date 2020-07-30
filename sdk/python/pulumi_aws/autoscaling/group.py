@@ -10,6 +10,8 @@ from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
+__all__ = ['Group']
+
 
 class Group(pulumi.CustomResource):
     arn: pulumi.Output[str] = pulumi.output_property("arn")
@@ -166,7 +168,7 @@ class Group(pulumi.CustomResource):
     (See also Waiting for Capacity below.)
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zones=None, default_cooldown=None, desired_capacity=None, enabled_metrics=None, force_delete=None, health_check_grace_period=None, health_check_type=None, initial_lifecycle_hooks=None, launch_configuration=None, launch_template=None, load_balancers=None, max_instance_lifetime=None, max_size=None, metrics_granularity=None, min_elb_capacity=None, min_size=None, mixed_instances_policy=None, name=None, name_prefix=None, placement_group=None, protect_from_scale_in=None, service_linked_role_arn=None, suspended_processes=None, tags=None, tags_collection=None, target_group_arns=None, termination_policies=None, vpc_zone_identifiers=None, wait_for_capacity_timeout=None, wait_for_elb_capacity=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, availability_zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, default_cooldown: Optional[pulumi.Input[float]] = None, desired_capacity: Optional[pulumi.Input[float]] = None, enabled_metrics: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, force_delete: Optional[pulumi.Input[bool]] = None, health_check_grace_period: Optional[pulumi.Input[float]] = None, health_check_type: Optional[pulumi.Input[str]] = None, initial_lifecycle_hooks: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['GroupInitialLifecycleHookArgs']]]]] = None, launch_configuration: Optional[pulumi.Input[str]] = None, launch_template: Optional[pulumi.Input[pulumi.InputType['GroupLaunchTemplateArgs']]] = None, load_balancers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, max_instance_lifetime: Optional[pulumi.Input[float]] = None, max_size: Optional[pulumi.Input[float]] = None, metrics_granularity: Optional[pulumi.Input[str]] = None, min_elb_capacity: Optional[pulumi.Input[float]] = None, min_size: Optional[pulumi.Input[float]] = None, mixed_instances_policy: Optional[pulumi.Input[pulumi.InputType['GroupMixedInstancesPolicyArgs']]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, placement_group: Optional[pulumi.Input[str]] = None, protect_from_scale_in: Optional[pulumi.Input[bool]] = None, service_linked_role_arn: Optional[pulumi.Input[str]] = None, suspended_processes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['GroupTagArgs']]]]] = None, tags_collection: Optional[pulumi.Input[List[pulumi.Input[Dict[str, pulumi.Input[str]]]]]] = None, target_group_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, termination_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, vpc_zone_identifiers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, wait_for_capacity_timeout: Optional[pulumi.Input[str]] = None, wait_for_elb_capacity: Optional[pulumi.Input[float]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an AutoScaling Group resource.
 
@@ -348,7 +350,7 @@ class Group(pulumi.CustomResource):
                behavior and potentially leaves resources dangling.
         :param pulumi.Input[float] health_check_grace_period: Time (in seconds) after instance comes into service before checking health.
         :param pulumi.Input[str] health_check_type: "EC2" or "ELB". Controls how health checking is done.
-        :param pulumi.Input[List[pulumi.Input['GroupInitialLifecycleHookArgs']]] initial_lifecycle_hooks: One or more
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['GroupInitialLifecycleHookArgs']]]] initial_lifecycle_hooks: One or more
                [Lifecycle Hooks](http://docs.aws.amazon.com/autoscaling/latest/userguide/lifecycle-hooks.html)
                to attach to the autoscaling group **before** instances are launched. The
                syntax is exactly the same as the separate
@@ -356,7 +358,7 @@ class Group(pulumi.CustomResource):
                resource, without the `autoscaling_group_name` attribute. Please note that this will only work when creating
                a new autoscaling group. For all other use-cases, please use `autoscaling.LifecycleHook` resource.
         :param pulumi.Input[str] launch_configuration: The name of the launch configuration to use.
-        :param pulumi.Input['GroupLaunchTemplateArgs'] launch_template: Nested argument containing launch template settings along with the overrides to specify multiple instance types and weights. Defined below.
+        :param pulumi.Input[pulumi.InputType['GroupLaunchTemplateArgs']] launch_template: Nested argument containing launch template settings along with the overrides to specify multiple instance types and weights. Defined below.
         :param pulumi.Input[List[pulumi.Input[str]]] load_balancers: A list of elastic load balancer names to add to the autoscaling
                group names. Only valid for classic load balancers. For ALBs, use `target_group_arns` instead.
         :param pulumi.Input[float] max_instance_lifetime: The maximum amount of time, in seconds, that an instance can be in service, values must be either equal to 0 or between 604800 and 31536000 seconds.
@@ -368,7 +370,7 @@ class Group(pulumi.CustomResource):
                (See also Waiting for Capacity below.)
         :param pulumi.Input[float] min_size: The minimum size of the auto scale group.
                (See also Waiting for Capacity below.)
-        :param pulumi.Input['GroupMixedInstancesPolicyArgs'] mixed_instances_policy: Configuration block containing settings to define launch targets for Auto Scaling groups. Defined below.
+        :param pulumi.Input[pulumi.InputType['GroupMixedInstancesPolicyArgs']] mixed_instances_policy: Configuration block containing settings to define launch targets for Auto Scaling groups. Defined below.
         :param pulumi.Input[str] name: The name of the auto scaling group. By default generated by this provider.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified
                prefix. Conflicts with `name`.
@@ -379,7 +381,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] service_linked_role_arn: The ARN of the service-linked role that the ASG will use to call other AWS services
         :param pulumi.Input[List[pulumi.Input[str]]] suspended_processes: A list of processes to suspend for the AutoScaling Group. The allowed values are `Launch`, `Terminate`, `HealthCheck`, `ReplaceUnhealthy`, `AZRebalance`, `AlarmNotification`, `ScheduledActions`, `AddToLoadBalancer`.
                Note that if you suspend either the `Launch` or `Terminate` process types, it can prevent your autoscaling group from functioning properly.
-        :param pulumi.Input[List[pulumi.Input['GroupTagArgs']]] tags: Configuration block(s) containing resource tags. Conflicts with `tags`. Documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['GroupTagArgs']]]] tags: Configuration block(s) containing resource tags. Conflicts with `tags`. Documented below.
         :param pulumi.Input[List[pulumi.Input[Dict[str, pulumi.Input[str]]]]] tags_collection: Set of maps containing resource tags. Conflicts with `tag`. Documented below.
         :param pulumi.Input[List[pulumi.Input[str]]] target_group_arns: A list of `alb.TargetGroup` ARNs, for use with Application or Network Load Balancing.
         :param pulumi.Input[List[pulumi.Input[str]]] termination_policies: A list of policies to decide how the instances in the auto scale group should be terminated. The allowed values are `OldestInstance`, `NewestInstance`, `OldestLaunchConfiguration`, `ClosestToNextInstanceHour`, `OldestLaunchTemplate`, `AllocationStrategy`, `Default`.
@@ -454,7 +456,7 @@ class Group(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, availability_zones=None, default_cooldown=None, desired_capacity=None, enabled_metrics=None, force_delete=None, health_check_grace_period=None, health_check_type=None, initial_lifecycle_hooks=None, launch_configuration=None, launch_template=None, load_balancers=None, max_instance_lifetime=None, max_size=None, metrics_granularity=None, min_elb_capacity=None, min_size=None, mixed_instances_policy=None, name=None, name_prefix=None, placement_group=None, protect_from_scale_in=None, service_linked_role_arn=None, suspended_processes=None, tags=None, tags_collection=None, target_group_arns=None, termination_policies=None, vpc_zone_identifiers=None, wait_for_capacity_timeout=None, wait_for_elb_capacity=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, arn: Optional[pulumi.Input[str]] = None, availability_zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, default_cooldown: Optional[pulumi.Input[float]] = None, desired_capacity: Optional[pulumi.Input[float]] = None, enabled_metrics: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, force_delete: Optional[pulumi.Input[bool]] = None, health_check_grace_period: Optional[pulumi.Input[float]] = None, health_check_type: Optional[pulumi.Input[str]] = None, initial_lifecycle_hooks: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['GroupInitialLifecycleHookArgs']]]]] = None, launch_configuration: Optional[pulumi.Input[str]] = None, launch_template: Optional[pulumi.Input[pulumi.InputType['GroupLaunchTemplateArgs']]] = None, load_balancers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, max_instance_lifetime: Optional[pulumi.Input[float]] = None, max_size: Optional[pulumi.Input[float]] = None, metrics_granularity: Optional[pulumi.Input[str]] = None, min_elb_capacity: Optional[pulumi.Input[float]] = None, min_size: Optional[pulumi.Input[float]] = None, mixed_instances_policy: Optional[pulumi.Input[pulumi.InputType['GroupMixedInstancesPolicyArgs']]] = None, name: Optional[pulumi.Input[str]] = None, name_prefix: Optional[pulumi.Input[str]] = None, placement_group: Optional[pulumi.Input[str]] = None, protect_from_scale_in: Optional[pulumi.Input[bool]] = None, service_linked_role_arn: Optional[pulumi.Input[str]] = None, suspended_processes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['GroupTagArgs']]]]] = None, tags_collection: Optional[pulumi.Input[List[pulumi.Input[Dict[str, pulumi.Input[str]]]]]] = None, target_group_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, termination_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, vpc_zone_identifiers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, wait_for_capacity_timeout: Optional[pulumi.Input[str]] = None, wait_for_elb_capacity: Optional[pulumi.Input[float]] = None) -> 'Group':
         """
         Get an existing Group resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -476,7 +478,7 @@ class Group(pulumi.CustomResource):
                behavior and potentially leaves resources dangling.
         :param pulumi.Input[float] health_check_grace_period: Time (in seconds) after instance comes into service before checking health.
         :param pulumi.Input[str] health_check_type: "EC2" or "ELB". Controls how health checking is done.
-        :param pulumi.Input[List[pulumi.Input['GroupInitialLifecycleHookArgs']]] initial_lifecycle_hooks: One or more
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['GroupInitialLifecycleHookArgs']]]] initial_lifecycle_hooks: One or more
                [Lifecycle Hooks](http://docs.aws.amazon.com/autoscaling/latest/userguide/lifecycle-hooks.html)
                to attach to the autoscaling group **before** instances are launched. The
                syntax is exactly the same as the separate
@@ -484,7 +486,7 @@ class Group(pulumi.CustomResource):
                resource, without the `autoscaling_group_name` attribute. Please note that this will only work when creating
                a new autoscaling group. For all other use-cases, please use `autoscaling.LifecycleHook` resource.
         :param pulumi.Input[str] launch_configuration: The name of the launch configuration to use.
-        :param pulumi.Input['GroupLaunchTemplateArgs'] launch_template: Nested argument containing launch template settings along with the overrides to specify multiple instance types and weights. Defined below.
+        :param pulumi.Input[pulumi.InputType['GroupLaunchTemplateArgs']] launch_template: Nested argument containing launch template settings along with the overrides to specify multiple instance types and weights. Defined below.
         :param pulumi.Input[List[pulumi.Input[str]]] load_balancers: A list of elastic load balancer names to add to the autoscaling
                group names. Only valid for classic load balancers. For ALBs, use `target_group_arns` instead.
         :param pulumi.Input[float] max_instance_lifetime: The maximum amount of time, in seconds, that an instance can be in service, values must be either equal to 0 or between 604800 and 31536000 seconds.
@@ -496,7 +498,7 @@ class Group(pulumi.CustomResource):
                (See also Waiting for Capacity below.)
         :param pulumi.Input[float] min_size: The minimum size of the auto scale group.
                (See also Waiting for Capacity below.)
-        :param pulumi.Input['GroupMixedInstancesPolicyArgs'] mixed_instances_policy: Configuration block containing settings to define launch targets for Auto Scaling groups. Defined below.
+        :param pulumi.Input[pulumi.InputType['GroupMixedInstancesPolicyArgs']] mixed_instances_policy: Configuration block containing settings to define launch targets for Auto Scaling groups. Defined below.
         :param pulumi.Input[str] name: The name of the auto scaling group. By default generated by this provider.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified
                prefix. Conflicts with `name`.
@@ -507,7 +509,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] service_linked_role_arn: The ARN of the service-linked role that the ASG will use to call other AWS services
         :param pulumi.Input[List[pulumi.Input[str]]] suspended_processes: A list of processes to suspend for the AutoScaling Group. The allowed values are `Launch`, `Terminate`, `HealthCheck`, `ReplaceUnhealthy`, `AZRebalance`, `AlarmNotification`, `ScheduledActions`, `AddToLoadBalancer`.
                Note that if you suspend either the `Launch` or `Terminate` process types, it can prevent your autoscaling group from functioning properly.
-        :param pulumi.Input[List[pulumi.Input['GroupTagArgs']]] tags: Configuration block(s) containing resource tags. Conflicts with `tags`. Documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['GroupTagArgs']]]] tags: Configuration block(s) containing resource tags. Conflicts with `tags`. Documented below.
         :param pulumi.Input[List[pulumi.Input[Dict[str, pulumi.Input[str]]]]] tags_collection: Set of maps containing resource tags. Conflicts with `tag`. Documented below.
         :param pulumi.Input[List[pulumi.Input[str]]] target_group_arns: A list of `alb.TargetGroup` ARNs, for use with Application or Network Load Balancing.
         :param pulumi.Input[List[pulumi.Input[str]]] termination_policies: A list of policies to decide how the instances in the auto scale group should be terminated. The allowed values are `OldestInstance`, `NewestInstance`, `OldestLaunchConfiguration`, `ClosestToNextInstanceHour`, `OldestLaunchTemplate`, `AllocationStrategy`, `Default`.

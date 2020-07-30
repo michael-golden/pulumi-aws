@@ -8,6 +8,13 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'SecretRotationRotationRules',
+    'SecretRotationRules',
+    'GetSecretRotationRotationRule',
+    'GetSecretRotationRule',
+]
+
 @pulumi.output_type
 class SecretRotationRotationRules(dict):
     automatically_after_days: float = pulumi.output_property("automaticallyAfterDays")

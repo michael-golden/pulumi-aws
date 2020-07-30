@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetStackResult',
+    'AwaitableGetStackResult',
+    'get_stack',
+]
+
 
 class GetStackResult:
     """
@@ -106,7 +112,7 @@ class AwaitableGetStackResult(GetStackResult):
             timeout_in_minutes=self.timeout_in_minutes)
 
 
-def get_stack(name=None, tags=None, opts=None):
+def get_stack(name: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStackResult:
     """
     The CloudFormation Stack data source allows access to stack
     outputs and other useful data including the template body.

@@ -8,6 +8,13 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'DirectoryConnectSettings',
+    'DirectoryVpcSettings',
+    'GetDirectoryConnectSetting',
+    'GetDirectoryVpcSetting',
+]
+
 @pulumi.output_type
 class DirectoryConnectSettings(dict):
     availability_zones: Optional[List[str]] = pulumi.output_property("availabilityZones")

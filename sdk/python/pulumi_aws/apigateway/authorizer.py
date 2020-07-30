@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['Authorizer']
+
 
 class Authorizer(pulumi.CustomResource):
     authorizer_credentials: pulumi.Output[Optional[str]] = pulumi.output_property("authorizerCredentials")
@@ -57,7 +59,7 @@ class Authorizer(pulumi.CustomResource):
     Defaults to `TOKEN`.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, authorizer_credentials=None, authorizer_result_ttl_in_seconds=None, authorizer_uri=None, identity_source=None, identity_validation_expression=None, name=None, provider_arns=None, rest_api=None, type=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, authorizer_credentials: Optional[pulumi.Input[str]] = None, authorizer_result_ttl_in_seconds: Optional[pulumi.Input[float]] = None, authorizer_uri: Optional[pulumi.Input[str]] = None, identity_source: Optional[pulumi.Input[str]] = None, identity_validation_expression: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, provider_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, rest_api: Optional[pulumi.Input[str]] = None, type: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an API Gateway Authorizer.
 
@@ -118,7 +120,7 @@ class Authorizer(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, authorizer_credentials=None, authorizer_result_ttl_in_seconds=None, authorizer_uri=None, identity_source=None, identity_validation_expression=None, name=None, provider_arns=None, rest_api=None, type=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, authorizer_credentials: Optional[pulumi.Input[str]] = None, authorizer_result_ttl_in_seconds: Optional[pulumi.Input[float]] = None, authorizer_uri: Optional[pulumi.Input[str]] = None, identity_source: Optional[pulumi.Input[str]] = None, identity_validation_expression: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, provider_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, rest_api: Optional[pulumi.Input[str]] = None, type: Optional[pulumi.Input[str]] = None) -> 'Authorizer':
         """
         Get an existing Authorizer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

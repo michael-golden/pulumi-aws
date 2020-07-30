@@ -8,6 +8,11 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'CertificateDomainValidationOptionArgs',
+    'CertificateOptionsArgs',
+]
+
 @pulumi.input_type
 class CertificateDomainValidationOptionArgs:
     domain_name: Optional[pulumi.Input[str]] = pulumi.input_property("domainName")

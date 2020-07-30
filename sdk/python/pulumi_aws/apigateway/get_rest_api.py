@@ -9,6 +9,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 from . import outputs
 
+__all__ = [
+    'GetRestApiResult',
+    'AwaitableGetRestApiResult',
+    'get_rest_api',
+]
+
 
 class GetRestApiResult:
     """
@@ -107,7 +113,7 @@ class AwaitableGetRestApiResult(GetRestApiResult):
             tags=self.tags)
 
 
-def get_rest_api(name=None, tags=None, opts=None):
+def get_rest_api(name: Optional[str] = None, tags: Optional[Dict[str, str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRestApiResult:
     """
     Use this data source to get the id and root_resource_id of a REST API in
     API Gateway. To fetch the REST API you must provide a name to match against.

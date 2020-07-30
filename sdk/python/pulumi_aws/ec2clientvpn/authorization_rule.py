@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['AuthorizationRule']
+
 
 class AuthorizationRule(pulumi.CustomResource):
     access_group_id: pulumi.Output[Optional[str]] = pulumi.output_property("accessGroupId")
@@ -31,7 +33,7 @@ class AuthorizationRule(pulumi.CustomResource):
     The IPv4 address range, in CIDR notation, of the network to which the authorization rule applies.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, access_group_id=None, authorize_all_groups=None, client_vpn_endpoint_id=None, description=None, target_network_cidr=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, access_group_id: Optional[pulumi.Input[str]] = None, authorize_all_groups: Optional[pulumi.Input[bool]] = None, client_vpn_endpoint_id: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, target_network_cidr: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides authorization rules for AWS Client VPN endpoints. For more information on usage, please see the
         [AWS Client VPN Administrator's Guide](https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html).
@@ -89,7 +91,7 @@ class AuthorizationRule(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_group_id=None, authorize_all_groups=None, client_vpn_endpoint_id=None, description=None, target_network_cidr=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, access_group_id: Optional[pulumi.Input[str]] = None, authorize_all_groups: Optional[pulumi.Input[bool]] = None, client_vpn_endpoint_id: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, target_network_cidr: Optional[pulumi.Input[str]] = None) -> 'AuthorizationRule':
         """
         Get an existing AuthorizationRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

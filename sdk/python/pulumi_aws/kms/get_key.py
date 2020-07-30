@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetKeyResult',
+    'AwaitableGetKeyResult',
+    'get_key',
+]
+
 
 class GetKeyResult:
     """
@@ -92,7 +98,7 @@ class AwaitableGetKeyResult(GetKeyResult):
             valid_to=self.valid_to)
 
 
-def get_key(grant_tokens=None, key_id=None, opts=None):
+def get_key(grant_tokens: Optional[List[str]] = None, key_id: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKeyResult:
     """
     Use this data source to get detailed information about
     the specified KMS Key with flexible key id input.

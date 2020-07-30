@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['RoleAlias']
+
 
 class RoleAlias(pulumi.CustomResource):
     alias: pulumi.Output[str] = pulumi.output_property("alias")
@@ -27,7 +29,7 @@ class RoleAlias(pulumi.CustomResource):
     The identity of the role to which the alias refers.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, alias=None, credential_duration=None, role_arn=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, alias: Optional[pulumi.Input[str]] = None, credential_duration: Optional[pulumi.Input[float]] = None, role_arn: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides an IoT role alias.
 
@@ -92,7 +94,7 @@ class RoleAlias(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, alias=None, arn=None, credential_duration=None, role_arn=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, alias: Optional[pulumi.Input[str]] = None, arn: Optional[pulumi.Input[str]] = None, credential_duration: Optional[pulumi.Input[float]] = None, role_arn: Optional[pulumi.Input[str]] = None) -> 'RoleAlias':
         """
         Get an existing RoleAlias resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

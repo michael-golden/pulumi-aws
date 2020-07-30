@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
 
+__all__ = [
+    'GetCallerIdentityResult',
+    'AwaitableGetCallerIdentityResult',
+    'get_caller_identity',
+]
+
 
 class GetCallerIdentityResult:
     """
@@ -53,7 +59,7 @@ class AwaitableGetCallerIdentityResult(GetCallerIdentityResult):
             user_id=self.user_id)
 
 
-def get_caller_identity(opts=None):
+def get_caller_identity(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCallerIdentityResult:
     """
     Use this data source to get the access to the effective Account ID, User ID, and ARN in
     which this provider is authorized.

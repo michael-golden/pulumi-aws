@@ -8,6 +8,13 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'LifecyclePolicyPolicyDetails',
+    'LifecyclePolicyPolicyDetailsSchedule',
+    'LifecyclePolicyPolicyDetailsScheduleCreateRule',
+    'LifecyclePolicyPolicyDetailsScheduleRetainRule',
+]
+
 @pulumi.output_type
 class LifecyclePolicyPolicyDetails(dict):
     resource_types: List[str] = pulumi.output_property("resourceTypes")

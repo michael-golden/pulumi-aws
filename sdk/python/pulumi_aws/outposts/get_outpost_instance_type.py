@@ -8,6 +8,12 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetOutpostInstanceTypeResult',
+    'AwaitableGetOutpostInstanceTypeResult',
+    'get_outpost_instance_type',
+]
+
 
 class GetOutpostInstanceTypeResult:
     """
@@ -44,7 +50,7 @@ class AwaitableGetOutpostInstanceTypeResult(GetOutpostInstanceTypeResult):
             preferred_instance_types=self.preferred_instance_types)
 
 
-def get_outpost_instance_type(arn=None, instance_type=None, preferred_instance_types=None, opts=None):
+def get_outpost_instance_type(arn: Optional[str] = None, instance_type: Optional[str] = None, preferred_instance_types: Optional[List[str]] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOutpostInstanceTypeResult:
     """
     Information about single Outpost Instance Type.
 

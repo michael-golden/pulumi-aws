@@ -10,10 +10,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from . import _utilities, _tables
 from . import outputs
 
+__all__ = ['Provider']
+
 
 class Provider(pulumi.ProviderResource):
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, access_key=None, allowed_account_ids=None, assume_role=None, endpoints=None, forbidden_account_ids=None, ignore_tags=None, insecure=None, max_retries=None, profile=None, region=None, s3_force_path_style=None, secret_key=None, shared_credentials_file=None, skip_credentials_validation=None, skip_get_ec2_platforms=None, skip_metadata_api_check=None, skip_region_validation=None, skip_requesting_account_id=None, token=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, access_key: Optional[pulumi.Input[str]] = None, allowed_account_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, assume_role: Optional[pulumi.Input[pulumi.InputType['ProviderAssumeRoleArgs']]] = None, endpoints: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ProviderEndpointArgs']]]]] = None, forbidden_account_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, ignore_tags: Optional[pulumi.Input[pulumi.InputType['ProviderIgnoreTagsArgs']]] = None, insecure: Optional[pulumi.Input[bool]] = None, max_retries: Optional[pulumi.Input[float]] = None, profile: Optional[pulumi.Input[str]] = None, region: Optional[pulumi.Input[str]] = None, s3_force_path_style: Optional[pulumi.Input[bool]] = None, secret_key: Optional[pulumi.Input[str]] = None, shared_credentials_file: Optional[pulumi.Input[str]] = None, skip_credentials_validation: Optional[pulumi.Input[bool]] = None, skip_get_ec2_platforms: Optional[pulumi.Input[bool]] = None, skip_metadata_api_check: Optional[pulumi.Input[bool]] = None, skip_region_validation: Optional[pulumi.Input[bool]] = None, skip_requesting_account_id: Optional[pulumi.Input[bool]] = None, token: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         The provider type for the aws package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
@@ -23,7 +25,7 @@ class Provider(pulumi.ProviderResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The access key for API operations. You can retrieve this from the 'Security & Credentials' section of the AWS console.
-        :param pulumi.Input['ProviderIgnoreTagsArgs'] ignore_tags: Configuration block with settings to ignore resource tags across all resources.
+        :param pulumi.Input[pulumi.InputType['ProviderIgnoreTagsArgs']] ignore_tags: Configuration block with settings to ignore resource tags across all resources.
         :param pulumi.Input[bool] insecure: Explicitly allow the provider to perform "insecure" SSL requests. If omitted,default value is `false`
         :param pulumi.Input[float] max_retries: The maximum number of times an AWS API request is being executed. If the API request still fails, an error is thrown.
         :param pulumi.Input[str] profile: The profile for API operations. If not set, the default profile created with `aws configure` will be used.

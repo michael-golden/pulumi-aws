@@ -8,6 +8,11 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'SecretRotationRotationRulesArgs',
+    'SecretRotationRulesArgs',
+]
+
 @pulumi.input_type
 class SecretRotationRotationRulesArgs:
     automatically_after_days: pulumi.Input[float] = pulumi.input_property("automaticallyAfterDays")

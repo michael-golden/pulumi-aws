@@ -8,6 +8,10 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ServerEndpointDetailsArgs',
+]
+
 @pulumi.input_type
 class ServerEndpointDetailsArgs:
     vpc_endpoint_id: pulumi.Input[str] = pulumi.input_property("vpcEndpointId")

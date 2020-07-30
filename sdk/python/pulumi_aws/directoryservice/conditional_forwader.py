@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ConditionalForwader']
+
 
 class ConditionalForwader(pulumi.CustomResource):
     directory_id: pulumi.Output[str] = pulumi.output_property("directoryId")
@@ -23,7 +25,7 @@ class ConditionalForwader(pulumi.CustomResource):
     The fully qualified domain name of the remote domain for which forwarders will be used.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, directory_id=None, dns_ips=None, remote_domain_name=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, directory_id: Optional[pulumi.Input[str]] = None, dns_ips: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, remote_domain_name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a conditional forwarder for managed Microsoft AD in AWS Directory Service.
 
@@ -81,7 +83,7 @@ class ConditionalForwader(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, directory_id=None, dns_ips=None, remote_domain_name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, directory_id: Optional[pulumi.Input[str]] = None, dns_ips: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, remote_domain_name: Optional[pulumi.Input[str]] = None) -> 'ConditionalForwader':
         """
         Get an existing ConditionalForwader resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

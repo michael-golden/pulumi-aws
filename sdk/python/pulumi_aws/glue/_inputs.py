@@ -8,6 +8,38 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'CatalogTablePartitionKeyArgs',
+    'CatalogTableStorageDescriptorArgs',
+    'CatalogTableStorageDescriptorColumnArgs',
+    'CatalogTableStorageDescriptorSerDeInfoArgs',
+    'CatalogTableStorageDescriptorSkewedInfoArgs',
+    'CatalogTableStorageDescriptorSortColumnArgs',
+    'ClassifierCsvClassifierArgs',
+    'ClassifierGrokClassifierArgs',
+    'ClassifierJsonClassifierArgs',
+    'ClassifierXmlClassifierArgs',
+    'ConnectionPhysicalConnectionRequirementsArgs',
+    'CrawlerCatalogTargetArgs',
+    'CrawlerDynamodbTargetArgs',
+    'CrawlerJdbcTargetArgs',
+    'CrawlerS3TargetArgs',
+    'CrawlerSchemaChangePolicyArgs',
+    'JobCommandArgs',
+    'JobExecutionPropertyArgs',
+    'JobNotificationPropertyArgs',
+    'SecurityConfigurationEncryptionConfigurationArgs',
+    'SecurityConfigurationEncryptionConfigurationCloudwatchEncryptionArgs',
+    'SecurityConfigurationEncryptionConfigurationJobBookmarksEncryptionArgs',
+    'SecurityConfigurationEncryptionConfigurationS3EncryptionArgs',
+    'TriggerActionArgs',
+    'TriggerPredicateArgs',
+    'TriggerPredicateConditionArgs',
+    'GetScriptDagEdgeArgs',
+    'GetScriptDagNodeArgs',
+    'GetScriptDagNodeArgArgs',
+]
+
 @pulumi.input_type
 class CatalogTablePartitionKeyArgs:
     name: pulumi.Input[str] = pulumi.input_property("name")

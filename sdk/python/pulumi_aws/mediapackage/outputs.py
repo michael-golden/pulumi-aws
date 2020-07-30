@@ -8,6 +8,11 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'ChannelHlsIngest',
+    'ChannelHlsIngestIngestEndpoint',
+]
+
 @pulumi.output_type
 class ChannelHlsIngest(dict):
     ingest_endpoints: Optional[List['outputs.ChannelHlsIngestIngestEndpoint']] = pulumi.output_property("ingestEndpoints")

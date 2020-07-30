@@ -8,6 +8,8 @@ import pulumi.runtime
 from typing import Any, Dict, List, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = ['ReplicationInstance']
+
 
 class ReplicationInstance(pulumi.CustomResource):
     allocated_storage: pulumi.Output[float] = pulumi.output_property("allocatedStorage")
@@ -79,7 +81,7 @@ class ReplicationInstance(pulumi.CustomResource):
     A list of VPC security group IDs to be used with the replication instance. The VPC security groups must work with the VPC containing the replication instance.
     """
     # pylint: disable=no-self-argument
-    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allocated_storage=None, apply_immediately=None, auto_minor_version_upgrade=None, availability_zone=None, engine_version=None, kms_key_arn=None, multi_az=None, preferred_maintenance_window=None, publicly_accessible=None, replication_instance_class=None, replication_instance_id=None, replication_subnet_group_id=None, tags=None, vpc_security_group_ids=None, __props__=None, __name__=None, __opts__=None) -> None:
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allocated_storage: Optional[pulumi.Input[float]] = None, apply_immediately: Optional[pulumi.Input[bool]] = None, auto_minor_version_upgrade: Optional[pulumi.Input[bool]] = None, availability_zone: Optional[pulumi.Input[str]] = None, engine_version: Optional[pulumi.Input[str]] = None, kms_key_arn: Optional[pulumi.Input[str]] = None, multi_az: Optional[pulumi.Input[bool]] = None, preferred_maintenance_window: Optional[pulumi.Input[str]] = None, publicly_accessible: Optional[pulumi.Input[bool]] = None, replication_instance_class: Optional[pulumi.Input[str]] = None, replication_instance_id: Optional[pulumi.Input[str]] = None, replication_subnet_group_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Provides a DMS (Data Migration Service) replication instance resource. DMS replication instances can be created, updated, deleted, and imported.
 
@@ -190,7 +192,7 @@ class ReplicationInstance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allocated_storage=None, apply_immediately=None, auto_minor_version_upgrade=None, availability_zone=None, engine_version=None, kms_key_arn=None, multi_az=None, preferred_maintenance_window=None, publicly_accessible=None, replication_instance_arn=None, replication_instance_class=None, replication_instance_id=None, replication_instance_private_ips=None, replication_instance_public_ips=None, replication_subnet_group_id=None, tags=None, vpc_security_group_ids=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, allocated_storage: Optional[pulumi.Input[float]] = None, apply_immediately: Optional[pulumi.Input[bool]] = None, auto_minor_version_upgrade: Optional[pulumi.Input[bool]] = None, availability_zone: Optional[pulumi.Input[str]] = None, engine_version: Optional[pulumi.Input[str]] = None, kms_key_arn: Optional[pulumi.Input[str]] = None, multi_az: Optional[pulumi.Input[bool]] = None, preferred_maintenance_window: Optional[pulumi.Input[str]] = None, publicly_accessible: Optional[pulumi.Input[bool]] = None, replication_instance_arn: Optional[pulumi.Input[str]] = None, replication_instance_class: Optional[pulumi.Input[str]] = None, replication_instance_id: Optional[pulumi.Input[str]] = None, replication_instance_private_ips: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, replication_instance_public_ips: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, replication_subnet_group_id: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, vpc_security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'ReplicationInstance':
         """
         Get an existing ReplicationInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
